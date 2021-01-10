@@ -5,6 +5,7 @@
 #include <peekpoke.h>
 
 #include "c64_bitmapmode.h"
+//#link "c64_bitmapmode.c"
 
 typedef unsigned char byte;
 //Map Data
@@ -13,10 +14,11 @@ byte mapWidth = 8;
 byte mapData[200][200];
 //Viewport
 byte viewportPosX = 2;
-byte viewportPosY = 4;
-byte viewportWidth = 16;
-byte viewportHeight = 16;
-byte viewportAddress = 0x0400;
+byte viewportPosY = 2;
+byte viewportWidth = 22;
+byte viewportHeight = 22;
+int viewportMemYOffset;
+int ViewportMemPos;
 //Camera Position
 int offsetX, offsetY = 0;
 int x, y, a, b = 0;
@@ -24,7 +26,7 @@ int x, y, a, b = 0;
 void DrawScreen()
 {
   //Add the offset to position the first character in the viewport
-  int ViewportMemPos = 0x0400 + viewportPosY * 40;
+  ViewportMemPos = 0x0400 + viewportMemYOffset;
   
   if (offsetX > mapWidth)
     offsetX -= mapWidth;
@@ -68,6 +70,7 @@ void main(void)
   byte water = '=';
   byte signpost = 'X';
   
+  viewportMemYOffset = viewportPosY * 40;
   clrscr();  
   
   setcolortextmode();
@@ -83,17 +86,24 @@ void main(void)
   mapData[4][4] = grass;
   mapData[5][4] = grass;
   mapData[6][4] = grass;
+  mapData[7][4] = grass;
   mapData[4][5] = grass;
   mapData[5][5] = signpost;
   mapData[6][5] = grass;
+  mapData[7][5] = grass;
   mapData[4][6] = grass;
   mapData[5][6] = grass;
-  mapData[6][6] = grass;  
+  mapData[6][6] = grass; 
+  mapData[7][6] = grass;
+  mapData[4][7] = grass;
+  mapData[5][7] = grass;
+  mapData[6][7] = grass; 
+  mapData[7][7] = grass;
+  
   while(1)
   {
     DrawScreen();
-    offsetX++;
-    offsetY++;    
+    offsetX += 2;
+    offsetY += 2;    
   }
 }
-//#link "c64_bitmapmode.c"
