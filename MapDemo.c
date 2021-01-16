@@ -10,19 +10,25 @@
 
 typedef unsigned char byte;
 //Map Data
-byte mapHeight = 8;
-byte mapWidth = 8;
-byte mapData[200][200];
+byte mapHeight = 64;
+byte mapWidth = 64;
+byte mapData[64][64];
 //Viewport
 byte viewportPosX = 2;
 byte viewportPosY = 2;
-byte viewportWidth = 16;
-byte viewportHeight = 16;
+byte viewportWidth = 20;
+byte viewportHeight = 20;
 int viewportMemYOffset;
 int ViewportMemPos;
+int ColorMemPos;
 //Camera Position
 int offsetX, offsetY = 0;
 int x, y, a, b = 0;
+//Tile Data
+//
+//
+//Color Palette
+byte ColorPalette[64];
 
 void rasterWait(unsigned char line) {
   while (VIC.rasterline < line) ;
@@ -42,6 +48,7 @@ void DrawScreen()
 {
   //Add the offset to position the first character in the viewport
   ViewportMemPos = 0x0400 + viewportMemYOffset;
+  ColorMemPos = 0xD800 + viewportMemYOffset;
   
   if (offsetX > mapWidth)
     offsetX -= mapWidth;
@@ -79,10 +86,14 @@ void DrawScreen()
       //cputcxy(x + viewportPosX, y + viewportPosY, mapData[a][b]);
       //POKE(viewportAddress + x + 40*(y + viewportPosY), mapData[a][b]);
       POKE(ViewportMemPos + x + viewportPosX, mapData[a][b]);
+      POKE(ColorMemPos + x + viewportPosX, ColorPalette[mapData[a][b]]);
+      
+      //POKE(0xD800 + x + viewportPosX + 40 * y + 40* viewportPosY, mapData[a][b]);
       
       a++;
     }
     ViewportMemPos += 40;
+    ColorMemPos += 40;
     a = offsetX;
     b++;
   }
@@ -90,9 +101,11 @@ void DrawScreen()
 
 void main(void)
 {
-  byte grass = '/';
-  byte water = '=';
-  byte signpost = 'X';
+  int i;
+  
+  byte grass = 160;
+  byte water = 230;
+  byte signpost = 235;
   
   viewportMemYOffset = viewportPosY * 40;
   joy_install (joy_static_stddrv);
@@ -105,7 +118,7 @@ void main(void)
     {
       for(x = 0; x < mapWidth; x++)
       {
-        mapData[x][y] = water;
+        mapData[x][y] = x * y;
       }
     }  
   mapData[4][4] = grass;
@@ -124,6 +137,13 @@ void main(void)
   mapData[5][7] = grass;
   mapData[6][7] = grass; 
   mapData[7][7] = grass;
+  
+  for (i = 0; i < 8; i++)
+    ColorPalette[i] = i;
+  
+  ColorPalette[water] = 6;
+  ColorPalette[grass] = 5;
+  ColorPalette[signpost] = 1;
   
   while(1)
   {

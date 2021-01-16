@@ -23,7 +23,7 @@ void setcolortextmode()
   VIC.ctrl2 = 0x18;
   
   //Background / 00
-  POKE(0xD021, 14);
+  POKE(0xD021, 0);
   //Foreground / 01
   POKE(0xD022, 5);
   //Foreground / 10
@@ -31,5 +31,5 @@ void setcolortextmode()
   
   //Foreground / 11 / 0-7 single, 8-15 multi
   for (i = 0; i < 1000; i++)
-    POKE(0xD800 + i, 11);
+    POKE(0xD800 + i, 1);
 }
