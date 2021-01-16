@@ -19,8 +19,8 @@ void settextmode()
 void setcolortextmode()
 {
   int i = 0;
-  VIC.ctrl1 = 0x1b;
-  VIC.ctrl2 = 0x18;
+  //VIC.ctrl1 = 0x1b;
+  //VIC.ctrl2 = 0x18;
   
   //Background / 00
   POKE(0xD021, 0);

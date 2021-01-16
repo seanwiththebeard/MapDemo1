@@ -9,6 +9,7 @@
 //#link "c64_bitmapmode.c"
 
 typedef unsigned char byte;
+
 //Map Data
 byte mapHeight = 64;
 byte mapWidth = 64;
@@ -16,19 +17,24 @@ byte mapData[64][64];
 //Viewport
 byte viewportPosX = 2;
 byte viewportPosY = 2;
-byte viewportWidth = 20;
-byte viewportHeight = 20;
+byte viewportWidth = 8;
+byte viewportHeight = 8;
 int viewportMemYOffset;
 int ViewportMemPos;
 int ColorMemPos;
 //Camera Position
 int offsetX, offsetY = 0;
 int x, y, a, b = 0;
+byte moved = 0;
 //Tile Data
-//
-//
+struct Tile{
+  byte chars[4];
+  byte colors[4];
+  unsigned int blocked:4;
+  unsigned int trigger:4;
+} tiles[16];
 //Color Palette
-byte ColorPalette[64];
+byte ColorPalette[256];
 
 void rasterWait(unsigned char line) {
   while (VIC.rasterline < line) ;
@@ -36,12 +42,29 @@ void rasterWait(unsigned char line) {
 
 void CheckInput()
 {
+  int movement = 1;
   char joy;
+  
+  moved = 0;
   joy = joy_read(0);
-  if (JOY_UP(joy)) offsetY-=2;
-  if (JOY_LEFT(joy)) offsetX-=2;
-  if (JOY_RIGHT(joy)) offsetX+=2;
-  if (JOY_DOWN(joy)) offsetY+=2; 
+  if (JOY_UP(joy)) {offsetY-=movement; moved = 1;}
+  if (JOY_LEFT(joy)) {offsetX-=movement; moved = 1;}
+  if (JOY_RIGHT(joy)) {offsetX+=movement; moved = 1;}
+  if (JOY_DOWN(joy)) {offsetY+=movement; moved = 1;}
+}
+
+void DrawTile(byte index, byte xpos, byte ypos)
+{
+  int memoffset = xpos + 40 * ypos + (viewportPosX) + (40 * viewportPosY);
+  POKE(0x0400 + memoffset, tiles[index].chars[0]);
+  POKE(0x0400 + memoffset + 1, tiles[index].chars[1]);
+  POKE(0x0400 + memoffset + 40, tiles[index].chars[2]);
+  POKE(0x0400 + memoffset + 41, tiles[index].chars[3]);
+  
+  POKE(0xD800 + memoffset, tiles[index].colors[0]);
+  POKE(0xD800 + memoffset + 1, tiles[index].colors[1]);
+  POKE(0xD800 + memoffset + 40, tiles[index].colors[2]);
+  POKE(0xD800 + memoffset + 41, tiles[index].colors[3]);
 }
 
 void DrawScreen()
@@ -83,12 +106,9 @@ void DrawScreen()
       if (a < 0)
           a += mapWidth;
       
-      //cputcxy(x + viewportPosX, y + viewportPosY, mapData[a][b]);
-      //POKE(viewportAddress + x + 40*(y + viewportPosY), mapData[a][b]);
-      POKE(ViewportMemPos + x + viewportPosX, mapData[a][b]);
-      POKE(ColorMemPos + x + viewportPosX, ColorPalette[mapData[a][b]]);
-      
-      //POKE(0xD800 + x + viewportPosX + 40 * y + 40* viewportPosY, mapData[a][b]);
+      //POKE(ViewportMemPos + x + viewportPosX, mapData[a][b]);
+      //POKE(ColorMemPos + x + viewportPosX, ColorPalette[mapData[a][b]]);
+      DrawTile(mapData[a][b], x * 2, y*2);
       
       a++;
     }
@@ -103,9 +123,9 @@ void main(void)
 {
   int i;
   
-  byte grass = 160;
-  byte water = 230;
-  byte signpost = 235;
+  byte grass = 2;
+  byte water = 0;
+  byte signpost = 1;
   
   viewportMemYOffset = viewportPosY * 40;
   joy_install (joy_static_stddrv);
@@ -118,7 +138,7 @@ void main(void)
     {
       for(x = 0; x < mapWidth; x++)
       {
-        mapData[x][y] = x * y;
+        mapData[x][y] = 0;
       }
     }  
   mapData[4][4] = grass;
@@ -138,17 +158,45 @@ void main(void)
   mapData[6][7] = grass; 
   mapData[7][7] = grass;
   
-  for (i = 0; i < 8; i++)
+  for (i = 0; i < 256; i++)
     ColorPalette[i] = i;
   
   ColorPalette[water] = 6;
   ColorPalette[grass] = 5;
   ColorPalette[signpost] = 1;
   
+  tiles[0].chars[0] = '1';
+  tiles[0].chars[1] = '2';
+  tiles[0].chars[2] = '3';
+  tiles[0].chars[3] = '4';
+  tiles[0].colors[0] = 14;
+  tiles[0].colors[1] = 6;
+  tiles[0].colors[2] = 6;
+  tiles[0].colors[3] = 14;
+  
+  tiles[1].chars[0] = '1';
+  tiles[1].chars[1] = '2';
+  tiles[1].chars[2] = '3';
+  tiles[1].chars[3] = '4';
+  tiles[1].colors[0] = 1;
+  tiles[1].colors[1] = 1;
+  tiles[1].colors[2] = 15;
+  tiles[1].colors[3] = 15;
+  
+  tiles[2].chars[0] = '1';
+  tiles[2].chars[1] = '2';
+  tiles[2].chars[2] = '3';
+  tiles[2].chars[3] = '4';
+  tiles[2].colors[0] = 7;
+  tiles[2].colors[1] = 13;
+  tiles[2].colors[2] = 13;
+  tiles[2].colors[3] = 7;
+  
+  DrawScreen();
   while(1)
   {
-    //rasterWait(255);
     CheckInput();
-    DrawScreen();
+    if(moved)
+      DrawScreen();
   }
 }
