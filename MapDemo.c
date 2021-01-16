@@ -14,25 +14,21 @@ typedef unsigned char byte;
 byte mapHeight = 64;
 byte mapWidth = 64;
 byte mapData[64][64];
+
 //Viewport
 byte viewportPosX = 2;
 byte viewportPosY = 2;
-byte viewportWidth = 8;
-byte viewportHeight = 8;
-int viewportMemYOffset;
-int ViewportMemPos;
-int ColorMemPos;
+byte viewportWidth = 10;
+byte viewportHeight = 10;
+int viewportOrigin = 0x0400;
+int colorOrigin = 0xD800;
+
 //Camera Position
 int offsetX, offsetY = 0;
-int x, y, a, b = 0;
+int x, y, a, b, i = 0;
 byte moved = 0;
-//Tile Data
-struct Tile{
-  byte chars[4];
-  byte colors[4];
-  unsigned int blocked:4;
-  unsigned int trigger:4;
-} tiles[16];
+char joy = 0;
+
 //Color Palette
 byte ColorPalette[256];
 
@@ -42,129 +38,51 @@ void rasterWait(unsigned char line) {
 
 void CheckInput()
 {
-  int movement = 1;
-  char joy;
-  
-  moved = 0;
-  joy = joy_read(0);
-  if (JOY_UP(joy)) {offsetY-=movement; moved = 1;}
-  if (JOY_LEFT(joy)) {offsetX-=movement; moved = 1;}
-  if (JOY_RIGHT(joy)) {offsetX+=movement; moved = 1;}
-  if (JOY_DOWN(joy)) {offsetY+=movement; moved = 1;}
-}
-
-void DrawTile(byte index, byte xpos, byte ypos)
-{
-  int memoffset = xpos + 40 * ypos + (viewportPosX) + (40 * viewportPosY);
-  POKE(0x0400 + memoffset, tiles[index].chars[0]);
-  POKE(0x0400 + memoffset + 1, tiles[index].chars[1]);
-  POKE(0x0400 + memoffset + 40, tiles[index].chars[2]);
-  POKE(0x0400 + memoffset + 41, tiles[index].chars[3]);
-  
-  POKE(0xD800 + memoffset, tiles[index].colors[0]);
-  POKE(0xD800 + memoffset + 1, tiles[index].colors[1]);
-  POKE(0xD800 + memoffset + 40, tiles[index].colors[2]);
-  POKE(0xD800 + memoffset + 41, tiles[index].colors[3]);
-}
-
-void DrawScreen()
-{
-  //Add the offset to position the first character in the viewport
-  ViewportMemPos = 0x0400 + viewportMemYOffset;
-  ColorMemPos = 0xD800 + viewportMemYOffset;
-  
-  if (offsetX > mapWidth)
-    offsetX -= mapWidth;
-  if (offsetX <= 0)
-    offsetX += mapWidth;
-  
-  if (offsetY > mapHeight)
-    offsetY -= mapHeight;
-  if (offsetY <= 0)
-    offsetY += mapHeight;
-  
-  a = offsetX;
-  b = offsetY;
-  
-  //y = viewportHeight;
-  for(y = 0; y < viewportHeight; y++)
-  //while(y--)
+  if (joy != joy_read(0))
   {
-    //Wrap the map data y reference
-    if (b == mapHeight)
-        b = 0;
-    if (b < 0)
-      b +=mapHeight;
-    
-    //x = viewportWidth;
-    for(x = 0; x < viewportWidth; x++)
-    //while(x--)
-    {
-      //Wrap the map data X reference
-      if (a == mapWidth)
-          a = 0;
-      if (a < 0)
-          a += mapWidth;
-      
-      //POKE(ViewportMemPos + x + viewportPosX, mapData[a][b]);
-      //POKE(ColorMemPos + x + viewportPosX, ColorPalette[mapData[a][b]]);
-      DrawTile(mapData[a][b], x * 2, y*2);
-      
-      a++;
-    }
-    ViewportMemPos += 40;
-    ColorMemPos += 40;
-    a = offsetX;
-    b++;
+    int movement = 1;  
+    moved = 0;
+    joy = joy_read(0);
+    if (JOY_UP(joy)) {offsetY-=movement; moved = 1;}
+    if (JOY_LEFT(joy)) {offsetX-=movement; moved = 1;}
+    if (JOY_RIGHT(joy)) {offsetX+=movement; moved = 1;}
+    if (JOY_DOWN(joy)) {offsetY+=movement; moved = 1;}
   }
 }
 
-void main(void)
+//Tile Data
+struct Tile
 {
-  int i;
+  byte chars[4];
+  byte colors[4];
+  unsigned int blocked:4;
+  unsigned int trigger:4;
+} tiles[16];
+
+void DrawTile(byte index, byte xpos, byte ypos)
+{
+  int memoffset = xpos + 40 * ypos;
+  POKE(viewportOrigin + memoffset, tiles[index].chars[0]);
+  POKE(viewportOrigin + memoffset + 1, tiles[index].chars[1]);
+  POKE(viewportOrigin + memoffset + 40, tiles[index].chars[2]);
+  POKE(viewportOrigin + memoffset + 41, tiles[index].chars[3]);
   
+  POKE(colorOrigin + memoffset, tiles[index].colors[0]);
+  POKE(colorOrigin + memoffset + 1, tiles[index].colors[1]);
+  POKE(colorOrigin + memoffset + 40, tiles[index].colors[2]);
+  POKE(colorOrigin + memoffset + 41, tiles[index].colors[3]);
+}
+
+void InitializeMapData()
+{
   byte grass = 2;
   byte water = 0;
   byte signpost = 1;
   
-  viewportMemYOffset = viewportPosY * 40;
-  joy_install (joy_static_stddrv);
-  clrscr();  
+  viewportOrigin += (viewportPosX + 40 * viewportPosY);
+  colorOrigin += (viewportPosX + 40 * viewportPosY);
   
-  setcolortextmode();
-  
-  //Init map data
-  for(y = 0; y < mapHeight; y++)
-    {
-      for(x = 0; x < mapWidth; x++)
-      {
-        mapData[x][y] = 0;
-      }
-    }  
-  mapData[4][4] = grass;
-  mapData[5][4] = grass;
-  mapData[6][4] = grass;
-  mapData[7][4] = grass;
-  mapData[4][5] = grass;
-  mapData[5][5] = signpost;
-  mapData[6][5] = grass;
-  mapData[7][5] = grass;
-  mapData[4][6] = grass;
-  mapData[5][6] = grass;
-  mapData[6][6] = grass; 
-  mapData[7][6] = grass;
-  mapData[4][7] = grass;
-  mapData[5][7] = grass;
-  mapData[6][7] = grass; 
-  mapData[7][7] = grass;
-  
-  for (i = 0; i < 256; i++)
-    ColorPalette[i] = i;
-  
-  ColorPalette[water] = 6;
-  ColorPalette[grass] = 5;
-  ColorPalette[signpost] = 1;
-  
+  //Init Tileset
   tiles[0].chars[0] = '1';
   tiles[0].chars[1] = '2';
   tiles[0].chars[2] = '3';
@@ -192,11 +110,97 @@ void main(void)
   tiles[2].colors[2] = 13;
   tiles[2].colors[3] = 7;
   
+  //Init map data
+  for(y = 0; y < mapHeight; y++)
+    {
+      for(x = 0; x < mapWidth; x++)
+      {
+        mapData[x][y] = water;
+      }
+    }  
+  mapData[4][4] = grass;
+  mapData[5][4] = grass;
+  mapData[6][4] = grass;
+  mapData[7][4] = grass;
+  mapData[4][5] = grass;
+  mapData[5][5] = signpost;
+  mapData[6][5] = grass;
+  mapData[7][5] = grass;
+  mapData[4][6] = grass;
+  mapData[5][6] = grass;
+  mapData[6][6] = grass; 
+  mapData[7][6] = grass;
+  mapData[4][7] = grass;
+  mapData[5][7] = grass;
+  mapData[6][7] = grass; 
+  mapData[7][7] = grass;
+  
+  for (i = 0; i < 256; i++)
+    ColorPalette[i] = i;
+  
+  ColorPalette[water] = 6;
+  ColorPalette[grass] = 5;
+  ColorPalette[signpost] = 1;
+}
+
+void DrawScreen()
+{  
+  if (offsetX > mapWidth)
+    offsetX -= mapWidth;
+  if (offsetX <= 0)
+    offsetX += mapWidth;
+  
+  if (offsetY > mapHeight)
+    offsetY -= mapHeight;
+  if (offsetY <= 0)
+    offsetY += mapHeight;
+  
+  a = offsetX;
+  b = offsetY;
+  
+  for(y = 0; y < viewportHeight; y++)
+  {
+    //Wrap the map data y reference
+    if (b == mapHeight)
+        b = 0;
+    if (b < 0)
+      b +=mapHeight;
+    
+    for(x = 0; x < viewportWidth; x++)
+    {
+      //Wrap the map data X reference
+      if (a == mapWidth)
+          a = 0;
+      if (a < 0)
+          a += mapWidth;
+      
+      DrawTile(mapData[a][b], x * 2, y*2);
+      
+      a++;
+    }
+    
+    a = offsetX;
+    b++;
+  }
+}
+
+void main(void)
+{ 
+  joy_install (joy_static_stddrv);
+  clrscr();  
+  
+  setcolortextmode();
+  
+  InitializeMapData();
   DrawScreen();
+  
   while(1)
   {
     CheckInput();
+    
     if(moved)
+    {
       DrawScreen();
+    }
   }
 }
