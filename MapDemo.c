@@ -61,6 +61,10 @@ struct Tile
 
 void DrawTile(byte index, byte xpos, byte ypos)
 {
+  //Note: 
+  //could speed up if memoffset is solved 
+  //once per line instead of per tile
+  
   int memoffset = xpos + 40 * ypos;
   POKE(viewportOrigin + memoffset, tiles[index].chars[0]);
   POKE(viewportOrigin + memoffset + 1, tiles[index].chars[1]);
