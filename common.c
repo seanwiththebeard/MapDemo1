@@ -1,4 +1,3 @@
-
 #include "common.h"
 
 void raster_wait(unsigned char line) {
