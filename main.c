@@ -8,11 +8,12 @@
 #include "c64_bitmapmode.h"
 //#link "c64_bitmapmode.c"
 
-//#link "map.c"
 #include "map.h"
+//#link "map.c"
 
 
-typedef unsigned char byte;
+#include "common.h"
+//#link "common.c"
 
 //Map Data
 byte mapHeight = 64;
@@ -34,8 +35,6 @@ byte moved = 0;
 char joy = 0;
 
 //Color Palette
-//#link "map.c"
-
 byte ColorPalette[256];
 
 void rasterWait(unsigned char line) {
@@ -71,16 +70,16 @@ void DrawTile(byte index, byte xpos, byte ypos)
   //could speed up if memoffset is solved 
   //once per line instead of per tile
   
-  int memoffset = xpos + 40 * ypos;
+  int memoffset = xpos + COLS * ypos;
   POKE(viewportOrigin + memoffset, tiles[index].chars[0]);
   POKE(viewportOrigin + memoffset + 1, tiles[index].chars[1]);
-  POKE(viewportOrigin + memoffset + 40, tiles[index].chars[2]);
-  POKE(viewportOrigin + memoffset + 41, tiles[index].chars[3]);
+  POKE(viewportOrigin + memoffset + COLS, tiles[index].chars[2]);
+  POKE(viewportOrigin + memoffset + COLS + 1, tiles[index].chars[3]);
   
   POKE(colorOrigin + memoffset, tiles[index].colors[0]);
   POKE(colorOrigin + memoffset + 1, tiles[index].colors[1]);
-  POKE(colorOrigin + memoffset + 40, tiles[index].colors[2]);
-  POKE(colorOrigin + memoffset + 41, tiles[index].colors[3]);
+  POKE(colorOrigin + memoffset + COLS, tiles[index].colors[2]);
+  POKE(colorOrigin + memoffset + COLS + 1, tiles[index].colors[3]);
 }
 
 void InitializeMapData()
