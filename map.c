@@ -10,9 +10,10 @@
 //#link "input.c"
 
 //Map Data
-int mapHeight = 12;
-int mapWidth = 12;
+int mapHeight = 32;
+int mapWidth = 32;
 byte mapData[32][32];
+bool charsDrawn[32][32];
 
 //Viewport
 byte viewportPosX = 2;
@@ -71,7 +72,6 @@ struct Character
 
 void DrawCharacter(byte index, int xpos, int ypos)
 {
-  if (characters[index].visible)
   {
     int memoffset = xpos + COLS * ypos;
     POKE(viewportOrigin + memoffset, characters[index].chars[0]);
@@ -139,12 +139,23 @@ byte GetWrappedY(byte YPos)
 
 void DrawChar(byte index)
 {
+  if(characters[index].visible)
+  {
   byte posx = GetWrappedX(characters[index].posX);
   byte posy = GetWrappedY(characters[index].posY);
   
   if (posx < viewportWidth)
     if (posy < viewportHeight)
       DrawCharacter(index, posx * 2, posy * 2);
+  charsDrawn[posx][posy] = true;
+  }
+}
+
+void BlankCharsDrawn()
+{
+  for(y = 0; y < viewportHeight; y++)
+    for (x = 0; x < viewportWidth; x++)
+      charsDrawn[x][y] = false;
 }
 
 void InitializeMapData()
@@ -158,6 +169,8 @@ void InitializeMapData()
   
   cameraOffsetX = viewportWidth / 2;
   cameraOffsetY = viewportHeight / 2;
+  
+  BlankCharsDrawn();
   
   //Init Tileset
   tiles[0].chars[0] = '1';
@@ -249,6 +262,7 @@ void DrawMap()
   bool charIndexDrawn[16];
   byte charactersLeft = 16;
   CameraFollow(0);
+  BlankCharsDrawn();
 
   for (i = 0; i < charactersLeft; i++)
     charIndexDrawn[i] = false;
@@ -257,6 +271,10 @@ void DrawMap()
   
   a = offsetX;
   b = offsetY;
+  
+  for(i = 0; i < 16; i++)
+    DrawChar(i);
+  
   for(y = 0; y < viewportHeight; y++)
   {
     //Wrap the map data y reference
@@ -274,8 +292,10 @@ void DrawMap()
           a = 0;
       if (a < 0)
           a += mapWidth;
-      if (charactersLeft > 0)
-      /*for (i = 0; i < 16; i++)
+      
+      
+      /*if (charactersLeft > 0)
+      for (i = 0; i < 16; i++)
       {
         if (!charIndexDrawn[i])
         {
@@ -294,6 +314,13 @@ void DrawMap()
       }
       
       if(!charDrawn)*/
+      
+      /*for (i = 0; i < 16; i++)
+        if (characters[i].visible)
+          if(characters[i].posX == a)
+            if(characters[i].posY == b)
+              charDrawn = true;*/
+      if (!charsDrawn[x][y])
         DrawTile(mapData[a][b], x*2, y*2);
       
       a++;
@@ -302,8 +329,8 @@ void DrawMap()
     a = offsetX;
     b++;
   }
-  for(i = 0; i < 16; i++)
-    DrawChar(i);
+  
+  
   for (i = 0; i < 23; i++)
     printf("\b");
   printf("\rchrpos x %i", characters[0].posX);
