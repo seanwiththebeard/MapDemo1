@@ -28,11 +28,10 @@ void main(void)
   {
     
     UpdateInput();
-    CheckInput();
     if(InputChanged())
     {
-      if (!NoInput())
-        DrawMap();
+      CheckInput();
+      DrawMap();
     }
   }
 }

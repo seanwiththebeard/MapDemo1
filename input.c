@@ -26,16 +26,19 @@ void UpdateInput()
   }
 }
 
-bool InputChanged()
-{
-  return ChangedState;
-}
-
 bool NoInput()
 {
   if (joy_read(0) == 0)
     return true;
   return false;
+}
+
+bool InputChanged()
+{
+  if (!NoInput())
+    return ChangedState;
+  else
+    return false;
 }
 
 bool InputUp()
