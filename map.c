@@ -10,15 +10,15 @@
 //#link "input.c"
 
 //Map Data
-byte mapHeight = 64;
-byte mapWidth = 64;
-byte mapData[64][64];
+byte mapHeight = 12;
+byte mapWidth = 12;
+byte mapData[12][12];
 
 //Viewport
 byte viewportPosX = 2;
 byte viewportPosY = 2;
-byte viewportWidth = 10;
-byte viewportHeight = 10;
+byte viewportWidth = 8;
+byte viewportHeight = 8;
 int viewportOrigin = 0x0400;
 int colorOrigin = 0xD800;
 
@@ -58,14 +58,92 @@ void DrawTile(byte index, byte xpos, byte ypos)
   POKE(colorOrigin + memoffset + COLS + 1, tiles[index].colors[3]);
 }
 
+struct Character
+{
+  byte chars[4];
+  byte colors[4];
+  byte posX;
+  byte posY;
+  bool visible;
+} characters[16];
+
+void DrawCharacter(byte index, int xpos, int ypos)
+{
+  if (characters[index].visible)
+  {
+    int memoffset = xpos + COLS * ypos;
+    POKE(viewportOrigin + memoffset, characters[index].chars[0]);
+    POKE(viewportOrigin + memoffset + 1, characters[index].chars[1]);
+    POKE(viewportOrigin + memoffset + COLS, characters[index].chars[2]);
+    POKE(viewportOrigin + memoffset + COLS + 1, characters[index].chars[3]);
+  
+    POKE(colorOrigin + memoffset, characters[index].colors[0]);
+    POKE(colorOrigin + memoffset + 1, characters[index].colors[1]);
+    POKE(colorOrigin + memoffset + COLS, characters[index].colors[2]);
+    POKE(colorOrigin + memoffset + COLS + 1, characters[index].colors[3]);
+  }
+}
+
+bool getBoundsX(int xPos)
+{
+  if (xPos < offsetX)
+    return false;
+  
+  return true;  
+}
+bool getBoundsY(byte yPos)
+{
+  //Case contained viewport
+  if (mapHeight - offsetY > 0)
+  {
+    if (yPos > offsetY && yPos < (offsetY + viewportHeight))
+      return true;
+  }
+  //Case wrapped
+  if (yPos < ((offsetY + viewportHeight) - mapHeight))
+    return true;
+  
+  return false;
+}
+
+byte GetWrappedX(int xPos)
+{ 
+  int tempX = xPos - offsetX;
+  
+  if (xPos < offsetX)
+    tempX += mapWidth;
+
+  return tempX;
+}
+
+byte GetWrappedY(byte YPos)
+{
+  int tempY = YPos - offsetY;
+  
+  if (YPos < offsetY)
+    tempY += mapHeight;
+
+  return tempY;
+}
+
+void DrawChar(byte index)
+{
+  byte posx = GetWrappedX(characters[index].posX);
+  byte posy = GetWrappedY(characters[index].posY);
+  
+  if (posx < viewportWidth)
+    if (posy < viewportHeight)
+      DrawCharacter(index, posx * 2, posy * 2);
+}
+
 void InitializeMapData()
 {
   byte grass = 2;
   byte water = 0;
   byte signpost = 1;
   
-  viewportOrigin += (viewportPosX + 40 * viewportPosY);
-  colorOrigin += (viewportPosX + 40 * viewportPosY);
+  viewportOrigin += (viewportPosX + COLS * viewportPosY);
+  colorOrigin += (viewportPosX + COLS * viewportPosY);
   
   //Init Tileset
   tiles[0].chars[0] = '1';
@@ -95,6 +173,27 @@ void InitializeMapData()
   tiles[2].colors[2] = 13;
   tiles[2].colors[3] = 7;
   
+  //Init Characters
+  for (i = 0; i < 16; i++)
+  {
+    characters[i].chars[0] = i;
+    characters[i].chars[1] = i;
+    characters[i].chars[2] = i;
+    characters[i].chars[3] = i;
+    characters[i].colors[0] = 1;
+    characters[i].colors[1] = 1;
+    characters[i].colors[2] = 1;
+    characters[i].colors[3] = 1;
+    characters[i].posX = i;
+    characters[i].posY = 0;
+    characters[i].visible = false;
+  }
+  characters[0].visible = true;
+  characters[3].visible = true;
+  characters[4].visible = true;
+  characters[7].visible = true;
+  
+  
   //Init map data
   for(y = 0; y < mapHeight; y++)
     {
@@ -120,6 +219,12 @@ void InitializeMapData()
   mapData[6][7] = grass; 
   mapData[7][7] = grass;
   
+  mapData[0][0] = signpost;
+  mapData[0][7] = signpost;
+  mapData[7][0] = signpost;
+  mapData[7][7] = signpost;
+  
+  
   for (i = 0; i < 256; i++)
     ColorPalette[i] = i;
   
@@ -130,19 +235,24 @@ void InitializeMapData()
 
 void DrawMap()
 {  
-  if (offsetX > mapWidth)
-    offsetX -= mapWidth;
-  if (offsetX <= 0)
-    offsetX += mapWidth;
+  bool charIndexDrawn[16];
+  byte charactersLeft = 16;
   
-  if (offsetY > mapHeight)
+  for (i = 0; i < charactersLeft; i++)
+    charIndexDrawn[i] = false;
+  
+  if (offsetX >= mapWidth)
+    offsetX -= mapWidth;
+  if (offsetX < 0)
+    offsetX = mapWidth - 1;
+  
+  if (offsetY >= mapHeight)
     offsetY -= mapHeight;
-  if (offsetY <= 0)
-    offsetY += mapHeight;
+  if (offsetY < 0)
+    offsetY = mapHeight - 1;
   
   a = offsetX;
   b = offsetY;
-  
   for(y = 0; y < viewportHeight; y++)
   {
     //Wrap the map data y reference
@@ -153,13 +263,34 @@ void DrawMap()
     
     for(x = 0; x < viewportWidth; x++)
     {
+      bool charDrawn = false;
+      
       //Wrap the map data X reference
       if (a == mapWidth)
           a = 0;
       if (a < 0)
           a += mapWidth;
+      if (charactersLeft > 0)
+      /*for (i = 0; i < 16; i++)
+      {
+        if (!charIndexDrawn[i])
+        {
+          
+          
+          if(characters[i].posX == a)
+            if(characters[i].posY == b)
+            {
+              DrawCharacter(i, x * 2, y * 2);
+              if (characters[i].visible)
+                charDrawn = true;
+              charIndexDrawn[i] = true;
+              charactersLeft--;
+            }
+        }
+      }
       
-      DrawTile(mapData[a][b], x * 2, y*2);
+      if(!charDrawn)*/
+        DrawTile(mapData[a][b], x*2, y*2);
       
       a++;
     }
@@ -167,13 +298,20 @@ void DrawMap()
     a = offsetX;
     b++;
   }
+  for(i = 0; i < 16; i++)
+    DrawChar(i);
+  for (i = 0; i < 22; i++)
+    printf("\b");
+  printf("\roffset x %i", offsetX);
+  printf("\roffset y %i", offsetY);
+  
 }
 
 void CheckInput()
 {
     int movement = 1;
     if (InputUp()) {offsetY-=movement;}
-    if (InputLeft()) {offsetX-=movement; moved = 1;}
-    if (InputRight()) {offsetX+=movement; moved = 1;}
-    if (InputDown()) {offsetY+=movement; moved = 1;}
+    if (InputLeft()) {offsetX-=movement;}
+    if (InputRight()) {offsetX+=movement;}
+    if (InputDown()) {offsetY+=movement;}
 }

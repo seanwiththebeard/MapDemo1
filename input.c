@@ -12,14 +12,15 @@ void InitializeInput()
 }
 void UpdateInput()
 {
-  joyState = joy_read(0);
+  char temp = joy_read(0);
   
-  if (joyState == joyStateLast)
+  if (joyState == temp)
   {
     ChangedState = false;
   }
   else
   {
+    joyState = temp;
     ChangedState = true;
     joyStateLast = joyState;
   }
@@ -28,6 +29,13 @@ void UpdateInput()
 bool InputChanged()
 {
   return ChangedState;
+}
+
+bool NoInput()
+{
+  if (joy_read(0) == 0)
+    return true;
+  return false;
 }
 
 bool InputUp()

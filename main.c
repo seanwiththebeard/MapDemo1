@@ -31,7 +31,8 @@ void main(void)
     if(InputChanged())
     {
       CheckInput();
-      DrawMap();
+      if (!NoInput())
+        DrawMap();
     }
   }
 }
