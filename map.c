@@ -10,9 +10,9 @@
 //#link "input.c"
 
 //Map Data
-int mapHeight = 9;
-int mapWidth = 9;
-byte mapData[9][9];
+int mapHeight = 12;
+int mapWidth = 12;
+byte mapData[32][32];
 
 //Viewport
 byte viewportPosX = 2;
@@ -194,14 +194,16 @@ void InitializeMapData()
     characters[i].chars[1] = i;
     characters[i].chars[2] = i;
     characters[i].chars[3] = i;
-    characters[i].colors[0] = i;
+    characters[i].colors[0] = i+4;
     characters[i].colors[1] = i+1;
     characters[i].colors[2] = i+2;
     characters[i].colors[3] = i+3;
     characters[i].posX = i;
     characters[i].posY = i;
-    characters[i].visible = true;
+    characters[i].visible = false;
   }
+    characters[0].visible = true;
+  
   
   
   //Init map data
@@ -304,8 +306,8 @@ void DrawMap()
     DrawChar(i);
   for (i = 0; i < 23; i++)
     printf("\b");
-  printf("\roffset x %i", characters[0].posX);
-  printf("\r offset y %i", characters[0].posY);
+  printf("\rchrpos x %i", characters[0].posX);
+  printf("\r chrpos y %i", characters[0].posY);
   
 }
 
