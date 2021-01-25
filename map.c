@@ -10,21 +10,23 @@
 //#link "input.c"
 
 //Map Data
-byte mapHeight = 12;
-byte mapWidth = 12;
-byte mapData[12][12];
+int mapHeight = 9;
+int mapWidth = 9;
+byte mapData[9][9];
 
 //Viewport
 byte viewportPosX = 2;
 byte viewportPosY = 2;
-byte viewportWidth = 8;
-byte viewportHeight = 8;
+byte viewportWidth = 9;
+byte viewportHeight = 9;
 int viewportOrigin = 0x0400;
 int colorOrigin = 0xD800;
 
 //Camera Position
 int offsetX, offsetY = 0;
 int x, y, a, b, i = 0;
+int cameraOffsetX = 0;
+int cameraOffsetY = 0;
 
 //Color Palette
 byte ColorPalette[256];
@@ -62,8 +64,8 @@ struct Character
 {
   byte chars[4];
   byte colors[4];
-  byte posX;
-  byte posY;
+  int posX;
+  int posY;
   bool visible;
 } characters[16];
 
@@ -84,26 +86,35 @@ void DrawCharacter(byte index, int xpos, int ypos)
   }
 }
 
-bool getBoundsX(int xPos)
+void ClampOffset()
 {
-  if (xPos < offsetX)
-    return false;
+  if (offsetX >= mapWidth)
+    offsetX = 0;
+  if (offsetX < 0)
+    offsetX = mapWidth - 1;
   
-  return true;  
+  if (offsetY >= mapHeight)
+    offsetY = 0;
+  if (offsetY < 0)
+    offsetY = mapHeight - 1;
 }
-bool getBoundsY(byte yPos)
-{
-  //Case contained viewport
-  if (mapHeight - offsetY > 0)
-  {
-    if (yPos > offsetY && yPos < (offsetY + viewportHeight))
-      return true;
-  }
-  //Case wrapped
-  if (yPos < ((offsetY + viewportHeight) - mapHeight))
-    return true;
+
+void CameraFollow(byte index)
+{  
+  offsetX = characters[index].posX;
+  offsetY = characters[index].posY;
   
-  return false;
+    for(x = 0; x < cameraOffsetX; x++)
+    {
+      offsetX--;
+      ClampOffset();
+    }
+  
+  for(y = 0; y < cameraOffsetY; y++)
+    {
+      offsetY--;
+      ClampOffset();
+    }
 }
 
 byte GetWrappedX(int xPos)
@@ -145,6 +156,9 @@ void InitializeMapData()
   viewportOrigin += (viewportPosX + COLS * viewportPosY);
   colorOrigin += (viewportPosX + COLS * viewportPosY);
   
+  cameraOffsetX = viewportWidth / 2;
+  cameraOffsetY = viewportHeight / 2;
+  
   //Init Tileset
   tiles[0].chars[0] = '1';
   tiles[0].chars[1] = '2';
@@ -180,18 +194,14 @@ void InitializeMapData()
     characters[i].chars[1] = i;
     characters[i].chars[2] = i;
     characters[i].chars[3] = i;
-    characters[i].colors[0] = 1;
-    characters[i].colors[1] = 1;
-    characters[i].colors[2] = 1;
-    characters[i].colors[3] = 1;
+    characters[i].colors[0] = i;
+    characters[i].colors[1] = i+1;
+    characters[i].colors[2] = i+2;
+    characters[i].colors[3] = i+3;
     characters[i].posX = i;
-    characters[i].posY = 0;
-    characters[i].visible = false;
+    characters[i].posY = i;
+    characters[i].visible = true;
   }
-  characters[0].visible = true;
-  characters[3].visible = true;
-  characters[4].visible = true;
-  characters[7].visible = true;
   
   
   //Init map data
@@ -224,7 +234,6 @@ void InitializeMapData()
   mapData[7][0] = signpost;
   mapData[7][7] = signpost;
   
-  
   for (i = 0; i < 256; i++)
     ColorPalette[i] = i;
   
@@ -234,22 +243,15 @@ void InitializeMapData()
 }
 
 void DrawMap()
-{  
+{
   bool charIndexDrawn[16];
   byte charactersLeft = 16;
-  
+  CameraFollow(0);
+
   for (i = 0; i < charactersLeft; i++)
     charIndexDrawn[i] = false;
   
-  if (offsetX >= mapWidth)
-    offsetX -= mapWidth;
-  if (offsetX < 0)
-    offsetX = mapWidth - 1;
-  
-  if (offsetY >= mapHeight)
-    offsetY -= mapHeight;
-  if (offsetY < 0)
-    offsetY = mapHeight - 1;
+  ClampOffset();
   
   a = offsetX;
   b = offsetY;
@@ -300,18 +302,52 @@ void DrawMap()
   }
   for(i = 0; i < 16; i++)
     DrawChar(i);
-  for (i = 0; i < 22; i++)
+  for (i = 0; i < 23; i++)
     printf("\b");
-  printf("\roffset x %i", offsetX);
-  printf("\roffset y %i", offsetY);
+  printf("\roffset x %i", characters[0].posX);
+  printf("\r offset y %i", characters[0].posY);
   
 }
 
-void CheckInput()
+void MoveCharacter(byte index, byte direction, bool cameraUpdate)
 {
-    int movement = 1;
-    if (InputUp()) {offsetY-=movement;}
-    if (InputLeft()) {offsetX-=movement;}
-    if (InputRight()) {offsetX+=movement;}
-    if (InputDown()) {offsetY+=movement;}
+  switch (direction)
+  {
+    case 0:
+      characters[index].posY--;
+      break;
+    case 1:
+      characters[index].posY++;
+      break;
+    case 2:
+      characters[index].posX--;
+      break;
+    case 3:
+      characters[index].posX++;
+      break;
+    default:
+      break;
+  }
+  
+  if (characters[index].posX < 0)
+    characters[index].posX = mapWidth - 1;
+  if (characters[index].posY < 0)
+    characters[index].posY = mapHeight - 1;
+  
+  if (characters[index].posX >= mapWidth)
+    characters[index].posX = 0;
+  if (characters[index].posY >= mapHeight)
+    characters[index].posY = 0;
+  
+  if (cameraUpdate)
+    CameraFollow(index);
+}
+
+int CheckInput()
+{
+    if (InputUp()) {MoveCharacter(0, 0, true); return 1;}
+    if (InputLeft()) {MoveCharacter(0, 2, true); return 1;}
+    if (InputRight()) {MoveCharacter(0, 3, true); return 1;}
+    if (InputDown()) {MoveCharacter(0, 1, true); return 1;}
+  return 0;
 }

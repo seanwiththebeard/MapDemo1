@@ -28,9 +28,9 @@ void main(void)
   {
     
     UpdateInput();
+    CheckInput();
     if(InputChanged())
     {
-      CheckInput();
       if (!NoInput())
         DrawMap();
     }
