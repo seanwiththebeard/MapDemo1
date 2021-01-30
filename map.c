@@ -4,12 +4,13 @@
 #include <cbm_petscii_charmap.h>
 #include <peekpoke.h>
 
+#include "bitwiseops.h"
 #include "c64_bitmapmode.h"
 #include "common.h"
 #include "input.h"
 //#link "input.c"
 
-//Map Data
+//Map Data (set these all to the same number)
 int mapHeight = 32;
 int mapWidth = 32;
 byte mapData[32][32];
@@ -39,7 +40,7 @@ struct Tile
 {
   byte chars[4];
   byte colors[4];
-  unsigned int blocked:4;
+  byte blocked;
   unsigned int trigger:4;
 } tiles[16];
 
@@ -191,8 +192,9 @@ void InitializeMapData()
   tiles[1].colors[1] = 1;
   tiles[1].colors[2] = 15;
   tiles[1].colors[3] = 15;
-  tiles[1].blocked = 15;
-  
+  tiles[1].blocked = 0;
+  WriteBit(&tiles[1].blocked, 0);
+  WriteBit(&tiles[1].blocked, 1);  
   
   tiles[2].chars[0] = '1';
   tiles[2].chars[1] = '2';
@@ -334,10 +336,11 @@ void DrawMap()
   }
   
   
-  for (i = 0; i < 23; i++)
+  for (i = 0; i < 34; i++)
     printf("\b");
   printf("\rchrpos x %i", characters[0].posX);
   printf("\r chrpos y %i", characters[0].posY);
+  printf("\r byte   y %i", ReadBit(characters[0].posY, 0));
   
 }
 
@@ -366,6 +369,9 @@ bool CheckCollision(byte charIndex, byte Direction)
   int xPos = characters[charIndex].posX;
   int yPos = characters[charIndex].posY;
   
+  if(ReadBit(tiles[mapData[xPos][yPos]].blocked, Direction))
+    return true;
+  
   switch (Direction)
   {
     case 0:
@@ -388,7 +394,7 @@ bool CheckCollision(byte charIndex, byte Direction)
       return false;
   }
   
-  if (tiles[mapData[xPos][yPos]].blocked > 0)
+  if(ReadBit(tiles[mapData[xPos][yPos]].blocked, Direction))
     return true;
   
   return false;
