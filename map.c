@@ -8,7 +8,6 @@
 #include "c64_bitmapmode.h"
 #include "common.h"
 #include "input.h"
-//#link "input.c"
 
 //Map Data (set these all to the same number)
 int mapHeight = 32;
@@ -262,10 +261,15 @@ void InitializeMapData()
   ColorPalette[signpost] = 1;
 }
 
+void MapUpdate()
+{
+  tiles[0].chars[0]++;
+}
 void DrawMap()
 {
   bool charIndexDrawn[16];
   byte charactersLeft = 16;
+  
   CameraFollow(0);
   BlankCharsDrawn();
 
