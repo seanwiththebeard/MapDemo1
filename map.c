@@ -182,6 +182,7 @@ void InitializeMapData()
   tiles[0].colors[2] = 6;
   tiles[0].colors[3] = 14;
   
+  //Signpost
   tiles[1].chars[0] = '1';
   tiles[1].chars[1] = '2';
   tiles[1].chars[2] = '3';
@@ -190,6 +191,8 @@ void InitializeMapData()
   tiles[1].colors[1] = 1;
   tiles[1].colors[2] = 15;
   tiles[1].colors[3] = 15;
+  tiles[1].blocked = 15;
+  
   
   tiles[2].chars[0] = '1';
   tiles[2].chars[1] = '2';
@@ -338,8 +341,62 @@ void DrawMap()
   
 }
 
+int wrapX(int posX)
+{
+  if (posX >= mapWidth)
+    posX = 0;
+  if (posX < 0)
+    posX = mapWidth - 1;  
+  
+  return posX;
+}
+
+int wrapY(int posY)
+{
+  if (posY >= mapHeight)
+    posY = 0;
+  if (posY < 0)
+    posY = mapHeight - 1;  
+  
+  return posY;
+}
+
+bool CheckCollision(byte charIndex, byte Direction)
+{
+  int xPos = characters[charIndex].posX;
+  int yPos = characters[charIndex].posY;
+  
+  switch (Direction)
+  {
+    case 0:
+      yPos -= 1;
+      yPos = wrapY(yPos);
+      break;
+    case 1:
+      yPos += 1;
+      yPos = wrapY(yPos);
+      break;
+    case 2:
+      xPos -= 1;
+      xPos = wrapX(xPos);
+      break;
+    case 3:
+      xPos += 1;
+      xPos = wrapX(xPos);
+      break;
+    default:
+      return false;
+  }
+  
+  if (tiles[mapData[xPos][yPos]].blocked > 0)
+    return true;
+  
+  return false;
+}
+
 void MoveCharacter(byte index, byte direction, bool cameraUpdate)
 {
+  if(!CheckCollision(index, direction))
   switch (direction)
   {
     case 0:

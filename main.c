@@ -13,8 +13,8 @@
 #include "input.h"
 //#link "input.c"
 
-void main(void)
-{ 
+void Initialize()
+{
   InitializeInput();
   clrscr();  
   
@@ -23,6 +23,11 @@ void main(void)
   InitializeMapData();
   
   DrawMap();
+}
+
+void main(void)
+{ 
+  Initialize();
   
   while(1)
   {
