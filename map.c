@@ -1,7 +1,5 @@
-#include <stdio.h>
-#include <conio.h>
-#include <c64.h>
-#include <cbm_petscii_charmap.h>
+#include <stdio.h>  //For printf
+#include <cbm_petscii_charmap.h>  // Converts strings to c64 format
 #include <peekpoke.h>
 
 #include "bitwiseops.h"

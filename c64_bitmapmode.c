@@ -1,8 +1,6 @@
-#include <stdio.h>
-#include <conio.h>
 #include <c64.h>
-#include <cbm_petscii_charmap.h>
 #include <peekpoke.h>
+#include "common.h"
 
 void setbitmapmode()
 {
@@ -40,7 +38,7 @@ void setcolortextmode()
   
   for(i = 0; i < 8; i++)
   {
-    POKE(i + 0x3000, 255);
+    //POKE(i + 0x3000, 255);
   }
   
   //Select first character set
@@ -58,6 +56,23 @@ void setcolortextmode()
   //Foreground / 11 / 0-7 single, 8-15 multi
   for (i = 0; i < 1000; i++)
     POKE(0xD800 + i, 1);
+}
+
+void ScrollChar(byte index)
+{
+  byte buffer[8];
+  int i;
+  int origin = 0x3000 + 8*index;
   
   
+  //Scroll Down
+  for(i = 0; i < 8; i++)
+    buffer[i] = PEEK(origin+i);
+  
+  for(i = 1; i < 8; i++)
+  {
+    POKE(i + origin, buffer[i-1]);
+  }
+         
+  POKE(origin, buffer[7]);
 }

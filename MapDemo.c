@@ -1,6 +1,5 @@
-#include <stdio.h>
-#include <conio.h>
-#include <c64.h>
+//#include <stdio.h>
+#include <conio.h>  //For clrscr
 
 //#link "map.c"
 //#link "input.c"
@@ -17,7 +16,7 @@
 void Initialize()
 {
   InitializeInput();
-  clrscr();  
+  clrscr();
   
   setcolortextmode();
   
@@ -30,10 +29,12 @@ void main(void)
 { 
   Initialize();
   
-  while(1)
+  while(true)
   {
     //MapUpdate();
     //DrawMap();
+    //wait_vblank();
+    ScrollChar(0);
     
     UpdateInput();
     if(InputChanged())
