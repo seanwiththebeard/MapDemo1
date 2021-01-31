@@ -191,8 +191,8 @@ void InitializeMapData()
   tiles[1].colors[2] = 15;
   tiles[1].colors[3] = 15;
   tiles[1].blocked = 0;
-  WriteBit(&tiles[1].blocked, 0);
-  WriteBit(&tiles[1].blocked, 2);  
+  WriteBit(&tiles[1].blocked, 0, true);
+  WriteBit(&tiles[1].blocked, 2, true);  
   
   //Grass
   tiles[2].chars[0] = '1';

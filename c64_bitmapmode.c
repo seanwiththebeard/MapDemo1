@@ -1,18 +1,10 @@
 #include <c64.h>
 #include <peekpoke.h>
 #include "common.h"
+#include "bitwiseops.h"
 
-void setbitmapmode()
-{
-  VIC.ctrl1 = 0x3b;
-  VIC.ctrl2 = 0x08;
-}
-
-void settextmode()
-{
-  VIC.ctrl1 = 0x1b;
-  VIC.ctrl2 = 0x08;
-}
+const int CharacterRam = 0x3000;
+const int CharacterRom = 0xD000;
 
 void setcolortextmode()
 {
@@ -27,7 +19,7 @@ void setcolortextmode()
   //Copy the character set to the new RAM location
   for(i = 0; i < 1024; i++)
   {
-    POKE(i + 0x3000, PEEK(i + 0xD000));
+    POKE(i + CharacterRam, PEEK(i + CharacterRom));
   }
   
   POKE(0x0001, (PEEK(0x0001)|4)); // Character ROM de-select, back to IO
@@ -63,6 +55,7 @@ void ScrollChar(byte index, byte direction)
   byte buffer[8];
   int i;
   int origin = 0x3000 + 8*index;
+  byte temp;
   
   for(i = 0; i < 8; i++)
     buffer[i] = PEEK(origin+i);
@@ -78,6 +71,24 @@ void ScrollChar(byte index, byte direction)
       for(i = 0; i < 8; i++)
         POKE(i + origin, buffer[i+1]);
       POKE(origin + 7, buffer[0]);
+      break;
+    case 2: //  Scroll Right
+      for(i = 0; i < 8; i++)
+      {
+        temp = buffer[i] >> 1;
+        //temp >> 1;
+        WriteBit(&temp, 7, ReadBit(buffer[i], 0));
+        POKE(origin + i, temp);
+      }
+      break;
+    case 3: // Scroll Left
+      for(i = 0; i < 8; i++)
+      {
+        temp = buffer[i] << 1;
+        //temp >> 1;
+        WriteBit(&temp, 0, ReadBit(buffer[i], 7));
+        POKE(origin + i, temp);
+      }
       break;
   }
 }

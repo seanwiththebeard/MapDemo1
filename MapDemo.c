@@ -36,8 +36,9 @@ void main(void)
     //MapUpdate();
     //DrawMap();
     for(i = 0;i < 4; i++)
-    raster_wait(255);
-    ScrollChar(0,1);
+      raster_wait(255);
+    ScrollChar(0,3);
+    ScrollChar(0,0);
     
     UpdateInput();
     if(InputChanged())
