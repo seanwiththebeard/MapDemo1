@@ -58,21 +58,26 @@ void setcolortextmode()
     POKE(0xD800 + i, 1);
 }
 
-void ScrollChar(byte index)
+void ScrollChar(byte index, byte direction)
 {
   byte buffer[8];
   int i;
   int origin = 0x3000 + 8*index;
   
-  
-  //Scroll Down
   for(i = 0; i < 8; i++)
     buffer[i] = PEEK(origin+i);
   
-  for(i = 1; i < 8; i++)
+  switch (direction)
   {
-    POKE(i + origin, buffer[i-1]);
+    case 0:  //Scroll Down
+      for(i = 1; i < 8; i++)
+        POKE(i + origin, buffer[i-1]);
+      POKE(origin, buffer[7]);
+      break;
+    case 1: // Scroll Up
+      for(i = 0; i < 8; i++)
+        POKE(i + origin, buffer[i+1]);
+      POKE(origin + 7, buffer[0]);
+      break;
   }
-         
-  POKE(origin, buffer[7]);
 }

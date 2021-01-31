@@ -5,6 +5,7 @@
 //#link "input.c"
 //#link "c64_bitmapmode.c"
 //#link "bitwiseops.c"
+//#link "common.c"
 
 #include "map.h"
 #include "input.h"
@@ -27,14 +28,16 @@ void Initialize()
 
 void main(void)
 { 
+  int i = 0;
   Initialize();
   
   while(true)
   {
     //MapUpdate();
     //DrawMap();
-    //wait_vblank();
-    ScrollChar(0);
+    for(i = 0;i < 4; i++)
+    raster_wait(255);
+    ScrollChar(0,1);
     
     UpdateInput();
     if(InputChanged())
