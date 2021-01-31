@@ -173,6 +173,7 @@ void InitializeMapData()
   BlankCharsDrawn();
   
   //Init Tileset
+  //Water
   tiles[0].chars[0] = '1';
   tiles[0].chars[1] = '2';
   tiles[0].chars[2] = '3';
@@ -183,8 +184,8 @@ void InitializeMapData()
   tiles[0].colors[3] = 14;
   
   //Signpost
-  tiles[1].chars[0] = '1';
-  tiles[1].chars[1] = '2';
+  tiles[1].chars[0] = 0;
+  tiles[1].chars[1] = 1;
   tiles[1].chars[2] = '3';
   tiles[1].chars[3] = '4';
   tiles[1].colors[0] = 1;
@@ -195,6 +196,7 @@ void InitializeMapData()
   WriteBit(&tiles[1].blocked, 0);
   WriteBit(&tiles[1].blocked, 2);  
   
+  //Grass
   tiles[2].chars[0] = '1';
   tiles[2].chars[1] = '2';
   tiles[2].chars[2] = '3';
