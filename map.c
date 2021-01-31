@@ -193,7 +193,7 @@ void InitializeMapData()
   tiles[1].colors[3] = 15;
   tiles[1].blocked = 0;
   WriteBit(&tiles[1].blocked, 0);
-  WriteBit(&tiles[1].blocked, 1);  
+  WriteBit(&tiles[1].blocked, 2);  
   
   tiles[2].chars[0] = '1';
   tiles[2].chars[1] = '2';
@@ -381,18 +381,22 @@ bool CheckCollision(byte charIndex, byte Direction)
     case 0:
       yPos -= 1;
       yPos = wrapY(yPos);
+      Direction = 1;
       break;
     case 1:
       yPos += 1;
       yPos = wrapY(yPos);
+      Direction = 0;
       break;
     case 2:
       xPos -= 1;
       xPos = wrapX(xPos);
+      Direction = 3;
       break;
     case 3:
       xPos += 1;
       xPos = wrapX(xPos);
+      Direction = 2;
       break;
     default:
       return false;

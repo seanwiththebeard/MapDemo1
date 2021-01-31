@@ -32,8 +32,8 @@ void main(void)
   
   while(1)
   {
-    MapUpdate();
-    DrawMap();
+    //MapUpdate();
+    //DrawMap();
     
     UpdateInput();
     if(InputChanged())
