@@ -3,7 +3,7 @@
 #include "common.h"
 #include "bitwiseops.h"
 
-const int CharacterRam = 0x3000;
+const int CharacterRam = 0xC000;
 const int CharacterRom = 0xD000;
 
 void setcolortextmode()
@@ -26,7 +26,13 @@ void setcolortextmode()
   POKE(0xDC0E, PEEK(0xDC0E)|1); // Resume Keyscan
   
   //Redirect the character set address, select uppercase set
-  POKE (0xD018, (PEEK(0xD018)&240) +12);
+  //POKE (0xDD02, (PEEK(0XDD02)&3));
+  POKE (0xDD00, (PEEK(0XDD00)&252));
+  POKE (0xD018, 0x20);
+  //POKE (0x0288, 6);
+  
+  //POKE (0xD018, (PEEK(0xD018)&240) +12);
+  
   
   for(i = 0; i < 8; i++)
   {
@@ -54,7 +60,7 @@ void ScrollChar(byte index, byte direction)
 {
   byte buffer[8];
   int i;
-  int origin = 0x3000 + 8*index;
+  int origin = CharacterRam + 8*index;
   byte temp;
   
   for(i = 0; i < 8; i++)

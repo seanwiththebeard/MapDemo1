@@ -18,7 +18,7 @@ byte viewportPosX = 2;
 byte viewportPosY = 2;
 byte viewportWidth = 9;
 byte viewportHeight = 9;
-int viewportOrigin = 0x0400;
+int viewportOrigin = 0xC800;
 int colorOrigin = 0xD800;
 
 //Camera Position
