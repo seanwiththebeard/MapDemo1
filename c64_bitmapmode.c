@@ -37,10 +37,10 @@ void setcolortextmode()
   //Old location in bank 0
   //POKE (0xD018, (PEEK(0xD018)&240) +12);
   
-  
+  //Blank character 0
   for(i = 0; i < 8; i++)
   {
-    POKE(i + CharacterRam, 255);
+    //POKE(i + CharacterRam, 255);
   }
   
   //Select first character set
