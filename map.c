@@ -340,12 +340,15 @@ void DrawMap()
     b++;
   }
   
+  charactersLeft = 0xd018;
   
-  for (i = 0; i < 34; i++)
+  for (i = 0; i < 33; i++)
     printf("\b");
   printf("\rchrpos x %i", characters[0].posX);
   printf("\r chrpos y %i", characters[0].posY);
-  printf("\r byte   y %i", ReadBit(characters[0].posY, 0));
+  printf("\r byte   y %i", charactersLeft);
+  
+  //printf("\r byte   y %i", ReadBit(characters[0].posY, 0));
   
 }
 
