@@ -5,6 +5,7 @@
 
 const int CharacterRam = 0xC000;
 const int CharacterRom = 0xD000;
+const int ColorRam = 0xD800;
 
 void setcolortextmode()
 {
@@ -26,17 +27,20 @@ void setcolortextmode()
   POKE(0xDC0E, PEEK(0xDC0E)|1); // Resume Keyscan
   
   //Redirect the character set address, select uppercase set
-  //POKE (0xDD02, (PEEK(0XDD02)&3));
+  //Select Bank 3 (last bank)
   POKE (0xDD00, (PEEK(0XDD00)&252));
-  POKE (0xD018, 0x20);
-  //POKE (0x0288, 6);
+  //Set character RAM + screen memory (?) position
+  POKE (0xD018, 32);
+  //Set Kernel Screen Position
+  POKE (0x0288, 200);
   
+  //Old location in bank 0
   //POKE (0xD018, (PEEK(0xD018)&240) +12);
   
   
   for(i = 0; i < 8; i++)
   {
-    //POKE(i + 0x3000, 255);
+    POKE(i + CharacterRam, 255);
   }
   
   //Select first character set
@@ -53,7 +57,7 @@ void setcolortextmode()
   
   //Foreground / 11 / 0-7 single, 8-15 multi
   for (i = 0; i < 1000; i++)
-    POKE(0xD800 + i, 1);
+    POKE(ColorRam + i, 1);
 }
 
 void ScrollChar(byte index, byte direction)

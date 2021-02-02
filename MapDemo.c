@@ -17,9 +17,10 @@
 void Initialize()
 {
   InitializeInput();
-  clrscr();
   
   setcolortextmode();
+  clrscr();
+  
   
   InitializeMapData();
   
