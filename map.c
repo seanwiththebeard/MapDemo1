@@ -182,14 +182,14 @@ void InitializeMapData()
   tiles[0].colors[3] = 14;
   
   //Signpost
-  tiles[1].chars[0] = '0';
-  tiles[1].chars[1] = '1';
-  tiles[1].chars[2] = '3';
-  tiles[1].chars[3] = '4';
+  tiles[1].chars[0] = 0x4f;
+  tiles[1].chars[1] = 0x77;
+  tiles[1].chars[2] = 0x74;
+  tiles[1].chars[3] = ' ';
   tiles[1].colors[0] = 1;
   tiles[1].colors[1] = 1;
-  tiles[1].colors[2] = 15;
-  tiles[1].colors[3] = 15;
+  tiles[1].colors[2] = 1;
+  tiles[1].colors[3] = 1;
   tiles[1].blocked = 0;
   WriteBit(&tiles[1].blocked, 0, true);
   WriteBit(&tiles[1].blocked, 2, true);  
@@ -220,6 +220,7 @@ void InitializeMapData()
     characters[i].visible = false;
   }
     characters[0].visible = true;
+    characters[0].posX += 2;
   
   
   
