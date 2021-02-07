@@ -268,20 +268,10 @@ void InitializeMapData()
   ColorPalette[signpost] = 1;
 }
 
-void MapUpdate()
-{
-  tiles[0].chars[0]++;
-}
 void DrawMap()
-{
-  bool charIndexDrawn[16];
-  byte charactersLeft = 16;
-  
+{  
   CameraFollow(0);
   BlankCharsDrawn();
-
-  for (i = 0; i < charactersLeft; i++)
-    charIndexDrawn[i] = false;
   
   ClampOffset();
   
@@ -299,9 +289,8 @@ void DrawMap()
     if (b < 0)
       b +=mapHeight;
     
-    memoffset = COLS * y;
-    
-    
+    //Update memoffset once per line
+    memoffset = COLS * y;    
     for(x = 0; x < viewportWidth; x++)
     {
       bool charDrawn = false;
@@ -321,9 +310,7 @@ void DrawMap()
     a = offsetX;
     b++;
   }
-  
-  charactersLeft = 0xd018;
-  
+    
   /*for (i = 0; i < 33; i++)
     printf("\b");
   printf("\rchrpos x %i", characters[0].posX);
