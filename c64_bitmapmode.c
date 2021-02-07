@@ -22,6 +22,7 @@ void setcolortextmode()
   for(i = 0; i < 2048; i++)
   {
     POKE(i + CharacterRam, PEEK(i + CharacterRom));
+    //POKE(i + CharacterRam, 255);    
   }
   
   POKE(0x0001, (PEEK(0x0001)|4)); // Character ROM de-select, back to IO
