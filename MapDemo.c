@@ -1,4 +1,8 @@
-//#include <stdio.h>
+#define CFGFILE c64_.cfg
+//#resource "c64_.cfg"
+
+
+
 #include <conio.h>  //For clrscr
 
 //#link "map.c"
@@ -6,6 +10,8 @@
 //#link "c64_bitmapmode.c"
 //#link "bitwiseops.c"
 //#link "common.c"
+//#link "charset.ca65"
+
 
 #include "map.h"
 #include "input.h"
@@ -13,13 +19,9 @@
 #include "bitwiseops.h"
 #include "c64_bitmapmode.h"
 
-byte mapdata[] = {
-  255, 255, 255, 255, 255, 255
-  };
-
-
 void Initialize()
 {
+  //asm (".segment CHARSET");
   InitializeInput();
   
   setcolortextmode();
