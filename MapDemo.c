@@ -13,6 +13,10 @@
 #include "bitwiseops.h"
 #include "c64_bitmapmode.h"
 
+byte mapdata[] = {
+  255, 255, 255, 255, 255, 255
+  };
+
 
 void Initialize()
 {
