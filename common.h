@@ -8,6 +8,9 @@ typedef uint8_t byte;
 typedef uint16_t word;
 typedef int8_t sbyte;
 typedef enum { false, true } bool;
+typedef struct{
+  unsigned int value : 4;
+}halfbyte;
 
 #define COLS 40
 #define ROWS 25
