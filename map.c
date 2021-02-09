@@ -19,7 +19,12 @@ byte viewportPosY = 2;
 byte viewportWidth = 9;
 byte viewportHeight = 9;
 int viewportOrigin = 0xC800;
+
 int colorOrigin = 0xD800;
+
+int memoffset;
+int yCols[25];
+
 
 //Camera Position
 int offsetX, offsetY = 0;
@@ -47,7 +52,7 @@ void DrawTile(byte index, byte xpos, byte ypos)
   //could speed up if memoffset is solved 
   //once per line instead of per tile
   
-  int memoffset = xpos + COLS * ypos;
+  memoffset = xpos + yCols[ypos];
   POKE(viewportOrigin + memoffset, tiles[index].chars[0]);
   POKE(viewportOrigin + memoffset + 1, tiles[index].chars[1]);
   POKE(viewportOrigin + memoffset + COLS, tiles[index].chars[2]);
@@ -71,7 +76,7 @@ struct Character
 void DrawCharacter(byte index, int xpos, int ypos)
 {
   {
-    int memoffset = xpos + COLS * ypos;
+    memoffset = xpos + yCols[ypos];
     POKE(viewportOrigin + memoffset, characters[index].chars[0]);
     POKE(viewportOrigin + memoffset + 1, characters[index].chars[1]);
     POKE(viewportOrigin + memoffset + COLS, characters[index].chars[2]);
@@ -222,7 +227,8 @@ void InitializeMapData()
     characters[0].visible = true;
     characters[0].posX += 2;
   
-  
+  for (i = 0; i < 25; i++)
+    yCols[i] = i*COLS;
   
   //Init map data
   for(y = 0; y < mapHeight; y++)
@@ -262,20 +268,10 @@ void InitializeMapData()
   ColorPalette[signpost] = 1;
 }
 
-void MapUpdate()
-{
-  tiles[0].chars[0]++;
-}
 void DrawMap()
-{
-  bool charIndexDrawn[16];
-  byte charactersLeft = 16;
-  
+{  
   CameraFollow(0);
   BlankCharsDrawn();
-
-  for (i = 0; i < charactersLeft; i++)
-    charIndexDrawn[i] = false;
   
   ClampOffset();
   
@@ -293,6 +289,8 @@ void DrawMap()
     if (b < 0)
       b +=mapHeight;
     
+    //Update memoffset once per line
+    memoffset = COLS * y;    
     for(x = 0; x < viewportWidth; x++)
     {
       bool charDrawn = false;
@@ -303,33 +301,6 @@ void DrawMap()
       if (a < 0)
           a += mapWidth;
       
-      
-      /*if (charactersLeft > 0)
-      for (i = 0; i < 16; i++)
-      {
-        if (!charIndexDrawn[i])
-        {
-          
-          
-          if(characters[i].posX == a)
-            if(characters[i].posY == b)
-            {
-              DrawCharacter(i, x * 2, y * 2);
-              if (characters[i].visible)
-                charDrawn = true;
-              charIndexDrawn[i] = true;
-              charactersLeft--;
-            }
-        }
-      }
-      
-      if(!charDrawn)*/
-      
-      /*for (i = 0; i < 16; i++)
-        if (characters[i].visible)
-          if(characters[i].posX == a)
-            if(characters[i].posY == b)
-              charDrawn = true;*/
       if (!charsDrawn[x][y])
         DrawTile(mapData[a][b], x*2, y*2);
       
@@ -339,14 +310,12 @@ void DrawMap()
     a = offsetX;
     b++;
   }
-  
-  charactersLeft = 0xd018;
-  
-  for (i = 0; i < 33; i++)
+    
+  /*for (i = 0; i < 33; i++)
     printf("\b");
   printf("\rchrpos x %i", characters[0].posX);
   printf("\r chrpos y %i", characters[0].posY);
-  printf("\r byte   y %i", charactersLeft);
+  printf("\r byte   y %i", charactersLeft);*/
   
   //printf("\r byte   y %i", ReadBit(characters[0].posY, 0));
   
