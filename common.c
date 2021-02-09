@@ -1,7 +1,5 @@
 #include "common.h"
 
-
-
 void raster_wait(unsigned char line) {
   while (VIC.rasterline < line) ;
 }
