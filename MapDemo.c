@@ -23,15 +23,10 @@
 
 void Initialize()
 {
-  //asm (".segment CHARSET");
   InitializeInput();
-  
   setcolortextmode();
   clrscr();
-  
-  
   InitializeMapData();
-  
   DrawMap();
 }
 
@@ -42,8 +37,6 @@ void main(void)
   
   while(true)
   {
-    //MapUpdate();
-    //DrawMap();
     for(i = 0;i < 3; i++)
       raster_wait(255);
     ScrollChar(0,3);

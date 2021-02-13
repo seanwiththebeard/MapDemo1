@@ -13,8 +13,8 @@ void setcolortextmode()
   
   
   //Copy character set
-  POKE(0x0034, 48);  // Reserve RAM
-  POKE(0x0038, 48); // Reserve RAM
+  //POKE(0x0034, 48);  // Reserve RAM
+  //POKE(0x0038, 48); // Reserve RAM
   POKE(0xDC0E, PEEK(0xDC0E)&254); // Pause Keyscan
   POKE(0x0001, (PEEK(0x0001)&251)); // Character ROM select
   
