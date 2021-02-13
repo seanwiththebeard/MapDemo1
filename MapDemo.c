@@ -11,6 +11,8 @@
 //#link "bitwiseops.c"
 //#link "common.c"
 //#link "charset.ca65"
+//#link "mapdata.ca65"
+
 
 
 #include "map.h"
