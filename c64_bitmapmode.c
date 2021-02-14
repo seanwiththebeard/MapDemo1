@@ -59,7 +59,9 @@ void setcolortextmode()
   
   //Foreground / 11 / 0-7 single, 8-15 multi
   for (i = 0; i < 1024; i++)
-    POKE(ColorRam + i, 1);
+  {
+    //POKE(ColorRam + i, 1);
+  }
 }
 
 void ScrollChar(byte index, byte direction)

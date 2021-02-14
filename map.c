@@ -8,6 +8,7 @@
 #include "input.h"
 
 //Map Data (set these all to the same number)
+int MapData = 0xB000;
 int mapHeight = 32;
 int mapWidth = 32;
 byte mapData[32][32];
@@ -166,6 +167,7 @@ void InitializeMapData()
   byte grass = 2;
   byte water = 0;
   byte signpost = 1;
+  byte yOffset = 0;
   
   viewportOrigin += (viewportPosX + COLS * viewportPosY);
   colorOrigin += (viewportPosX + COLS * viewportPosY);
@@ -235,8 +237,9 @@ void InitializeMapData()
     {
       for(x = 0; x < mapWidth; x++)
       {
-        mapData[x][y] = water;
+        mapData[x][y] = PEEK(MapData + x + yOffset);
       }
+    yOffset+= COLS;
     }  
   mapData[4][4] = grass;
   mapData[5][4] = grass;

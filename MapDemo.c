@@ -12,6 +12,8 @@
 //#link "common.c"
 //#link "charset.ca65"
 //#link "mapdata.ca65"
+//#link "StaticScreens.c"
+
 
 
 
@@ -20,13 +22,16 @@
 #include "common.h"
 #include "bitwiseops.h"
 #include "c64_bitmapmode.h"
+#include "staticscreens.h"
+
 
 void Initialize()
 {
   InitializeInput();
   setcolortextmode();
-  clrscr();
+  //clrscr();
   InitializeMapData();
+  SetScreen(0);
   DrawMap();
 }
 
