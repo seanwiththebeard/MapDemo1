@@ -13,6 +13,7 @@ int mapHeight = 32;
 int mapWidth = 32;
 byte mapData[32][32];
 bool charsDrawn[32][32];
+bool DrawThisFrame = true;
 
 //Viewport
 byte viewportPosX = 2;
@@ -271,8 +272,11 @@ void InitializeMapData()
   ColorPalette[signpost] = 1;
 }
 
-void DrawMap()
-{  
+int DrawMap()
+{
+  if(!DrawThisFrame)
+    return 0;
+  
   CameraFollow(0);
   BlankCharsDrawn();
   
@@ -344,6 +348,11 @@ int wrapY(int posY)
   return posY;
 }
 
+void MapUpdate()
+{
+  DrawThisFrame = true;
+}
+
 bool CheckCollision(byte charIndex, byte Direction)
 {
   int xPos = characters[charIndex].posX;
@@ -404,6 +413,12 @@ void MoveCharacter(byte index, byte direction, bool cameraUpdate)
     default:
       break;
   }
+  else
+    if(index == 0)
+    {
+      DrawThisFrame = false;
+      FlashColor(2, 10);
+    }
   
   if (characters[index].posX < 0)
     characters[index].posX = mapWidth - 1;

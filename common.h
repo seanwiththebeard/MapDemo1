@@ -20,5 +20,6 @@ void wait_vblank(void);
 void ScreenDisable(void);
 void ScreenEnable(void);
 void SetBackground(byte index);
+void FlashColor(byte index, byte length);
 
 #endif

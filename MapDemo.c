@@ -46,10 +46,12 @@ void main(void)
     ScrollChar(0,0);
     
     UpdateInput();
+    MapUpdate();
     if(InputChanged())
     {
       CheckInput();
       DrawMap();
+      //FlashColor(2);
     }
   }
 }
