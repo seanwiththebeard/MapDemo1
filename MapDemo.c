@@ -1,8 +1,6 @@
 #define CFGFILE c64_.cfg
 //#resource "c64_.cfg"
 
-
-
 #include <conio.h>  //For clrscr
 
 //#link "map.c"
@@ -14,9 +12,6 @@
 //#link "mapdata.ca65"
 //#link "StaticScreens.c"
 
-
-
-
 #include "map.h"
 #include "input.h"
 #include "common.h"
@@ -27,12 +22,15 @@
 
 void Initialize()
 {
+  ScreenDisable();
+  SetBackground(0);
   InitializeInput();
   setcolortextmode();
   //clrscr();
   InitializeMapData();
   SetScreen(0);
   DrawMap();
+  ScreenEnable();
 }
 
 void main(void)

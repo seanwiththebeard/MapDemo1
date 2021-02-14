@@ -17,5 +17,8 @@ typedef struct{
 
 void raster_wait(unsigned char line);
 void wait_vblank(void);
+void ScreenDisable(void);
+void ScreenEnable(void);
+void SetBackground(byte index);
 
 #endif
