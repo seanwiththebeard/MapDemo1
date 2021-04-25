@@ -26,7 +26,6 @@ void Initialize()
   SetBackground(0);
   InitializeInput();
   setcolortextmode();
-  //clrscr();
   InitializeMapData();
   SetScreen(0);
   DrawMap();
@@ -40,10 +39,10 @@ void main(void)
   
   while(true)
   {
-    for(i = 0;i < 3; i++)
-      raster_wait(255);
-    ScrollChar(0,3);
-    ScrollChar(0,0);
+    //for(i = 0;i < 3; i++)
+      //raster_wait(255);
+    //ScrollChar(0,3);
+    //ScrollChar(0,0);
     
     UpdateInput();
     MapUpdate();

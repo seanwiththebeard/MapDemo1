@@ -27,7 +27,6 @@ int colorOrigin = 0xD800;
 int memoffset;
 int yCols[25];
 
-
 //Camera Position
 int offsetX, offsetY = 0;
 int x, y, a, b, i = 0;
