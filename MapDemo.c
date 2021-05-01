@@ -41,8 +41,8 @@ void main(void)
   {
     //for(i = 0;i < 3; i++)
       //raster_wait(255);
-    //ScrollChar(0,3);
-    //ScrollChar(0,0);
+    ScrollChar(0,3);
+    ScrollChar(0,0);
     
     UpdateInput();
     MapUpdate();
@@ -50,7 +50,8 @@ void main(void)
     {
       CheckInput();
       DrawMap();
-      //FlashColor(2);
     }
+    //FlashColor(6, 2);
+    
   }
 }
