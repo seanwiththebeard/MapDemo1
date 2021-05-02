@@ -1,20 +1,20 @@
 #define CFGFILE c64_.cfg
 //#resource "c64_.cfg"
 
-//#link "map.c"
-//#link "input.c"
-//#link "c64_bitmapmode.c"
 //#link "common.c"
+//#link "Screen_Map.c"
+//#link "System_Input.c"
+//#link "System_Graphics.c"
+//#link "System_StaticScreens.c"
 //#link "Data_Graphics.s"
-//#link "Data_Screens.s"
+//#link "Data_InitScreen.s"
 //#link "Data_Maps.s"
-//#link "StaticScreens.c"
 
-#include "map.h"
-#include "input.h"
 #include "common.h"
-#include "c64_bitmapmode.h"
-#include "staticscreens.h"
+#include "Screen_Map.h"
+#include "System_Input.h"
+#include "System_Graphics.h"
+#include "System_StaticScreens.h"
 
 
 void Initialize()
@@ -30,8 +30,7 @@ void Initialize()
 }
 
 void main(void)
-{ 
-  int i = 0;
+{
   Initialize();
   
   while(true)

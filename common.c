@@ -21,6 +21,11 @@ void ScreenEnable()
 
 void SetBackground(byte index)
 {
+  POKE(0xD021, index);
+}
+
+void SetBorder(byte index)
+{
   POKE(0xD020, index);
 }
 
