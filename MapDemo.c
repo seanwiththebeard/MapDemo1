@@ -1,21 +1,18 @@
 #define CFGFILE c64_.cfg
 //#resource "c64_.cfg"
 
-#include <conio.h>  //For clrscr
-
 //#link "map.c"
 //#link "input.c"
 //#link "c64_bitmapmode.c"
-//#link "bitwiseops.c"
 //#link "common.c"
-//#link "charset.s"
-//#link "mapdata.s"
+//#link "Data_Graphics.s"
+//#link "Data_Screens.s"
+//#link "Data_Maps.s"
 //#link "StaticScreens.c"
 
 #include "map.h"
 #include "input.h"
 #include "common.h"
-#include "bitwiseops.h"
 #include "c64_bitmapmode.h"
 #include "staticscreens.h"
 

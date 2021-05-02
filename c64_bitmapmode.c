@@ -1,7 +1,6 @@
 #include <c64.h>
 #include <peekpoke.h>
 #include "common.h"
-#include "bitwiseops.h"
 
 const int CharacterRam = 0xC000;
 const int CharacterRom = 0xD000;

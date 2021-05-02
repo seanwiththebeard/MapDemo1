@@ -2,7 +2,6 @@
 #include <cbm_petscii_charmap.h>  // Converts strings to c64 format
 #include <peekpoke.h>
 
-#include "bitwiseops.h"
 #include "c64_bitmapmode.h"
 #include "common.h"
 #include "input.h"

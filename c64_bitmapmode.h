@@ -1,3 +1,5 @@
+#include "common.h"
+
 void setbitmapmode();
 void settextmode();
 void setcolortextmode();
