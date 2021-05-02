@@ -1,5 +1,5 @@
 #include <stdio.h>  //For printf
-#include <cbm_petscii_charmap.h>  // Converts strings to c64 format
+#include "cbm_petscii_charmap.h"  // Converts strings to c64 format
 #include <peekpoke.h>
 
 #include "System_Graphics.h"
