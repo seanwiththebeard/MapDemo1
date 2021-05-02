@@ -8,8 +8,8 @@
 //#link "c64_bitmapmode.c"
 //#link "bitwiseops.c"
 //#link "common.c"
-//#link "charset.ca65"
-//#link "mapdata.ca65"
+//#link "charset.s"
+//#link "mapdata.s"
 //#link "StaticScreens.c"
 
 #include "map.h"
