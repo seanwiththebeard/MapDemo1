@@ -5,6 +5,8 @@
 
 byte TitleCursorX = 0;
 byte TitleCursorY = 0;
+byte TitlePosX = 22;
+byte TitlePosY = 6;
 byte color = 1;
 byte index = 22;
 
@@ -13,7 +15,7 @@ void Draw_Title()
 {
     for (TitleCursorY = 0; TitleCursorY < 16; TitleCursorY++)
         for (TitleCursorX = 0; TitleCursorX < 16; TitleCursorX++)
-                SetScreenChar(TitleCursorY*16 + TitleCursorX, color, TitleCursorX, TitleCursorY);
+                SetScreenChar(TitleCursorY*16 + TitleCursorX, color, TitleCursorX + TitlePosX, TitleCursorY + TitlePosY);
 }
 void Update_Title()
 {
