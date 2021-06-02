@@ -1,4 +1,4 @@
-#define CFGFILE c64_.cfg
+#define CFGFILE c64.cfg
 //#resource "c64_.cfg"
 
 //#link "common.c"
@@ -6,16 +6,16 @@
 //#link "System_Input.c"
 //#link "System_Graphics.c"
 //#link "System_StaticScreens.c"
-//#link "Data_Graphics.s"
-//#link "Data_InitScreen.s"
-//#link "Data_Maps.s"
+//#link "System_CharacterSets.c"
+//#link "Screen_Title.c"
 
 #include "common.h"
 #include "Screen_Map.h"
+#include "Screen_Title.h"
 #include "System_Input.h"
 #include "System_Graphics.h"
 #include "System_StaticScreens.h"
-
+#include "System_CharacterSets.h"
 
 void Initialize()
 {
@@ -26,7 +26,11 @@ void Initialize()
   InitializeMapData();
   SetScreen(0);
   DrawMap();
+  SetCharacterSet(0);
   ScreenEnable();
+
+  Init_Title();
+  Draw_Title();
 }
 
 void main(void)
@@ -37,17 +41,18 @@ void main(void)
   {
     //for(i = 0;i < 3; i++)
       //raster_wait(255);
-    ScrollChar(0,3);
-    ScrollChar(0,0);
+    //ScrollChar(0,3);
+    //ScrollChar(0,0);
     
     UpdateInput();
+    Graphics_Update();
     MapUpdate();
+
     if(InputChanged())
     {
       CheckInput();
+      //Update_Title();
       DrawMap();
-    }
-    //FlashColor(6, 2);
-    
+    }    
   }
 }

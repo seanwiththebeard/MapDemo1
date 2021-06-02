@@ -21,7 +21,6 @@ void ScreenDisable(void);
 void ScreenEnable(void);
 void SetBackground(byte index);
 void SetBorder(byte index);
-void FlashColor(byte index, byte length);
 
 void WriteBit(byte *byteToSet, char bit, bool value);
 int ReadBit(byte byteToRead, char bit);

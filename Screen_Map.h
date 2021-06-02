@@ -2,7 +2,7 @@
 
 void InitializeMapData();
 void DrawTile(byte index, byte xpos, byte ypos);
-void DrawMap();
+int DrawMap();
 void DrawCharacters();
 void CheckInput();
 void DrawCharacter(byte index, byte xpos, byte ypos);

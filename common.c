@@ -29,18 +29,6 @@ void SetBorder(byte index)
   POKE(0xD020, index);
 }
 
-void FlashColor(byte index, byte length)
-{
-  int i = 0;
-  int retValue = PEEK(0xD021);
-  POKE(0xD021, index);
-  for (i = 0; i < length; i++)
-    wait_vblank();
-  POKE(0xD021, retValue);   
-    
-  //POKE(0xD021, index);
-}
-
 int ReadBit(byte byteToRead, char bit)
 {
     bit = 1 << bit;

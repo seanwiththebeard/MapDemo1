@@ -1,7 +1,4 @@
-#include <stdio.h>  //For printf
-#include "cbm_petscii_charmap.h"  // Converts strings to c64 format
 #include <peekpoke.h>
-
 #include "System_Graphics.h"
 #include "common.h"
 #include "System_Input.h"
@@ -15,15 +12,14 @@ bool charsDrawn[32][32];
 bool DrawThisFrame = true;
 
 //Viewport
-byte viewportPosX = 2;
-byte viewportPosY = 2;
+byte viewportPosX = 1;
+byte viewportPosY = 1;
 byte viewportWidth = 9;
 byte viewportHeight = 9;
-int viewportOrigin = 0xC800;
 
+int viewportOrigin = 0xC800;
 int colorOrigin = 0xD800;
 
-int memoffset;
 int yCols[25];
 
 //Camera Position
@@ -48,20 +44,14 @@ struct Tile
 
 void DrawTile(byte index, byte xpos, byte ypos)
 {
-  //Note: 
-  //could speed up if memoffset is solved 
-  //once per line instead of per tile
-  
-  memoffset = xpos + yCols[ypos];
-  POKE(viewportOrigin + memoffset, tiles[index].chars[0]);
-  POKE(viewportOrigin + memoffset + 1, tiles[index].chars[1]);
-  POKE(viewportOrigin + memoffset + COLS, tiles[index].chars[2]);
-  POKE(viewportOrigin + memoffset + COLS + 1, tiles[index].chars[3]);
-  
-  POKE(colorOrigin + memoffset, tiles[index].colors[0]);
-  POKE(colorOrigin + memoffset + 1, tiles[index].colors[1]);
-  POKE(colorOrigin + memoffset + COLS, tiles[index].colors[2]);
-  POKE(colorOrigin + memoffset + COLS + 1, tiles[index].colors[3]);
+  int tileAddress, colorAddress;
+  tileAddress = viewportOrigin + xpos + yCols[ypos];
+  colorAddress = tileAddress + 0x1000;
+          
+  POKEW(tileAddress, PEEKW(&tiles[index].chars[0]));
+  POKEW(tileAddress + COLS, PEEKW(&tiles[index].chars[2]));
+  POKEW(colorAddress, PEEKW(&tiles[index].colors[0]));
+  POKEW(colorAddress + COLS, PEEKW(&tiles[index].colors[2]));
 }
 
 struct Character
@@ -76,16 +66,14 @@ struct Character
 void DrawCharacter(byte index, int xpos, int ypos)
 {
   {
-    memoffset = xpos + yCols[ypos];
-    POKE(viewportOrigin + memoffset, characters[index].chars[0]);
-    POKE(viewportOrigin + memoffset + 1, characters[index].chars[1]);
-    POKE(viewportOrigin + memoffset + COLS, characters[index].chars[2]);
-    POKE(viewportOrigin + memoffset + COLS + 1, characters[index].chars[3]);
-  
-    POKE(colorOrigin + memoffset, characters[index].colors[0]);
-    POKE(colorOrigin + memoffset + 1, characters[index].colors[1]);
-    POKE(colorOrigin + memoffset + COLS, characters[index].colors[2]);
-    POKE(colorOrigin + memoffset + COLS + 1, characters[index].colors[3]);
+    int tileAddress, colorAddress;
+    tileAddress = viewportOrigin + xpos + yCols[ypos];
+    colorAddress = tileAddress + 0x1000;
+          
+    POKEW(tileAddress, PEEKW(&characters[index].chars[0]));
+    POKEW(tileAddress + COLS, PEEKW(&characters[index].chars[2]));
+    POKEW(colorAddress, PEEKW(&characters[index].colors[0]));
+    POKEW(colorAddress + COLS, PEEKW(&characters[index].colors[2]));
   }
 }
 
@@ -216,7 +204,7 @@ void InitializeMapData()
     characters[i].chars[0] = i;
     characters[i].chars[1] = i;
     characters[i].chars[2] = i;
-    characters[i].chars[3] = i;
+    characters[i].chars[3] = 1;
     characters[i].colors[0] = i+4;
     characters[i].colors[1] = i+1;
     characters[i].colors[2] = i+2;
@@ -293,12 +281,10 @@ int DrawMap()
         b = 0;
     if (b < 0)
       b +=mapHeight;
-    
-    //Update memoffset once per line
-    memoffset = COLS * y;    
+
     for(x = 0; x < viewportWidth; x++)
     {
-      bool charDrawn = false;
+      //bool charDrawn = false;
       
       //Wrap the map data X reference
       if (a == mapWidth)
@@ -315,14 +301,6 @@ int DrawMap()
     a = offsetX;
     b++;
   }
-    
-  /*for (i = 0; i < 33; i++)
-    printf("\b");
-  printf("\rchrpos x %i", characters[0].posX);
-  printf("\r chrpos y %i", characters[0].posY);
-  printf("\r byte   y %i", charactersLeft);*/
-  
-  //printf("\r byte   y %i", ReadBit(characters[0].posY, 0));
   
 }
 
@@ -414,7 +392,7 @@ void MoveCharacter(byte index, byte direction, bool cameraUpdate)
   else
     if(index == 0)
     {
-      DrawThisFrame = false;
+      //DrawThisFrame = false;
       FlashColor(2, 10);
     }
   

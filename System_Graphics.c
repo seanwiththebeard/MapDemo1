@@ -4,13 +4,12 @@
 
 const int CharacterRam = 0xC000;
 const int CharacterRom = 0xD000;
-const int ColorRam = 0xD800;
+
+int FlashFrames = 0;
 
 void setcolortextmode()
 {
   int i = 0;
-  
-  
   //Copy character set
   //POKE(0x0034, 48);  // Reserve RAM
   //POKE(0x0038, 48); // Reserve RAM
@@ -63,6 +62,13 @@ void setcolortextmode()
   }
 }
 
+void SetScreenChar(byte index, byte color, byte xpos, byte ypos)
+{  
+  int offset = 40*ypos + xpos;
+  POKE(0xC800 + offset, index);
+  POKE(0xD800 + offset, color);
+}
+
 void ScrollChar(byte index, byte direction)
 {
   byte buffer[8];
@@ -103,5 +109,34 @@ void ScrollChar(byte index, byte direction)
         POKE(origin + i, temp);
       }
       break;
+  }
+}
+
+void FlashColorWait(byte index, byte length)
+{
+  int i = 0;
+  int retValue = PEEK(0xD021);
+  POKE(0xD021, index);
+  for (i = 0; i < length; i++)
+    wait_vblank();
+  POKE(0xD021, retValue);   
+    
+  //POKE(0xD021, index);
+}
+
+void FlashColor(byte index, byte length)
+{
+  POKE(0xD021, index);
+  FlashFrames = length;
+}
+
+void Graphics_Update()
+{
+  if (FlashFrames > 0)
+  {
+    FlashFrames--;
+    if (FlashFrames == 0)
+    POKE(0xD021, 0);
+
   }
 }
