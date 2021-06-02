@@ -224,7 +224,7 @@ void InitializeMapData()
     {
       for(x = 0; x < mapWidth; x++)
       {
-        mapData[x][y] = PEEK(MapData + x + yOffset);
+        mapData[x][y] = 0;
       }
     yOffset+= COLS;
     }  

@@ -1,6 +1,3 @@
-#define CFGFILE c64.cfg
-//#resource "c64_.cfg"
-
 //#link "common.c"
 //#link "Screen_Map.c"
 //#link "System_Input.c"
