@@ -2,20 +2,21 @@
 #include "System_Graphics.h"
 #include "common.h"
 #include "System_Input.h"
+//#include "cbm_petscii_charmap.h"
 
 //Map Data (set these all to the same number)
 int MapData = 0xB000;
-int mapHeight = 32;
-int mapWidth = 32;
-byte mapData[32][32];
-bool charsDrawn[32][32];
+int mapHeight = 16;
+int mapWidth = 16;
+byte mapData[16][16];
+bool charsDrawn[16][16];
 bool DrawThisFrame = true;
 
 //Viewport
-byte viewportPosX = 1;
-byte viewportPosY = 1;
-byte viewportWidth = 9;
-byte viewportHeight = 9;
+byte viewportPosX = 0;
+byte viewportPosY = 0;
+byte viewportWidth = 11;
+byte viewportHeight = 11;
 
 int viewportOrigin = 0xC800;
 int colorOrigin = 0xD800;
@@ -39,7 +40,7 @@ struct Tile
   byte chars[4];
   byte colors[4];
   byte blocked;
-  unsigned int trigger:4;
+  byte trigger;
 } tiles[16];
 
 void DrawTile(byte index, byte xpos, byte ypos)
@@ -58,6 +59,8 @@ struct Character
 {
   byte chars[4];
   byte colors[4];
+  byte trigger;
+  byte combat;
   int posX;
   int posY;
   bool visible;
@@ -166,33 +169,33 @@ void InitializeMapData()
   
   //Init Tileset
   //Water
-  tiles[0].chars[0] = '1';
-  tiles[0].chars[1] = '2';
-  tiles[0].chars[2] = '3';
-  tiles[0].chars[3] = '4';
+  tiles[0].chars[0] = 132;
+  tiles[0].chars[1] = 133;
+  tiles[0].chars[2] = 134;
+  tiles[0].chars[3] = 135;
   tiles[0].colors[0] = 14;
-  tiles[0].colors[1] = 6;
-  tiles[0].colors[2] = 6;
+  tiles[0].colors[1] = 14;
+  tiles[0].colors[2] = 14;
   tiles[0].colors[3] = 14;
   
   //Signpost
-  tiles[1].chars[0] = 0x4f;
-  tiles[1].chars[1] = 0x77;
-  tiles[1].chars[2] = 0x74;
-  tiles[1].chars[3] = ' ';
-  tiles[1].colors[0] = 1;
-  tiles[1].colors[1] = 1;
-  tiles[1].colors[2] = 1;
-  tiles[1].colors[3] = 1;
-  tiles[1].blocked = 0;
-  WriteBit(&tiles[1].blocked, 0, true);
-  WriteBit(&tiles[1].blocked, 2, true);  
+  tiles[1].chars[0] = 148;
+  tiles[1].chars[1] = 149;
+  tiles[1].chars[2] = 150;
+  tiles[1].chars[3] = 151;
+  tiles[1].colors[0] = 8;
+  tiles[1].colors[1] = 8;
+  tiles[1].colors[2] = 9;
+  tiles[1].colors[3] = 9;
+  tiles[1].blocked = 255;
+  //WriteBit(&tiles[84].blocked, 0, true);
+  //WriteBit(&tiles[84].blocked, 2, true);  
   
   //Grass
-  tiles[2].chars[0] = '1';
-  tiles[2].chars[1] = '2';
-  tiles[2].chars[2] = '3';
-  tiles[2].chars[3] = '4';
+  tiles[2].chars[0] = 136;
+  tiles[2].chars[1] = 137;
+  tiles[2].chars[2] = 138;
+  tiles[2].chars[3] = 139;
   tiles[2].colors[0] = 7;
   tiles[2].colors[1] = 13;
   tiles[2].colors[2] = 13;
@@ -201,16 +204,16 @@ void InitializeMapData()
   //Init Characters
   for (i = 0; i < 16; i++)
   {
-    characters[i].chars[0] = i;
-    characters[i].chars[1] = i;
-    characters[i].chars[2] = i;
-    characters[i].chars[3] = 1;
-    characters[i].colors[0] = i+4;
-    characters[i].colors[1] = i+1;
-    characters[i].colors[2] = i+2;
-    characters[i].colors[3] = i+3;
-    characters[i].posX = i;
-    characters[i].posY = i;
+    characters[i].chars[0] = 8 + i * 16;
+    characters[i].chars[1] = 9 + i * 16;
+    characters[i].chars[2] = 10 + i * 16;
+    characters[i].chars[3] = 11 + i * 16;
+    characters[i].colors[0] = i + 1;
+    characters[i].colors[1] = i + 1;
+    characters[i].colors[2] = i + 1;
+    characters[i].colors[3] = i + 1;
+    characters[i].posX = i + 4;
+    characters[i].posY = i + 4;
     characters[i].visible = false;
   }
     characters[0].visible = true;
@@ -262,7 +265,9 @@ int DrawMap()
 {
   if(!DrawThisFrame)
     return 0;
-  
+
+  PrintString("Drawing         ", 0, 24, true);
+
   CameraFollow(0);
   BlankCharsDrawn();
   
@@ -301,7 +306,7 @@ int DrawMap()
     a = offsetX;
     b++;
   }
-  
+    PrintString("                ", 0, 24, true);
 }
 
 int wrapX(int posX)
@@ -393,7 +398,9 @@ void MoveCharacter(byte index, byte direction, bool cameraUpdate)
     if(index == 0)
     {
       //DrawThisFrame = false;
+      PrintString("Collision!      ", 0, 24, true);
       FlashColor(2, 10);
+      PrintString("                ", 0, 24, true);
     }
   
   if (characters[index].posX < 0)

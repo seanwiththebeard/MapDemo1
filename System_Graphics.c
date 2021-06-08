@@ -1,6 +1,10 @@
 #include <c64.h>
 #include <peekpoke.h>
 #include "common.h"
+#include <conio.h>
+#include <stdio.h>
+//#include "cbm_petscii_charmap.h"
+#include "System_CharacterSets.h"
 
 const int CharacterRam = 0xC000;
 const int CharacterRom = 0xD000;
@@ -17,11 +21,8 @@ void setcolortextmode()
   POKE(0x0001, (PEEK(0x0001)&251)); // Character ROM select
   
   //Copy the character set to the new RAM location
-  for(i = 0; i < 2048; i++)
-  {
+  //for(i = 0; i < 2048; i++)
     //POKE(i + CharacterRam, PEEK(i + CharacterRom));
-    //POKE(i + CharacterRam, 255);    
-  }
   
   POKE(0x0001, (PEEK(0x0001)|4)); // Character ROM de-select, back to IO
   POKE(0xDC0E, PEEK(0xDC0E)|1); // Resume Keyscan
@@ -67,6 +68,17 @@ void SetScreenChar(byte index, byte color, byte xpos, byte ypos)
   int offset = 40*ypos + xpos;
   POKE(0xC800 + offset, index);
   POKE(0xD800 + offset, color);
+}
+
+void PrintString(char text[16], byte posx, byte posy, bool fast)
+{
+  int i;
+  for(i = 0; i < 16; i++)
+  {
+    if (!fast)
+      raster_wait(255);
+    SetScreenChar(text[i], AttributeSet[0][text[i]], posx + i, posy);
+  }
 }
 
 void ScrollChar(byte index, byte direction)
@@ -118,7 +130,7 @@ void FlashColorWait(byte index, byte length)
   int retValue = PEEK(0xD021);
   POKE(0xD021, index);
   for (i = 0; i < length; i++)
-    wait_vblank();
+    raster_wait(255);
   POKE(0xD021, retValue);   
     
   //POKE(0xD021, index);

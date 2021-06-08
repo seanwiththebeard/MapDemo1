@@ -6,3 +6,4 @@ void ScrollChar(byte index, byte direction);
 void FlashColor(byte index, byte length);
 void FlashColorWait(byte index, byte length);
 void Graphics_Update();
+void PrintString(char text[16], byte posx, byte posy, bool fast);
