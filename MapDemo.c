@@ -13,7 +13,7 @@
 #include "System_Graphics.h"
 #include "System_StaticScreens.h"
 #include "System_CharacterSets.h"
-#include "cbm_petscii_charmap.h"
+//#include "cbm_petscii_charmap.h"
 
 void Initialize()
 {
