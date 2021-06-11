@@ -10,7 +10,6 @@ const int CharacterRam = 0xC000;
 const int CharacterRom = 0xD000;
 
 int FlashFrames = 0;
-int RetBackground = 0;
 
 void setcolortextmode()
 {
@@ -128,18 +127,18 @@ void ScrollChar(byte index, byte direction)
 void FlashColorWait(byte index, byte length)
 {
   int i = 0;
-  RetBackground = PEEK(0xD021);
-  SetBackground(index);
+  int retValue = PEEK(0xD021);
+  POKE(0xD021, index);
   for (i = 0; i < length; i++)
     raster_wait(255);
-  SetBackground(RetBackground);   
+  POKE(0xD021, retValue);   
     
   //POKE(0xD021, index);
 }
 
 void FlashColor(byte index, byte length)
 {
-  SetBackground(index);
+  POKE(0xD021, index);
   FlashFrames = length;
 }
 
@@ -149,7 +148,7 @@ void Graphics_Update()
   {
     FlashFrames--;
     if (FlashFrames == 0)
-    SetBackground(RetBackground);
+    POKE(0xD021, 0);
 
   }
 }

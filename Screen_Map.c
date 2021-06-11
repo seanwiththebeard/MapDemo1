@@ -2,6 +2,7 @@
 #include "System_Graphics.h"
 #include "common.h"
 #include "System_Input.h"
+#include "System_MessageWindow.h"
 //#include "cbm_petscii_charmap.h"
 
 //Map Data (set these all to the same number)
@@ -398,9 +399,8 @@ void MoveCharacter(byte index, byte direction, bool cameraUpdate)
     if(index == 0)
     {
       //DrawThisFrame = false;
-      PrintString("Collision!      ", 0, 24, true);
+      WriteLineMessageWindow("Collision!@");
       FlashColor(2, 10);
-      PrintString("                ", 0, 24, true);
     }
   
   if (characters[index].posX < 0)

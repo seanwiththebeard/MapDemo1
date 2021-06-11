@@ -21,9 +21,7 @@ void ScreenEnable()
 
 void SetBackground(byte index)
 {
-  wait_vblank();
   POKE(0xD021, index);
-  POKE(0xD020, index);
 }
 
 void SetBorder(byte index)

@@ -13,7 +13,8 @@
 #include "System_Graphics.h"
 #include "System_StaticScreens.h"
 #include "System_CharacterSets.h"
-//#include "cbm_petscii_charmap.h"
+#include "System_MessageWindow.h"
+#include "cbm_petscii_charmap.h"
 
 void Initialize()
 {
@@ -30,10 +31,15 @@ void Initialize()
 
   Init_Title();
   Draw_Title();
-  PrintString("TheQuickBrownFox", 23, 2, true);
-  PrintString("JumpsOverLazyDog", 23, 3, true);
-  PrintString("0123456789:;<=>?", 23, 4, true);
-  PrintString(" ! #$%&'()*+,-./", 23, 5, true);
+
+  
+  BlankMessageWindow();
+  
+  WriteLineMessageWindow("TheQuickBrownFox");
+  WriteLineMessageWindow("JumpsOverLazyDog");
+  WriteLineMessageWindow("0123456789:;<=>?");
+  WriteLineMessageWindow(" ! #$%&'()*+,-./");
+
 }
 
 void main(void)
