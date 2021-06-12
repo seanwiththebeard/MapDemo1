@@ -5,8 +5,11 @@ void raster_wait(unsigned char line) {
   while (VIC.rasterline < line) ;
 }
 
-void wait_vblank(void) {
-  raster_wait(255);
+void wait_vblank(byte frames) 
+{
+  byte x;
+  for (x = 0; x < frames; x++)
+    raster_wait(255);
 }
 
 void ScreenDisable()

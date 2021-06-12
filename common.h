@@ -16,7 +16,7 @@ typedef struct{
 #define ROWS 25
 
 void raster_wait(unsigned char line);
-void wait_vblank(void);
+void wait_vblank(byte frames);
 void ScreenDisable(void);
 void ScreenEnable(void);
 void SetBackground(byte index);

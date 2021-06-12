@@ -2,5 +2,5 @@
 
 void DrawMessageWindow();
 void BlankMessageWindow();
-void ScrollMessageWindowUp(byte lines, byte delay);
-void WriteLineMessageWindow(char message[]);
+void ScrollMessageWindowUp(byte lines);
+void WriteLineMessageWindow(char message[], byte delay);

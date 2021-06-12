@@ -4,6 +4,7 @@
 //#link "System_Graphics.c"
 //#link "System_StaticScreens.c"
 //#link "System_CharacterSets.c"
+//#link "System_MessageWindow.c"
 //#link "Screen_Title.c"
 
 #include "common.h"
@@ -35,10 +36,10 @@ void Initialize()
   
   BlankMessageWindow();
   
-  WriteLineMessageWindow("TheQuickBrownFox");
-  WriteLineMessageWindow("JumpsOverLazyDog");
-  WriteLineMessageWindow("0123456789:;<=>?");
-  WriteLineMessageWindow(" ! #$%&'()*+,-./");
+  WriteLineMessageWindow("TheQuickBrownFox", 1);
+  WriteLineMessageWindow("JumpsOverLazyDog", 1);
+  WriteLineMessageWindow("0123456789:;<=>?", 1);
+  WriteLineMessageWindow(" ! #$%&'()*+,-./", 1);
 
 }
 

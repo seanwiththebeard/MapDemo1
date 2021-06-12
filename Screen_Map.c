@@ -3,7 +3,7 @@
 #include "common.h"
 #include "System_Input.h"
 #include "System_MessageWindow.h"
-//#include "cbm_petscii_charmap.h"
+#include "cbm_petscii_charmap.h"
 
 //Map Data (set these all to the same number)
 int MapData = 0xB000;
@@ -267,7 +267,7 @@ int DrawMap()
   if(!DrawThisFrame)
     return 0;
 
-  PrintString("Drawing         ", 0, 24, true);
+  //PrintString("Drawing         ", 0, 24, true);
 
   CameraFollow(0);
   BlankCharsDrawn();
@@ -307,7 +307,7 @@ int DrawMap()
     a = offsetX;
     b++;
   }
-    PrintString("                ", 0, 24, true);
+    //PrintString("                ", 0, 24, true);
 }
 
 int wrapX(int posX)
@@ -399,8 +399,8 @@ void MoveCharacter(byte index, byte direction, bool cameraUpdate)
     if(index == 0)
     {
       //DrawThisFrame = false;
-      WriteLineMessageWindow("Collision!@");
-      FlashColor(2, 10);
+      FlashColor(2, 1);
+      WriteLineMessageWindow("Collision!@", 0);
     }
   
   if (characters[index].posX < 0)
