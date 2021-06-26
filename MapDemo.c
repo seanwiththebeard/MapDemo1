@@ -21,7 +21,7 @@ void Initialize()
 {
   ScreenDisable();
   SetBackground(0);
-  SetBorder(0);
+  SetBorder(1);
   InitializeInput();
   setcolortextmode();
   InitializeMapData();
@@ -40,6 +40,11 @@ void Initialize()
   WriteLineMessageWindow("JumpsOverLazyDog", 1);
   WriteLineMessageWindow("0123456789:;<=>?", 1);
   WriteLineMessageWindow(" ! #$%&'()*+,-./", 1);
+
+  DrawLineH('0', 7, 22, 0, 17);
+  DrawLineH('0', 7, 22, 24, 17);
+  DrawLineV('0', 7, 22, 0, 24);
+  DrawLineV('0', 7, 39, 0, 24);
 
 }
 

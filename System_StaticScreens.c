@@ -122,9 +122,9 @@ unsigned char StaticColor[2][1000]={
 void SetScreen(byte index)
 {
   int i;
-  for (i = 0;i < 1000; i++)
+  for (i = 0;i < 1000; i+=2)
   {
-      POKE(screenRam + i, StaticScreen[index][i]);
-      POKE(colorRam + i, StaticColor[index][i]);    
+      POKEW(screenRam + i, PEEKW(&StaticScreen[index][i]));
+      POKEW(colorRam + i, PEEKW(&StaticColor[index][i]));    
   }
 }

@@ -70,6 +70,20 @@ void SetScreenChar(byte index, byte color, byte xpos, byte ypos)
   POKE(0xD800 + offset, color);
 }
 
+void DrawLineH(char index, byte color, byte x, byte y, byte length)
+{
+  int z;
+  for (z = 0; z < length; z++)
+    SetScreenChar(index, color, x + z, y);
+}
+
+void DrawLineV(char index, byte color, byte x, byte y, byte length)
+{
+  int z;
+  for (z = 0; z < length; z++)
+    SetScreenChar(index, color, x, y + z);
+}
+
 void PrintString(char text[16], byte posx, byte posy, bool fast)
 {
   int i;

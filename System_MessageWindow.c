@@ -38,14 +38,13 @@ void ScrollMessageWindowUp(byte lines)
     for (x = 0; x < Width; x++)
         MessageWindow[x][Height - 1] = ' ';
   }
+  DrawMessageWindow();
 }
 
 void WriteLineMessageWindow(char message[16], byte delay)
 {
     byte x;
-    ScrollMessageWindowUp(1);
-  DrawMessageWindow();
-  
+    ScrollMessageWindowUp(1);  
     for(x = 0; x < 16; x++)
     {
       if (message[x] == '@')
