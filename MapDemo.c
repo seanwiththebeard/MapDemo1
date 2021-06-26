@@ -25,13 +25,13 @@ void Initialize()
   InitializeInput();
   setcolortextmode();
   InitializeMapData();
-  //SetScreen(0);
+  SetScreen(0);
   DrawMap();
   SetCharacterSet(0);
   ScreenEnable();
 
-  //Init_Title();
-  //Draw_Title();
+  Init_Title();
+  Draw_Title();
 
   
   BlankMessageWindow();

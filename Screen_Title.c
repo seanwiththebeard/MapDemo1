@@ -6,8 +6,8 @@
 
 byte TitleCursorX = 0;
 byte TitleCursorY = 0;
-byte TitlePosX = 22;
-byte TitlePosY = 8;
+byte TitlePosX = 23;
+byte TitlePosY = 1;
 byte color = 1;
 byte index = 22;
 

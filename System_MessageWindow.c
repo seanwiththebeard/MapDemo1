@@ -3,11 +3,11 @@
 #include "System_Graphics.h"
 
 byte PosX = 23;
-byte PosY = 12;
-byte Height = 12;
+byte PosY = 17;
+byte Height = 7;
 byte Width = 16;
 byte Color = 1;
-char MessageWindow[16][12];
+char MessageWindow[16][7];
 void DrawMessageWindow()
 {
     byte x, y;
