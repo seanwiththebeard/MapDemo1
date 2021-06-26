@@ -2,7 +2,7 @@
 #include "cbm_petscii_charmap.h"
 #include "System_Graphics.h"
 
-byte PosX = 22;
+byte PosX = 23;
 byte PosY = 12;
 byte Height = 12;
 byte Width = 16;
@@ -21,7 +21,12 @@ void BlankMessageWindow()
     for (y = 0; y < Height; y++)
         for (x = 0; x < Width; x++)
             MessageWindow[x][y] = ' ';
-    DrawMessageWindow();
+  
+  DrawLineH('0', 7, 22, 0, 17);
+  DrawLineH('0', 7, 22, 24, 17);
+  DrawLineV('0', 7, 22, 0, 24);
+  DrawLineV('0', 7, 39, 0, 25);
+  DrawMessageWindow();
 }
 
 void ScrollMessageWindowUp(byte lines)
