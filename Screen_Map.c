@@ -4,6 +4,7 @@
 #include "System_Input.h"
 #include "System_MessageWindow.h"
 #include "cbm_petscii_charmap.h"
+#include "System_CharacterSets.h"
 
 //Map Data (set these all to the same number)
 int MapData = 0xB000;
@@ -18,17 +19,28 @@ byte viewportPosX = 0;
 byte viewportPosY = 0;
 byte viewportWidth = 11;
 byte viewportHeight = 11;
+byte viewportBuffer[11][11];
+byte DoubleBufferChars[(11*2)*(11*2)];
+byte DoubleBufferColors[(11*2)*(11*2)];
+
+byte followIndex = 0;
+
+byte NextLineOffset;
+
 
 int viewportOrigin = 0xC800;
 int colorOrigin = 0xD800;
+
+int tileAddress, colorAddress, tileAddressOdd, colorAddressOdd;
+int offsetViewportChar, offsetViewportColor, offsetViewportCharOdd, offsetViewportColorOdd;
 
 int yCols[25];
 
 //Camera Position
 int offsetX, offsetY = 0;
-int x, y, a, b, i = 0;
-int cameraOffsetX = 0;
-int cameraOffsetY = 0;
+//int x, y, a, b, i = 0;
+byte cameraOffsetX = 0;
+byte cameraOffsetY = 0;
 
 //Color Palette
 byte ColorPalette[256];
@@ -39,15 +51,15 @@ byte moved = 0;
 struct Tile
 {
   byte chars[4];
+  byte index;
   byte colors[4];
   byte blocked;
   byte trigger;
-} tiles[16];
+} tiles[64];
 
 void DrawTile(byte index, byte xpos, byte ypos)
 {
-  int tileAddress, colorAddress;
-  tileAddress = viewportOrigin + xpos + yCols[ypos];
+  tileAddress = viewportOrigin + xpos * 2 + yCols[ypos] * 2;
   colorAddress = tileAddress + 0x1000;
           
   POKEW(tileAddress, PEEKW(&tiles[index].chars[0]));
@@ -56,8 +68,44 @@ void DrawTile(byte index, byte xpos, byte ypos)
   POKEW(colorAddress + COLS, PEEKW(&tiles[index].colors[2]));
 }
 
+void DrawBufferTile(byte index, byte xpos, byte ypos)
+{
+  int bufferAddress = &DoubleBufferChars[xpos * 2 + ypos*viewportWidth * 2];
+  int colorBufferAddress = &DoubleBufferColors[xpos * 2 + ypos*viewportWidth * 2];
+
+  POKEW(bufferAddress, PEEKW(&tiles[index].chars[0]));
+  POKEW(bufferAddress + viewportWidth * 2, PEEKW(&tiles[index].chars[2]));
+  POKEW(colorBufferAddress, PEEKW(&tiles[index].colors[0]));
+  POKEW(colorBufferAddress + viewportWidth * 2, PEEKW(&tiles[index].colors[2]));
+  }
+
+void DrawTileTop(byte index)
+{
+  CopyMemory(&DoubleBufferChars[offsetViewportChar], &tiles[index].chars[0], 2);
+  CopyMemory(&DoubleBufferColors[offsetViewportColor], &tiles[index].colors[0], 2);
+
+  //CopyMemory(tileAddress, &tiles[index].chars[0], 2);
+  //CopyMemory(colorAddress, &tiles[index].colors[0], 2);
+  
+  //POKEW(tileAddress, PEEKW(&tiles[index].chars[0]));
+  //POKEW(colorAddress, PEEKW(&tiles[index].colors[0]));
+}
+
+void DrawTileBottom(byte index)
+{
+  CopyMemory(&DoubleBufferChars[offsetViewportCharOdd], &tiles[index].chars[2], 2);
+  CopyMemory(&DoubleBufferColors[offsetViewportColorOdd], &tiles[index].colors[2], 2);
+
+  //CopyMemory(tileAddressOdd, &tiles[index].chars[2], 2);
+  //CopyMemory(colorAddressOdd, &tiles[index].colors[2], 2);
+
+  //POKEW(tileAddressOdd, PEEKW(&tiles[index].chars[2]));
+  //POKEW(colorAddressOdd, PEEKW(&tiles[index].colors[2]));
+}
+
 struct Character
 {
+  byte tile;
   byte chars[4];
   byte colors[4];
   byte trigger;
@@ -65,21 +113,9 @@ struct Character
   int posX;
   int posY;
   bool visible;
+  bool collide;
+  byte message;
 } characters[16];
-
-void DrawCharacter(byte index, int xpos, int ypos)
-{
-  {
-    int tileAddress, colorAddress;
-    tileAddress = viewportOrigin + xpos + yCols[ypos];
-    colorAddress = tileAddress + 0x1000;
-          
-    POKEW(tileAddress, PEEKW(&characters[index].chars[0]));
-    POKEW(tileAddress + COLS, PEEKW(&characters[index].chars[2]));
-    POKEW(colorAddress, PEEKW(&characters[index].colors[0]));
-    POKEW(colorAddress + COLS, PEEKW(&characters[index].colors[2]));
-  }
-}
 
 void ClampOffset()
 {
@@ -94,10 +130,11 @@ void ClampOffset()
     offsetY = mapHeight - 1;
 }
 
-void CameraFollow(byte index)
+void CameraFollow()
 {  
-  offsetX = characters[index].posX;
-  offsetY = characters[index].posY;
+  int x, y;
+  offsetX = characters[followIndex].posX;
+  offsetY = characters[followIndex].posY;
   
     for(x = 0; x < cameraOffsetX; x++)
     {
@@ -112,7 +149,7 @@ void CameraFollow(byte index)
     }
 }
 
-byte GetWrappedX(int xPos)
+int GetWrappedX(int xPos) //For viewport character positions
 { 
   int tempX = xPos - offsetX;
   
@@ -122,7 +159,7 @@ byte GetWrappedX(int xPos)
   return tempX;
 }
 
-byte GetWrappedY(byte YPos)
+int GetWrappedY(int YPos)
 {
   int tempY = YPos - offsetY;
   
@@ -134,77 +171,192 @@ byte GetWrappedY(byte YPos)
 
 void DrawChar(byte index)
 {
-  if(characters[index].visible)
-  {
   byte posx = GetWrappedX(characters[index].posX);
-  byte posy = GetWrappedY(characters[index].posY);
-  
   if (posx < viewportWidth)
+  {
+    byte posy = GetWrappedY(characters[index].posY);
     if (posy < viewportHeight)
-      DrawCharacter(index, posx * 2, posy * 2);
-  charsDrawn[posx][posy] = true;
+      if(characters[index].visible)
+      {
+        //viewportBuffer[posx][posy] = characters[index].tile;
+        DrawTile(index, posx, posy);
+        //charsDrawn[posx][posy] = true;
+      }
   }
 }
 
-void BlankCharsDrawn()
+void BufferCharacters()
 {
-  for(y = 0; y < viewportHeight; y++)
+  int i;
+  for(i = 0; i < 16; i++)
+    DrawChar(i);
+}
+
+void UpdateViewport()
+{
+  int x, offset;
+  for (x = 0; x < viewportHeight * 2; x++)
+  {
+    offset = x * COLS;
+    CopyMemory(viewportOrigin + offset, &DoubleBufferChars[x * viewportWidth * 2], viewportWidth*2);
+    CopyMemory(colorOrigin + offset, &DoubleBufferColors[x * viewportWidth * 2], viewportWidth*2);
+  }
+
+  BufferCharacters();
+}
+
+void DrawViewport()
+{
+  int x, y;
+
+  tileAddress = viewportOrigin + yCols[0 << 1];
+  colorAddress = tileAddress + 0x1000;
+  tileAddressOdd = tileAddress + COLS;
+  colorAddressOdd = colorAddress + COLS;
+
+  offsetViewportChar = 0;
+  offsetViewportColor = 0;
+  offsetViewportCharOdd = viewportWidth * 2;
+  offsetViewportColorOdd = viewportWidth * 2;
+
+  for (y = 0; y < viewportHeight; y++)
+  {
     for (x = 0; x < viewportWidth; x++)
-      charsDrawn[x][y] = false;
+    {
+      DrawTileTop(viewportBuffer[x][y]);
+      DrawTileBottom(viewportBuffer[x][y]);
+
+      offsetViewportChar += 2;
+      offsetViewportColor += 2;
+      offsetViewportCharOdd += 2;
+      offsetViewportColorOdd += 2;
+    }
+    offsetViewportChar += 2 * viewportWidth;
+    offsetViewportColor += 2 * viewportWidth;
+    offsetViewportCharOdd += 2 * viewportWidth;
+    offsetViewportColorOdd += 2 * viewportWidth;
+  }
+
+  /*for (y = 0; y < viewportHeight; y++)
+  {
+    tileAddress = viewportOrigin + COLS + yCols[y << 1];
+    colorAddress = tileAddress + 0x1000;
+    for (x = 0; x < viewportWidth; x++)
+    {
+      tileAddress += 2;
+      colorAddress += 2;
+    }
+  }*/
+  UpdateViewport();
+}
+
+void DrawSingleRow(int row)
+{
+  int a, b, x, y;
+  a = offsetX;
+  b = offsetY;
+  
+  y = row;
+  {
+
+
+    for(x = 0; x < viewportWidth; x++)
+    {      
+      //Wrap the map data X reference
+      if (a == mapWidth)
+          a = 0;
+      if (a < 0)
+          a += mapWidth;
+      {
+        viewportBuffer[x][y] = mapData[a][b];
+        DrawBufferTile(viewportBuffer[x][y], x, y);
+      }
+      a++;
+    }
+
+  }
+
+  UpdateViewport();
+}
+
+void ScrollViewport(byte direction)
+{  
+  int x = 0;
+  int totalSize = 2*viewportHeight * 2*viewportWidth;
+
+  ClampOffset();
+
+  switch (direction)
+  {
+    case 0:
+      {
+        for (x = 2*viewportHeight * 2*viewportWidth - 1 - viewportWidth * 4; x > 0; x -= viewportWidth * 4)
+        {
+          CopyMemory(&DoubleBufferChars[x], &DoubleBufferChars[x - viewportWidth * 4], viewportWidth*4);
+          CopyMemory(&DoubleBufferColors[x], &DoubleBufferColors[x - viewportWidth * 4], viewportWidth*4);
+        }
+        DrawSingleRow(0);
+      }
+    break;
+    case 1:
+    break;
+    case 2:
+    break;
+    case 3:
+    break;
+    default:
+    break;
+  }
 }
 
 void InitializeMapData()
 {
-  byte grass = 2;
-  byte water = 0;
-  byte signpost = 1;
+  int x, y, i;
+
+  byte grass = 36;
+  byte water = 34;
+  byte signpost = 35;
   byte yOffset = 0;
   
+  NextLineOffset = (COLS - (viewportWidth << 1)) + COLS;
   viewportOrigin += (viewportPosX + COLS * viewportPosY);
   colorOrigin += (viewportPosX + COLS * viewportPosY);
   
   cameraOffsetX = viewportWidth / 2;
   cameraOffsetY = viewportHeight / 2;
   
-  BlankCharsDrawn();
-  
+  for (y = 0; y < 8; y++)
+    for (x = 0; x < 8; x++)
+    {
+      byte index = x + y*8;
+      byte offset = x * 2 + 32*y;
+
+      tiles[index].index = index;
+      tiles[index].chars[0] = offset;
+      tiles[index].chars[1] = offset + 1;
+      tiles[index].chars[2] = offset + 16;
+      tiles[index].chars[3] = offset + 17;
+
+      tiles[index].colors[0] = AttributeSet[0][offset];
+      tiles[index].colors[1] = AttributeSet[0][offset + 1];
+      tiles[index].colors[2] = AttributeSet[0][offset + 16];
+      tiles[index].colors[3] = AttributeSet[0][offset + 17];
+    }
+
   //Init Tileset
   //Water
-  tiles[0].chars[0] = 132;
-  tiles[0].chars[1] = 133;
-  tiles[0].chars[2] = 134;
-  tiles[0].chars[3] = 135;
-  tiles[0].colors[0] = 14;
-  tiles[0].colors[1] = 14;
-  tiles[0].colors[2] = 14;
-  tiles[0].colors[3] = 14;
   
   //Signpost
-  tiles[1].chars[0] = 148;
-  tiles[1].chars[1] = 149;
-  tiles[1].chars[2] = 150;
-  tiles[1].chars[3] = 151;
-  tiles[1].colors[0] = 8;
-  tiles[1].colors[1] = 8;
-  tiles[1].colors[2] = 9;
-  tiles[1].colors[3] = 9;
-  tiles[1].blocked = 255;
-  //WriteBit(&tiles[84].blocked, 0, true);
-  //WriteBit(&tiles[84].blocked, 2, true);  
+  //tiles[signpost].blocked = 255;
+  WriteBit(&tiles[signpost].blocked, 0, true);
+  WriteBit(&tiles[signpost].blocked, 2, true);  
   
   //Grass
-  tiles[2].chars[0] = 136;
-  tiles[2].chars[1] = 137;
-  tiles[2].chars[2] = 138;
-  tiles[2].chars[3] = 139;
-  tiles[2].colors[0] = 7;
-  tiles[2].colors[1] = 13;
-  tiles[2].colors[2] = 13;
-  tiles[2].colors[3] = 7;
   
   //Init Characters
   for (i = 0; i < 16; i++)
   {
+    characters[i].tile = i;
     characters[i].chars[0] = 8 + i * 16;
     characters[i].chars[1] = 9 + i * 16;
     characters[i].chars[2] = 10 + i * 16;
@@ -216,9 +368,20 @@ void InitializeMapData()
     characters[i].posX = i + 4;
     characters[i].posY = i + 4;
     characters[i].visible = false;
+    characters[i].collide = false;
   }
     characters[0].visible = true;
     characters[0].posX += 2;
+    characters[0].tile = 2;
+
+    characters[1].visible = true;
+    characters[1].collide = true;
+    characters[1].message = 0;
+
+    characters[2].tile = signpost;
+    characters[2].visible = true;
+    characters[2].collide = true;
+    characters[2].message = 1;
   
   for (i = 0; i < 25; i++)
     yCols[i] = i*COLS;
@@ -228,7 +391,7 @@ void InitializeMapData()
     {
       for(x = 0; x < mapWidth; x++)
       {
-        mapData[x][y] = 0;
+        mapData[x][y] = water;
       }
     yOffset+= COLS;
     }  
@@ -237,7 +400,7 @@ void InitializeMapData()
   mapData[6][4] = grass;
   mapData[7][4] = grass;
   mapData[4][5] = grass;
-  mapData[5][5] = signpost;
+  mapData[5][5] = grass;
   mapData[6][5] = grass;
   mapData[7][5] = grass;
   mapData[4][6] = grass;
@@ -249,11 +412,6 @@ void InitializeMapData()
   mapData[6][7] = grass; 
   mapData[7][7] = grass;
   
-  mapData[0][0] = signpost;
-  mapData[0][7] = signpost;
-  mapData[7][0] = signpost;
-  mapData[7][7] = signpost;
-  
   for (i = 0; i < 256; i++)
     ColorPalette[i] = i;
   
@@ -264,21 +422,20 @@ void InitializeMapData()
 
 int DrawMap()
 {
+  int a, b, x, y;
   if(!DrawThisFrame)
     return 0;
 
-  //PrintString("Drawing         ", 0, 24, true);
+  //wait_vblank(1);
+  //SetBackground(6);
 
-  CameraFollow(0);
-  BlankCharsDrawn();
+  CameraFollow();
+  //BlankCharsDrawn();
   
   ClampOffset();
   
   a = offsetX;
   b = offsetY;
-  
-  for(i = 0; i < 16; i++)
-    DrawChar(i);
   
   for(y = 0; y < viewportHeight; y++)
   {
@@ -289,28 +446,24 @@ int DrawMap()
       b +=mapHeight;
 
     for(x = 0; x < viewportWidth; x++)
-    {
-      //bool charDrawn = false;
-      
+    {      
       //Wrap the map data X reference
       if (a == mapWidth)
           a = 0;
       if (a < 0)
           a += mapWidth;
-      
-      if (!charsDrawn[x][y])
-        DrawTile(mapData[a][b], x*2, y*2);
-      
+      {
+        viewportBuffer[x][y] = mapData[a][b];
+      }
       a++;
     }
-    
     a = offsetX;
     b++;
   }
-    //PrintString("                ", 0, 24, true);
+  DrawViewport();
 }
 
-int wrapX(int posX)
+int wrapX(int posX) //Used in map positions
 {
   if (posX >= mapWidth)
     posX = 0;
@@ -337,6 +490,8 @@ void MapUpdate()
 
 bool CheckCollision(byte charIndex, byte Direction)
 {
+  int i;
+
   int xPos = characters[charIndex].posX;
   int yPos = characters[charIndex].posY;
   
@@ -346,23 +501,23 @@ bool CheckCollision(byte charIndex, byte Direction)
   switch (Direction)
   {
     case 0:
-      yPos -= 1;
-      yPos = wrapY(yPos);
+      //yPos -= 1;
+      yPos = wrapY(yPos - 1);
       Direction = 1;
       break;
     case 1:
-      yPos += 1;
-      yPos = wrapY(yPos);
+      //yPos += 1;
+      yPos = wrapY(yPos + 1);
       Direction = 0;
       break;
     case 2:
-      xPos -= 1;
-      xPos = wrapX(xPos);
+      //xPos -= 1;
+      xPos = wrapX(xPos) - 1;
       Direction = 3;
       break;
     case 3:
-      xPos += 1;
-      xPos = wrapX(xPos);
+      //xPos += 1;
+      xPos = wrapX(xPos + 1);
       Direction = 2;
       break;
     default:
@@ -371,57 +526,80 @@ bool CheckCollision(byte charIndex, byte Direction)
   
   if(ReadBit(tiles[mapData[xPos][yPos]].blocked, Direction))
     return true;
+  for (i = 0; i < 16; i++)
+    if(characters[i].collide)
+      if (characters[i].posX == xPos)
+        if (characters[i].posY == yPos)
+          {
+            WriteLineMessageWindow(Messages[characters[i].message], 0);
+            return true;
+          }
   
   return false;
 }
 
 void MoveCharacter(byte index, byte direction, bool cameraUpdate)
 {
-  if(!CheckCollision(index, direction))
-  switch (direction)
-  {
-    case 0:
-      characters[index].posY--;
-      break;
-    case 1:
-      characters[index].posY++;
-      break;
-    case 2:
-      characters[index].posX--;
-      break;
-    case 3:
-      characters[index].posX++;
-      break;
-    default:
-      break;
+  bool checkCollision = CheckCollision(index, direction);
+  if(!checkCollision)
+    {
+      switch (direction)
+      {
+        case 0:
+          characters[index].posY--;
+          break;
+        case 1:
+           characters[index].posY++;
+            break;
+        case 2:
+           characters[index].posX--;
+           break;
+        case 3:
+           characters[index].posX++;
+          break;
+        default:
+          break;
+      }
+
+      if (characters[index].posX < 0)
+        characters[index].posX = mapWidth - 1;
+      if (characters[index].posY < 0)
+        characters[index].posY = mapHeight - 1;
+  
+      if (characters[index].posX >= mapWidth)
+        characters[index].posX = 0;
+      if (characters[index].posY >= mapHeight)
+        characters[index].posY = 0;
+      
+      if (cameraUpdate)
+        CameraFollow();
+      if (index == followIndex)
+        ScrollViewport(direction);
   }
   else
     if(index == 0)
     {
-      //DrawThisFrame = false;
-      FlashColor(2, 1);
-      WriteLineMessageWindow("Collision!@", 0);
+      DrawThisFrame = false;
+      //FlashColor(2, 1);
+      //WriteLineMessageWindow("Collision!@", 0);
     }
-  
-  if (characters[index].posX < 0)
-    characters[index].posX = mapWidth - 1;
-  if (characters[index].posY < 0)
-    characters[index].posY = mapHeight - 1;
-  
-  if (characters[index].posX >= mapWidth)
-    characters[index].posX = 0;
-  if (characters[index].posY >= mapHeight)
-    characters[index].posY = 0;
-  
-  if (cameraUpdate)
-    CameraFollow(index);
 }
 
 int CheckInput()
 {
-    if (InputUp()) {MoveCharacter(0, 0, true); return 1;}
-    if (InputLeft()) {MoveCharacter(0, 2, true); return 1;}
-    if (InputRight()) {MoveCharacter(0, 3, true); return 1;}
-    if (InputDown()) {MoveCharacter(0, 1, true); return 1;}
+    if (InputUp())
+    {
+      MoveCharacter(0, 0, true);
+      //DrawMap();
+      return 1;
+    }
+    if (InputDown()) 
+    {
+      MoveCharacter(0, 1, true); 
+      DrawMap(); 
+      return 1;
+    }
+    if (InputLeft()) {MoveCharacter(0, 2, true); DrawMap(); return 1;}
+    if (InputRight()) {MoveCharacter(0, 3, true); DrawMap(); return 1;}
   return 0;
 }

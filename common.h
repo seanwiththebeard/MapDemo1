@@ -15,6 +15,7 @@ typedef struct{
 #define COLS 40
 #define ROWS 25
 
+void CopyMemory(int dest, int src, int length); /*Absolute address, &pointer to source)*/
 void raster_wait(unsigned char line);
 void wait_vblank(byte frames);
 void ScreenDisable(void);

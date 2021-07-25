@@ -16,7 +16,7 @@ void Draw_Title()
 {
     for (TitleCursorY = 0; TitleCursorY < 16; TitleCursorY++)
         for (TitleCursorX = 0; TitleCursorX < 16; TitleCursorX++)
-                SetScreenChar(TitleCursorY*16 + TitleCursorX, AttributeSet[0][TitleCursorY*16 + TitleCursorX], TitleCursorX + TitlePosX, TitleCursorY + TitlePosY);
+                SetScreenChar(TitleCursorY*16 + TitleCursorX, TitleCursorX + TitlePosX, TitleCursorY + TitlePosY);
 }
 void Update_Title()
 {

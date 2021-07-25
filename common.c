@@ -1,5 +1,11 @@
 #include <peekpoke.h>
 #include "common.h"
+#include <string.h>
+
+void CopyMemory(int dest, int src, int length)
+{
+  memcpy((int*)dest, (int*)src, length);
+}
 
 void raster_wait(unsigned char line) {
   while (VIC.rasterline < line) ;

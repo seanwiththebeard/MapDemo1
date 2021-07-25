@@ -21,21 +21,23 @@ void Initialize()
 {
   ScreenDisable();
   SetBackground(0);
-  SetBorder(1);
-  InitializeInput();
-  setcolortextmode();
-  InitializeMapData();
-  SetScreen(0);
-  DrawMap();
-  SetCharacterSet(0);
-  ScreenEnable();
+  SetBorder(0);
 
+  InitializeInput();
   Init_Title();
+  setcolortextmode();
+  SetCharacterSet(0);
+  ClearScreen();
+
   Draw_Title();
 
+  InitializeMapData();
+  DrawMap();
   
   BlankMessageWindow();
-  
+
+  ScreenEnable();
+
   WriteLineMessageWindow("TheQuickBrownFox", 0);
   WriteLineMessageWindow("JumpsOverLazyDog", 0);
   WriteLineMessageWindow("0123456789:;<=>?", 0);
@@ -56,7 +58,7 @@ void main(void)
     {
       CheckInput();
       //Update_Title();
-      DrawMap();
+      //DrawMap();
     }    
   }
 }

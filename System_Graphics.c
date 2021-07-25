@@ -9,6 +9,13 @@
 const int CharacterRam = 0xC000;
 const int CharacterRom = 0xD000;
 
+int YColumnIndex[25] = {
+  0, 40, 80, 120, 160,
+  200, 240, 280, 320, 360,
+  400, 440, 480, 520, 560,
+  600, 640, 680, 720, 760,
+  800, 840, 880, 920, 960};
+
 int FlashFrames = 0;
 
 void setcolortextmode()
@@ -63,25 +70,43 @@ void setcolortextmode()
   }
 }
 
-void SetScreenChar(byte index, byte color, byte xpos, byte ypos)
+void SetScreenChar(byte index, byte xpos, byte ypos)
 {  
-  int offset = 40*ypos + xpos;
+  int offset = YColumnIndex[ypos] + xpos;
+  POKE(0xC800 + offset, index);
+  POKE(0xD800 + offset, AttributeSet[0][index]);
+}
+
+void SetScreenCharColor(byte index, byte color, byte xpos, byte ypos)
+{  
+  int offset = YColumnIndex[ypos] + xpos;
   POKE(0xC800 + offset, index);
   POKE(0xD800 + offset, color);
+}
+
+void ClearScreen()
+{
+  byte x, y;
+
+  for (y = 0; y < 25; y++)
+    for (x = 0; x < 40; x++)
+      {
+        SetScreenCharColor(' ', 0, x, y);
+      }
 }
 
 void DrawLineH(char index, byte color, byte x, byte y, byte length)
 {
   int z;
   for (z = 0; z < length; z++)
-    SetScreenChar(index, color, x + z, y);
+    SetScreenCharColor(index, color, x + z, y);
 }
 
 void DrawLineV(char index, byte color, byte x, byte y, byte length)
 {
   int z;
   for (z = 0; z < length; z++)
-    SetScreenChar(index, color, x, y + z);
+    SetScreenCharColor(index, color, x, y + z);
 }
 
 void PrintString(char text[16], byte posx, byte posy, bool fast)
@@ -91,7 +116,7 @@ void PrintString(char text[16], byte posx, byte posy, bool fast)
   {
     if (!fast)
       raster_wait(255);
-    SetScreenChar(text[i], AttributeSet[0][text[i]], posx + i, posy);
+    SetScreenChar(text[i], posx + i, posy);
   }
 }
 
@@ -140,14 +165,10 @@ void ScrollChar(byte index, byte direction)
 
 void FlashColorWait(byte index, byte length)
 {
-  int i = 0;
   int retValue = PEEK(0xD021);
   POKE(0xD021, index);
-  for (i = 0; i < length; i++)
-    raster_wait(255);
-  POKE(0xD021, retValue);   
-    
-  //POKE(0xD021, index);
+  wait_vblank(length);
+  POKE(0xD021, retValue);
 }
 
 void FlashColor(byte index, byte length)
