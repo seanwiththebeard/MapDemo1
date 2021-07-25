@@ -18,15 +18,15 @@ char Messages[64][16] = {
 
 void DrawMessageWindow()
 {
-    int x, y;
+    int y;
     int address = 0xC800 + PosX + COLS*(PosY);
     int coloraddress = address + 0x1000;
     for (y = 0; y < Height; y++)
         {
             //SetScreenChar(MessageWindow[x + Height*y], PosX + x, PosY + (y * COLS));
             //memcpy((int*)address, &MessageWindow[y * Width], Width);
-            CopyMemory(address, &MessageWindow[y * Width], Width);
-            CopyMemory(coloraddress, &MessageWindowColors[y * Width], Width);
+            CopyMemory((int) address, (int) &MessageWindow[y * Width], Width);
+            CopyMemory((int) coloraddress, (int) &MessageWindowColors[y * Width], Width);
             //memcpy(address + 0x1000,&(AttributeSet[0][MessageWindow[Width * x]]), Width);
             address += COLS;
             coloraddress += COLS;
@@ -52,19 +52,22 @@ void BlankMessageWindow()
 
 void ScrollMessageWindowUp(byte lines)
 {
-  byte x;
-  for (x = 0; x < Height * Width - Width; x++)
+  byte x, y;
+  for (y = 0; y < lines; y++)
+  {
+    for (x = 0; x < Height * Width - Width; x++)
     {
       MessageWindow[x] = MessageWindow[x + Width];
       MessageWindowColors[x] = MessageWindowColors[x + Width];
     }
-
-  for (; x < Width * Height; x++)
+    
+    for (; x < Width * Height; x++)
     {
       MessageWindow[x]= ' ';
       MessageWindowColors[x] = 0;
     }
-  DrawMessageWindow();
+    DrawMessageWindow();
+  }
 }
 
 void WriteLineMessageWindow(char message[16], byte delay)
@@ -81,6 +84,7 @@ void WriteLineMessageWindow(char message[16], byte delay)
             MessageWindowColors[(Width*Height - Width) + x] = 0;
             x++;
         }
+        break;
       }
       else
       {

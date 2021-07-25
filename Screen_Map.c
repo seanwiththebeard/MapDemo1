@@ -70,8 +70,8 @@ void DrawTile(byte index, byte xpos, byte ypos)
 
 void DrawBufferTile(byte index, byte xpos, byte ypos)
 {
-  int bufferAddress = &DoubleBufferChars[xpos * 2 + ypos*viewportWidth * 2];
-  int colorBufferAddress = &DoubleBufferColors[xpos * 2 + ypos*viewportWidth * 2];
+  int bufferAddress = (int) &DoubleBufferChars[xpos * 2 + ypos*viewportWidth * 2];
+  int colorBufferAddress = (int) &DoubleBufferColors[xpos * 2 + ypos*viewportWidth * 2];
 
   POKEW(bufferAddress, PEEKW(&tiles[index].chars[0]));
   POKEW(bufferAddress + viewportWidth * 2, PEEKW(&tiles[index].chars[2]));
@@ -81,8 +81,8 @@ void DrawBufferTile(byte index, byte xpos, byte ypos)
 
 void DrawTileTop(byte index)
 {
-  CopyMemory(&DoubleBufferChars[offsetViewportChar], &tiles[index].chars[0], 2);
-  CopyMemory(&DoubleBufferColors[offsetViewportColor], &tiles[index].colors[0], 2);
+  CopyMemory((int) &DoubleBufferChars[offsetViewportChar], (int) &tiles[index].chars[0], 2);
+  CopyMemory((int) &DoubleBufferColors[offsetViewportColor], (int) &tiles[index].colors[0], 2);
 
   //CopyMemory(tileAddress, &tiles[index].chars[0], 2);
   //CopyMemory(colorAddress, &tiles[index].colors[0], 2);
@@ -93,8 +93,8 @@ void DrawTileTop(byte index)
 
 void DrawTileBottom(byte index)
 {
-  CopyMemory(&DoubleBufferChars[offsetViewportCharOdd], &tiles[index].chars[2], 2);
-  CopyMemory(&DoubleBufferColors[offsetViewportColorOdd], &tiles[index].colors[2], 2);
+  CopyMemory((int) &DoubleBufferChars[offsetViewportCharOdd], (int) &tiles[index].chars[2], 2);
+  CopyMemory((int) &DoubleBufferColors[offsetViewportColorOdd], (int) &tiles[index].colors[2], 2);
 
   //CopyMemory(tileAddressOdd, &tiles[index].chars[2], 2);
   //CopyMemory(colorAddressOdd, &tiles[index].colors[2], 2);
@@ -198,8 +198,8 @@ void UpdateViewport()
   for (x = 0; x < viewportHeight * 2; x++)
   {
     offset = x * COLS;
-    CopyMemory(viewportOrigin + offset, &DoubleBufferChars[x * viewportWidth * 2], viewportWidth*2);
-    CopyMemory(colorOrigin + offset, &DoubleBufferColors[x * viewportWidth * 2], viewportWidth*2);
+    CopyMemory((int) (viewportOrigin + offset), (int) &DoubleBufferChars[x * viewportWidth * 2], viewportWidth*2);
+    CopyMemory((int) (colorOrigin + offset), (int) &DoubleBufferColors[x * viewportWidth * 2], viewportWidth*2);
   }
 
   BufferCharacters();
@@ -292,8 +292,8 @@ void ScrollViewport(byte direction)
       {
         for (x = 2*viewportHeight * 2*viewportWidth - 1 - viewportWidth * 4; x > 0; x -= viewportWidth * 4)
         {
-          CopyMemory(&DoubleBufferChars[x], &DoubleBufferChars[x - viewportWidth * 4], viewportWidth*4);
-          CopyMemory(&DoubleBufferColors[x], &DoubleBufferColors[x - viewportWidth * 4], viewportWidth*4);
+          CopyMemory((int) &DoubleBufferChars[x], (int) &DoubleBufferChars[x - viewportWidth * 4], viewportWidth*4);
+          CopyMemory((int) &DoubleBufferColors[x], (int) &DoubleBufferColors[x - viewportWidth * 4], viewportWidth*4);
         }
         DrawSingleRow(0);
       }
