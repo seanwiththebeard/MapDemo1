@@ -54,7 +54,7 @@ void main(void)
     Graphics_Update();
     MapUpdate();
 
-    if(InputChanged())
+    //if(InputChanged())
     {
       CheckInput();
       //Update_Title();

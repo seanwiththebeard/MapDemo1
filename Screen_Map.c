@@ -13,15 +13,16 @@ int mapWidth = 16;
 byte mapData[16][16];
 bool charsDrawn[16][16];
 bool DrawThisFrame = true;
+bool wrap = true;
 
 //Viewport
 byte viewportPosX = 0;
 byte viewportPosY = 0;
-byte viewportWidth = 11;
-byte viewportHeight = 11;
-byte viewportBuffer[11][11];
-byte DoubleBufferChars[(11*2)*(11*2)];
-byte DoubleBufferColors[(11*2)*(11*2)];
+byte viewportWidth = 20;
+byte viewportHeight = 12;
+byte viewportBuffer[20][12];
+byte DoubleBufferChars[(20*2)*(12*2)];
+byte DoubleBufferColors[(20*2)*(12*2)];
 
 byte followIndex = 0;
 
@@ -70,13 +71,21 @@ void DrawTile(byte index, byte xpos, byte ypos)
 
 void DrawBufferTile(byte index, byte xpos, byte ypos)
 {
-  int bufferAddress = (int) &DoubleBufferChars[xpos * 2 + ypos*viewportWidth * 2];
-  int colorBufferAddress = (int) &DoubleBufferColors[xpos * 2 + ypos*viewportWidth * 2];
+  int bufferAddress = (int) &DoubleBufferChars[xpos * 2 + ypos*(viewportWidth*4)];
+  int colorBufferAddress = (int) &DoubleBufferColors[xpos * 2 + ypos*(viewportWidth*4)];
 
-  POKEW(bufferAddress, PEEKW(&tiles[index].chars[0]));
-  POKEW(bufferAddress + viewportWidth * 2, PEEKW(&tiles[index].chars[2]));
-  POKEW(colorBufferAddress, PEEKW(&tiles[index].colors[0]));
-  POKEW(colorBufferAddress + viewportWidth * 2, PEEKW(&tiles[index].colors[2]));
+  CopyMemory((int)bufferAddress, (int) &tiles[index].chars[0], 2);
+  CopyMemory((int)colorBufferAddress, (int) &tiles[index].colors[0], 2);
+  
+  bufferAddress += viewportWidth * 2;
+  colorBufferAddress += viewportWidth * 2;
+  CopyMemory((int)bufferAddress, (int) &tiles[index].chars[2], 2);
+  CopyMemory((int)colorBufferAddress, (int) &tiles[index].colors[2], 2);
+
+  //POKEW(bufferAddress, PEEKW(&tiles[index].chars[0]));
+  //POKEW(bufferAddress + viewportWidth * 2, PEEKW(&tiles[index].chars[2]));
+  //POKEW(colorBufferAddress, PEEKW(&tiles[index].colors[0]));
+  //POKEW(colorBufferAddress + viewportWidth * 2, PEEKW(&tiles[index].colors[2]));
   }
 
 void DrawTileTop(byte index)
@@ -195,6 +204,7 @@ void BufferCharacters()
 void UpdateViewport()
 {
   int x, offset;
+  wait_vblank(1);
   for (x = 0; x < viewportHeight * 2; x++)
   {
     offset = x * COLS;
@@ -236,77 +246,85 @@ void DrawViewport()
     offsetViewportCharOdd += 2 * viewportWidth;
     offsetViewportColorOdd += 2 * viewportWidth;
   }
-
-  /*for (y = 0; y < viewportHeight; y++)
-  {
-    tileAddress = viewportOrigin + COLS + yCols[y << 1];
-    colorAddress = tileAddress + 0x1000;
-    for (x = 0; x < viewportWidth; x++)
-    {
-      tileAddress += 2;
-      colorAddress += 2;
-    }
-  }*/
   UpdateViewport();
 }
 
 void DrawSingleRow(int row)
 {
   int a, b, x, y;
+
+  CameraFollow();  
+  ClampOffset();
+  
   a = offsetX;
   b = offsetY;
   
-  y = row;
+  for(y = 0; y < viewportHeight; y++)
   {
-
-
-    for(x = 0; x < viewportWidth; x++)
-    {      
-      //Wrap the map data X reference
-      if (a == mapWidth)
-          a = 0;
-      if (a < 0)
-          a += mapWidth;
+    //Wrap the map data y reference
+    if (b == mapHeight)
+        b = 0;
+    if (b < 0)
+      b +=mapHeight;
+    if (y == row)
+    {
+      for(x = 0; x < viewportWidth; x++)
       {
+        //Wrap the map data X reference
+        if (a == mapWidth)
+          a = 0;
+        if (a < 0)
+          a += mapWidth;
+        
         viewportBuffer[x][y] = mapData[a][b];
         DrawBufferTile(viewportBuffer[x][y], x, y);
-      }
       a++;
+      }
+      break;
     }
-
+    a = offsetX;
+    b++;
   }
-
   UpdateViewport();
 }
 
-void ScrollViewport(byte direction)
-{  
-  int x = 0;
-  int totalSize = 2*viewportHeight * 2*viewportWidth;
+void DrawSingleColumn(int column)
+{
+  int a, b, x, y;
 
+  CameraFollow();  
   ClampOffset();
-
-  switch (direction)
+  
+  a = offsetX;
+  b = offsetY;
+  
+  for(y = 0; y < viewportHeight; y++)
   {
-    case 0:
+    //Wrap the map data y reference
+    if (b == mapHeight)
+        b = 0;
+    if (b < 0)
+      b +=mapHeight;
+    {
+      for(x = 0; x < viewportWidth; x++)
       {
-        for (x = 2*viewportHeight * 2*viewportWidth - 1 - viewportWidth * 4; x > 0; x -= viewportWidth * 4)
+        //Wrap the map data X reference
+        if (a == mapWidth)
+          a = 0;
+        if (a < 0)
+          a += mapWidth;
+        if (x == column)
         {
-          CopyMemory((int) &DoubleBufferChars[x], (int) &DoubleBufferChars[x - viewportWidth * 4], viewportWidth*4);
-          CopyMemory((int) &DoubleBufferColors[x], (int) &DoubleBufferColors[x - viewportWidth * 4], viewportWidth*4);
+          viewportBuffer[x][y] = mapData[a][b];
+          DrawBufferTile(viewportBuffer[x][y], x, y);
         }
-        DrawSingleRow(0);
+      a++;
       }
-    break;
-    case 1:
-    break;
-    case 2:
-    break;
-    case 3:
-    break;
-    default:
-    break;
+    }
+    a = offsetX;
+    b++;
   }
+  UpdateViewport();
 }
 
 void InitializeMapData()
@@ -420,18 +438,13 @@ void InitializeMapData()
   ColorPalette[signpost] = 1;
 }
 
-int DrawMap()
+int DrawMap(bool blit)
 {
   int a, b, x, y;
   if(!DrawThisFrame)
     return 0;
 
-  //wait_vblank(1);
-  //SetBackground(6);
-
-  CameraFollow();
-  //BlankCharsDrawn();
-  
+  CameraFollow();  
   ClampOffset();
   
   a = offsetX;
@@ -460,7 +473,73 @@ int DrawMap()
     a = offsetX;
     b++;
   }
-  DrawViewport();
+  if (blit)
+    DrawViewport();
+}
+
+void ScrollViewport(byte direction)
+{  
+  int x, y;
+  int totalSize = 2*viewportHeight * 2*viewportWidth;
+
+  CameraFollow();
+  ClampOffset();
+
+  switch (direction)
+  {
+    case 0:
+      {
+        for (x = totalSize - 1 - viewportWidth * 4; x > 0; x -= viewportWidth * 4)
+        {
+          CopyMemory((int) &DoubleBufferChars[x], (int) &DoubleBufferChars[x - viewportWidth * 4], viewportWidth*4);
+          CopyMemory((int) &DoubleBufferColors[x], (int) &DoubleBufferColors[x - viewportWidth * 4], viewportWidth*4);
+        }
+        DrawSingleRow(0);
+      }
+      break;
+    case 1:
+    {
+      //for (x = 0; x < totalSize - viewportWidth*4; x++)
+      {
+      CopyMemory((int) &DoubleBufferChars[0], (int) &DoubleBufferChars[viewportWidth * 4], totalSize - viewportWidth*4);
+      CopyMemory((int) &DoubleBufferColors[0], (int) &DoubleBufferColors[viewportWidth * 4], totalSize - viewportWidth*4);
+      }
+      DrawSingleRow(viewportHeight - 1);
+    }
+    break;
+    case 2:
+    {
+      int length = viewportWidth*2 - 2;
+      byte buffer[40];
+
+      for (y = 0; y < viewportHeight * 2; y++)
+      {
+        CopyMemory((int)&buffer[0], (int) &DoubleBufferChars[y*viewportWidth*2], length);
+        CopyMemory((int)&DoubleBufferChars[y*viewportWidth*2 + 2], (int) &buffer[0], length);
+        CopyMemory((int)&buffer[0], (int) &DoubleBufferColors[y*viewportWidth*2], length);
+        CopyMemory((int)&DoubleBufferColors[y*viewportWidth*2 + 2], (int) &buffer[0], length);
+      }
+      DrawSingleColumn(0);
+    }
+    break;
+    case 3:
+    {
+      int length = viewportWidth*2 - 2;
+      byte buffer[40];
+
+      for (y = 0; y < viewportHeight * 2; y++)
+      {
+        CopyMemory((int)&buffer[0], (int) &DoubleBufferChars[y*viewportWidth*2 + 2], length);
+        CopyMemory((int)&DoubleBufferChars[y*viewportWidth*2], (int) &buffer[0], length);
+        CopyMemory((int)&buffer[0], (int) &DoubleBufferColors[y*viewportWidth*2 + 2], length);
+        CopyMemory((int)&DoubleBufferColors[y*viewportWidth*2], (int) &buffer[0], length);
+      }
+      DrawSingleColumn(viewportWidth - 1);
+    }
+    break;
+    default:
+    break;
+  }
 }
 
 int wrapX(int posX) //Used in map positions
@@ -590,16 +669,23 @@ int CheckInput()
     if (InputUp())
     {
       MoveCharacter(0, 0, true);
-      //DrawMap();
       return 1;
     }
     if (InputDown()) 
     {
       MoveCharacter(0, 1, true); 
-      DrawMap(); 
       return 1;
     }
-    if (InputLeft()) {MoveCharacter(0, 2, true); DrawMap(); return 1;}
-    if (InputRight()) {MoveCharacter(0, 3, true); DrawMap(); return 1;}
+    if (InputLeft())
+    {
+      MoveCharacter(0, 2, true);
+      return 1;
+    }
+    if (InputRight())
+    {
+      MoveCharacter(0, 3, true);
+      //DrawMap(true);
+      return 1;
+    }
   return 0;
 }
