@@ -3,11 +3,37 @@
 #include "common.h"
 #include <conio.h>
 #include <stdio.h>
-//#include "cbm_petscii_charmap.h"
 #include "System_CharacterSets.h"
+#include "System_Graphics.h"
 
 const int CharacterRam = 0xC000;
 const int CharacterRom = 0xD000;
+const int ScreenRam = 0xC800;
+const int ColorRam = 0xD800;
+
+byte ScreenDoubleBuffer[2][1024];
+
+void CopyDoubleBuffer()
+{
+  CopyMemory(ScreenRam, (int)&ScreenDoubleBuffer[0][0], 1024);
+  CopyMemory(ColorRam, (int)&ScreenDoubleBuffer[1][0], 1024);
+}
+
+void CopyDoubleBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
+{
+  int y;
+  int charOffset = ScreenRam + posX + YColumnIndex[posY];
+  int colorOffset = charOffset + 0x1000;
+
+  raster_wait(255);
+  for (y = 0; y < sizeY; y++)
+    {
+      CopyMemory(charOffset, &ScreenDoubleBuffer[0][posX + YColumnIndex[y]], sizeX);
+      CopyMemory(colorOffset, &ScreenDoubleBuffer[1][posX + YColumnIndex[y]], sizeX);
+      charOffset += COLS;
+      colorOffset += COLS;
+    }
+}
 
 int YColumnIndex[25] = {
   0, 40, 80, 120, 160,
@@ -64,24 +90,20 @@ void setcolortextmode()
   POKE(0xD023, 1);
   
   //Foreground / 11 / 0-7 single, 8-15 multi
-  for (i = 0; i < 1024; i++)
-  {
-    //POKE(ColorRam + i, 1);
-  }
 }
 
 void SetScreenChar(byte index, byte xpos, byte ypos)
 {  
   int offset = YColumnIndex[ypos] + xpos;
-  POKE(0xC800 + offset, index);
-  POKE(0xD800 + offset, AttributeSet[0][index]);
+  POKE(&ScreenDoubleBuffer[0][0] + offset, index);
+  POKE(&ScreenDoubleBuffer[1][0] + offset, AttributeSet[0][index]);
 }
 
 void SetScreenCharColor(byte index, byte color, byte xpos, byte ypos)
 {  
   int offset = YColumnIndex[ypos] + xpos;
-  POKE(0xC800 + offset, index);
-  POKE(0xD800 + offset, color);
+  POKE(&ScreenDoubleBuffer[0][0] + offset, index);
+  POKE(&ScreenDoubleBuffer[1][0] + offset, color);
 }
 
 void ClearScreen()
@@ -166,14 +188,17 @@ void ScrollChar(byte index, byte direction)
 void FlashColorWait(byte index, byte length)
 {
   int retValue = PEEK(0xD021);
-  POKE(0xD021, index);
+  SetBackground(index);
+  SetBorder(index);
   wait_vblank(length);
-  POKE(0xD021, retValue);
+  SetBackground(retValue);
+  SetBorder(retValue);
 }
 
 void FlashColor(byte index, byte length)
 {
-  POKE(0xD021, index);
+  SetBackground(index);
+  SetBorder(index);
   FlashFrames = length;
 }
 
@@ -183,7 +208,8 @@ void Graphics_Update()
   {
     FlashFrames--;
     if (FlashFrames == 0)
-    POKE(0xD021, 0);
+    SetBackground(0);
+    SetBorder(0);
 
   }
 }

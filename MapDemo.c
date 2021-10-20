@@ -1,12 +1,3 @@
-//#link "common.c"
-//#link "Screen_Map.c"
-//#link "System_Input.c"
-//#link "System_Graphics.c"
-//#link "System_StaticScreens.c"
-//#link "System_CharacterSets.c"
-//#link "System_MessageWindow.c"
-//#link "Screen_Title.c"
-
 #include "common.h"
 #include "Screen_Map.h"
 #include "Screen_Title.h"
@@ -15,7 +6,6 @@
 #include "System_StaticScreens.h"
 #include "System_CharacterSets.h"
 #include "System_MessageWindow.h"
-#include "cbm_petscii_charmap.h"
 
 void Initialize()
 {
@@ -32,10 +22,10 @@ void Initialize()
   Draw_Title();
 
   InitializeMapData();
-  DrawMap();
+  DrawMap(true);
   
   BlankMessageWindow();
-
+  CopyDoubleBuffer();
   ScreenEnable();
 
   WriteLineMessageWindow("TheQuickBrownFox", 0);
@@ -52,13 +42,12 @@ void main(void)
   {
     UpdateInput();
     Graphics_Update();
-    MapUpdate();
+    //MapUpdate();
+    //ScrollChar(0, 0);
 
     //if(InputChanged())
     {
       CheckInput();
-      //Update_Title();
-      //DrawMap();
-    }    
+    }
   }
 }
