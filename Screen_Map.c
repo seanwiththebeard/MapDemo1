@@ -4,7 +4,6 @@
 #include "System_Input.h"
 #include "System_MessageWindow.h"
 #include "System_CharacterSets.h"
-#include "data_ScreenInfo.h"
 
 //Map Data
 #define mapHeight 64
@@ -29,8 +28,8 @@ byte DoubleBufferColors[viewportCharWidth*viewportCharHeight];
 
 byte followIndex = 0;
 
-int viewportOrigin = &ScreenDoubleBuffer[0][0];
-int colorOrigin = &ScreenDoubleBuffer[1][0];
+int viewportOrigin = (int)&ScreenDoubleBuffer[0][0];
+int colorOrigin = (int)&ScreenDoubleBuffer[1][0];
 
 int tileAddress, colorAddress, tileAddressOdd, colorAddressOdd;
 int offsetViewportChar, offsetViewportColor, offsetViewportCharOdd, offsetViewportColorOdd;
@@ -357,18 +356,18 @@ void LoadQuadrant(byte index, byte quad)
     break;
   }
 
-  chardata = CharacterRAM + 8*ScreenData[index].CharIndex[quad];
+  chardata = CharacterRAM + 8*ScreenQuad[index].CharIndex[quad];
   for (y = 0; y < 8; ++y)
   {
     for (x = 0; x < 8; ++x)
     {
       if (ReadBit(PEEK(chardata + y), 7 - x) > 0)
       {
-        mapData[x + originX][y + originY] = ScreenData[index].Chars[1];
+        mapData[x + originX][y + originY] = ScreenQuad[index].Chars[1];
       }
       else
       {
-        mapData[x + originX][y + originY] = ScreenData[index].Chars[0];
+        mapData[x + originX][y + originY] = ScreenQuad[index].Chars[0];
       }
     }
   }
@@ -651,7 +650,7 @@ bool CheckCollision(byte charIndex, byte Direction)
       if (characters[i].posX == xPos)
         if (characters[i].posY == yPos)
           {
-            WriteLineMessageWindow(Messages[characters[i].message], 0);
+            WriteLineMessageWindow(Messages[characters[i].message], 1);
             return true;
           }
   

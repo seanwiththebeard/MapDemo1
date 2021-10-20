@@ -18,7 +18,7 @@ char Messages[64][16] = {
 void DrawMessageWindow()
 {
     int y;
-    int address = &ScreenDoubleBuffer[0][0] + PosX + COLS*(PosY);
+    int address = (int)&ScreenDoubleBuffer[0][0] + PosX + COLS*(PosY);
     int coloraddress = address + 1024;
     for (y = 0; y < Height; ++y)
         {
@@ -91,10 +91,13 @@ void WriteLineMessageWindow(char message[16], byte delay)
         MessageWindowColors[(Width*Height - Width) + x] = AttributeSet[0][message[x]];
       }
     SetScreenCharColor(message[x], AttributeSet[0][message[x]], PosX + x, PosY + Height - 1);
-    //if (delay > 0)
-    {
-      CopyDoubleBuffer();
+      if (delay > 0)
+        {
+          wait_vblank(delay);
+          //DrawMessageWindow();
+          CopyDoubleBuffer();
+        }
     }
-    }
-    DrawMessageWindow();
+  //CopyDoubleBuffer();
+  //DrawMessageWindow();
 }

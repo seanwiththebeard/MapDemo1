@@ -17,7 +17,7 @@ typedef enum { false, true } bool;
 #define CopyMemory(dest, src, length)(memcpy((int*)dest, (int*)src, length))
 #define raster_wait(line) do{} while ((VIC.rasterline < line))
 
-#define wait_vblank(frames) while (frames < 0) {--frames;  raster_wait(255);}
+#define wait_vblank(frames) {byte count = frames; for (count = frames; count; --count)raster_wait(255);}
 
 #define ScreenDisable() (POKE(0xD011, PEEK(0xD011)&239))
 #define ScreenEnable() (POKE(0xD011, PEEK(0xD011)|16))
@@ -28,6 +28,15 @@ typedef enum { false, true } bool;
 void WriteBit(byte *byteToSet, char bit, bool value);
 byte ReadBit(byte byteToRead, char bit);
 bool CheckBit(byte source, byte position);
+
+extern struct
+{
+    int CharIndex[4];
+    byte Chars[2];
+    byte ScatterIndex;
+    byte NPCIndex;
+    byte MusicIndex;
+}ScreenQuad[256];
 
 
 
