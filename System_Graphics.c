@@ -15,8 +15,9 @@ byte ScreenDoubleBuffer[2][1024];
 
 void CopyDoubleBuffer()
 {
-  CopyMemory(ScreenRam, (int)&ScreenDoubleBuffer[0][0], 1024);
+  raster_wait(255);
   CopyMemory(ColorRam, (int)&ScreenDoubleBuffer[1][0], 1024);
+  CopyMemory(ScreenRam, (int)&ScreenDoubleBuffer[0][0], 1024);
 }
 
 void CopyDoubleBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
@@ -24,12 +25,12 @@ void CopyDoubleBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
   int y;
   int charOffset = ScreenRam + posX + YColumnIndex[posY];
   int colorOffset = charOffset + 0x1000;
-
+  
   raster_wait(255);
   for (y = 0; y < sizeY; y++)
     {
-      CopyMemory(charOffset, &ScreenDoubleBuffer[0][posX + YColumnIndex[y]], sizeX);
       CopyMemory(colorOffset, &ScreenDoubleBuffer[1][posX + YColumnIndex[y]], sizeX);
+      CopyMemory(charOffset, &ScreenDoubleBuffer[0][posX + YColumnIndex[y]], sizeX);
       charOffset += COLS;
       colorOffset += COLS;
     }
@@ -110,8 +111,8 @@ void ClearScreen()
 {
   byte x, y;
 
-  for (y = 0; y < 25; y++)
-    for (x = 0; x < 40; x++)
+  for (y = 0; y < 25; ++y)
+    for (x = 0; x < 40; ++x)
       {
         SetScreenCharColor(' ', 0, x, y);
       }
@@ -120,21 +121,21 @@ void ClearScreen()
 void DrawLineH(char index, byte color, byte x, byte y, byte length)
 {
   int z;
-  for (z = 0; z < length; z++)
+  for (z = 0; z < length; ++z)
     SetScreenCharColor(index, color, x + z, y);
 }
 
 void DrawLineV(char index, byte color, byte x, byte y, byte length)
 {
   int z;
-  for (z = 0; z < length; z++)
+  for (z = 0; z < length; ++z)
     SetScreenCharColor(index, color, x, y + z);
 }
 
 void PrintString(char text[16], byte posx, byte posy, bool fast)
 {
   int i;
-  for(i = 0; i < 16; i++)
+  for(i = 0; i < 16; ++i)
   {
     if (!fast)
       raster_wait(255);
@@ -149,23 +150,23 @@ void ScrollChar(byte index, byte direction)
   int origin = CharacterRam + 8*index;
   byte temp;
   
-  for(i = 0; i < 8; i++)
+  for(i = 0; i < 8; ++i)
     buffer[i] = PEEK(origin+i);
   
   switch (direction)
   {
     case 0:  //Scroll Down
-      for(i = 1; i < 8; i++)
+      for(i = 1; i < 8; ++i)
         POKE(i + origin, buffer[i-1]);
       POKE(origin, buffer[7]);
       break;
     case 1: // Scroll Up
-      for(i = 0; i < 8; i++)
+      for(i = 0; i < 8; ++i)
         POKE(i + origin, buffer[i+1]);
       POKE(origin + 7, buffer[0]);
       break;
     case 2: //  Scroll Right
-      for(i = 0; i < 8; i++)
+      for(i = 0; i < 8; ++i)
       {
         temp = buffer[i] >> 1;
         //temp >> 1;
