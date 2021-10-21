@@ -14,8 +14,8 @@ byte index = 22;
 
 void Draw_Title()
 {
-    for (TitleCursorY = 0; TitleCursorY < 16; TitleCursorY++)
-        for (TitleCursorX = 0; TitleCursorX < 16; TitleCursorX++)
+    for (TitleCursorY = 0; TitleCursorY < 16; ++TitleCursorY)
+        for (TitleCursorX = 0; TitleCursorX < 16; ++TitleCursorX)
                 SetScreenChar(TitleCursorY*16 + TitleCursorX, TitleCursorX + TitlePosX, TitleCursorY + TitlePosY);
 }
 void Update_Title()
