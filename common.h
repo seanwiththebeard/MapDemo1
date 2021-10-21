@@ -29,17 +29,6 @@ void WriteBit(byte *byteToSet, char bit, bool value);
 byte ReadBit(byte byteToRead, char bit);
 bool CheckBit(byte source, byte position);
 
-extern struct
-{
-    int CharIndex[4];
-    byte Chars[2];
-    byte ScatterIndex;
-    byte NPCIndex;
-    byte MusicIndex;
-}ScreenQuad[256];
-
-
-
 /*****************************************************************************/
 /*                                                                           */
 /*                        cbm_petscii_charmap.h                              */

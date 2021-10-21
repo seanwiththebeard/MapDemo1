@@ -9,7 +9,7 @@
 #define mapHeight 64
 #define mapWidth 64
 byte mapData[mapWidth][mapHeight];
-bool charsDrawn[mapWidth][mapHeight];
+//bool charsDrawn[mapWidth][mapHeight];
 bool DrawThisFrame = true;
 bool wrap = true;
 
@@ -51,6 +51,26 @@ struct Tile
   byte blocked;
   byte trigger;
 } tiles[64];
+
+struct
+{
+    int CharIndex[4];
+    byte Chars[2];
+    byte ScatterIndex;
+    byte NPCIndex;
+    byte MusicIndex;
+}ScreenQuad[256]={
+    {
+        {130, 131, 146, 147},
+      	{32, 33},
+        0, 0, 0
+    },
+    {
+        {0, 0, 0, 0},
+      	{0, 1},
+        0, 0, 0
+    } 
+};
 
 void DrawTile(byte index, byte xpos, byte ypos)
 {
