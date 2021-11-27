@@ -202,7 +202,7 @@ void DrawChar(byte index)
       if(characters[index].visible)
       {
         //viewportBuffer[posx][posy] = characters[index].tile;
-        DrawTile(index, posx, posy);
+        DrawTile(characters[index].tile, posx, posy);
         //charsDrawn[posx][posy] = true;
       }
   }
