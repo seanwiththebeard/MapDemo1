@@ -1,4 +1,4 @@
-#include "common.h"
+#include "Common.h"
 void CopyDoubleBuffer(void);
 void CopyDoubleBufferArea(byte posX, byte posY, byte sizeX, byte sizeY);
 void setcolortextmode(void);

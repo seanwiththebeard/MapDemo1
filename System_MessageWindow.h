@@ -1,4 +1,4 @@
-#include "common.h"
+#include "Common.h"
 
 void DrawMessageWindow();
 void BlankMessageWindow();

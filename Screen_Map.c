@@ -1,6 +1,6 @@
 #include <peekpoke.h>
 #include "System_Graphics.h"
-#include "common.h"
+#include "Common.h"
 #include "System_Input.h"
 #include "System_MessageWindow.h"
 #include "System_CharacterSets.h"

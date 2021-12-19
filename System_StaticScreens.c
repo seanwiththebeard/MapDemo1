@@ -1,6 +1,6 @@
 //#include <c64.h>
 #include <peekpoke.h>
-#include "common.h"
+#include "Common.h"
 
 int screenRam = 0xC800;
 int colorRam = 0xD800;

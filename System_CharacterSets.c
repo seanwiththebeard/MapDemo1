@@ -1,6 +1,6 @@
 #include <c64.h>
 #include <peekpoke.h>
-#include "common.h"
+#include "Common.h"
 #include "System_CharacterSets.h"
 
 

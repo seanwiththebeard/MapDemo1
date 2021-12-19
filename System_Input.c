@@ -1,4 +1,4 @@
-#include "common.h"
+#include "Common.h"
 #include <joystick.h>
 
 char joyState = 0;

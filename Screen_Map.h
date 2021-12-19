@@ -1,4 +1,4 @@
-#include "common.h"
+#include "Common.h"
 
 void InitializeMapData();
 void DrawTile(byte index, byte xpos, byte ypos);

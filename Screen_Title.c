@@ -2,7 +2,7 @@
 #include "System_Input.h"
 #include "System_Graphics.h"
 #include "System_CharacterSets.h"
-#include "common.h"
+#include "Common.h"
 
 byte TitleCursorX = 0;
 byte TitleCursorY = 0;
