@@ -27,8 +27,8 @@ byte DoubleBufferColors[viewportCharWidth*viewportCharHeight];
 
 byte followIndex = 0;
 
-int viewportOrigin = &ScreenDoubleBuffer[0][0];
-int colorOrigin = &ScreenDoubleBuffer[1][0];
+int viewportOrigin = (int)&ScreenDoubleBuffer[0][0];
+int colorOrigin = (int)&ScreenDoubleBuffer[1][0];
 
 int tileAddress, colorAddress, tileAddressOdd, colorAddressOdd;
 int offsetViewportChar, offsetViewportColor, offsetViewportCharOdd, offsetViewportColorOdd;
@@ -640,7 +640,7 @@ bool CheckCollision(byte charIndex, byte Direction)
 
 void DrawEntireMap()
 {
-  byte x, y, a, b, c, index;
+  int x, y, a, b, c, index;
 
   CameraFollow();
 
