@@ -31,7 +31,7 @@ void Initialize()
   Draw_Title();
 
   InitializeMapData();
-  DrawMap(true);
+  DrawEntireMap();
   
   BlankMessageWindow();
   CopyDoubleBuffer();

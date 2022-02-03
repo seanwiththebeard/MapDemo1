@@ -6,10 +6,10 @@
 #include "System_CharacterSets.h"
 #include "System_Graphics.h"
 
-const int CharacterRam = 0xC000;
-const int CharacterRom = 0xD000;
-const int ScreenRam = 0xC800;
-const int ColorRam = 0xD800;
+//const int CharacterRam = 0xC000;
+//const int CharacterRom = 0xD000;
+//const int ScreenRam = 0xC800;
+//const int ColorRam = 0xD800;
 
 byte ScreenDoubleBuffer[2][1024];
 

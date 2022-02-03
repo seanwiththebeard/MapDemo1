@@ -24,6 +24,11 @@ typedef enum { false, true } bool;
 #define SetBackground(index)(  POKE(0xD021, index))
 #define SetBorder(index)(  POKE(0xD020, index))
 
+#define CharacterRam 0xC000
+#define CharacterRom 0xD000
+#define ScreenRam 0xC800
+#define ColorRam 0xD800
+
 
 void WriteBit(byte *byteToSet, char bit, bool value);
 byte ReadBit(byte byteToRead, char bit);
