@@ -15,7 +15,7 @@ typedef enum { false, true } bool;
 #define ROWS 25
 
 #define CopyMemory(dest, src, length)(memcpy((int*)dest, (int*)src, length))
-#define raster_wait(line) do{} while ((VIC.rasterline != line))
+#define raster_wait(line) do{} while ((VIC.rasterline < line))
 
 #define wait_vblank(frames) {byte count = frames; for (count = frames; count; --count)raster_wait(255);}
 

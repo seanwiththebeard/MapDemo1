@@ -15,12 +15,13 @@ bool wrap = true;
 //Viewport
 #define viewportPosX 0
 #define viewportPosY 0
-#define viewportWidth 9
-#define viewportHeight 9
+#define viewportWidth 11
+#define viewportHeight 11
 #define viewportCharWidth (viewportWidth * 2)
 #define viewportCharHeight (viewportHeight * 2)
 #define viewportWidthQuad (viewportWidth*4)
 #define charactersCount 16
+#define LastMapScanline (8*viewportPosY + 16*viewportHeight)
 byte viewportBuffer[viewportWidth][viewportHeight];
 byte DoubleBufferChars[viewportCharWidth*viewportCharHeight];
 byte DoubleBufferColors[viewportCharWidth*viewportCharHeight];
@@ -227,6 +228,7 @@ void UpdateViewport()
   }
   BufferCharacters();
   //CopyDoubleBuffer();
+  raster_wait(LastMapScanline);
   CopyDoubleBufferArea(viewportPosX, viewportPosY, viewportCharWidth, viewportCharHeight);
 }
 

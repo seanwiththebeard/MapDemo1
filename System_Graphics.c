@@ -27,14 +27,14 @@ void CopyDoubleBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
   int charOffset = ScreenRam + offset;
   int colorOffset = charOffset + 0x1000;
   
-  //raster_wait(0);
   for (y = 0; y < sizeY; y++)
     {
-      CopyMemory(colorOffset, &ScreenDoubleBuffer[1][offsetY], sizeX);
-      CopyMemory(charOffset, &ScreenDoubleBuffer[0][offsetY], sizeX);
-      charOffset += COLS;
-      colorOffset += COLS;
-      offsetY += COLS;
+  	//raster_wait(128);
+      	CopyMemory(colorOffset, &ScreenDoubleBuffer[1][offsetY], sizeX);
+      	CopyMemory(charOffset, &ScreenDoubleBuffer[0][offsetY], sizeX);
+      	charOffset += COLS;
+      	colorOffset += COLS;
+      	offsetY += COLS;
     }
 }
 
