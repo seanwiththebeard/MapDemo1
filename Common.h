@@ -21,8 +21,6 @@ typedef enum { false, true } bool;
 
 #define ScreenDisable() (POKE(0xD011, PEEK(0xD011)&239))
 #define ScreenEnable() (POKE(0xD011, PEEK(0xD011)|16))
-#define SetBackground(index)(  POKE(0xD021, index))
-#define SetBorder(index)(  POKE(0xD020, index))
 
 #define CharacterRam 0xC000
 #define CharacterRom 0xD000

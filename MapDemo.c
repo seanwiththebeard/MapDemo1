@@ -7,6 +7,9 @@
 //#link "System_MessageWindow.c"
 //#link "Screen_Title.c"
 
+#include <conio.h>
+#include <c64.h>
+
 #include "Common.h"
 #include "Screen_Map.h"
 #include "Screen_Title.h"
@@ -19,14 +22,14 @@
 void Initialize()
 {
   ScreenDisable();
-  SetBorder(0);
-  SetBackground(0);
+  bgcolor(0);
+  bordercolor(0);
 
   InitializeInput();
   //Init_Title();
   setcolortextmode();
   SetCharacterSet(0);
-  ClearScreen();
+  clrscr();
   
   //Draw_Title();
 
@@ -54,7 +57,7 @@ void main(void)
     //MapUpdate();
     //ScrollChar(0, 0);
 
-    if(InputChanged())
+    //if(InputChanged())
     {
       CheckInput();
     }

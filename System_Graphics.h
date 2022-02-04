@@ -2,7 +2,6 @@
 void CopyDoubleBuffer(void);
 void CopyDoubleBufferArea(byte posX, byte posY, byte sizeX, byte sizeY);
 void setcolortextmode(void);
-void ClearScreen(void);
 void SetScreenChar(byte index, byte xpos, byte ypos);
 void SetScreenCharColor(byte index, byte color, byte xpos, byte ypos);
 void ScrollChar(byte index, byte direction);

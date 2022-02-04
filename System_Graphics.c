@@ -6,11 +6,6 @@
 #include "System_CharacterSets.h"
 #include "System_Graphics.h"
 
-//const int CharacterRam = 0xC000;
-//const int CharacterRom = 0xD000;
-//const int ScreenRam = 0xC800;
-//const int ColorRam = 0xD800;
-
 byte ScreenDoubleBuffer[2][1024];
 
 void CopyDoubleBuffer()
@@ -27,11 +22,11 @@ void CopyDoubleBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
   int charOffset = ScreenRam + offset;
   int colorOffset = charOffset + 0x1000;
   
+  raster_wait(240);
   for (y = 0; y < sizeY; y++)
     {
-  	//raster_wait(128);
-      	CopyMemory(colorOffset, &ScreenDoubleBuffer[1][offsetY], sizeX);
       	CopyMemory(charOffset, &ScreenDoubleBuffer[0][offsetY], sizeX);
+      	CopyMemory(colorOffset, &ScreenDoubleBuffer[1][offsetY], sizeX);
       	charOffset += COLS;
       	colorOffset += COLS;
       	offsetY += COLS;
@@ -108,17 +103,6 @@ void SetScreenCharColor(byte index, byte color, byte xpos, byte ypos)
   POKE(&ScreenDoubleBuffer[1][0] + offset, color);
 }
 
-void ClearScreen()
-{
-  byte x, y;
-
-  for (y = 0; y < 25; ++y)
-    for (x = 0; x < 40; ++x)
-      {
-        SetScreenCharColor(' ', 0, x, y);
-      }
-}
-
 void DrawLineH(char index, byte color, byte x, byte y, byte length)
 {
   int z;
@@ -190,17 +174,17 @@ void ScrollChar(byte index, byte direction)
 void FlashColorWait(byte index, byte length)
 {
   int retValue = PEEK(0xD021);
-  SetBackground(index);
-  SetBorder(index);
+  bgcolor(index);
+  bordercolor(index);
   wait_vblank(length);
-  SetBackground(retValue);
-  SetBorder(retValue);
+  bgcolor(retValue);
+  bordercolor(retValue);
 }
 
 void FlashColor(byte index, byte length)
 {
-  SetBackground(index);
-  SetBorder(index);
+  bgcolor(index);
+  bordercolor(index);
   FlashFrames = length;
 }
 
@@ -210,8 +194,8 @@ void Graphics_Update()
   {
     FlashFrames--;
     if (FlashFrames == 0)
-    SetBackground(0);
-    SetBorder(0);
+    bgcolor(0);
+    bordercolor(0);
 
   }
 }
