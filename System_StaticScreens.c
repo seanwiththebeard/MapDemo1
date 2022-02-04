@@ -2,9 +2,6 @@
 #include <peekpoke.h>
 #include "Common.h"
 
-int screenRam = 0xC800;
-int colorRam = 0xD800;
-
 unsigned char StaticScreen[2][1000]={
 {
 32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,
@@ -124,7 +121,7 @@ void SetScreen(byte index)
   int i;
   for (i = 0;i < 1000; i+=2)
   {
-      POKEW(screenRam + i, PEEKW(&StaticScreen[index][i]));
-      POKEW(colorRam + i, PEEKW(&StaticColor[index][i]));    
+      POKEW(ScreenRam + i, PEEKW(&StaticScreen[index][i]));
+      POKEW(ColorRam + i, PEEKW(&StaticColor[index][i]));    
   }
 }

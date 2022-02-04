@@ -15,7 +15,6 @@ byte ScreenDoubleBuffer[2][1024];
 
 void CopyDoubleBuffer()
 {
-  raster_wait(255);
   CopyMemory(ColorRam, (int)&ScreenDoubleBuffer[1][0], 1024);
   CopyMemory(ScreenRam, (int)&ScreenDoubleBuffer[0][0], 1024);
 }
@@ -23,16 +22,19 @@ void CopyDoubleBuffer()
 void CopyDoubleBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
 {
   int y;
-  int charOffset = ScreenRam + posX + YColumnIndex[posY];
+  int offset = posX + YColumnIndex[posY];
+  int offsetY = posX + YColumnIndex[0];
+  int charOffset = ScreenRam + offset;
   int colorOffset = charOffset + 0x1000;
   
-  raster_wait(255);
+  //raster_wait(0);
   for (y = 0; y < sizeY; y++)
     {
-      CopyMemory(colorOffset, &ScreenDoubleBuffer[1][posX + YColumnIndex[y]], sizeX);
-      CopyMemory(charOffset, &ScreenDoubleBuffer[0][posX + YColumnIndex[y]], sizeX);
+      CopyMemory(colorOffset, &ScreenDoubleBuffer[1][offsetY], sizeX);
+      CopyMemory(charOffset, &ScreenDoubleBuffer[0][offsetY], sizeX);
       charOffset += COLS;
       colorOffset += COLS;
+      offsetY += COLS;
     }
 }
 
@@ -47,7 +49,6 @@ int FlashFrames = 0;
 
 void setcolortextmode()
 {
-  int i = 0;
   //Copy character set
   //POKE(0x0034, 48);  // Reserve RAM
   //POKE(0x0038, 48); // Reserve RAM
@@ -84,11 +85,11 @@ void setcolortextmode()
   POKE (0x0288, 200);
   
   //Background / 00
-  POKE(0xD021, 0);
+  //POKE(0xD021, 0);
   //Foreground / 01
-  POKE(0xD022, 5);
+  //POKE(0xD022, 5);
   //Foreground / 10
-  POKE(0xD023, 1);
+  //POKE(0xD023, 1);
   
   //Foreground / 11 / 0-7 single, 8-15 multi
 }

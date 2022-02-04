@@ -19,28 +19,28 @@
 void Initialize()
 {
   ScreenDisable();
-  SetBackground(1);
   SetBorder(0);
+  SetBackground(0);
 
   InitializeInput();
-  Init_Title();
+  //Init_Title();
   setcolortextmode();
   SetCharacterSet(0);
   ClearScreen();
+  
+  //Draw_Title();
 
-  Draw_Title();
+  BlankMessageWindow();
+  CopyDoubleBuffer();
 
   InitializeMapData();
   DrawEntireMap();
-  
-  BlankMessageWindow();
-  CopyDoubleBuffer();
   ScreenEnable();
 
-  WriteLineMessageWindow("TheQuickBrownFox", 1);
-  WriteLineMessageWindow("JumpsOverLazyDog", 1);
-  WriteLineMessageWindow("0123456789:;<=>?", 1);
-  WriteLineMessageWindow(" ! #$%&'()*+,-./", 1);
+  //WriteLineMessageWindow("TheQuickBrownFox", 1);
+  //WriteLineMessageWindow("JumpsOverLazyDog", 1);
+  //WriteLineMessageWindow("0123456789:;<=>?", 1);
+  //WriteLineMessageWindow(" ! #$%&'()*+,-./", 1);
 }
 
 void main(void)
@@ -54,7 +54,7 @@ void main(void)
     //MapUpdate();
     //ScrollChar(0, 0);
 
-    //if(InputChanged())
+    if(InputChanged())
     {
       CheckInput();
     }
