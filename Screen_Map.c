@@ -357,9 +357,9 @@ void InitializeMapData()
 {
   int x, y, i;
 
-  byte grass = 36;
-  byte water = 34;
-  byte signpost = 35;
+  #define grass 36
+  #define water 34
+  #define signpost 35
   byte yOffset = 0;
   
   viewportOrigin += (viewportPosX + COLS * viewportPosY);
@@ -384,6 +384,8 @@ void InitializeMapData()
       tiles[index].colors[1] = AttributeSet[0][offset + 1];
       tiles[index].colors[2] = AttributeSet[0][offset + 16];
       tiles[index].colors[3] = AttributeSet[0][offset + 17];
+      
+      tiles[index].blocked = 0;
     }
 
   //Init Tileset
@@ -391,8 +393,8 @@ void InitializeMapData()
   
   //Signpost
   //tiles[signpost].blocked = 255;
-  WriteBit(&tiles[signpost].blocked, 0, true);
-  WriteBit(&tiles[signpost].blocked, 2, true);  
+  //WriteBit(&tiles[signpost].blocked, 0, true);
+  //WriteBit(&tiles[signpost].blocked, 2, true);  
   
   //Grass
   
@@ -435,22 +437,6 @@ void InitializeMapData()
       }
     yOffset+= COLS;
     }  
-  mapData[4][4] = grass;
-  mapData[5][4] = grass;
-  mapData[6][4] = grass;
-  mapData[7][4] = grass;
-  mapData[4][5] = grass;
-  mapData[5][5] = grass;
-  mapData[6][5] = grass;
-  mapData[7][5] = grass;
-  mapData[4][6] = grass;
-  mapData[5][6] = grass;
-  mapData[6][6] = grass; 
-  mapData[7][6] = grass;
-  mapData[4][7] = grass;
-  mapData[5][7] = grass;
-  mapData[6][7] = grass; 
-  mapData[7][7] = grass;
 
   LoadQuadrant(0, 0);
   LoadQuadrant(0, 1);
