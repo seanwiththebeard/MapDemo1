@@ -608,8 +608,7 @@ bool CheckCollision(byte charIndex, byte Direction)
 
 void DrawEntireMap()
 {
-  int x, y, a, b, index;
-  ScreenDisable();
+  int x, y, a, b;
 
   CameraFollow();
 
@@ -626,9 +625,7 @@ void DrawEntireMap()
       {
         //Wrap the map data X reference
         a = WrapMapPositionX(a);
-        
-        index = mapData[a][b];
-        viewportBuffer[x][y] = index;
+        viewportBuffer[x][y] = mapData[a][b];
         a++;
       }
     a = offsetX;
