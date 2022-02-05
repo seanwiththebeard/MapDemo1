@@ -6,7 +6,7 @@
 #include "System_CharacterSets.h"
 #include "System_Graphics.h"
 
-byte ScreenDoubleBuffer[2][1024];
+byte ScreenDoubleBuffer[2][1000];
 
 int YColumnIndex[25] = {
   0, 40, 80, 120, 160,
@@ -19,8 +19,8 @@ int FlashFrames = 0;
 
 void CopyDoubleBuffer()
 {
-  CopyMemory(ColorRam, (int)&ScreenDoubleBuffer[1][0], 1024);
-  CopyMemory(ScreenRam, (int)&ScreenDoubleBuffer[0][0], 1024);
+  CopyMemory(ColorRam, (int)&ScreenDoubleBuffer[1][0], 1000);
+  CopyMemory(ScreenRam, (int)&ScreenDoubleBuffer[0][0], 1000);
 }
 
 void CopyDoubleBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
@@ -36,7 +36,7 @@ void CopyDoubleBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
   raster_wait(240);
   for (y = 0; y < sizeY; ++y)
     {
-    	if (y % 4 == 0)
+    	if (y % 7 == 0)
           raster_wait(220);
       	CopyMemory(charOffset, screenAddress, sizeX);
       	CopyMemory(colorOffset, colorAddress, sizeX);
@@ -59,7 +59,7 @@ void CopyDoubleBufferRows(byte posY, byte sizeY, byte length)
   
   for (y = offset; y < sizeY; ++y)
     {
-    	if (y % 4 == 0)
+    	if (y % 6 == 0)
           raster_wait(240);
       	CopyMemory(colorOffset, colorAddress, length);
       	CopyMemory(charOffset, screenAddress, length);

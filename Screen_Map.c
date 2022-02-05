@@ -15,8 +15,8 @@ bool wrap = true;
 //Viewport
 #define viewportPosX 0
 #define viewportPosY 0
-#define viewportWidth 9
-#define viewportHeight 9
+#define viewportWidth 11
+#define viewportHeight 11
 #define viewportCharWidth (viewportWidth * 2)
 #define viewportCharHeight (viewportHeight * 2)
 #define viewportWidthQuad (viewportWidth*4)
@@ -75,7 +75,7 @@ struct
 void DrawTile(byte index, byte xpos, byte ypos)
 {
   tileAddress = viewportOrigin + xpos * 2 + YColumnIndex[ypos] * 2;
-  colorAddress = tileAddress + 1024;
+  colorAddress = tileAddress + 1000;
           
   POKEW(tileAddress, PEEKW(&tiles[index].chars[0]));
   POKEW(tileAddress + COLS, PEEKW(&tiles[index].chars[2]));
@@ -193,6 +193,32 @@ int GetWrappedY(int YPos)
   return tempY;
 }
 
+int WrapMapPositionX(int posX)
+{  
+  if (posX < 0)
+  {
+    return (mapWidth - 1);
+  }
+  if (posX == mapWidth)
+  {
+    return 0;
+  }
+  return posX;
+}
+
+int WrapMapPositionY(int posY)
+{  
+  if (posY < 0)
+  {
+    return (mapHeight - 1);
+  }
+  if (posY == mapHeight)
+  {
+    return 0;
+  }
+  return posY;
+}
+
 void DrawChar(byte index)
 {
   byte posx = GetWrappedX(characters[index].posX);
@@ -245,25 +271,16 @@ void DrawSingleRow(int row)
   b = offsetY;
   
   for(y = 0; y < viewportHeight; ++y)
-  {
-    //Wrap the map data y reference
-    if (b == mapHeight)
-        b = 0;
-    if (b < 0)
-      b +=mapHeight;
+  {    
+    b = WrapMapPositionY(b);
     if (y == row)
     {
       for(x = 0; x < viewportWidth; ++x)
       {
-        //Wrap the map data X reference
-        if (a == mapWidth)
-          a = 0;
-        if (a < 0)
-          a += mapWidth;
-        
+        a=WrapMapPositionX(a);
         viewportBuffer[x][y] = mapData[a][b];
         DrawBufferTile(viewportBuffer[x][y], x, y);
-      a++;
+      	a++;
       }
       break;
     }
@@ -283,22 +300,16 @@ void DrawSingleColumn(int column)
   
   for(y = 0; y < viewportHeight; ++y)
   {
-    //Wrap the map data y reference
-    if (b == mapHeight)
-        b = 0;
-    if (b < 0)
-      b +=mapHeight;
+    b = WrapMapPositionY(b);
     {
       for(x = 0; x < viewportWidth; ++x)
       {
-        //Wrap the map data X reference
-        if (a == mapWidth)
-          a = 0;
-        if (a < 0)
-          a += mapWidth;
+        a = WrapMapPositionX(a);
+        
+        viewportBuffer[x][y] = mapData[a][b];
+        
         if (x == column)
         {
-          viewportBuffer[x][y] = mapData[a][b];
           DrawBufferTile(viewportBuffer[x][y], x, y);
         }
       ++a;
@@ -479,15 +490,16 @@ void ScrollViewport(byte direction)
     case 2:
     {
       int length = viewportCharWidth - 2;
-      byte buffer[40];
+      byte buffer[viewportCharWidth];
+      int offset = 0;
 
       for (y = 0; y < viewportCharHeight; ++y)
       {
-        int offset = y*viewportCharWidth;
         CopyMemory((int)&buffer[0], (int) &DoubleBufferChars[offset], length);
         CopyMemory((int)&DoubleBufferChars[offset + 2], (int) &buffer[0], length);
         CopyMemory((int)&buffer[0], (int) &DoubleBufferColors[offset], length);
         CopyMemory((int)&DoubleBufferColors[offset + 2], (int) &buffer[0], length);
+        offset += viewportCharWidth;
       }
       DrawSingleColumn(0);
     }
@@ -495,15 +507,16 @@ void ScrollViewport(byte direction)
     case 3:
     {
       int length = viewportCharWidth - 2;
-      byte buffer[40];
+      byte buffer[viewportCharWidth];
+      int offset = 0;
 
       for (y = 0; y < viewportCharHeight; ++y)
       {
-        int offset = y*viewportCharWidth;
         CopyMemory((int)&buffer[0], (int) &DoubleBufferChars[offset + 2], length);
         CopyMemory((int)&DoubleBufferChars[offset], (int) &buffer[0], length);
         CopyMemory((int)&buffer[0], (int) &DoubleBufferColors[offset + 2], length);
         CopyMemory((int)&DoubleBufferColors[offset], (int) &buffer[0], length);
+        offset += viewportCharWidth;
       }
       DrawSingleColumn(viewportWidth - 1);
     }
@@ -600,7 +613,7 @@ bool CheckCollision(byte charIndex, byte Direction)
 
 void DrawEntireMap()
 {
-  int x, y, a, b, c, index;
+  int x, y, a, b, index;
   ScreenDisable();
 
   CameraFollow();
@@ -612,18 +625,12 @@ void DrawEntireMap()
   for(y = 0; y < viewportHeight; ++y)
   {
     //Wrap the map data y reference
-    if (b == mapHeight)
-        b = 0;
-    if (b < 0)
-      b +=mapHeight;
+    b = WrapMapPositionY(b);
       
     for(x = 0; x < viewportWidth; ++x)
       {
         //Wrap the map data X reference
-        if (a == mapWidth)
-          a = 0;
-        if (a < 0)
-          a += mapWidth;
+        a = WrapMapPositionX(a);
         
         index = mapData[a][b];
         viewportBuffer[x][y] = index;
@@ -633,42 +640,31 @@ void DrawEntireMap()
     ++b;
   }
 
-  //Insert Characters
-  {
-    for (c = 0; c < charactersCount; ++c)
-    {
-      //if(characters[index].visible)
-      {
-        byte posx = GetWrappedX(characters[c].posX);
-        if (posx < viewportWidth)
-        {
-          byte posy = GetWrappedY(characters[c].posY);
-          if (posy < viewportHeight)
-            viewportBuffer[posx][posy] = characters[c].tile;
-        }
-      }
-    }
-  }
-
   //Buffer the viewport
   {
     for (y = 0; y < viewportHeight; y++)
       for (x = 0; x < viewportWidth; x++)
         DrawBufferTile(viewportBuffer[x][y], x, y);
   }
+  
+  //Insert Characters
+  {
+  }
 
   //Update the viewport
   {
-    int offset;
-    //wait_vblank(1);
-
+    int x, offset;
     for (x = 0; x < viewportCharHeight; ++x)
     {
-      offset = YColumnIndex[x];
-      CopyMemory((int) (viewportOrigin + offset), (int) &DoubleBufferChars[x * viewportCharWidth], viewportCharWidth);
-      CopyMemory((int) (colorOrigin + offset), (int) &DoubleBufferColors[x * viewportCharWidth], viewportCharWidth);
+    	int index = x * viewportCharWidth;
+    	offset = YColumnIndex[x];
+    	CopyMemory((int) (viewportOrigin + offset), (int) &DoubleBufferChars[index], viewportCharWidth);
+    	CopyMemory((int) (colorOrigin + offset), (int) &DoubleBufferColors[index], viewportCharWidth);
     }
-      CopyDoubleBufferArea(viewportPosX, viewportPosY, viewportCharWidth, viewportCharHeight);
+    
+    BufferCharacters();
+    
+    CopyDoubleBufferArea(viewportPosX, viewportPosY, viewportCharWidth, viewportCharHeight);
   }
   ScreenEnable();
 }

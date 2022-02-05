@@ -14,4 +14,4 @@ void DrawLineH(char index, byte color, byte x, byte y, byte length);
 void DrawLineV(char index, byte color, byte x, byte y, byte length);
 
 extern int YColumnIndex[];
-extern byte ScreenDoubleBuffer[2][1024];
+extern byte ScreenDoubleBuffer[2][1000];

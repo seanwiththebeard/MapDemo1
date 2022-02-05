@@ -19,7 +19,7 @@ void DrawMessageWindow()
 {
     int y;
     int address = (int)&ScreenDoubleBuffer[0][0] + PosX + COLS*(PosY);
-    int coloraddress = address + 1024;
+    int coloraddress = address + 1000;
     for (y = 0; y < Height; ++y)
         {
             //SetScreenChar(MessageWindow[x + Height*y], PosX + x, PosY + (y * COLS));
