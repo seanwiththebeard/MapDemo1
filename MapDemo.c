@@ -40,7 +40,7 @@ void Initialize()
   DrawEntireMap();
   ScreenEnable();
 
-  //WriteLineMessageWindow("TheQuickBrownFox", 1);
+  WriteLineMessageWindow("TheQuickBrownFox", 1);
   //WriteLineMessageWindow("JumpsOverLazyDog", 1);
   //WriteLineMessageWindow("0123456789:;<=>?", 1);
   //WriteLineMessageWindow(" ! #$%&'()*+,-./", 1);

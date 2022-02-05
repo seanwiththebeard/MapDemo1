@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <peekpoke.h>
 #include "System_Graphics.h"
 #include "Common.h"
@@ -228,7 +229,8 @@ void UpdateViewport()
   }
   BufferCharacters();
   //CopyDoubleBuffer();
-  raster_wait(LastMapScanline);
+  //raster_wait(255);
+  //CopyDoubleBuffer();
   CopyDoubleBufferArea(viewportPosX, viewportPosY, viewportCharWidth, viewportCharHeight);
 }
 
@@ -726,7 +728,10 @@ int CheckInput()
     }
     if (InputFire())
     {
+      byte string[16];
+      sprintf(string, "Pos = %d,%d@", characters[0].posX, characters[0].posY);
       DrawEntireMap();
+      WriteLineMessageWindow(string, 1);
       return 1;
     }
   return 0;
