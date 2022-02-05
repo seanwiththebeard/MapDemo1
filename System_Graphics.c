@@ -36,8 +36,8 @@ void CopyDoubleBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
   raster_wait(240);
   for (y = 0; y < sizeY; ++y)
     {
-    	if (y % 7 == 0)
-          raster_wait(220);
+    	if (y % 6 == 0)
+          raster_wait(240);
       	CopyMemory(charOffset, screenAddress, sizeX);
       	CopyMemory(colorOffset, colorAddress, sizeX);
       	charOffset += COLS;

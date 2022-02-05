@@ -31,7 +31,7 @@ void Initialize()
   SetCharacterSet(0);
   clrscr();
   
-  //Draw_Title();
+  Draw_Title();
 
   BlankMessageWindow();
   CopyDoubleBuffer();

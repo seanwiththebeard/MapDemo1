@@ -59,15 +59,15 @@ struct
     byte ScatterIndex;
     byte NPCIndex;
     byte MusicIndex;
-}ScreenQuad[256]={
+}ScreenQuad[64]={
     {
         {130, 131, 146, 147},
       	{32, 33},
         0, 0, 0
     },
     {
-        {0, 0, 0, 0},
-      	{0, 1},
+        {0, 1,16, 17},
+      	{32, 33},
         0, 0, 0
     } 
 };
@@ -102,30 +102,6 @@ void DrawBufferTile(byte index, byte xpos, byte ypos)
   //POKEW(colorBufferAddress, PEEKW(&tiles[index].colors[0]));
   //POKEW(colorBufferAddress + viewportWidth * 2, PEEKW(&tiles[index].colors[2]));
   }
-
-void DrawTileTop(byte index)
-{
-  CopyMemory((int) &DoubleBufferChars[offsetViewportChar], (int) &tiles[index].chars[0], 2);
-  CopyMemory((int) &DoubleBufferColors[offsetViewportColor], (int) &tiles[index].colors[0], 2);
-
-  //CopyMemory(tileAddress, &tiles[index].chars[0], 2);
-  //CopyMemory(colorAddress, &tiles[index].colors[0], 2);
-  
-  //POKEW(tileAddress, PEEKW(&tiles[index].chars[0]));
-  //POKEW(colorAddress, PEEKW(&tiles[index].colors[0]));
-}
-
-void DrawTileBottom(byte index)
-{
-  CopyMemory((int) &DoubleBufferChars[offsetViewportCharOdd], (int) &tiles[index].chars[2], 2);
-  CopyMemory((int) &DoubleBufferColors[offsetViewportColorOdd], (int) &tiles[index].colors[2], 2);
-
-  //CopyMemory(tileAddressOdd, &tiles[index].chars[2], 2);
-  //CopyMemory(colorAddressOdd, &tiles[index].colors[2], 2);
-
-  //POKEW(tileAddressOdd, PEEKW(&tiles[index].chars[2]));
-  //POKEW(colorAddressOdd, PEEKW(&tiles[index].colors[2]));
-}
 
 struct Character
 {
@@ -264,8 +240,7 @@ void DrawSingleRow(int row)
 {
   int a, b, x, y;
 
-  CameraFollow();  
-  //ClampOffset();
+  CameraFollow();
   
   a = offsetX;
   b = offsetY;
@@ -305,14 +280,11 @@ void DrawSingleColumn(int column)
       for(x = 0; x < viewportWidth; ++x)
       {
         a = WrapMapPositionX(a);
-        
         viewportBuffer[x][y] = mapData[a][b];
         
         if (x == column)
-        {
           DrawBufferTile(viewportBuffer[x][y], x, y);
-        }
-      ++a;
+        ++a;
       }
     }
     a = offsetX;
@@ -451,16 +423,16 @@ void InitializeMapData()
     yOffset+= COLS;
     }  
 
-  LoadQuadrant(0, 0);
-  LoadQuadrant(0, 1);
-  LoadQuadrant(0, 2);
-  LoadQuadrant(0, 3);
+  LoadQuadrant(1, 0);
+  LoadQuadrant(1, 1);
+  LoadQuadrant(1, 2);
+  LoadQuadrant(1, 3);
 }
 
 void ScrollViewport(byte direction)
 {  
   int x, y;
-  int totalSize = 2*viewportHeight * 2*viewportWidth;
+  int totalSize = viewportCharHeight * viewportCharWidth;
 
   CameraFollow();
   //ClampOffset();
@@ -492,14 +464,25 @@ void ScrollViewport(byte direction)
       int length = viewportCharWidth - 2;
       byte buffer[viewportCharWidth];
       int offset = 0;
+      int offset2 = 2;
+      
+      int BufferAddress = (int) &buffer[0];
+      int CharAddress = (int) &DoubleBufferChars[offset];
+      int CharAddress2 = (int) &DoubleBufferChars[offset2];
+      int ColorAddress = (int) &DoubleBufferColors[offset];
+      int ColorAddress2 = (int) &DoubleBufferColors[offset2];
 
       for (y = 0; y < viewportCharHeight; ++y)
-      {
-        CopyMemory((int)&buffer[0], (int) &DoubleBufferChars[offset], length);
-        CopyMemory((int)&DoubleBufferChars[offset + 2], (int) &buffer[0], length);
-        CopyMemory((int)&buffer[0], (int) &DoubleBufferColors[offset], length);
-        CopyMemory((int)&DoubleBufferColors[offset + 2], (int) &buffer[0], length);
-        offset += viewportCharWidth;
+      {        
+        CopyMemory(BufferAddress, CharAddress, length);
+        CopyMemory(CharAddress2, BufferAddress, length);
+        CopyMemory(BufferAddress, ColorAddress, length);
+        CopyMemory(ColorAddress2, BufferAddress, length);
+        
+        CharAddress += viewportCharWidth;
+        CharAddress2 = CharAddress + 2;
+        ColorAddress += viewportCharWidth;
+        ColorAddress2 = ColorAddress + 2;
       }
       DrawSingleColumn(0);
     }
@@ -507,16 +490,28 @@ void ScrollViewport(byte direction)
     case 3:
     {
       int length = viewportCharWidth - 2;
-      byte buffer[viewportCharWidth];
       int offset = 0;
+      int offset2 = 2;
+      
+      int CharAddress = (int) &DoubleBufferChars[offset];
+      int CharAddress2 = (int) &DoubleBufferChars[offset2];
+      int ColorAddress = (int) &DoubleBufferColors[offset];
+      int ColorAddress2 = (int) &DoubleBufferColors[offset2];
 
       for (y = 0; y < viewportCharHeight; ++y)
       {
-        CopyMemory((int)&buffer[0], (int) &DoubleBufferChars[offset + 2], length);
-        CopyMemory((int)&DoubleBufferChars[offset], (int) &buffer[0], length);
-        CopyMemory((int)&buffer[0], (int) &DoubleBufferColors[offset + 2], length);
-        CopyMemory((int)&DoubleBufferColors[offset], (int) &buffer[0], length);
-        offset += viewportCharWidth;
+        CopyMemory(CharAddress, CharAddress2, length);
+        //CopyMemory((int)&buffer[0], (int) &DoubleBufferChars[offset + 2], length);
+        //CopyMemory((int)&DoubleBufferChars[offset], (int) &buffer[0], length);
+        
+        CopyMemory(ColorAddress, ColorAddress2, length);
+        
+        //CopyMemory((int)&buffer[0], (int) &DoubleBufferColors[offset + 2], length);
+        //CopyMemory((int)&DoubleBufferColors[offset], (int) &buffer[0], length);
+        CharAddress += viewportCharWidth;
+        CharAddress2 = CharAddress + 2;
+        ColorAddress += viewportCharWidth;
+        ColorAddress2 = ColorAddress + 2;
       }
       DrawSingleColumn(viewportWidth - 1);
     }
