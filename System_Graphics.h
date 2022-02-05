@@ -1,5 +1,6 @@
 #include "Common.h"
 void CopyDoubleBuffer(void);
+void CopyDoubleBufferRows(byte posY, byte sizeY, byte length);
 void CopyDoubleBufferArea(byte posX, byte posY, byte sizeX, byte sizeY);
 void setcolortextmode(void);
 void SetScreenChar(byte index, byte xpos, byte ypos);

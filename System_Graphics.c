@@ -8,6 +8,15 @@
 
 byte ScreenDoubleBuffer[2][1024];
 
+int YColumnIndex[25] = {
+  0, 40, 80, 120, 160,
+  200, 240, 280, 320, 360,
+  400, 440, 480, 520, 560,
+  600, 640, 680, 720, 760,
+  800, 840, 880, 920, 960};
+
+int FlashFrames = 0;
+
 void CopyDoubleBuffer()
 {
   CopyMemory(ColorRam, (int)&ScreenDoubleBuffer[1][0], 1024);
@@ -21,41 +30,54 @@ void CopyDoubleBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
   int offsetY = posX + YColumnIndex[0];
   int charOffset = ScreenRam + offset;
   int colorOffset = charOffset + 0x1000;
+  int colorAddress = (int)&ScreenDoubleBuffer[1][offset];
+  int screenAddress = (int)&ScreenDoubleBuffer[0][offset];
   
   raster_wait(240);
   for (y = 0; y < sizeY; ++y)
     {
-      	CopyMemory(charOffset, &ScreenDoubleBuffer[0][offsetY], sizeX);
-      	CopyMemory(colorOffset, &ScreenDoubleBuffer[1][offsetY], sizeX);
+    	if (y % 4 == 0)
+          raster_wait(220);
+      	CopyMemory(charOffset, screenAddress, sizeX);
+      	CopyMemory(colorOffset, colorAddress, sizeX);
       	charOffset += COLS;
       	colorOffset += COLS;
       	offsetY += COLS;
+    	screenAddress += COLS;
+    	colorAddress += COLS;
     }
 }
 
-int YColumnIndex[25] = {
-  0, 40, 80, 120, 160,
-  200, 240, 280, 320, 360,
-  400, 440, 480, 520, 560,
-  600, 640, 680, 720, 760,
-  800, 840, 880, 920, 960};
-
-int FlashFrames = 0;
+void CopyDoubleBufferRows(byte posY, byte sizeY, byte length)
+{
+  int y;
+  int offset = YColumnIndex[posY];
+  int colorAddress = (int)&ScreenDoubleBuffer[1][offset];
+  int screenAddress = (int)&ScreenDoubleBuffer[0][offset];
+  int charOffset = ScreenRam + offset;
+  int colorOffset = ColorRam + offset;
+  
+  for (y = offset; y < sizeY; ++y)
+    {
+    	if (y % 4 == 0)
+          raster_wait(240);
+      	CopyMemory(colorOffset, colorAddress, length);
+      	CopyMemory(charOffset, screenAddress, length);
+    	
+      	charOffset += COLS;
+      	colorOffset += COLS;
+    	colorAddress += COLS;
+    	screenAddress += COLS;
+    }
+}
 
 void setcolortextmode()
 {
-  //Copy character set
-  //POKE(0x0034, 48);  // Reserve RAM
-  //POKE(0x0038, 48); // Reserve RAM
-  POKE(0xDC0E, PEEK(0xDC0E)&254); // Pause Keyscan
-  POKE(0x0001, (PEEK(0x0001)&251)); // Character ROM select
+  //POKE(0xDC0E, PEEK(0xDC0E)&254); // Pause Keyscan
+  //POKE(0x0001, (PEEK(0x0001)&251)); // Character ROM select
   
-  //Copy the character set to the new RAM location
-  //for(i = 0; i < 2048; i++)
-    //POKE(i + CharacterRam, PEEK(i + CharacterRom));
-  
-  POKE(0x0001, (PEEK(0x0001)|4)); // Character ROM de-select, back to IO
-  POKE(0xDC0E, PEEK(0xDC0E)|1); // Resume Keyscan
+  //POKE(0x0001, (PEEK(0x0001)|4)); // Character ROM de-select, back to IO
+  //POKE(0xDC0E, PEEK(0xDC0E)|1); // Resume Keyscan
   
   //Redirect the character set address, select uppercase set
   //Select Bank 3 (last bank)
@@ -77,7 +99,7 @@ void setcolortextmode()
   // Set Kernel-Function Screen Position pointer (used for ClrScr, Printf)
   // Value * 256 = Screen Position Address
   // 1100 1000
-  POKE (0x0288, 200);
+  //POKE (0x0288, 200);
   
   //Background / 00
   //POKE(0xD021, 0);

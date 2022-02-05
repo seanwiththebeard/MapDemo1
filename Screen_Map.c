@@ -10,14 +10,13 @@
 #define mapHeight 64
 #define mapWidth 64
 byte mapData[mapWidth][mapHeight];
-bool DrawThisFrame = true;
 bool wrap = true;
 
 //Viewport
 #define viewportPosX 0
 #define viewportPosY 0
-#define viewportWidth 11
-#define viewportHeight 11
+#define viewportWidth 9
+#define viewportHeight 9
 #define viewportCharWidth (viewportWidth * 2)
 #define viewportCharHeight (viewportHeight * 2)
 #define viewportWidthQuad (viewportWidth*4)
@@ -231,6 +230,7 @@ void UpdateViewport()
   //CopyDoubleBuffer();
   //raster_wait(255);
   //CopyDoubleBuffer();
+  //CopyDoubleBufferRows(viewportPosY, viewportCharHeight, viewportCharWidth);
   CopyDoubleBufferArea(viewportPosX, viewportPosY, viewportCharWidth, viewportCharHeight);
 }
 
@@ -540,8 +540,12 @@ bool CheckCollision(byte charIndex, byte Direction)
   int xPos = characters[charIndex].posX;
   int yPos = characters[charIndex].posY;
   
+  //Check the tile we're already standing on
   if(ReadBit(tiles[mapData[xPos][yPos]].blocked, Direction))
+  {
+    WriteLineMessageWindow("Standing on blocked@", 1);
     return true;
+  }
   
   switch (Direction)
   {
@@ -557,7 +561,7 @@ bool CheckCollision(byte charIndex, byte Direction)
       break;
     case 2:
       //xPos -= 1;
-      xPos = wrapX(xPos) - 1;
+      xPos = wrapX(xPos - 1);
       Direction = 3;
       break;
     case 3:
@@ -570,7 +574,18 @@ bool CheckCollision(byte charIndex, byte Direction)
   }
   
   if(ReadBit(tiles[mapData[xPos][yPos]].blocked, Direction))
+  {
+    char message[16];
+    WriteLineMessageWindow("Entry blocked@", 1);
+    sprintf(message, "Index: %d@", tiles[mapData[xPos][yPos]].index);
+    WriteLineMessageWindow(message, 1);
+    sprintf(message, "Data: %d@", tiles[mapData[xPos][yPos]].blocked);
+    WriteLineMessageWindow(message, 1);
+    sprintf(message, "position: %d,%d@", xPos, yPos);
+    WriteLineMessageWindow(message, 1);
     return true;
+  }
+  
   for (i = 0; i < charactersCount; ++i)
     if(characters[i].collide)
       if (characters[i].posX == xPos)
@@ -698,7 +713,6 @@ void MoveCharacter(byte index, byte direction, bool cameraUpdate)
   else
     if(index == 0)
     {
-      DrawThisFrame = false;
       //FlashColor(2, 1);
       //WriteLineMessageWindow("Collision!@", 0);
     }
