@@ -22,6 +22,7 @@ bool wrap = true;
 #define viewportWidthQuad (viewportWidth*4)
 #define charactersCount 16
 #define LastMapScanline (8*viewportPosY + 16*viewportHeight)
+
 byte viewportBuffer[viewportWidth][viewportHeight];
 byte DoubleBufferChars[viewportCharWidth*viewportCharHeight];
 byte DoubleBufferColors[viewportCharWidth*viewportCharHeight];
@@ -74,8 +75,9 @@ struct
 
 void DrawTile(byte index, byte xpos, byte ypos)
 {
-  tileAddress = viewportOrigin + xpos * 2 + YColumnIndex[ypos] * 2;
-  colorAddress = tileAddress + 1000;
+  int offset = xpos * 2 + YColumnIndex[ypos] * 2;
+  tileAddress = viewportOrigin + offset;
+  colorAddress = colorOrigin + offset;
           
   POKEW(tileAddress, PEEKW(&tiles[index].chars[0]));
   POKEW(tileAddress + COLS, PEEKW(&tiles[index].chars[2]));
@@ -225,8 +227,9 @@ void UpdateViewport()
   {
     int index = x * viewportCharWidth;
     offset = YColumnIndex[x];
+    
     CopyMemory((int) (viewportOrigin + offset), (int) &DoubleBufferChars[index], viewportCharWidth);
-    CopyMemory((int) (colorOrigin + offset), (int) &DoubleBufferColors[index], viewportCharWidth);
+    CopyMemory((int) (colorOrigin + offset), (int) &DoubleBufferColors[index], viewportCharWidth);    
   }
   BufferCharacters();
   //CopyDoubleBuffer();
@@ -503,9 +506,7 @@ void ScrollViewport(byte direction)
         CopyMemory(CharAddress, CharAddress2, length);
         //CopyMemory((int)&buffer[0], (int) &DoubleBufferChars[offset + 2], length);
         //CopyMemory((int)&DoubleBufferChars[offset], (int) &buffer[0], length);
-        
-        CopyMemory(ColorAddress, ColorAddress2, length);
-        
+         CopyMemory(ColorAddress, ColorAddress2, length);
         //CopyMemory((int)&buffer[0], (int) &DoubleBufferColors[offset + 2], length);
         //CopyMemory((int)&DoubleBufferColors[offset], (int) &buffer[0], length);
         CharAddress += viewportCharWidth;
@@ -626,39 +627,17 @@ void DrawEntireMap()
         //Wrap the map data X reference
         a = WrapMapPositionX(a);
         viewportBuffer[x][y] = mapData[a][b];
-        a++;
+        DrawBufferTile(viewportBuffer[x][y], x, y);
+      	a++;
       }
     a = offsetX;
     ++b;
   }
 
-  //Buffer the viewport
-  {
-    for (y = 0; y < viewportHeight; y++)
-      for (x = 0; x < viewportWidth; x++)
-        DrawBufferTile(viewportBuffer[x][y], x, y);
-  }
-  
-  //Insert Characters
-  {
-  }
-
   //Update the viewport
   {
-    int x, offset;
-    for (x = 0; x < viewportCharHeight; ++x)
-    {
-    	int index = x * viewportCharWidth;
-    	offset = YColumnIndex[x];
-    	CopyMemory((int) (viewportOrigin + offset), (int) &DoubleBufferChars[index], viewportCharWidth);
-    	CopyMemory((int) (colorOrigin + offset), (int) &DoubleBufferColors[index], viewportCharWidth);
-    }
-    
-    BufferCharacters();
-    
-    CopyDoubleBufferArea(viewportPosX, viewportPosY, viewportCharWidth, viewportCharHeight);
+    UpdateViewport();
   }
-  ScreenEnable();
 }
 
 void MoveCharacter(byte index, byte direction, bool cameraUpdate)
