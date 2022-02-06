@@ -13,7 +13,8 @@ byte MessageWindowColors[16*7];
 
 char Messages[64][16] = {
     "Hello there!@",
-    "This is a sign@"};
+    "This is a sign@",
+    "Wizard's Forest@"};
 
 void DrawMessageWindow()
 {
