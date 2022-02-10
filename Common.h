@@ -14,6 +14,9 @@ typedef enum { false, true } bool;
 #define COLS 40
 #define ROWS 25
 
+#define false 0
+#define true 1
+
 #define CopyMemory(dest, src, length)(memcpy((int*)dest, (int*)src, length))
 #define raster_wait(line) do{} while ((VIC.rasterline < line))
 

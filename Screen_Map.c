@@ -6,17 +6,36 @@
 #include "System_MessageWindow.h"
 #include "System_CharacterSets.h"
 
+char str[16];
+
 //Map Data
 #define mapHeight 32
 #define mapWidth 32
 byte mapData[mapWidth][mapHeight];
+#define mapQuadWidth 8
+#define mapQuadHeight 8
+#define mapMatrixWidth 8
+#define mapMatrixHeight 8
+byte mapQuads[mapMatrixHeight][mapMatrixWidth] = {
+  {0, 1, 2, 3, 4, 5, 6, 7},
+  {8, 9, 10, 11, 12, 13, 14, 15},
+  {16, 17, 18, 19, 20, 21, 22, 23},
+  {24, 25, 26, 27, 28, 29, 30, 31},
+  {32, 33, 34, 35, 36, 37, 38, 39},
+  {40, 41, 42, 43, 44, 45, 46, 47},
+  {48, 49, 50, 51, 52, 53, 54, 55},
+  {56, 57, 58, 59, 60, 61, 62, 63}
+};
+byte quadBuffer[4];
+int quadX = 0;
+int quadY = 0;
 bool wrap = true;
 
 //Viewport
 #define viewportPosX 0
 #define viewportPosY 0
-#define viewportWidth 13
-#define viewportHeight 11
+#define viewportWidth 9
+#define viewportHeight 9
 #define viewportCharWidth (viewportWidth * 2)
 #define viewportCharHeight (viewportHeight * 2)
 #define viewportWidthQuad (viewportWidth*4)
@@ -94,6 +113,8 @@ struct Character
   byte combat;
   int posX;
   int posY;
+  int quadPosX;
+  int quadPosY;
   bool visible;
   bool collide;
   byte message;
@@ -266,6 +287,28 @@ void DrawSingleColumn(int column)
   UpdateViewport();
 }
 
+void FillQuadBuffer()
+{
+  byte tempY, tempX;
+  quadX = characters[followIndex].quadPosX;
+  quadY = characters[followIndex].quadPosY;
+
+  if (quadX + 1 == mapQuadWidth)
+    tempX = 0;
+  else
+    tempX = quadX + 1;
+
+  if (quadY + 1 == mapQuadHeight)
+    tempY = 0;
+  else
+    tempY = quadY + 1;
+
+  quadBuffer[0] = mapQuads[quadY][quadX];
+  quadBuffer[1] = mapQuads[quadY][tempX];
+  quadBuffer[2] = mapQuads[tempY][quadX];
+  quadBuffer[3] = mapQuads[tempY][tempX];
+}
+
 void LoadQuadrant(byte index, byte quad)
 {
   #define quadWidth 8
@@ -274,6 +317,9 @@ void LoadQuadrant(byte index, byte quad)
   byte originX = 0;
   byte originY = 0;
   int chardata;
+  char str[16];
+  sprintf(str, "Tile%d to Quad%d@", index, quad);
+  WriteLineMessageWindow(str, 1);
 
   for (z = 0; z < 4; ++z)
   {
@@ -333,6 +379,200 @@ void LoadQuadrant(byte index, byte quad)
       }
     }
   }
+}
+
+void LoadMapQuads()
+{
+  FillQuadBuffer();
+
+  LoadQuadrant(quadBuffer[0], 0);
+  LoadQuadrant(quadBuffer[1], 1);
+  LoadQuadrant(quadBuffer[2], 2);
+  LoadQuadrant(quadBuffer[3], 3);
+}
+
+byte GetPlayerQuad() //Returns the viewport quadrant of the player character
+{
+  if (characters[followIndex].posX < 2 * mapQuadWidth)
+  {
+    if (characters[followIndex].posY < 2 * mapQuadHeight)
+      return 0;
+    else
+      return 2;
+  }
+  else
+  {
+    if (characters[followIndex].posY < 2 * mapQuadHeight)
+      return 1;
+    else
+      return 3;
+  }
+}
+
+byte GetQuadInRelation( bool up, bool down, bool left, bool right)
+{
+  int x = characters[followIndex].quadPosX;
+  int y = characters[followIndex].quadPosY;
+  if (up)
+  {
+    --y;
+    if (y < 0)
+      y = mapMatrixHeight - 1;
+  }
+  if (down)
+  {
+    y++;
+    if (y == mapMatrixHeight)
+      y = 0;
+  }
+  if (left)
+  {
+    x--;
+    if (x < 0)
+      x = mapMatrixWidth - 1;
+  }
+  if (right)
+  {
+    ++x;
+    if (x == mapMatrixWidth)
+      x = 0;
+  }
+  return (mapQuads[y][x]);
+
+  
+}
+
+void QuadScroll(byte direction)
+{
+  byte originX = characters[followIndex].quadPosX;
+  byte originY = characters[followIndex].quadPosY;
+  byte quadA; //Entering quad
+  byte quadB; //Diagonal quad
+  byte indexA, indexB;
+  byte compareQuad = GetPlayerQuad();
+  switch(direction)
+  {
+    case 0:
+      switch (compareQuad)
+      {
+        case 0:
+          quadA = 2;
+          quadB = 3;
+          indexA = GetQuadInRelation(true, false, false, false);
+          indexB = GetQuadInRelation(true, false, false, true);
+          break;
+        case 1:
+          quadA = 3;
+          quadB = 2;
+          indexA = GetQuadInRelation(true, false, false, false);
+          indexB = GetQuadInRelation(true, false, true, false);
+          break;
+        case 2:
+          quadA = 0;
+          quadB = 1;
+          indexA = GetQuadInRelation(true, false, false, false);
+          indexB = GetQuadInRelation(true, false, false, true);
+          break;
+        case 3:
+          quadA = 1;
+          quadB = 0;
+          indexA = GetQuadInRelation(true, false, false, false);
+          indexB = GetQuadInRelation(true, false, true, false);
+          break;
+      }
+      break;
+    case 1:
+      switch (compareQuad)
+      {
+        case 0:
+          quadA = 2;
+          quadB = 3;
+          indexA = GetQuadInRelation(false, true, false, false);
+          indexB = GetQuadInRelation(false, true, false, true);
+          break;
+        case 1:
+          quadA = 3;
+          quadB = 2;
+          indexA = GetQuadInRelation(false, true, false, false);
+          indexB = GetQuadInRelation(false, true, true, false);
+          break;
+        case 2:
+          quadA = 0;
+          quadB = 1;
+          indexA = GetQuadInRelation(false, true, false, false);
+          indexB = GetQuadInRelation(false, true, false, true);
+          break;
+        case 3:
+          quadA = 1;
+          quadB = 0;
+          indexA = GetQuadInRelation(false, true, false, false);
+          indexB = GetQuadInRelation(false, true, true, false);
+          break;
+      }
+      break;
+    case 2:
+      switch (compareQuad)
+      {
+        case 0:
+          quadA = 1;
+          quadB = 3;
+          indexA = GetQuadInRelation(false, false, true, false);
+          indexB = GetQuadInRelation(false, true, true, false);
+          break;
+        case 1:
+          quadA = 0;
+          quadB = 2;
+          indexA = GetQuadInRelation(false, false, true, false);
+          indexB = GetQuadInRelation(false, true, true, false);
+          break;
+        case 2:
+          quadA = 3;
+          quadB = 1;
+          indexA = GetQuadInRelation(false, false, true, false);
+          indexB = GetQuadInRelation(true, false, true, false);
+          break;
+        case 3:
+          quadA = 2;
+          quadB = 0;
+          indexA = GetQuadInRelation(false, false, true, false);
+          indexB = GetQuadInRelation(true, false, true, false);
+          break;
+      }
+      break;
+    case 3:
+      switch (compareQuad)
+      {
+        case 0:
+          quadA = 1;
+          quadB = 3;
+          indexA = GetQuadInRelation(false, false, false, true);
+          indexB = GetQuadInRelation(false, true, false, true);
+          break;
+        case 1:
+          quadA = 0;
+          quadB = 2;
+          indexA = GetQuadInRelation(false, false, false, true);
+          indexB = GetQuadInRelation(false, true, false, true);
+          break;
+        case 2:
+          quadA = 3;
+          quadB = 1;
+          indexA = GetQuadInRelation(false, false, false, true);
+          indexB = GetQuadInRelation(true, false, false, true);
+          break;
+        case 3:
+          quadA = 2;
+          quadB = 0;
+          indexA = GetQuadInRelation(false, false, false, true);
+          indexB = GetQuadInRelation(true, false, false, true);
+          break;
+      }
+      break;
+  }
+  quadBuffer[quadA] = indexA;
+  quadBuffer[quadB] = indexB;
+  LoadQuadrant(indexA, quadA);
+  LoadQuadrant(indexB, quadB);
 }
 
 void InitializeMapData()
@@ -406,13 +646,18 @@ void InitializeMapData()
     characters[i].colors[1] = i + 1;
     characters[i].colors[2] = i + 1;
     characters[i].colors[3] = i + 1;
-    characters[i].posX = i + 4;
-    characters[i].posY = i + 4;
+    characters[i].posX = i;
+    characters[i].posY = i;
+    characters[i].quadPosX = i;
+    characters[i].quadPosX = i;
     characters[i].visible = false;
     characters[i].collide = false;
   }
     characters[0].visible = true;
-    characters[0].posX += 2;
+    characters[0].posX  = 8;
+    characters[0].posY  = 8;
+    characters[0].quadPosX  = 2;
+    characters[0].quadPosY  = 0;
     characters[0].tile = 2;
 
     characters[1].visible = true;
@@ -434,13 +679,9 @@ void InitializeMapData()
       {
         mapData[x][y] = water;
       }
-    yOffset+= COLS;
+      yOffset+= COLS;
     }  
-
-  LoadQuadrant(44, 0);
-  LoadQuadrant(44, 1);
-  LoadQuadrant(2, 2);
-  LoadQuadrant(44, 3);
+  LoadMapQuads();
 }
 
 void ScrollViewport(byte direction)
@@ -648,7 +889,10 @@ void DrawEntireMap()
 
 void MoveCharacter(byte index, byte direction, bool cameraUpdate)
 {
-  bool checkCollision = CheckCollision(index, direction);
+  byte checkCollision = CheckCollision(index, direction);
+  byte scrollQuads = false;
+  byte changedQuad = false;
+
   if(!checkCollision)
     {
       switch (direction)
@@ -657,31 +901,91 @@ void MoveCharacter(byte index, byte direction, bool cameraUpdate)
           --characters[index].posY;
           if (characters[index].posY < 0)
             characters[index].posY = mapHeight - 1;
+          if (characters[index].posY == 15 || characters[index].posY == 31)
+          {
+            changedQuad = true;
+            --characters[index].quadPosY;
+            if(characters[index].quadPosY < 0)
+              characters[index].quadPosY = mapMatrixHeight - 1;
+          }
           break;
         case 1:
            ++characters[index].posY;
           if (characters[index].posY >= mapHeight)
             characters[index].posY = 0;
+          if (characters[index].posY == 0 || characters[index].posY == 16)
+          {
+            changedQuad = true;
+            ++characters[index].quadPosY;
+            if(characters[index].quadPosY == mapMatrixHeight)
+              characters[index].quadPosY = 0; 
+          }
           break;
         case 2:
            --characters[index].posX;
            if (characters[index].posX < 0)
             characters[index].posX = mapWidth - 1;
+            if (characters[index].posX == 15 || characters[index].posX == 31)
+          {
+            changedQuad = true;
+            --characters[index].quadPosX;
+            if(characters[index].quadPosX < 0)
+              characters[index].quadPosX = mapMatrixWidth - 1; 
+          }
            break;
         case 3:
            ++characters[index].posX;
            if (characters[index].posX >= mapWidth)
             characters[index].posX = 0;
+          if (characters[index].posX == 0 || characters[index].posX == 16)
+          {
+            changedQuad = true;
+            ++characters[index].quadPosX;
+            if(characters[index].quadPosX == mapMatrixWidth)
+              characters[index].quadPosX = 0; 
+          }
           break;
         default:
           break;
       }
 
-      if (cameraUpdate)
-        CameraFollow();
       if (index == followIndex)
-        //DrawEntireMap();
+      {
+        if (direction == 0)
+          if (characters[index].posY == 5 || characters[index].posY == 21)
+            scrollQuads = true;
+        if (direction == 1)
+          if (characters[index].posY == 10 || characters[index].posY == 26)
+            scrollQuads = true;
+        if (direction == 2)
+          if (characters[index].posX == 5 || characters[index].posX == 21)
+            scrollQuads = true;
+        if (direction == 3)
+          if (characters[index].posX == 10 || characters[index].posX == 26)
+            scrollQuads = true;
+        
+        if (scrollQuads)
+          QuadScroll(direction);
+        
+
+        if (changedQuad)
+        {          sprintf(str, "QuadPos X%d,Y%d@", characters[index].quadPosX, characters[index].quadPosY);
+          WriteLineMessageWindow(str, 1);
+          sprintf(str, "CharPos X%d,Y%d@", characters[index].posX, characters[index].posY);
+          WriteLineMessageWindow(str, 1);
+          sprintf(str, "CharQuad %d@", GetPlayerQuad());
+          WriteLineMessageWindow(str, 1);
+          DrawTile(quadBuffer[0], 0, 10);
+          DrawTile(quadBuffer[1], 1, 10);
+          DrawTile(quadBuffer[2], 0, 11);
+          DrawTile(quadBuffer[3], 1, 11);
+          CopyDoubleBuffer();
+        }
+
+        if(cameraUpdate)
+          CameraFollow();
         ScrollViewport(direction);
+      }
   }
   else
     if(index == 0)
