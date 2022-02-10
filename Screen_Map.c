@@ -317,9 +317,9 @@ void LoadQuadrant(byte index, byte quad)
   byte originX = 0;
   byte originY = 0;
   int chardata;
-  char str[16];
-  sprintf(str, "Tile%d to Quad%d@", index, quad);
-  WriteLineMessageWindow(str, 1);
+  //char str[16];
+  //sprintf(str, "Tile%d to Quad%d@", index, quad);
+  //WriteLineMessageWindow(str, 1);
 
   for (z = 0; z < 4; ++z)
   {
@@ -965,16 +965,14 @@ void MoveCharacter(byte index, byte direction, bool cameraUpdate)
             scrollQuads = true;
         
         if (scrollQuads)
+        {
           QuadScroll(direction);
-        
-
-        if (changedQuad)
-        {          sprintf(str, "QuadPos X%d,Y%d@", characters[index].quadPosX, characters[index].quadPosY);
+          /*sprintf(str, "QuadPos X%d,Y%d@", characters[index].quadPosX, characters[index].quadPosY);
           WriteLineMessageWindow(str, 1);
           sprintf(str, "CharPos X%d,Y%d@", characters[index].posX, characters[index].posY);
           WriteLineMessageWindow(str, 1);
           sprintf(str, "CharQuad %d@", GetPlayerQuad());
-          WriteLineMessageWindow(str, 1);
+          WriteLineMessageWindow(str, 1);*/
           DrawTile(quadBuffer[0], 0, 10);
           DrawTile(quadBuffer[1], 1, 10);
           DrawTile(quadBuffer[2], 0, 11);
