@@ -320,6 +320,8 @@ void LoadQuadrant(byte index, byte quad)
   //char str[16];
   //sprintf(str, "Tile%d to Quad%d@", index, quad);
   //WriteLineMessageWindow(str, 1);
+  
+  quadBuffer[quad] = index;
 
   for (z = 0; z < 4; ++z)
   {
@@ -437,18 +439,18 @@ byte GetQuadInRelation( bool up, bool down, bool left, bool right)
     if (x == mapMatrixWidth)
       x = 0;
   }
-  return (mapQuads[y][x]);
-
-  
+  return (mapQuads[y][x]);  
 }
 
-void QuadScroll(byte direction)
+bool QuadScroll(byte direction)
 {
+  bool result = true;
   byte originX = characters[followIndex].quadPosX;
   byte originY = characters[followIndex].quadPosY;
   byte quadA; //Entering quad
   byte quadB; //Diagonal quad
-  byte indexA, indexB;
+  byte quadC; //Adjacent Quad
+  byte indexA, indexB, indexC;
   byte compareQuad = GetPlayerQuad();
   switch(direction)
   {
@@ -458,26 +460,47 @@ void QuadScroll(byte direction)
         case 0:
           quadA = 2;
           quadB = 3;
+          quadC = 1;
           indexA = GetQuadInRelation(true, false, false, false);
-          indexB = GetQuadInRelation(true, false, false, true);
+          if (characters[followIndex].posX % 16 > quadWidth)
+            indexB = GetQuadInRelation(true, false, false, true);
+          else
+            indexB = GetQuadInRelation(true, false, true, false);
+          indexC = GetQuadInRelation(false, false, false, true);
           break;
         case 1:
           quadA = 3;
           quadB = 2;
+          quadC = 0;
           indexA = GetQuadInRelation(true, false, false, false);
-          indexB = GetQuadInRelation(true, false, true, false);
+          if (characters[followIndex].posX  > quadWidth)
+            indexB = GetQuadInRelation(true, false, false, true);
+          else
+            indexB = GetQuadInRelation(true, false, true, false);
+          indexC = GetQuadInRelation(false, false, true, false);
           break;
         case 2:
           quadA = 0;
           quadB = 1;
+          quadC = 3;
           indexA = GetQuadInRelation(true, false, false, false);
-          indexB = GetQuadInRelation(true, false, false, true);
+          if (characters[followIndex].posX % 16 > quadWidth)
+            indexB = GetQuadInRelation(true, false, false, true);
+          else
+            indexB = GetQuadInRelation(true, false, true, false);
+          indexC = GetQuadInRelation(false, false, false, true);
+          
           break;
         case 3:
           quadA = 1;
           quadB = 0;
+          quadC = 2;
           indexA = GetQuadInRelation(true, false, false, false);
-          indexB = GetQuadInRelation(true, false, true, false);
+          if (characters[followIndex].posX > quadWidth)
+            indexB = GetQuadInRelation(true, false, false, true);
+          else
+            indexB = GetQuadInRelation(true, false, true, false);
+          indexC = GetQuadInRelation(false, false, true, false);
           break;
       }
       break;
@@ -487,26 +510,48 @@ void QuadScroll(byte direction)
         case 0:
           quadA = 2;
           quadB = 3;
+          quadC = 1;
           indexA = GetQuadInRelation(false, true, false, false);
-          indexB = GetQuadInRelation(false, true, false, true);
+          if (characters[followIndex].posX % 16 > quadWidth)
+            indexB = GetQuadInRelation(false, true, false, true);
+          else
+            indexB = GetQuadInRelation(false, true, true, false);
+          indexC = GetQuadInRelation(false, false, false, true);
           break;
         case 1:
           quadA = 3;
           quadB = 2;
+          quadC = 0;
           indexA = GetQuadInRelation(false, true, false, false);
-          indexB = GetQuadInRelation(false, true, true, false);
+          if (characters[followIndex].posX % 16 > quadWidth)
+            indexB = GetQuadInRelation(false, true, false, true);   
+          else
+            indexB = GetQuadInRelation(false, true, true, false);          
+          indexC = GetQuadInRelation(false, false, true, false);
           break;
         case 2:
           quadA = 0;
           quadB = 1;
+          quadC = 3;
           indexA = GetQuadInRelation(false, true, false, false);
-          indexB = GetQuadInRelation(false, true, false, true);
+          if (characters[followIndex].posX > quadWidth)
+            indexB = GetQuadInRelation(false, true, false, true);
+          else
+            indexB = GetQuadInRelation(false, true, true, false);
+            
+          indexC = GetQuadInRelation(false, false, true, false);
           break;
         case 3:
           quadA = 1;
           quadB = 0;
+          quadC = 2;
           indexA = GetQuadInRelation(false, true, false, false);
-          indexB = GetQuadInRelation(false, true, true, false);
+          if (characters[followIndex].posX > quadWidth)
+            indexB = GetQuadInRelation(false, true, false, true);
+          else
+            indexB = GetQuadInRelation(false, true, true, false);
+            
+          indexC = GetQuadInRelation(false, false, true, false);
           break;
       }
       break;
@@ -517,25 +562,37 @@ void QuadScroll(byte direction)
           quadA = 1;
           quadB = 3;
           indexA = GetQuadInRelation(false, false, true, false);
-          indexB = GetQuadInRelation(false, true, true, false);
+          if (characters[followIndex].posY % 16 < quadHeight)
+            indexB = GetQuadInRelation(false, true, false, true);
+          else
+            indexB = GetQuadInRelation(false, true, true, false);
           break;
         case 1:
           quadA = 0;
           quadB = 2;
           indexA = GetQuadInRelation(false, false, true, false);
-          indexB = GetQuadInRelation(false, true, true, false);
+          if (characters[followIndex].posY % 16 < quadHeight)
+            indexB = GetQuadInRelation(false, true, false, true);
+          else
+            indexB = GetQuadInRelation(false, true, true, false);
           break;
         case 2:
           quadA = 3;
           quadB = 1;
           indexA = GetQuadInRelation(false, false, true, false);
-          indexB = GetQuadInRelation(true, false, true, false);
+          if (characters[followIndex].posY % 16 < quadHeight)
+            indexB = GetQuadInRelation(true, false, true, false);
+          else
+            indexB = GetQuadInRelation(true, false, false, true);
           break;
         case 3:
           quadA = 2;
           quadB = 0;
           indexA = GetQuadInRelation(false, false, true, false);
-          indexB = GetQuadInRelation(true, false, true, false);
+          if (characters[followIndex].posY % 16 > quadHeight)
+            indexB = GetQuadInRelation(true, false, false, true);
+          else
+            indexB = GetQuadInRelation(true, false, true, false);
           break;
       }
       break;
@@ -546,33 +603,58 @@ void QuadScroll(byte direction)
           quadA = 1;
           quadB = 3;
           indexA = GetQuadInRelation(false, false, false, true);
-          indexB = GetQuadInRelation(false, true, false, true);
+          if (characters[followIndex].posY % 16 > quadHeight)
+            indexB = GetQuadInRelation(false, true, false, true);
+          else
+            indexB = GetQuadInRelation(false, true, true, false);
           break;
         case 1:
           quadA = 0;
           quadB = 2;
           indexA = GetQuadInRelation(false, false, false, true);
+          if (characters[followIndex].posY % 16 < quadHeight)
+            indexB = GetQuadInRelation(false, true, true, false);
+          else
           indexB = GetQuadInRelation(false, true, false, true);
           break;
         case 2:
           quadA = 3;
           quadB = 1;
           indexA = GetQuadInRelation(false, false, false, true);
-          indexB = GetQuadInRelation(true, false, false, true);
+          if (characters[followIndex].posY % 16 > quadHeight)
+            indexB = GetQuadInRelation(true, false, true, false);
+          else
+            indexB = GetQuadInRelation(true, false, false, true);
           break;
         case 3:
           quadA = 2;
           quadB = 0;
           indexA = GetQuadInRelation(false, false, false, true);
-          indexB = GetQuadInRelation(true, false, false, true);
+          if (characters[followIndex].posY % 16 < quadHeight)
+            indexB = GetQuadInRelation(true, false, false, true);
+          else
+            indexB = GetQuadInRelation(true, false, true, false);
           break;
       }
       break;
   }
-  quadBuffer[quadA] = indexA;
-  quadBuffer[quadB] = indexB;
-  LoadQuadrant(indexA, quadA);
-  LoadQuadrant(indexB, quadB);
+  if (quadBuffer[quadA] != indexA)
+      {
+        LoadQuadrant(indexA, quadA);
+    	result = true;
+      }
+   if (quadBuffer[quadB] != indexB)
+       {
+  	LoadQuadrant(indexB, quadB);
+     	result = true;
+       }
+  if (quadBuffer[quadC] != indexC)
+       {
+  	//LoadQuadrant(indexC, quadC);
+     	result = true;
+       }
+  
+  return result;
 }
 
 void InitializeMapData()
@@ -952,45 +1034,66 @@ void MoveCharacter(byte index, byte direction, bool cameraUpdate)
       if (index == followIndex)
       {
         if (direction == 0)
-          if (characters[index].posY == 5 || characters[index].posY == 21)
+          if (characters[index].posY % 16 == 5)
             scrollQuads = true;
         if (direction == 1)
-          if (characters[index].posY == 10 || characters[index].posY == 26)
+          if (characters[index].posY % 16 == 11)
             scrollQuads = true;
         if (direction == 2)
-          if (characters[index].posX == 5 || characters[index].posX == 21)
+          if (characters[index].posX % 16 == 5)
             scrollQuads = true;
         if (direction == 3)
-          if (characters[index].posX == 10 || characters[index].posX == 26)
+          if (characters[index].posX % 16 == 11)
             scrollQuads = true;
+        
+        if(cameraUpdate)
+          CameraFollow();
+        ScrollViewport(direction);
         
         if (scrollQuads)
         {
-          QuadScroll(direction);
-          /*sprintf(str, "QuadPos X%d,Y%d@", characters[index].quadPosX, characters[index].quadPosY);
-          WriteLineMessageWindow(str, 1);
-          sprintf(str, "CharPos X%d,Y%d@", characters[index].posX, characters[index].posY);
-          WriteLineMessageWindow(str, 1);
-          sprintf(str, "CharQuad %d@", GetPlayerQuad());
-          WriteLineMessageWindow(str, 1);*/
+          if (QuadScroll(direction))
+            DrawEntireMap();
+          
           DrawTile(quadBuffer[0], 0, 10);
           DrawTile(quadBuffer[1], 1, 10);
           DrawTile(quadBuffer[2], 0, 11);
           DrawTile(quadBuffer[3], 1, 11);
-          CopyDoubleBuffer();
+          
+          switch (GetPlayerQuad())
+          {
+            case 0:
+          	DrawTile(characters[index].tile, 0, 10);
+              break;
+            case 1:
+          	DrawTile(characters[index].tile, 1, 10);
+              break;
+            case 2:
+              	DrawTile(characters[index].tile, 0, 11);              
+              break;
+            case 3:
+              DrawTile(characters[index].tile, 1, 11);
+              break;
+          }
+          	CopyDoubleBuffer();
         }
-
-        if(cameraUpdate)
-          CameraFollow();
-        ScrollViewport(direction);
+        if (quadBuffer[GetPlayerQuad()] != mapQuads[characters[index].quadPosY][characters[index].quadPosX])
+        {
+          sprintf(str, "QuadPos X%d,Y%d@", characters[index].quadPosX, characters[index].quadPosY);
+          WriteLineMessageWindow(str, 1);
+          sprintf(str, "CharPos X%d,Y%d@", characters[index].posX, characters[index].posY);
+          WriteLineMessageWindow(str, 1);
+          sprintf(str, "Entering Quad %d@", GetPlayerQuad());
+          WriteLineMessageWindow(str, 1);
+          sprintf(str, "Quad Index was %d@", quadBuffer[GetPlayerQuad()]);
+          WriteLineMessageWindow(str, 1);
+          sprintf(str, "Should be %d@",mapQuads[characters[index].quadPosY][characters[index].quadPosX]);
+          WriteLineMessageWindow(str, 1);
+          LoadQuadrant(mapQuads[characters[index].quadPosY][characters[index].quadPosX], GetPlayerQuad());
+          DrawEntireMap();
+        }
       }
   }
-  else
-    if(index == 0)
-    {
-      //FlashColor(2, 1);
-      //WriteLineMessageWindow("Collision!@", 0);
-    }
 }
 
 int CheckInput()
