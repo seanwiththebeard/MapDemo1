@@ -313,10 +313,12 @@ void LoadQuadrant(byte index, byte quad)
 {
   #define quadWidth 8
   #define quadHeight 8
-  byte x, y, z;
-  byte originX = 0;
-  byte originY = 0;
+  #define quadWidthDouble quadWidth * 2
+  #define quadHeightDouble quadHeight * 2
+  
+  byte x, y, z, originX, originY;
   int chardata;
+  
   //char str[16];
   //sprintf(str, "Tile%d to Quad%d@", index, quad);
   //WriteLineMessageWindow(str, 1);
@@ -332,16 +334,16 @@ void LoadQuadrant(byte index, byte quad)
       originY = 0;
       break;
     case 1:
-      originX = quadWidth * 2;
+      originX = quadWidthDouble;
       originY = 0;
       break;
     case 2:
       originX = 0;
-      originY = quadHeight * 2;
+      originY = quadHeightDouble;
       break;
     case 3:
-      originX = quadWidth * 2;
-      originY = quadHeight * 2;
+      originX = quadWidthDouble;
+      originY = quadHeightDouble;
       break;
     default:
       break;
@@ -395,23 +397,24 @@ void LoadMapQuads()
 
 byte GetPlayerQuad() //Returns the viewport quadrant of the player character
 {
+  byte ypos = 2*mapQuadHeight;
   if (characters[followIndex].posX < 2 * mapQuadWidth)
   {
-    if (characters[followIndex].posY < 2 * mapQuadHeight)
+    if (characters[followIndex].posY < ypos)
       return 0;
     else
       return 2;
   }
   else
   {
-    if (characters[followIndex].posY < 2 * mapQuadHeight)
+    if (characters[followIndex].posY < ypos)
       return 1;
     else
       return 3;
   }
 }
 
-byte GetQuadInRelation( bool up, bool down, bool left, bool right)
+byte GetQuadInRelation(bool up, bool down, bool left, bool right)
 {
   int x = characters[followIndex].quadPosX;
   int y = characters[followIndex].quadPosY;
@@ -442,6 +445,51 @@ byte GetQuadInRelation( bool up, bool down, bool left, bool right)
   return (mapQuads[y][x]);  
 }
 
+/*byte GetNextQuad(byte index)
+{
+  
+  // 0 1 2
+  // 3 4 5
+  // 6 7 8
+  bool up, down, left, right;
+  int x = characters[followIndex].quadPosX;
+  int y = characters[followIndex].quadPosY;
+  if (index < 3)
+    up = true;
+  if (index > 5)
+    down = true;
+  if (index == 0 || index == 3 || index == 6)
+    left = true;
+  if (index == 2 || index == 5 || index == 8)
+    right = true;
+  
+  if (up)
+  {
+    --y;
+    if (y < 0)
+      y = mapMatrixHeight - 1;
+  }
+  if (down)
+  {
+    y++;
+    if (y == mapMatrixHeight)
+      y = 0;
+  }
+  if (left)
+  {
+    x--;
+    if (x < 0)
+      x = mapMatrixWidth - 1;
+  }
+  if (right)
+  {
+    ++x;
+    if (x == mapMatrixWidth)
+      x = 0;
+  }
+  return (mapQuads[y][x]);  
+}*/
+
 bool QuadScroll(byte direction)
 {
   bool result = true;
@@ -451,169 +499,113 @@ bool QuadScroll(byte direction)
   byte quadB; //Diagonal quad
   byte indexA, indexB;
   byte compareQuad = GetPlayerQuad();
+  
+  bool posX = characters[followIndex].posX % 16 < quadWidth;
+  bool posY = characters[followIndex].posY % 16 < quadHeight;
+  
   switch(direction)
   {
     case 0:
+      indexA = GetQuadInRelation(true, false, false, false);
+      if (posX)
+        indexB = GetQuadInRelation(true, false, true, false);
+      else
+        indexB = GetQuadInRelation(true, false, false, true);
       switch (compareQuad)
       {
         case 0:
           quadA = 2;
           quadB = 3;
-          indexA = GetQuadInRelation(true, false, false, false);
-          if (characters[followIndex].posX % 16 > quadWidth)
-            indexB = GetQuadInRelation(true, false, false, true);
-          else
-            indexB = GetQuadInRelation(true, false, true, false);
           break;
         case 1:
           quadA = 3;
           quadB = 2;
-          indexA = GetQuadInRelation(true, false, false, false);
-          if (characters[followIndex].posX % 16 > quadWidth)
-            indexB = GetQuadInRelation(true, false, false, true);
-          else
-            indexB = GetQuadInRelation(true, false, true, false);
           break;
         case 2:
           quadA = 0;
           quadB = 1;
-          indexA = GetQuadInRelation(true, false, false, false);
-          if (characters[followIndex].posX % 16 > quadWidth)
-            indexB = GetQuadInRelation(true, false, false, true);
-          else
-            indexB = GetQuadInRelation(true, false, true, false);          
           break;
         case 3:
           quadA = 1;
           quadB = 0;
-          indexA = GetQuadInRelation(true, false, false, false);
-          if (characters[followIndex].posX % 16 > quadWidth)
-            indexB = GetQuadInRelation(true, false, false, true);
-          else
-            indexB = GetQuadInRelation(true, false, true, false);
           break;
       }
       break;
     case 1:
+      indexA = GetQuadInRelation(false, true, false, false);
+      if (posX)
+        indexB = GetQuadInRelation(false, true, true, false);
+      else
+        indexB = GetQuadInRelation(false, true, false, true);
       switch (compareQuad)
       {
         case 0:
           quadA = 2;
           quadB = 3;
-          indexA = GetQuadInRelation(false, true, false, false);
-          if (characters[followIndex].posX % 16 > quadWidth)
-            indexB = GetQuadInRelation(false, true, false, true);
-          else
-            indexB = GetQuadInRelation(false, true, true, false);
           break;
         case 1:
           quadA = 3;
           quadB = 2;
-          indexA = GetQuadInRelation(false, true, false, false);
-          if (characters[followIndex].posX % 16 > quadWidth)
-            indexB = GetQuadInRelation(false, true, false, true);   
-          else
-            indexB = GetQuadInRelation(false, true, true, false);
           break;
         case 2:
           quadA = 0;
           quadB = 1;
-          indexA = GetQuadInRelation(false, true, false, false);
-          if (characters[followIndex].posX % 16 > quadWidth)
-            indexB = GetQuadInRelation(false, true, false, true);
-          else
-            indexB = GetQuadInRelation(false, true, true, false);
           break;
         case 3:
           quadA = 1;
           quadB = 0;
-          indexA = GetQuadInRelation(false, true, false, false);
-          if (characters[followIndex].posX % 16 > quadWidth)
-            indexB = GetQuadInRelation(false, true, false, true);
-          else
-            indexB = GetQuadInRelation(false, true, true, false);
           break;
       }
       break;
     case 2:
+      indexA = GetQuadInRelation(false, false, true, false);
+      if (posY)
+        indexB = GetQuadInRelation(true, false, true, false);
+      else
+        indexB = GetQuadInRelation(false, true, true, false);
       switch (compareQuad)
       {
         case 0:
           quadA = 1;
           quadB = 3;
-          indexA = GetQuadInRelation(false, false, true, false);
-          if (characters[followIndex].posY % 16 > quadHeight)
-            indexB = GetQuadInRelation(false, true, true, false);
-          else
-            indexB = GetQuadInRelation(true, false, true, false);
           break;
         case 1:
           quadA = 0;
           quadB = 2;
-          indexA = GetQuadInRelation(false, false, true, false);
-          if (characters[followIndex].posY % 16 > quadHeight)
-            indexB = GetQuadInRelation(false, true, true, false);
-          else
-            indexB = GetQuadInRelation(true, false, true, false);
           break;
         case 2:
           quadA = 3;
           quadB = 1;
-          indexA = GetQuadInRelation(false, false, true, false);
-          if (characters[followIndex].posY % 16 < quadHeight)
-            indexB = GetQuadInRelation(true, false, true, false);
-          else
-            indexB = GetQuadInRelation(false, true, true, false);
           break;
         case 3:
           quadA = 2;
           quadB = 0;
-          indexA = GetQuadInRelation(false, false, true, false);
-          if (characters[followIndex].posY % 16 > quadHeight)
-            indexB = GetQuadInRelation(false, true, true, false);
-          else
-            indexB = GetQuadInRelation(true, false, true, false);
           break;
       }
       break;
     case 3:
+      indexA = GetQuadInRelation(false, false, false, true);
+      if (posY)
+        indexB = GetQuadInRelation(true, false, false, true);
+      else
+        indexB = GetQuadInRelation(false, true, false, true);
       switch (compareQuad)
       {
         case 0:
           quadA = 1;
           quadB = 3;
-          indexA = GetQuadInRelation(false, false, false, true);
-          if (characters[followIndex].posY % 16 < quadHeight)
-            indexB = GetQuadInRelation(true, false, false, true);
-          else
-            indexB = GetQuadInRelation(false, true, false, true);
           break;
         case 1:
           quadA = 0;
           quadB = 2;
-          indexA = GetQuadInRelation(false, false, false, true);
-          if (characters[followIndex].posY % 16 < quadHeight)
-            indexB = GetQuadInRelation(true, false, false, true);
-          else
-          indexB = GetQuadInRelation(false, true, false, true);
           break;
         case 2:
           quadA = 3;
           quadB = 1;
-          indexA = GetQuadInRelation(false, false, false, true);
-          if (characters[followIndex].posY % 16 > quadHeight)
-            indexB = GetQuadInRelation(false, true, false, true);
-          else
-            indexB = GetQuadInRelation(true, false, false, true);
           break;
         case 3:
           quadA = 2;
           quadB = 0;
-          indexA = GetQuadInRelation(false, false, false, true);
-          if (characters[followIndex].posY % 16 < quadHeight)
-            indexB = GetQuadInRelation(true, false, false, true);
-          else
-            indexB = GetQuadInRelation(false, true, false, true);
           break;
       }
       break;
