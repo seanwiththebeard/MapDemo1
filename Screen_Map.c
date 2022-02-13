@@ -490,9 +490,9 @@ byte GetQuadInRelation(bool up, bool down, bool left, bool right)
   return (mapQuads[y][x]);  
 }*/
 
-bool QuadScroll(byte direction)
+void QuadScroll(byte direction)
 {
-  bool result = true;
+  //bool result = true;
   byte originX = characters[followIndex].quadPosX;
   byte originY = characters[followIndex].quadPosY;
   byte quadA; //Entering quad
@@ -613,15 +613,15 @@ bool QuadScroll(byte direction)
   if (quadBuffer[quadA] != indexA)
       {
         LoadQuadrant(indexA, quadA);
-    	result = true;
+    	//result = true;
       }
    if (quadBuffer[quadB] != indexB)
        {
   	LoadQuadrant(indexB, quadB);
-     	result = true;
+     	//result = true;
        }
   
-  return result;
+  //return result;
 }
 
 void InitializeMapData()
