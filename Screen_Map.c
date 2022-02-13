@@ -449,8 +449,7 @@ bool QuadScroll(byte direction)
   byte originY = characters[followIndex].quadPosY;
   byte quadA; //Entering quad
   byte quadB; //Diagonal quad
-  byte quadC; //Adjacent Quad
-  byte indexA, indexB, indexC;
+  byte indexA, indexB;
   byte compareQuad = GetPlayerQuad();
   switch(direction)
   {
@@ -460,47 +459,38 @@ bool QuadScroll(byte direction)
         case 0:
           quadA = 2;
           quadB = 3;
-          quadC = 1;
           indexA = GetQuadInRelation(true, false, false, false);
           if (characters[followIndex].posX % 16 > quadWidth)
             indexB = GetQuadInRelation(true, false, false, true);
           else
             indexB = GetQuadInRelation(true, false, true, false);
-          indexC = GetQuadInRelation(false, false, false, true);
           break;
         case 1:
           quadA = 3;
           quadB = 2;
-          quadC = 0;
-          indexA = GetQuadInRelation(true, false, false, false);
-          if (characters[followIndex].posX  > quadWidth)
-            indexB = GetQuadInRelation(true, false, false, true);
-          else
-            indexB = GetQuadInRelation(true, false, true, false);
-          indexC = GetQuadInRelation(false, false, true, false);
-          break;
-        case 2:
-          quadA = 0;
-          quadB = 1;
-          quadC = 3;
           indexA = GetQuadInRelation(true, false, false, false);
           if (characters[followIndex].posX % 16 > quadWidth)
             indexB = GetQuadInRelation(true, false, false, true);
           else
             indexB = GetQuadInRelation(true, false, true, false);
-          indexC = GetQuadInRelation(false, false, false, true);
-          
+          break;
+        case 2:
+          quadA = 0;
+          quadB = 1;
+          indexA = GetQuadInRelation(true, false, false, false);
+          if (characters[followIndex].posX % 16 > quadWidth)
+            indexB = GetQuadInRelation(true, false, false, true);
+          else
+            indexB = GetQuadInRelation(true, false, true, false);          
           break;
         case 3:
           quadA = 1;
           quadB = 0;
-          quadC = 2;
           indexA = GetQuadInRelation(true, false, false, false);
-          if (characters[followIndex].posX > quadWidth)
+          if (characters[followIndex].posX % 16 > quadWidth)
             indexB = GetQuadInRelation(true, false, false, true);
           else
             indexB = GetQuadInRelation(true, false, true, false);
-          indexC = GetQuadInRelation(false, false, true, false);
           break;
       }
       break;
@@ -510,48 +500,38 @@ bool QuadScroll(byte direction)
         case 0:
           quadA = 2;
           quadB = 3;
-          quadC = 1;
           indexA = GetQuadInRelation(false, true, false, false);
           if (characters[followIndex].posX % 16 > quadWidth)
             indexB = GetQuadInRelation(false, true, false, true);
           else
             indexB = GetQuadInRelation(false, true, true, false);
-          indexC = GetQuadInRelation(false, false, false, true);
           break;
         case 1:
           quadA = 3;
           quadB = 2;
-          quadC = 0;
           indexA = GetQuadInRelation(false, true, false, false);
           if (characters[followIndex].posX % 16 > quadWidth)
             indexB = GetQuadInRelation(false, true, false, true);   
           else
-            indexB = GetQuadInRelation(false, true, true, false);          
-          indexC = GetQuadInRelation(false, false, true, false);
+            indexB = GetQuadInRelation(false, true, true, false);
           break;
         case 2:
           quadA = 0;
           quadB = 1;
-          quadC = 3;
           indexA = GetQuadInRelation(false, true, false, false);
-          if (characters[followIndex].posX > quadWidth)
+          if (characters[followIndex].posX % 16 > quadWidth)
             indexB = GetQuadInRelation(false, true, false, true);
           else
             indexB = GetQuadInRelation(false, true, true, false);
-            
-          indexC = GetQuadInRelation(false, false, true, false);
           break;
         case 3:
           quadA = 1;
           quadB = 0;
-          quadC = 2;
           indexA = GetQuadInRelation(false, true, false, false);
-          if (characters[followIndex].posX > quadWidth)
+          if (characters[followIndex].posX % 16 > quadWidth)
             indexB = GetQuadInRelation(false, true, false, true);
           else
             indexB = GetQuadInRelation(false, true, true, false);
-            
-          indexC = GetQuadInRelation(false, false, true, false);
           break;
       }
       break;
@@ -562,19 +542,19 @@ bool QuadScroll(byte direction)
           quadA = 1;
           quadB = 3;
           indexA = GetQuadInRelation(false, false, true, false);
-          if (characters[followIndex].posY % 16 < quadHeight)
-            indexB = GetQuadInRelation(false, true, false, true);
-          else
+          if (characters[followIndex].posY % 16 > quadHeight)
             indexB = GetQuadInRelation(false, true, true, false);
+          else
+            indexB = GetQuadInRelation(true, false, true, false);
           break;
         case 1:
           quadA = 0;
           quadB = 2;
           indexA = GetQuadInRelation(false, false, true, false);
-          if (characters[followIndex].posY % 16 < quadHeight)
-            indexB = GetQuadInRelation(false, true, false, true);
-          else
+          if (characters[followIndex].posY % 16 > quadHeight)
             indexB = GetQuadInRelation(false, true, true, false);
+          else
+            indexB = GetQuadInRelation(true, false, true, false);
           break;
         case 2:
           quadA = 3;
@@ -583,14 +563,14 @@ bool QuadScroll(byte direction)
           if (characters[followIndex].posY % 16 < quadHeight)
             indexB = GetQuadInRelation(true, false, true, false);
           else
-            indexB = GetQuadInRelation(true, false, false, true);
+            indexB = GetQuadInRelation(false, true, true, false);
           break;
         case 3:
           quadA = 2;
           quadB = 0;
           indexA = GetQuadInRelation(false, false, true, false);
           if (characters[followIndex].posY % 16 > quadHeight)
-            indexB = GetQuadInRelation(true, false, false, true);
+            indexB = GetQuadInRelation(false, true, true, false);
           else
             indexB = GetQuadInRelation(true, false, true, false);
           break;
@@ -603,17 +583,17 @@ bool QuadScroll(byte direction)
           quadA = 1;
           quadB = 3;
           indexA = GetQuadInRelation(false, false, false, true);
-          if (characters[followIndex].posY % 16 > quadHeight)
-            indexB = GetQuadInRelation(false, true, false, true);
+          if (characters[followIndex].posY % 16 < quadHeight)
+            indexB = GetQuadInRelation(true, false, false, true);
           else
-            indexB = GetQuadInRelation(false, true, true, false);
+            indexB = GetQuadInRelation(false, true, false, true);
           break;
         case 1:
           quadA = 0;
           quadB = 2;
           indexA = GetQuadInRelation(false, false, false, true);
           if (characters[followIndex].posY % 16 < quadHeight)
-            indexB = GetQuadInRelation(false, true, true, false);
+            indexB = GetQuadInRelation(true, false, false, true);
           else
           indexB = GetQuadInRelation(false, true, false, true);
           break;
@@ -622,7 +602,7 @@ bool QuadScroll(byte direction)
           quadB = 1;
           indexA = GetQuadInRelation(false, false, false, true);
           if (characters[followIndex].posY % 16 > quadHeight)
-            indexB = GetQuadInRelation(true, false, true, false);
+            indexB = GetQuadInRelation(false, true, false, true);
           else
             indexB = GetQuadInRelation(true, false, false, true);
           break;
@@ -633,7 +613,7 @@ bool QuadScroll(byte direction)
           if (characters[followIndex].posY % 16 < quadHeight)
             indexB = GetQuadInRelation(true, false, false, true);
           else
-            indexB = GetQuadInRelation(true, false, true, false);
+            indexB = GetQuadInRelation(false, true, false, true);
           break;
       }
       break;
@@ -646,11 +626,6 @@ bool QuadScroll(byte direction)
    if (quadBuffer[quadB] != indexB)
        {
   	LoadQuadrant(indexB, quadB);
-     	result = true;
-       }
-  if (quadBuffer[quadC] != indexC)
-       {
-  	//LoadQuadrant(indexC, quadC);
      	result = true;
        }
   
@@ -1053,7 +1028,7 @@ void MoveCharacter(byte index, byte direction, bool cameraUpdate)
         if (scrollQuads)
         {
           if (QuadScroll(direction))
-            DrawEntireMap();
+          DrawEntireMap();
           
           DrawTile(quadBuffer[0], 0, 10);
           DrawTile(quadBuffer[1], 1, 10);
@@ -1075,7 +1050,7 @@ void MoveCharacter(byte index, byte direction, bool cameraUpdate)
               DrawTile(characters[index].tile, 1, 11);
               break;
           }
-          	CopyDoubleBuffer();
+        CopyDoubleBuffer();
         }
         if (quadBuffer[GetPlayerQuad()] != mapQuads[characters[index].quadPosY][characters[index].quadPosX])
         {
@@ -1085,7 +1060,7 @@ void MoveCharacter(byte index, byte direction, bool cameraUpdate)
           WriteLineMessageWindow(str, 1);
           sprintf(str, "Entering Quad %d@", GetPlayerQuad());
           WriteLineMessageWindow(str, 1);
-          sprintf(str, "Quad Index was %d@", quadBuffer[GetPlayerQuad()]);
+          sprintf(str, "Quad Index %d@", quadBuffer[GetPlayerQuad()]);
           WriteLineMessageWindow(str, 1);
           sprintf(str, "Should be %d@",mapQuads[characters[index].quadPosY][characters[index].quadPosX]);
           WriteLineMessageWindow(str, 1);
