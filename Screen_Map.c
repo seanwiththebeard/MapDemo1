@@ -677,7 +677,9 @@ void InitializeMapData()
     characters[2].collide = true;
     characters[2].message = 2;
     characters[2].posX = 8;
-    characters[2].posY = 23;
+    characters[2].posY = 6;
+    characters[2].quadPosX  = 2;
+    characters[2].quadPosY  = 0;
 
   
   //Init map data
