@@ -2,7 +2,6 @@
 //#link "Screen_Map.c"
 //#link "System_Input.c"
 //#link "System_Graphics.c"
-//#link "System_StaticScreens.c"
 //#link "System_CharacterSets.c"
 //#link "System_MessageWindow.c"
 //#link "Screen_Title.c"
@@ -15,7 +14,6 @@
 #include "Screen_Title.h"
 #include "System_Input.h"
 #include "System_Graphics.h"
-#include "System_StaticScreens.h"
 #include "System_CharacterSets.h"
 #include "System_MessageWindow.h"
 

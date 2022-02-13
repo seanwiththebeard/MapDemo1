@@ -1,3 +1,5 @@
+#include "Common.h"
+
 void InitializeInput();
 void UpdateInput();
 bool InputChanged();

@@ -1,4 +1,3 @@
-#include "System_StaticScreens.h"
 #include "System_Input.h"
 #include "System_Graphics.h"
 #include "System_CharacterSets.h"
@@ -29,6 +28,5 @@ void Update_Title()
 
 void Init_Title()
 {
-    //SetScreen(1);
     Draw_Title();
 }
