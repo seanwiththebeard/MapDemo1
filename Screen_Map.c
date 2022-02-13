@@ -34,8 +34,8 @@ bool wrap = true;
 //Viewport
 #define viewportPosX 0
 #define viewportPosY 0
-#define viewportWidth 11
-#define viewportHeight 11
+#define viewportWidth 9
+#define viewportHeight 9
 #define viewportCharWidth (viewportWidth * 2)
 #define viewportCharHeight (viewportHeight * 2)
 #define viewportWidthQuad (viewportWidth*4)
@@ -445,51 +445,6 @@ byte GetQuadInRelation(bool up, bool down, bool left, bool right)
   return (mapQuads[y][x]);  
 }
 
-/*byte GetNextQuad(byte index)
-{
-  
-  // 0 1 2
-  // 3 4 5
-  // 6 7 8
-  bool up, down, left, right;
-  int x = characters[followIndex].quadPosX;
-  int y = characters[followIndex].quadPosY;
-  if (index < 3)
-    up = true;
-  if (index > 5)
-    down = true;
-  if (index == 0 || index == 3 || index == 6)
-    left = true;
-  if (index == 2 || index == 5 || index == 8)
-    right = true;
-  
-  if (up)
-  {
-    --y;
-    if (y < 0)
-      y = mapMatrixHeight - 1;
-  }
-  if (down)
-  {
-    y++;
-    if (y == mapMatrixHeight)
-      y = 0;
-  }
-  if (left)
-  {
-    x--;
-    if (x < 0)
-      x = mapMatrixWidth - 1;
-  }
-  if (right)
-  {
-    ++x;
-    if (x == mapMatrixWidth)
-      x = 0;
-  }
-  return (mapQuads[y][x]);  
-}*/
-
 void QuadScroll(byte direction)
 {
   //bool result = true;
@@ -610,6 +565,10 @@ void QuadScroll(byte direction)
       }
       break;
   }
+  
+  //indexA = GetNextQuad(indexA);
+  //indexB = GetNextQuad(indexB);
+  
   if (quadBuffer[quadA] != indexA)
       {
         LoadQuadrant(indexA, quadA);
@@ -1000,18 +959,12 @@ void MoveCharacter(byte index, byte direction, bool cameraUpdate)
 
       if (index == followIndex)
       {
-        if (direction == 0)
-          if (characters[index].posY % 16 == 6)
+        if ((direction == 0 && characters[index].posY % 16 == 6)
+        || (direction == 1  && characters[index].posY % 16 == 10)
+        || (direction == 2 && characters[index].posX % 16 == 6)
+        || (direction == 3 && characters[index].posX % 16 == 10))
             scrollQuads = true;
-        if (direction == 1)
-          if (characters[index].posY % 16 == 10)
-            scrollQuads = true;
-        if (direction == 2)
-          if (characters[index].posX % 16 == 6)
-            scrollQuads = true;
-        if (direction == 3)
-          if (characters[index].posX % 16 == 10)
-            scrollQuads = true;
+          
         
         if(cameraUpdate)
           CameraFollow();
@@ -1021,8 +974,7 @@ void MoveCharacter(byte index, byte direction, bool cameraUpdate)
         {
           QuadScroll(direction);
           //DrawEntireMap();
-          
-        CopyDoubleBuffer();
+          //CopyDoubleBuffer();
         }
         if (quadBuffer[GetPlayerQuad()] != mapQuads[characters[index].quadPosY][characters[index].quadPosX])
         {
