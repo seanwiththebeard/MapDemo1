@@ -115,7 +115,7 @@ void SetScreenChar(byte index, byte xpos, byte ypos)
 {  
   int offset = YColumnIndex[ypos] + xpos;
   POKE(&ScreenDoubleBuffer[0][0] + offset, index);
-  POKE(&ScreenDoubleBuffer[1][0] + offset, AttributeSet[0][index]);
+  POKE(&ScreenDoubleBuffer[1][0] + offset, AttributeSet[index]);
 }
 
 void SetScreenCharColor(byte index, byte color, byte xpos, byte ypos)

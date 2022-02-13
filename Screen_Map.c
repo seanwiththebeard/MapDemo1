@@ -367,7 +367,7 @@ void LoadQuadrant(byte index, byte quad)
       break;
     }
 
-    chardata = CharacterRAM + 8*ScreenQuad[index].CharIndex[z];
+    chardata = CharacterRam + 8*ScreenQuad[index].CharIndex[z];
     for (y = 0; y < quadHeight; ++y)
     {
       for (x = 0; x < quadWidth; ++x)
@@ -610,10 +610,10 @@ void InitializeMapData()
       tiles[index].chars[2] = offset + 16;
       tiles[index].chars[3] = offset + 17;
 
-      tiles[index].colors[0] = AttributeSet[0][offset];
-      tiles[index].colors[1] = AttributeSet[0][offset + 1];
-      tiles[index].colors[2] = AttributeSet[0][offset + 16];
-      tiles[index].colors[3] = AttributeSet[0][offset + 17];
+      tiles[index].colors[0] = AttributeSet[offset];
+      tiles[index].colors[1] = AttributeSet[offset + 1];
+      tiles[index].colors[2] = AttributeSet[offset + 16];
+      tiles[index].colors[3] = AttributeSet[offset + 17];
       
       tiles[index].blocked = 0;
 

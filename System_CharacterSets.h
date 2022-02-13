@@ -1,6 +1,4 @@
 #include "Common.h"
 
-#define  CharacterRAM (0xC000)
-
-void SetCharacterSet(byte index);
-extern byte AttributeSet[2][256];
+extern byte AttributeSet[256];
+void SetCharacterSet();
