@@ -34,8 +34,8 @@ bool wrap = true;
 //Viewport
 #define viewportPosX 0
 #define viewportPosY 0
-#define viewportWidth 9
-#define viewportHeight 9
+#define viewportWidth 11
+#define viewportHeight 11
 #define viewportCharWidth (viewportWidth * 2)
 #define viewportCharHeight (viewportHeight * 2)
 #define viewportWidthQuad (viewportWidth*4)
@@ -1009,16 +1009,16 @@ void MoveCharacter(byte index, byte direction, bool cameraUpdate)
       if (index == followIndex)
       {
         if (direction == 0)
-          if (characters[index].posY % 16 == 5)
+          if (characters[index].posY % 16 == 6)
             scrollQuads = true;
         if (direction == 1)
-          if (characters[index].posY % 16 == 11)
+          if (characters[index].posY % 16 == 10)
             scrollQuads = true;
         if (direction == 2)
-          if (characters[index].posX % 16 == 5)
+          if (characters[index].posX % 16 == 6)
             scrollQuads = true;
         if (direction == 3)
-          if (characters[index].posX % 16 == 11)
+          if (characters[index].posX % 16 == 10)
             scrollQuads = true;
         
         if(cameraUpdate)
@@ -1028,28 +1028,9 @@ void MoveCharacter(byte index, byte direction, bool cameraUpdate)
         if (scrollQuads)
         {
           if (QuadScroll(direction))
-          DrawEntireMap();
+          {}
+          //DrawEntireMap();
           
-          DrawTile(quadBuffer[0], 0, 10);
-          DrawTile(quadBuffer[1], 1, 10);
-          DrawTile(quadBuffer[2], 0, 11);
-          DrawTile(quadBuffer[3], 1, 11);
-          
-          switch (GetPlayerQuad())
-          {
-            case 0:
-          	DrawTile(characters[index].tile, 0, 10);
-              break;
-            case 1:
-          	DrawTile(characters[index].tile, 1, 10);
-              break;
-            case 2:
-              	DrawTile(characters[index].tile, 0, 11);              
-              break;
-            case 3:
-              DrawTile(characters[index].tile, 1, 11);
-              break;
-          }
         CopyDoubleBuffer();
         }
         if (quadBuffer[GetPlayerQuad()] != mapQuads[characters[index].quadPosY][characters[index].quadPosX])
