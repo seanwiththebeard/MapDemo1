@@ -1027,8 +1027,7 @@ void MoveCharacter(byte index, byte direction, bool cameraUpdate)
         
         if (scrollQuads)
         {
-          if (QuadScroll(direction))
-          {}
+          QuadScroll(direction);
           //DrawEntireMap();
           
         CopyDoubleBuffer();
