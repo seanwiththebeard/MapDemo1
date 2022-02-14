@@ -29,7 +29,7 @@ void CopyDoubleBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
   int offset = posX + YColumnIndex[posY];
   int offsetY = posX + YColumnIndex[0];
   int charOffset = ScreenRam + offset;
-  int colorOffset = charOffset + 0x1000;
+  int colorOffset = ColorRam + offset;
   int colorAddress = (int)&ScreenDoubleBuffer[1][offset];
   int screenAddress = (int)&ScreenDoubleBuffer[0][offset];
   
@@ -48,7 +48,7 @@ void CopyDoubleBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
     }
 }
 
-void CopyDoubleBufferRows(byte posY, byte sizeY, byte length)
+/*void CopyDoubleBufferRows(byte posY, byte sizeY, byte length)
 {
   int y;
   int offset = YColumnIndex[posY];
@@ -69,7 +69,7 @@ void CopyDoubleBufferRows(byte posY, byte sizeY, byte length)
     	colorAddress += COLS;
     	screenAddress += COLS;
     }
-}
+}*/
 
 void setcolortextmode()
 {
