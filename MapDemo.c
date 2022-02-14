@@ -27,9 +27,9 @@ void Initialize()
   //Init_Title();
   setcolortextmode();
   SetCharacterSet(0);
-  clrscr();
+  //clrscr();
   
-  Draw_Title();
+  //Draw_Title();
 
   BlankMessageWindow();
   CopyDoubleBuffer();
