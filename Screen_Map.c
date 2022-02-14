@@ -51,7 +51,7 @@ byte followIndex = 0;
 int viewportOrigin = (int)&ScreenDoubleBuffer[0][0];
 int colorOrigin = (int)&ScreenDoubleBuffer[1][0];
 
-int offsetViewportChar, offsetViewportColor, offsetViewportCharOdd, offsetViewportColorOdd;
+//int offsetViewportChar, offsetViewportColor, offsetViewportCharOdd, offsetViewportColorOdd;
 
 
 //Camera Position
@@ -206,7 +206,7 @@ void DrawChar(byte index)
 
 void BufferCharacters()
 {
-  int i;
+  byte i;
   for(i = 0; i < charactersCount; ++i)
     DrawChar(i);
 }

@@ -1,7 +1,5 @@
 #include <peekpoke.h>
 #include "Common.h"
-//#include <string.h>
-//#include <c64.h>
 
 byte ReadBit(byte byteToRead, char bit)
 {
