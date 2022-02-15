@@ -52,9 +52,7 @@ void main(void)
   {
     UpdateInput();
     Graphics_Update();
-    //MapUpdate();
-    //ScrollChar(0, 0);
-
+    
     //if(InputChanged())
     {
       CheckInput();
