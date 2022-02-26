@@ -6,7 +6,12 @@
 #include "System_MessageWindow.h"
 #include "System_CharacterSets.h"
 
+//Globals
 char str[16];
+int offset, tileAddress, colorAddress;
+byte byte_x, byte_y, byte_temp, byte_i;
+int int_x, int_y, int_index;
+
 
 //Map Data
 #define mapHeight 32
@@ -82,9 +87,9 @@ struct
 
 void DrawTile(byte index, byte xpos, byte ypos) //Draws directly to the graphics double-buffer
 {
-  int offset = xpos * 2 + YColumnIndex[ypos] * 2;
-  int tileAddress = viewportOrigin + offset;
-  int colorAddress = colorOrigin + offset;
+  offset = xpos * 2 + YColumnIndex[ypos] * 2;
+  tileAddress = viewportOrigin + offset;
+  colorAddress = colorOrigin + offset;
           
   POKEW(tileAddress, PEEKW(&tiles[index].chars[0]));
   POKEW(tileAddress + COLS, PEEKW(&tiles[index].chars[2]));
@@ -94,9 +99,9 @@ void DrawTile(byte index, byte xpos, byte ypos) //Draws directly to the graphics
 
 void DrawBufferTile(byte index, byte xpos, byte ypos) //Draws into the map viewport double-buffer
 {
-  int offset = xpos * 2 + ypos*(viewportWidthQuad);
-  int tileAddress = (int) &DoubleBufferChars[offset];
-  int colorAddress = (int) &DoubleBufferColors[offset];
+  offset = xpos * 2 + ypos*(viewportWidthQuad);
+  tileAddress = (int) &DoubleBufferChars[offset];
+  colorAddress = (int) &DoubleBufferColors[offset];
 
   POKEW(tileAddress, PEEKW(&tiles[index].chars[0]));
   POKEW(tileAddress + viewportCharWidth, PEEKW(&tiles[index].chars[2]));
@@ -125,17 +130,16 @@ struct Character
 
 void CameraFollow()
 {  
-  int x, y;
   offsetX = characters[followIndex].posX;
   offsetY = characters[followIndex].posY;
   
-    for(x = 0; x < cameraOffsetX; ++x)
+    for(byte_x = 0; byte_x < cameraOffsetX; ++byte_x)
     {
       --offsetX;
       ClampOffsetX();
     }
   
-  for(y = 0; y < cameraOffsetY; ++y)
+  for(byte_y = 0; byte_y < cameraOffsetY; ++byte_y)
     {
       --offsetY;
       ClampOffsetY();
@@ -144,22 +148,22 @@ void CameraFollow()
 
 int GetWrappedX(int xPos) //For viewport character positions
 { 
-  int tempX = xPos - offsetX;
+  byte_temp = xPos - offsetX;
   
   if (xPos < offsetX)
-    tempX += mapWidth;
+    byte_temp += mapWidth;
 
-  return tempX;
+  return byte_temp;
 }
 
 int GetWrappedY(int YPos)
 {
-  int tempY = YPos - offsetY;
+  byte_temp = YPos - offsetY;
   
   if (YPos < offsetY)
-    tempY += mapHeight;
+    byte_temp += mapHeight;
 
-  return tempY;
+  return byte_temp;
 }
 
 int WrapMapPositionX(int posX)
@@ -188,17 +192,17 @@ int WrapMapPositionY(int posY)
   return posY;
 }
 
-void DrawChar(byte index)
+void DrawChar(byte charIndex)
 {
-  byte posx = GetWrappedX(characters[index].posX);
-  if (posx < viewportWidth)
+  byte_x = GetWrappedX(characters[charIndex].posX);
+  if (byte_x < viewportWidth)
   {
-    byte posy = GetWrappedY(characters[index].posY);
-    if (posy < viewportHeight)
-      if(characters[index].visible)
+    byte_y = GetWrappedY(characters[charIndex].posY);
+    if (byte_y < viewportHeight)
+      if(characters[charIndex].visible)
       {
         //viewportBuffer[posx][posy] = characters[index].tile;
-        DrawTile(characters[index].tile, posx, posy);
+        DrawTile(characters[charIndex].tile, byte_x, byte_y);
         //charsDrawn[posx][posy] = true;
       }
   }
@@ -206,21 +210,19 @@ void DrawChar(byte index)
 
 void BufferCharacters()
 {
-  byte i;
-  for(i = 0; i < charactersCount; ++i)
-    DrawChar(i);
+  for(byte_i = 0; byte_i < charactersCount; ++byte_i)
+    DrawChar(byte_i);
 }
 
 void UpdateViewport() //Copies the viewport buffer to the screen buffer
 {
-  int x, offset, index;
-  for (x = 0; x < viewportCharHeight; ++x)
+  for (int_x = 0; int_x < viewportCharHeight; ++int_x)
   {
-    index = x * viewportCharWidth;
-    offset = YColumnIndex[x];
+    int_index = int_x * viewportCharWidth;
+    offset = YColumnIndex[int_x];
     
-    CopyMemory((int)(viewportOrigin + offset), (int) &DoubleBufferChars[index], viewportCharWidth);
-    CopyMemory((int)(colorOrigin + offset), (int) &DoubleBufferColors[index], viewportCharWidth);    
+    CopyMemory((int)(viewportOrigin + offset), (int) &DoubleBufferChars[int_index], viewportCharWidth);
+    CopyMemory((int)(colorOrigin + offset), (int) &DoubleBufferColors[int_index], viewportCharWidth);    
   }
   BufferCharacters();
   //CopyDoubleBuffer();
