@@ -9,7 +9,7 @@
 //Globals
 char str[16];
 int int_offset, tileAddress, colorAddress;
-byte byte_x, byte_y, byte_z, byte_temp, byte_i, checkCollision;
+byte byte_x, byte_y, byte_z, byte_a, byte_b, byte_temp, byte_i, checkCollision;
 int int_x, int_y, int_index, int_a, int_b, xPos, yPos, chardata;
 bool scrollQuads, changedQuad;
 byte byte_index, byte_offset;
@@ -102,28 +102,28 @@ struct
     byte MusicIndex;
 }ScreenQuad[64];
 
-void DrawTile(byte index, byte xpos, byte ypos) //Draws directly to the graphics double-buffer
+void DrawTile(byte tileIndex, byte tileX, byte tileY) //Draws directly to the graphics double-buffer
 {
-  int_offset = xpos * 2 + YColumnIndex[ypos] * 2;
+  int_offset = tileX * 2 + YColumnIndex[tileY] * 2;
   tileAddress = viewportOrigin + int_offset;
   colorAddress = colorOrigin + int_offset;
           
-  POKEW(tileAddress, PEEKW(&tiles[index].chars[0]));
-  POKEW(tileAddress + COLS, PEEKW(&tiles[index].chars[2]));
-  POKEW(colorAddress, PEEKW(&tiles[index].colors[0]));
-  POKEW(colorAddress + COLS, PEEKW(&tiles[index].colors[2]));
+  POKEW(tileAddress, PEEKW(&tiles[tileIndex].chars[0]));
+  POKEW(tileAddress + COLS, PEEKW(&tiles[tileIndex].chars[2]));
+  POKEW(colorAddress, PEEKW(&tiles[tileIndex].colors[0]));
+  POKEW(colorAddress + COLS, PEEKW(&tiles[tileIndex].colors[2]));
 }
 
-void DrawBufferTile(byte index, byte xpos, byte ypos) //Draws into the map viewport double-buffer
+void DrawBufferTile(byte tileIndex, byte tileX, byte tileY) //Draws into the map viewport double-buffer
 {
-  int_offset = xpos * 2 + ypos*(viewportWidthQuad);
+  int_offset = tileX * 2 + tileY*(viewportWidthQuad);
   tileAddress = (int) &DoubleBufferChars[int_offset];
   colorAddress = (int) &DoubleBufferColors[int_offset];
 
-  POKEW(tileAddress, PEEKW(&tiles[index].chars[0]));
-  POKEW(tileAddress + viewportCharWidth, PEEKW(&tiles[index].chars[2]));
-  POKEW(colorAddress, PEEKW(&tiles[index].colors[0]));
-  POKEW(colorAddress + viewportCharWidth, PEEKW(&tiles[index].colors[2]));
+  POKEW(tileAddress, PEEKW(&tiles[tileIndex].chars[0]));
+  POKEW(tileAddress + viewportCharWidth, PEEKW(&tiles[tileIndex].chars[2]));
+  POKEW(colorAddress, PEEKW(&tiles[tileIndex].colors[0]));
+  POKEW(colorAddress + viewportCharWidth, PEEKW(&tiles[tileIndex].colors[2]));
 }
 
 struct Character
@@ -251,57 +251,54 @@ void UpdateViewport() //Copies the viewport buffer to the screen buffer
 
 void DrawSingleRow(int row)
 {
-  byte a, b, x, y;
-
   CameraFollow();
   
-  a = offsetX;
-  b = offsetY;
+  byte_a = offsetX;
+  byte_b = offsetY;
   
-  for(y = 0; y < viewportHeight; ++y)
+  for(byte_y = 0; byte_y < viewportHeight; ++byte_y)
   {    
-    b = WrapMapPositionY(b);
-    if (y == row)
+    byte_b = WrapMapPositionY(byte_b);
+    if (byte_y == row)
     {
-      for(x = 0; x < viewportWidth; ++x)
+      for(byte_x = 0; byte_x < viewportWidth; ++byte_x)
       {
-        a=WrapMapPositionX(a);
-        viewportBuffer[x][y] = mapData[a][b];
-        DrawBufferTile(viewportBuffer[x][y], x, y);
-      	a++;
+        byte_a=WrapMapPositionX(byte_a);
+        viewportBuffer[byte_x][byte_y] = mapData[byte_a][byte_b];
+        DrawBufferTile(viewportBuffer[byte_x][byte_y], byte_x, byte_y);
+      	byte_a++;
       }
       break;
     }
-    a = offsetX;
-    ++b;
+    byte_a = offsetX;
+    ++byte_b;
   }
   UpdateViewport();
 }
 
 void DrawSingleColumn(int column)
 {
-  byte a, b, x, y;
   CameraFollow();
   
-  a = offsetX;
-  b = offsetY;
+  byte_a = offsetX;
+  byte_b = offsetY;
   
-  for(y = 0; y < viewportHeight; ++y)
+  for(byte_y = 0; byte_y < viewportHeight; ++byte_y)
   {
-    b = WrapMapPositionY(b);
+    byte_b = WrapMapPositionY(byte_b);
     {
-      for(x = 0; x < viewportWidth; ++x)
+      for(byte_x = 0; byte_x < viewportWidth; ++byte_x)
       {
-        a = WrapMapPositionX(a);
-        viewportBuffer[x][y] = mapData[a][b];
+        byte_a = WrapMapPositionX(byte_a);
+        viewportBuffer[byte_x][byte_y] = mapData[byte_a][byte_b];
         
-        if (x == column)
-          DrawBufferTile(viewportBuffer[x][y], x, y);
-        ++a;
+        if (byte_x == column)
+          DrawBufferTile(viewportBuffer[byte_x][byte_y], byte_x, byte_y);
+        ++byte_a;
       }
     }
-    a = offsetX;
-    ++b;
+    byte_a = offsetX;
+    ++byte_b;
   }
   UpdateViewport();
 }
