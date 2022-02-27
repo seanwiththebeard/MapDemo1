@@ -6,19 +6,8 @@
 #include "System_CharacterSets.h"
 #include "System_Graphics.h"
 
-byte ScreenDoubleBuffer[2][1000];
-byte column;
-int offset;
-byte OffsetY;
-int charOffset;
-int colorOffset;
-int bufferColorAddress;
-int bufferScreenAddress;
-byte charScrollBuffer[8];
-byte temp;
-int origin, retValue;
-
-byte count;
+byte ScreenDoubleBuffer[2][1000], charScrollBuffer[8], column, OffsetY, temp, count;
+int offset, charOffset, colorOffset, origin, retValue, bufferColorAddress, bufferScreenAddress;
 
 int YColumnIndex[25] = {
   0, 40, 80, 120, 160,
@@ -88,6 +77,13 @@ void setcolortextmode()
   // Value * 256 = Screen Position Address
   // 1100 1000
   //POKE (0x0288, 200);
+  
+  for (offset = 0; offset < 1000; ++offset)
+  {
+    ScreenDoubleBuffer[0][offset] = ' ';
+    ScreenDoubleBuffer[1][offset] = ' ';
+  }
+  CopyDoubleBuffer();
 }
 
 void SetScreenChar(byte index, byte xpos, byte ypos)

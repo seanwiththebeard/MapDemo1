@@ -48,6 +48,7 @@ void BlankMessageWindow()
     DrawLineH('0', 1, 22, 24, 17);
     DrawLineV('0', 1, 22, 0, 24);
     DrawLineV('0', 1, 39, 0, 25);
+    CopyDoubleBuffer();
 }
 
 void ScrollMessageWindowUp(byte lines)
