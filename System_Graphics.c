@@ -16,7 +16,7 @@ int bufferColorAddress;
 int bufferScreenAddress;
 byte charScrollBuffer[8];
 byte temp;
-int origin;
+int origin, retValue;
 
 byte count;
 
@@ -47,8 +47,8 @@ void CopyDoubleBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
   raster_wait(240);
   for (column = 0; column < sizeY; ++column)
     {
-    	//if (y % 6 == 0)
-          //raster_wait(240);
+    	if (column % 6 == 0)
+          raster_wait(240);
       	CopyMemory(charOffset, bufferScreenAddress, sizeX);
       	CopyMemory(colorOffset, bufferColorAddress, sizeX);
       	charOffset += COLS;
@@ -168,7 +168,7 @@ void ScrollChar(byte index, byte direction)
 
 void FlashColorWait(byte index, byte length)
 {
-  int retValue = PEEK(0xD021);
+  retValue = PEEK(0xD021);
   bgcolor(index);
   bordercolor(index);
   wait_vblank(length);

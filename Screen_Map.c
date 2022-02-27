@@ -48,8 +48,8 @@ bool wrap = true;
 //Viewport
 #define viewportPosX 0
 #define viewportPosY 0
-#define viewportWidth 11
-#define viewportHeight 11
+#define viewportWidth 9
+#define viewportHeight 9
 #define viewportCharWidth (viewportWidth * 2)
 #define viewportCharHeight (viewportHeight * 2)
 byte doubleCharWidth = viewportCharWidth;
@@ -247,8 +247,8 @@ void UpdateViewport() //Copies the viewport buffer to the screen buffer
     CopyMemory((int)(colorOrigin + int_offset), (int) &DoubleBufferColors[int_index], doubleCharWidth);    
   }
   BufferCharacters();
-  CopyDoubleBuffer();
-  //CopyDoubleBufferArea(viewportPosX, viewportPosY, doubleCharWidth, doubleCharHeight);
+  //CopyDoubleBuffer();
+  CopyDoubleBufferArea(viewportPosX, viewportPosY, doubleCharWidth, doubleCharHeight);
 }
 
 void DrawSingleRow(byte row)
@@ -469,7 +469,7 @@ void QuadScroll(byte direction)
         indexB = GetQuadInRelation(true, false, true, false);
       else
         indexB = GetQuadInRelation(true, false, false, true);
-      switch (compareQuad)
+      /*switch (compareQuad)
       {
         case 0:
           quadA = 2;
@@ -487,7 +487,7 @@ void QuadScroll(byte direction)
           quadA = 1;
           quadB = 0;
           break;
-      }
+      }*/
       break;
     case 1:
       indexA = GetQuadInRelation(false, true, false, false);
@@ -495,7 +495,7 @@ void QuadScroll(byte direction)
         indexB = GetQuadInRelation(false, true, true, false);
       else
         indexB = GetQuadInRelation(false, true, false, true);
-      switch (compareQuad)
+      /*switch (compareQuad)
       {
         case 0:
           quadA = 2;
@@ -513,7 +513,7 @@ void QuadScroll(byte direction)
           quadA = 1;
           quadB = 0;
           break;
-      }
+      }*/
       break;
     case 2:
       indexA = GetQuadInRelation(false, false, true, false);
@@ -521,7 +521,7 @@ void QuadScroll(byte direction)
         indexB = GetQuadInRelation(true, false, true, false);
       else
         indexB = GetQuadInRelation(false, true, true, false);
-      switch (compareQuad)
+      /*switch (compareQuad)
       {
         case 0:
           quadA = 1;
@@ -539,7 +539,7 @@ void QuadScroll(byte direction)
           quadA = 2;
           quadB = 0;
           break;
-      }
+      }*/
       break;
     case 3:
       indexA = GetQuadInRelation(false, false, false, true);
@@ -547,7 +547,50 @@ void QuadScroll(byte direction)
         indexB = GetQuadInRelation(true, false, false, true);
       else
         indexB = GetQuadInRelation(false, true, false, true);
-      switch (compareQuad)
+      /*switch (compareQuad)
+      {
+        case 0:
+          quadA = 1;
+          quadB = 3;
+          break;
+        case 1:
+          quadA = 0;
+          quadB = 2;
+          break;
+        case 2:
+          quadA = 3;
+          quadB = 1;
+          break;
+        case 3:
+          quadA = 2;
+          quadB = 0;
+          break;
+      }*/
+      break;
+  }
+  
+  if (direction < 2)
+    switch (compareQuad)
+      {
+        case 0:
+          quadA = 2;
+          quadB = 3;
+          break;
+        case 1:
+          quadA = 3;
+          quadB = 2;
+          break;
+        case 2:
+          quadA = 0;
+          quadB = 1;
+          break;
+        case 3:
+          quadA = 1;
+          quadB = 0;
+          break;
+      }
+  else
+    switch (compareQuad)
       {
         case 0:
           quadA = 1;
@@ -566,8 +609,6 @@ void QuadScroll(byte direction)
           quadB = 0;
           break;
       }
-      break;
-  }
   
   if (quadBuffer[quadA] != indexA)
       {
@@ -767,7 +808,7 @@ bool CheckCollision(byte charIndex, byte Direction)
   //Check the tile we're already standing on
   if(ReadBit(tiles[mapData[xPos][yPos]].blocked, Direction))
   {
-    WriteLineMessageWindow("Standing on blocked@", 0);
+    //WriteLineMessageWindow("Standing on blocked@", 0);
     return true;
   }
   
@@ -927,12 +968,9 @@ void MoveCharacter(byte index, byte direction, bool cameraUpdate)
         ScrollViewport(direction);
         
         if (scrollQuads)
-        {
           QuadScroll(direction);
-          //DrawEntireMap();
-          //CopyDoubleBuffer();
-        }
-        if (quadBuffer[GetPlayerQuad()] != mapQuads[characters[index].quadPosY][characters[index].quadPosX])
+        
+        /*if (quadBuffer[GetPlayerQuad()] != mapQuads[characters[index].quadPosY][characters[index].quadPosX])
         {
           sprintf(str, "QuadPos X%d,Y%d@", characters[index].quadPosX, characters[index].quadPosY);
           WriteLineMessageWindow(str, 0);
@@ -946,7 +984,7 @@ void MoveCharacter(byte index, byte direction, bool cameraUpdate)
           WriteLineMessageWindow(str, 0);
           LoadQuadrant(mapQuads[characters[index].quadPosY][characters[index].quadPosX], GetPlayerQuad());
           DrawEntireMap();
-        }
+        }*/
       }
   }
 }
