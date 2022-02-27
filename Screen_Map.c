@@ -150,25 +150,29 @@ struct Character
   byte message;
 } characters[charactersCount];
 
-#define ClampOffsetX(){if(offsetX >= mapWidth)offsetX = 0; if (offsetX < 0)offsetX = mapWidth - 1;}
-#define ClampOffsetY(){if(offsetY >= mapHeight)offsetY = 0; if (offsetY < 0) offsetY = mapHeight - 1;}
 
 void CameraFollow()
 {  
   offsetX = characters[followIndex].posX;
   offsetY = characters[followIndex].posY;
   
-    for(byte_x = 0; byte_x < cameraOffsetX; ++byte_x)
-    {
-      --offsetX;
-      ClampOffsetX();
-    }
+  for(byte_x = 0; byte_x < cameraOffsetX; ++byte_x)
+  {
+    --offsetX;
+    if(offsetX >= mapWidth)
+      offsetX = 0;
+    if (offsetX < 0)
+      offsetX = mapWidth - 1;
+  }
   
   for(byte_y = 0; byte_y < cameraOffsetY; ++byte_y)
-    {
-      --offsetY;
-      ClampOffsetY();
-    }
+  {
+    --offsetY;
+    if(offsetY >= mapHeight)
+      offsetY = 0;
+    if (offsetY < 0)
+      offsetY = mapHeight - 1;
+  }
 }
 
 int GetWrappedX(int xPos) //For viewport character positions
