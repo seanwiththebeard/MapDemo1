@@ -24,8 +24,8 @@ byte mapData[mapWidth][mapHeight];
 #define mapMatrixWidth 8
 #define mapMatrixHeight 8
 byte mapQuads[mapMatrixHeight][mapMatrixWidth] = {
-  {0, 1, 2, 3, 4, 5, 6, 7},
-  {8, 9, 10, 11, 12, 13, 14, 15},
+  { 0,  1,  2,  3,  4,  5,  6,  7},
+  { 8,  9, 10, 11, 12, 13, 14, 15},
   {16, 17, 18, 19, 20, 21, 22, 23},
   {24, 25, 26, 27, 28, 29, 30, 31},
   {32, 33, 34, 35, 36, 37, 38, 39},
@@ -48,8 +48,8 @@ bool wrap = true;
 //Viewport
 #define viewportPosX 0
 #define viewportPosY 0
-#define viewportWidth 9
-#define viewportHeight 9
+#define viewportWidth 11
+#define viewportHeight 11
 #define viewportCharWidth (viewportWidth * 2)
 #define viewportCharHeight (viewportHeight * 2)
 byte doubleCharWidth = viewportCharWidth;
@@ -217,26 +217,19 @@ int WrapMapPositionY(int posY)
   return posY;
 }
 
-void DrawChar(byte charIndex)
-{
-  byte_x = GetWrappedX(characters[charIndex].posX);
-  if (byte_x < viewportWidth)
-  {
-    byte_y = GetWrappedY(characters[charIndex].posY);
-    if (byte_y < viewportHeight)
-      if(characters[charIndex].visible)
-      {
-        //viewportBuffer[posx][posy] = characters[index].tile;
-        DrawTile(characters[charIndex].tile, byte_x, byte_y);
-        //charsDrawn[posx][posy] = true;
-      }
-  }
-}
-
 void BufferCharacters()
 {
   for(byte_i = 0; byte_i < charactersCount; ++byte_i)
-    DrawChar(byte_i);
+  {
+    byte_x = GetWrappedX(characters[byte_i].posX);
+    if (byte_x < viewportWidth)
+    {
+      byte_y = GetWrappedY(characters[byte_i].posY);
+      if (byte_y < viewportHeight)
+        if(characters[byte_i].visible)
+          DrawTile(characters[byte_i].tile, byte_x, byte_y);
+    }
+  }
 }
 
 void UpdateViewport() //Copies the viewport buffer to the screen buffer
@@ -250,9 +243,6 @@ void UpdateViewport() //Copies the viewport buffer to the screen buffer
     CopyMemory((int)(colorOrigin + int_offset), (int) &DoubleBufferColors[int_index], doubleCharWidth);    
   }
   BufferCharacters();
-  //CopyDoubleBuffer();
-  //raster_wait(255);
-  //CopyDoubleBuffer();
   CopyDoubleBufferArea(viewportPosX, viewportPosY, doubleCharWidth, doubleCharHeight);
 }
 
@@ -333,7 +323,6 @@ void FillQuadBuffer()
 
 void LoadQuadrant(byte quadIndex, byte quad)
 {  
-  //char str[16];
   //sprintf(str, "Tile%d to Quad%d@", index, quad);
   //WriteLineMessageWindow(str, 1);
   
@@ -615,7 +604,6 @@ void InitializeMapData()
       tiles[byte_index].colors[3] = AttributeSet[byte_offset + 17];
       
       tiles[byte_index].blocked = 0;
-
 
       ScreenQuad[byte_index].CharIndex[0] = byte_offset;
       ScreenQuad[byte_index].CharIndex[1] = byte_offset + 1;
