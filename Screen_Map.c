@@ -247,7 +247,8 @@ void UpdateViewport() //Copies the viewport buffer to the screen buffer
     CopyMemory((int)(colorOrigin + int_offset), (int) &DoubleBufferColors[int_index], doubleCharWidth);    
   }
   BufferCharacters();
-  CopyDoubleBufferArea(viewportPosX, viewportPosY, doubleCharWidth, doubleCharHeight);
+  CopyDoubleBuffer();
+  //CopyDoubleBufferArea(viewportPosX, viewportPosY, doubleCharWidth, doubleCharHeight);
 }
 
 void DrawSingleRow(byte row)
@@ -766,7 +767,7 @@ bool CheckCollision(byte charIndex, byte Direction)
   //Check the tile we're already standing on
   if(ReadBit(tiles[mapData[xPos][yPos]].blocked, Direction))
   {
-    WriteLineMessageWindow("Standing on blocked@", 1);
+    WriteLineMessageWindow("Standing on blocked@", 0);
     return true;
   }
   
@@ -934,15 +935,15 @@ void MoveCharacter(byte index, byte direction, bool cameraUpdate)
         if (quadBuffer[GetPlayerQuad()] != mapQuads[characters[index].quadPosY][characters[index].quadPosX])
         {
           sprintf(str, "QuadPos X%d,Y%d@", characters[index].quadPosX, characters[index].quadPosY);
-          WriteLineMessageWindow(str, 1);
+          WriteLineMessageWindow(str, 0);
           sprintf(str, "CharPos X%d,Y%d@", characters[index].posX, characters[index].posY);
-          WriteLineMessageWindow(str, 1);
+          WriteLineMessageWindow(str, 0);
           sprintf(str, "Entering Quad %d@", GetPlayerQuad());
-          WriteLineMessageWindow(str, 1);
+          WriteLineMessageWindow(str, 0);
           sprintf(str, "Quad Index %d@", quadBuffer[GetPlayerQuad()]);
-          WriteLineMessageWindow(str, 1);
+          WriteLineMessageWindow(str, 0);
           sprintf(str, "Should be %d@",mapQuads[characters[index].quadPosY][characters[index].quadPosX]);
-          WriteLineMessageWindow(str, 1);
+          WriteLineMessageWindow(str, 0);
           LoadQuadrant(mapQuads[characters[index].quadPosY][characters[index].quadPosX], GetPlayerQuad());
           DrawEntireMap();
         }
@@ -976,7 +977,7 @@ byte CheckInput()
     {
       sprintf(str, "Pos = %d,%d@", characters[0].posX, characters[0].posY);
       DrawEntireMap();
-      WriteLineMessageWindow(str, 1);
+      WriteLineMessageWindow(str, 0);
       return 1;
     }
   return 0;

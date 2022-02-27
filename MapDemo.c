@@ -24,24 +24,23 @@ void Initialize()
   bordercolor(0);
 
   InitializeInput();
-  //Init_Title();
   setcolortextmode();
-  SetCharacterSet(0);
+  SetCharacterSet();
   //clrscr();
   
-  //Draw_Title();
+  Draw_Title();
 
   BlankMessageWindow();
-  CopyDoubleBuffer();
+  //CopyDoubleBuffer();
 
   InitializeMapData();
   DrawEntireMap();
   ScreenEnable();
 
-  //WriteLineMessageWindow("TheQuickBrownFox", 1);
-  //WriteLineMessageWindow("JumpsOverLazyDog", 1);
-  //WriteLineMessageWindow("0123456789:;<=>?", 1);
-  //WriteLineMessageWindow(" ! #$%&'()*+,-./", 1);
+  WriteLineMessageWindow("TheQuickBrownFox", 0);
+  WriteLineMessageWindow("JumpsOverLazyDog", 0);
+  WriteLineMessageWindow("0123456789:;<=>?", 0);
+  WriteLineMessageWindow(" ! #$%&'()*+,-./", 0);
 }
 
 void main(void)

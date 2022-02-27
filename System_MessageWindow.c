@@ -10,6 +10,8 @@ byte Height = 7;
 byte Width = 16;
 byte MessageWindow[16*7];
 byte MessageWindowColors[16*7];
+byte x, y;
+int addressChar, addressColor;
 
 char Messages[64][16] = {
     "Hello there!@",
@@ -18,25 +20,23 @@ char Messages[64][16] = {
 
 void DrawMessageWindow()
 {
-    int y;
-    int address = (int)&ScreenDoubleBuffer[0][0] + PosX + COLS*(PosY);
-    int coloraddress = address + 1000;
+    addressChar = (int)&ScreenDoubleBuffer[0][0] + PosX + COLS*(PosY);
+    addressColor = addressChar + 1000;
     for (y = 0; y < Height; ++y)
         {
             //SetScreenChar(MessageWindow[x + Height*y], PosX + x, PosY + (y * COLS));
             //memcpy((int*)address, &MessageWindow[y * Width], Width);
-            CopyMemory((int) address, (int) &MessageWindow[y * Width], Width);
-            CopyMemory((int) coloraddress, (int) &MessageWindowColors[y * Width], Width);
+            CopyMemory((int) addressChar, (int) &MessageWindow[y * Width], Width);
+            CopyMemory((int) addressColor, (int) &MessageWindowColors[y * Width], Width);
             //memcpy(address + 0x1000,&(AttributeSet[0][MessageWindow[Width * x]]), Width);
-            address += COLS;
-            coloraddress += COLS;
+            addressChar += COLS;
+            addressColor += COLS;
             //POKEW(tileaddress, PEEKW(&MessageWindow[x * 2][y]));
             //POKEW(tileaddress + 0x1000, PEEKW(&AttributeSet[0][MessageWindow[x * 2][y]]));
         }
 }
 void BlankMessageWindow()
 {
-    byte x;
     for (x = 0; x < Width * Height; ++x)
     {
         MessageWindow[x] = ' ';
@@ -52,7 +52,6 @@ void BlankMessageWindow()
 
 void ScrollMessageWindowUp(byte lines)
 {
-  byte x, y;
   for (y = 0; y < lines; ++y)
   {
     for (x = 0; x < Height * Width - Width; ++x)
@@ -72,7 +71,6 @@ void ScrollMessageWindowUp(byte lines)
 
 void WriteLineMessageWindow(char message[16], byte delay)
 {
-    byte x;
     ScrollMessageWindowUp(1);  
     for(x = 0; x < Width; ++x)
     {
@@ -91,14 +89,15 @@ void WriteLineMessageWindow(char message[16], byte delay)
         MessageWindow[(Width*Height - Width) + x] = message[x];
         MessageWindowColors[(Width*Height - Width) + x] = AttributeSet[message[x]];
       }
-    SetScreenCharColor(message[x], AttributeSet[message[x]], PosX + x, PosY + Height - 1);
+      SetScreenCharColor(message[x], AttributeSet[message[x]], PosX + x, PosY + Height - 1);
       if (delay > 0)
-        {
-          wait_vblank(delay);
-          //DrawMessageWindow();
-          CopyDoubleBuffer();
-        }
+      {
+        wait_vblank(delay);
+        //CopyDoubleBufferArea(PosX, PosY, Width, Height);
+        CopyDoubleBuffer();
+      }
     }
-  //CopyDoubleBuffer();
-  //DrawMessageWindow();
+  if (delay == 0)
+    CopyDoubleBuffer();      
+    
 }
