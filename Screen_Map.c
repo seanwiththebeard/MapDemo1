@@ -36,6 +36,13 @@ byte mapQuads[mapMatrixHeight][mapMatrixWidth] = {
 byte quadBuffer[4];
 int quadX = 0;
 int quadY = 0;
+#define quadWidth 8
+#define quadHeight 8
+byte quadWidthDouble = quadWidth * 2;
+byte quadHeightDouble = quadHeight * 2;
+byte yQuadHeight = 2*mapQuadHeight;
+
+
 bool wrap = true;
 
 //Viewport
@@ -45,21 +52,21 @@ bool wrap = true;
 #define viewportHeight 9
 #define viewportCharWidth (viewportWidth * 2)
 #define viewportCharHeight (viewportHeight * 2)
-#define viewportWidthQuad (viewportWidth*4)
-#define charactersCount 16
-#define LastMapScanline (8*viewportPosY + 16*viewportHeight)
+byte doubleCharWidth = viewportCharWidth;
+byte doubleCharHeight = viewportCharHeight;
+byte viewportWidthQuad = (viewportWidth*4);
+byte LastMapScanline = (8*viewportPosY + 16*viewportHeight);
 
 //Scrolling left and right line buffer
 byte bufferLength = viewportCharWidth - 2;
 byte buffer[viewportCharWidth];
 int BufferAddress = (int) &buffer[0];
-
-
 int totalSize = viewportCharHeight * viewportCharWidth;
-
 byte viewportBuffer[viewportWidth][viewportHeight];
 byte DoubleBufferChars[viewportCharWidth*viewportCharHeight];
 byte DoubleBufferColors[viewportCharWidth*viewportCharHeight];
+#undef viewportCharWidth
+#undef viewportCharHeight
 
 int CharAddress, CharAddress2, ColorAddress, ColorAddress2;
 
@@ -121,11 +128,12 @@ void DrawBufferTile(byte tileIndex, byte tileX, byte tileY) //Draws into the map
   colorAddress = (int) &DoubleBufferColors[int_offset];
 
   POKEW(tileAddress, PEEKW(&tiles[tileIndex].chars[0]));
-  POKEW(tileAddress + viewportCharWidth, PEEKW(&tiles[tileIndex].chars[2]));
+  POKEW(tileAddress + doubleCharWidth, PEEKW(&tiles[tileIndex].chars[2]));
   POKEW(colorAddress, PEEKW(&tiles[tileIndex].colors[0]));
-  POKEW(colorAddress + viewportCharWidth, PEEKW(&tiles[tileIndex].colors[2]));
+  POKEW(colorAddress + doubleCharWidth, PEEKW(&tiles[tileIndex].colors[2]));
 }
 
+#define charactersCount 16
 struct Character
 {
   byte tile;
@@ -233,23 +241,22 @@ void BufferCharacters()
 
 void UpdateViewport() //Copies the viewport buffer to the screen buffer
 {
-  for (int_x = 0; int_x < viewportCharHeight; ++int_x)
+  for (int_x = 0; int_x < doubleCharHeight; ++int_x)
   {
-    int_index = int_x * viewportCharWidth;
+    int_index = int_x * doubleCharWidth;
     int_offset = YColumnIndex[int_x];
     
-    CopyMemory((int)(viewportOrigin + int_offset), (int) &DoubleBufferChars[int_index], viewportCharWidth);
-    CopyMemory((int)(colorOrigin + int_offset), (int) &DoubleBufferColors[int_index], viewportCharWidth);    
+    CopyMemory((int)(viewportOrigin + int_offset), (int) &DoubleBufferChars[int_index], doubleCharWidth);
+    CopyMemory((int)(colorOrigin + int_offset), (int) &DoubleBufferColors[int_index], doubleCharWidth);    
   }
   BufferCharacters();
   //CopyDoubleBuffer();
   //raster_wait(255);
   //CopyDoubleBuffer();
-  //CopyDoubleBufferRows(viewportPosY, viewportCharHeight, viewportCharWidth);
-  CopyDoubleBufferArea(viewportPosX, viewportPosY, viewportCharWidth, viewportCharHeight);
+  CopyDoubleBufferArea(viewportPosX, viewportPosY, doubleCharWidth, doubleCharHeight);
 }
 
-void DrawSingleRow(int row)
+void DrawSingleRow(byte row)
 {
   CameraFollow();
   
@@ -276,7 +283,7 @@ void DrawSingleRow(int row)
   UpdateViewport();
 }
 
-void DrawSingleColumn(int column)
+void DrawSingleColumn(byte column)
 {
   CameraFollow();
   
@@ -305,33 +312,27 @@ void DrawSingleColumn(int column)
 
 void FillQuadBuffer()
 {
-  byte tempY, tempX;
   quadX = characters[followIndex].quadPosX;
   quadY = characters[followIndex].quadPosY;
 
   if (quadX + 1 == mapQuadWidth)
-    tempX = 0;
+    byte_x = 0;
   else
-    tempX = quadX + 1;
+    byte_x = quadX + 1;
 
   if (quadY + 1 == mapQuadHeight)
-    tempY = 0;
+    byte_y = 0;
   else
-    tempY = quadY + 1;
+    byte_y = quadY + 1;
 
   quadBuffer[0] = mapQuads[quadY][quadX];
-  quadBuffer[1] = mapQuads[quadY][tempX];
-  quadBuffer[2] = mapQuads[tempY][quadX];
-  quadBuffer[3] = mapQuads[tempY][tempX];
+  quadBuffer[1] = mapQuads[quadY][byte_x];
+  quadBuffer[2] = mapQuads[byte_y][quadX];
+  quadBuffer[3] = mapQuads[byte_y][byte_x];
 }
 
 void LoadQuadrant(byte quadIndex, byte quad)
-{
-  #define quadWidth 8
-  #define quadHeight 8
-  #define quadWidthDouble quadWidth * 2
-  #define quadHeightDouble quadHeight * 2
-  
+{  
   //char str[16];
   //sprintf(str, "Tile%d to Quad%d@", index, quad);
   //WriteLineMessageWindow(str, 1);
@@ -410,17 +411,16 @@ void LoadMapQuads()
 
 byte GetPlayerQuad() //Returns the viewport quadrant of the player character
 {
-  byte ypos = 2*mapQuadHeight;
   if (characters[followIndex].posX < 2 * mapQuadWidth)
   {
-    if (characters[followIndex].posY < ypos)
+    if (characters[followIndex].posY < yQuadHeight)
       return 0;
     else
       return 2;
   }
   else
   {
-    if (characters[followIndex].posY < ypos)
+    if (characters[followIndex].posY < yQuadHeight)
       return 1;
     else
       return 3;
@@ -632,7 +632,7 @@ void InitializeMapData()
     ScreenQuad[2].Chars[1] = 44;
   
   //Init Characters
-  for (byte_i = 0; byte_i < 16; ++byte_i)
+  for (byte_i = 0; byte_i < charactersCount; ++byte_i)
   {
     characters[byte_i].tile = byte_i;
     characters[byte_i].chars[0] = 8 + byte_i * 16;
@@ -712,31 +712,31 @@ void ScrollViewport(byte direction)
     break;
     case 2:
     {
-      for (byte_y = 0; byte_y < viewportCharHeight; ++byte_y)
+      for (byte_y = 0; byte_y < doubleCharHeight; ++byte_y)
       {        
         CopyMemory(BufferAddress, CharAddress, bufferLength);
         CopyMemory(CharAddress2, BufferAddress, bufferLength);
         CopyMemory(BufferAddress, ColorAddress, bufferLength);
         CopyMemory(ColorAddress2, BufferAddress, bufferLength);
         
-        CharAddress += viewportCharWidth;
-        CharAddress2 += viewportCharWidth;
-        ColorAddress += viewportCharWidth;
-        ColorAddress2 += viewportCharWidth;
+        CharAddress += doubleCharWidth;
+        CharAddress2 += doubleCharWidth;
+        ColorAddress += doubleCharWidth;
+        ColorAddress2 += doubleCharWidth;
       }
       DrawSingleColumn(0);
     }
     break;
     case 3:
     { 
-      for (byte_y = 0; byte_y < viewportCharHeight; ++byte_y)
+      for (byte_y = 0; byte_y < doubleCharHeight; ++byte_y)
       {
         CopyMemory(CharAddress, CharAddress2, bufferLength);
         CopyMemory(ColorAddress, ColorAddress2, bufferLength);
-        CharAddress += viewportCharWidth;
-        CharAddress2 += viewportCharWidth;
-        ColorAddress += viewportCharWidth;
-        ColorAddress2 += viewportCharWidth;
+        CharAddress += doubleCharWidth;
+        CharAddress2 += doubleCharWidth;
+        ColorAddress += doubleCharWidth;
+        ColorAddress2 += doubleCharWidth;
       }
       DrawSingleColumn(viewportWidth - 1);
     }
@@ -958,7 +958,7 @@ void MoveCharacter(byte index, byte direction, bool cameraUpdate)
   }
 }
 
-int CheckInput()
+byte CheckInput()
 {
     if (InputUp())
     {
@@ -982,10 +982,9 @@ int CheckInput()
     }
     if (InputFire())
     {
-      byte string[16];
-      sprintf(string, "Pos = %d,%d@", characters[0].posX, characters[0].posY);
+      sprintf(str, "Pos = %d,%d@", characters[0].posX, characters[0].posY);
       DrawEntireMap();
-      WriteLineMessageWindow(string, 1);
+      WriteLineMessageWindow(str, 1);
       return 1;
     }
   return 0;

@@ -1,5 +1,5 @@
 #include "Common.h"
 
 void InitializeMapData();
-void CheckInput();
+byte CheckInput();
 void DrawEntireMap();
