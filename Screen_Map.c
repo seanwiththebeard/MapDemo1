@@ -9,8 +9,8 @@
 //Globals
 char str[16];
 int int_offset, tileAddress, colorAddress;
-byte byte_x, byte_y, byte_temp, byte_i, checkCollision;
-int int_x, int_y, int_index, int_a, int_b, xPos, yPos;
+byte byte_x, byte_y, byte_z, byte_temp, byte_i, checkCollision;
+int int_x, int_y, int_index, int_a, int_b, xPos, yPos, chardata;
 bool scrollQuads, changedQuad;
 byte byte_index, byte_offset;
 
@@ -67,6 +67,14 @@ byte followIndex = 0;
 
 int viewportOrigin = (int)&ScreenDoubleBuffer[0][0];
 int colorOrigin = (int)&ScreenDoubleBuffer[1][0];
+
+//QuadScroll
+byte originX, originY;
+byte quadA; //Entering quad
+byte quadB; //Diagonal quad
+byte indexA, indexB;
+byte compareQuad;
+bool posX, posY;
 
 //Camera Position
 int offsetX, offsetY = 0;
@@ -243,7 +251,7 @@ void UpdateViewport() //Copies the viewport buffer to the screen buffer
 
 void DrawSingleRow(int row)
 {
-  int a, b, x, y;
+  byte a, b, x, y;
 
   CameraFollow();
   
@@ -272,7 +280,7 @@ void DrawSingleRow(int row)
 
 void DrawSingleColumn(int column)
 {
-  int a, b, x, y;
+  byte a, b, x, y;
   CameraFollow();
   
   a = offsetX;
@@ -320,23 +328,20 @@ void FillQuadBuffer()
   quadBuffer[3] = mapQuads[tempY][tempX];
 }
 
-void LoadQuadrant(byte index, byte quad)
+void LoadQuadrant(byte quadIndex, byte quad)
 {
   #define quadWidth 8
   #define quadHeight 8
   #define quadWidthDouble quadWidth * 2
   #define quadHeightDouble quadHeight * 2
   
-  byte x, y, z, originX, originY;
-  int chardata;
-  
   //char str[16];
   //sprintf(str, "Tile%d to Quad%d@", index, quad);
   //WriteLineMessageWindow(str, 1);
   
-  quadBuffer[quad] = index;
+  quadBuffer[quad] = quadIndex;
 
-  for (z = 0; z < 4; ++z)
+  for (byte_z = 0; byte_z < 4; ++byte_z)
   {
     switch (quad)
     {
@@ -360,7 +365,7 @@ void LoadQuadrant(byte index, byte quad)
       break;
     }
 
-    switch (z)
+    switch (byte_z)
     {
     case 0:
       break;
@@ -378,18 +383,18 @@ void LoadQuadrant(byte index, byte quad)
       break;
     }
 
-    chardata = CharacterRam + 8*ScreenQuad[index].CharIndex[z];
-    for (y = 0; y < quadHeight; ++y)
+    chardata = CharacterRam + 8*ScreenQuad[quadIndex].CharIndex[byte_z];
+    for (byte_y = 0; byte_y < quadHeight; ++byte_y)
     {
-      for (x = 0; x < quadWidth; ++x)
+      for (byte_x = 0; byte_x < quadWidth; ++byte_x)
       {
-        if (ReadBit(PEEK(chardata + y), 7 - x) > 0)
+        if (ReadBit(PEEK(chardata + byte_y), 7 - byte_x) > 0)
         {
-          mapData[x + originX][y + originY] = ScreenQuad[index].Chars[1];
+          mapData[byte_x + originX][byte_y + originY] = ScreenQuad[quadIndex].Chars[1];
         }
         else
         {
-          mapData[x + originX][y + originY] = ScreenQuad[index].Chars[0];
+          mapData[byte_x + originX][byte_y + originY] = ScreenQuad[quadIndex].Chars[0];
         }
       }
     }
@@ -427,47 +432,43 @@ byte GetPlayerQuad() //Returns the viewport quadrant of the player character
 
 byte GetQuadInRelation(bool up, bool down, bool left, bool right)
 {
-  int x = characters[followIndex].quadPosX;
-  int y = characters[followIndex].quadPosY;
+  int_x = characters[followIndex].quadPosX;
+  int_y = characters[followIndex].quadPosY;
   if (up)
   {
-    --y;
-    if (y < 0)
-      y = mapMatrixHeight - 1;
+    --int_y;
+    if (int_y < 0)
+      int_y = mapMatrixHeight - 1;
   }
   if (down)
   {
-    y++;
-    if (y == mapMatrixHeight)
-      y = 0;
+    int_y++;
+    if (int_y == mapMatrixHeight)
+      int_y = 0;
   }
   if (left)
   {
-    x--;
-    if (x < 0)
-      x = mapMatrixWidth - 1;
+    int_x--;
+    if (int_x < 0)
+      int_x = mapMatrixWidth - 1;
   }
   if (right)
   {
-    ++x;
-    if (x == mapMatrixWidth)
-      x = 0;
+    ++int_x;
+    if (int_x == mapMatrixWidth)
+      int_x = 0;
   }
-  return (mapQuads[y][x]);  
+  return (mapQuads[int_y][int_x]);  
 }
 
 void QuadScroll(byte direction)
 {
-  //bool result = true;
-  byte originX = characters[followIndex].quadPosX;
-  byte originY = characters[followIndex].quadPosY;
-  byte quadA; //Entering quad
-  byte quadB; //Diagonal quad
-  byte indexA, indexB;
-  byte compareQuad = GetPlayerQuad();
+  originX = characters[followIndex].quadPosX;
+  originY = characters[followIndex].quadPosY;
+  compareQuad = GetPlayerQuad();
   
-  bool posX = characters[followIndex].posX % 16 < quadWidth;
-  bool posY = characters[followIndex].posY % 16 < quadHeight;
+  posX = characters[followIndex].posX % 16 < quadWidth;
+  posY = characters[followIndex].posY % 16 < quadHeight;
   
   switch(direction)
   {
@@ -577,27 +578,18 @@ void QuadScroll(byte direction)
       break;
   }
   
-  //indexA = GetNextQuad(indexA);
-  //indexB = GetNextQuad(indexB);
-  
   if (quadBuffer[quadA] != indexA)
       {
         LoadQuadrant(indexA, quadA);
-    	//result = true;
       }
    if (quadBuffer[quadB] != indexB)
        {
   	LoadQuadrant(indexB, quadB);
-     	//result = true;
        }
-  
-  //return result;
 }
 
 void InitializeMapData()
 {
-  int x, y, i;
-
   #define grass 36
   #define water 34
   #define signpost 35
@@ -608,11 +600,11 @@ void InitializeMapData()
   cameraOffsetX = viewportWidth / 2;
   cameraOffsetY = viewportHeight / 2;
   
-  for (y = 0; y < 8; ++y)
-    for (x = 0; x < 8; ++x)
+  for (byte_y = 0; byte_y < 8; ++byte_y)
+    for (byte_x = 0; byte_x < 8; ++byte_x)
     {
-      byte_index = x + y*8;
-      byte_offset = x * 2 + 32*y;
+      byte_index = byte_x + byte_y*8;
+      byte_offset = byte_x * 2 + 32*byte_y;
 
       tiles[byte_index].index = byte_index;
       tiles[byte_index].chars[0] = byte_offset;
@@ -643,23 +635,23 @@ void InitializeMapData()
     ScreenQuad[2].Chars[1] = 44;
   
   //Init Characters
-  for (i = 0; i < 16; ++i)
+  for (byte_i = 0; byte_i < 16; ++byte_i)
   {
-    characters[i].tile = i;
-    characters[i].chars[0] = 8 + i * 16;
-    characters[i].chars[1] = 9 + i * 16;
-    characters[i].chars[2] = 10 + i * 16;
-    characters[i].chars[3] = 11 + i * 16;
-    characters[i].colors[0] = i + 1;
-    characters[i].colors[1] = i + 1;
-    characters[i].colors[2] = i + 1;
-    characters[i].colors[3] = i + 1;
-    characters[i].posX = i;
-    characters[i].posY = i;
-    characters[i].quadPosX = i;
-    characters[i].quadPosX = i;
-    characters[i].visible = false;
-    characters[i].collide = false;
+    characters[byte_i].tile = byte_i;
+    characters[byte_i].chars[0] = 8 + byte_i * 16;
+    characters[byte_i].chars[1] = 9 + byte_i * 16;
+    characters[byte_i].chars[2] = 10 + byte_i * 16;
+    characters[byte_i].chars[3] = 11 + byte_i * 16;
+    characters[byte_i].colors[0] = byte_i + 1;
+    characters[byte_i].colors[1] = byte_i + 1;
+    characters[byte_i].colors[2] = byte_i + 1;
+    characters[byte_i].colors[3] = byte_i + 1;
+    characters[byte_i].posX = byte_i;
+    characters[byte_i].posY = byte_i;
+    characters[byte_i].quadPosX = byte_i;
+    characters[byte_i].quadPosX = byte_i;
+    characters[byte_i].visible = false;
+    characters[byte_i].collide = false;
   }
     characters[0].visible = true;
     characters[0].posX  = 8;
@@ -682,14 +674,14 @@ void InitializeMapData()
     characters[2].quadPosY  = 0;
 
   
-  //Init map data
-  for(y = 0; y < mapHeight; ++y)
+  /*//Init map data
+  for(byte_y = 0; byte_y < mapHeight; ++byte_y)
     {
-      for(x = 0; x < mapWidth; ++x)
+      for(byte_x = 0; byte_x < mapWidth; ++byte_x)
       {
-        mapData[x][y] = water;
+        mapData[byte_x][byte_y] = water;
       }
-    }  
+    }  */
   LoadMapQuads();
 }
 
