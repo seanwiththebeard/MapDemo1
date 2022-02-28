@@ -29,12 +29,12 @@ void Initialize()
   Draw_Title();
   InitializeMapData();
   DrawEntireMap();
-  BlankMessageWindow();
 
   //WriteLineMessageWindow("TheQuickBrownFox", 0);
   //WriteLineMessageWindow("JumpsOverLazyDog", 0);
   //WriteLineMessageWindow("0123456789:;<=>?", 0);
   //WriteLineMessageWindow(" ! #$%&'()*+,-./", 0);
+  BlankMessageWindow();
   
   ScreenEnable();
   
