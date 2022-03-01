@@ -1,9 +1,10 @@
 #include "Common.h"
 #include <joystick.h>
 
-char joyState = 0;
-char joyStateLast = 0;
+byte joyState = 0;
+byte joyStateLast = 0;
 bool ChangedState = false;
+byte joyTemp;
 
 void InitializeInput()
 {
@@ -12,15 +13,15 @@ void InitializeInput()
 }
 void UpdateInput()
 {
-  char temp = joy_read(0);
+  joyTemp = joy_read(0);
   
-  if (joyState == temp)
+  if (joyState == joyTemp)
   {
     ChangedState = false;
   }
   else
   {
-    joyState = temp;
+    joyState = joyTemp;
     ChangedState = true;
     joyStateLast = joyState;
   }

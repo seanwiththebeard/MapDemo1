@@ -6,7 +6,8 @@
 #include "System_CharacterSets.h"
 #include "System_Graphics.h"
 
-byte ScreenDoubleBuffer[2][1000];
+byte ScreenDoubleBuffer[2][1000], charScrollBuffer[8], column, OffsetY, temp, count;
+int offset, charOffset, colorOffset, origin, retValue, bufferColorAddress, bufferScreenAddress;
 
 int YColumnIndex[25] = {
   0, 40, 80, 120, 160,
@@ -25,51 +26,27 @@ void CopyDoubleBuffer()
 
 void CopyDoubleBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
 {
-  int y;
-  int offset = posX + YColumnIndex[posY];
-  int offsetY = posX + YColumnIndex[0];
-  int charOffset = ScreenRam + offset;
-  int colorOffset = ColorRam + offset;
-  int colorAddress = (int)&ScreenDoubleBuffer[1][offset];
-  int screenAddress = (int)&ScreenDoubleBuffer[0][offset];
+  offset = posX + YColumnIndex[posY];
+  OffsetY = posX + YColumnIndex[0];
+  charOffset = ScreenRam + offset;
+  colorOffset = ColorRam + offset;
+  bufferColorAddress = (int)&ScreenDoubleBuffer[1][offset];
+  bufferScreenAddress = (int)&ScreenDoubleBuffer[0][offset];
   
   raster_wait(240);
-  for (y = 0; y < sizeY; ++y)
+  for (column = 0; column < sizeY; ++column)
     {
-    	if (y % 6 == 0)
+    	if (column % 6 == 0)
           raster_wait(240);
-      	CopyMemory(charOffset, screenAddress, sizeX);
-      	CopyMemory(colorOffset, colorAddress, sizeX);
+      	CopyMemory(charOffset, bufferScreenAddress, sizeX);
+      	CopyMemory(colorOffset, bufferColorAddress, sizeX);
       	charOffset += COLS;
       	colorOffset += COLS;
-      	offsetY += COLS;
-    	screenAddress += COLS;
-    	colorAddress += COLS;
+      	OffsetY += COLS;
+    	bufferScreenAddress += COLS;
+    	bufferColorAddress += COLS;
     }
 }
-
-/*void CopyDoubleBufferRows(byte posY, byte sizeY, byte length)
-{
-  int y;
-  int offset = YColumnIndex[posY];
-  int colorAddress = (int)&ScreenDoubleBuffer[1][offset];
-  int screenAddress = (int)&ScreenDoubleBuffer[0][offset];
-  int charOffset = ScreenRam + offset;
-  int colorOffset = ColorRam + offset;
-  
-  for (y = offset; y < sizeY; ++y)
-    {
-    	if (y % 6 == 0)
-          raster_wait(240);
-      	CopyMemory(colorOffset, colorAddress, length);
-      	CopyMemory(charOffset, screenAddress, length);
-    	
-      	charOffset += COLS;
-      	colorOffset += COLS;
-    	colorAddress += COLS;
-    	screenAddress += COLS;
-    }
-}*/
 
 void setcolortextmode()
 {
@@ -101,93 +78,85 @@ void setcolortextmode()
   // 1100 1000
   //POKE (0x0288, 200);
   
-  //Background / 00
-  //POKE(0xD021, 0);
-  //Foreground / 01
-  //POKE(0xD022, 5);
-  //Foreground / 10
-  //POKE(0xD023, 1);
-  
-  //Foreground / 11 / 0-7 single, 8-15 multi
+  for (offset = 0; offset < 1000; ++offset)
+  {
+    ScreenDoubleBuffer[0][offset] = ' ';
+    ScreenDoubleBuffer[1][offset] = ' ';
+  }
+  CopyDoubleBuffer();
 }
 
 void SetScreenChar(byte index, byte xpos, byte ypos)
 {  
-  int offset = YColumnIndex[ypos] + xpos;
+  offset = YColumnIndex[ypos] + xpos;
   POKE(&ScreenDoubleBuffer[0][0] + offset, index);
   POKE(&ScreenDoubleBuffer[1][0] + offset, AttributeSet[index]);
 }
 
 void SetScreenCharColor(byte index, byte color, byte xpos, byte ypos)
 {  
-  int offset = YColumnIndex[ypos] + xpos;
+  offset = YColumnIndex[ypos] + xpos;
   POKE(&ScreenDoubleBuffer[0][0] + offset, index);
   POKE(&ScreenDoubleBuffer[1][0] + offset, color);
 }
 
 void DrawLineH(char index, byte color, byte x, byte y, byte length)
 {
-  int z;
-  for (z = 0; z < length; ++z)
-    SetScreenCharColor(index, color, x + z, y);
+  for (count = 0; count < length; ++count)
+    SetScreenCharColor(index, color, x + count, y);
 }
 
 void DrawLineV(char index, byte color, byte x, byte y, byte length)
 {
-  int z;
-  for (z = 0; z < length; ++z)
-    SetScreenCharColor(index, color, x, y + z);
+  for (count = 0; count < length; ++count)
+    SetScreenCharColor(index, color, x, y + count);
 }
 
 void PrintString(char text[16], byte posx, byte posy, bool fast)
 {
-  int i;
-  for(i = 0; i < 16; ++i)
+  for(count = 0; count < 16; ++count)
   {
     if (!fast)
       raster_wait(255);
-    SetScreenChar(text[i], posx + i, posy);
+    SetScreenChar(text[count], posx + count, posy);
   }
 }
 
 void ScrollChar(byte index, byte direction)
 {
-  byte buffer[8];
-  int i;
-  int origin = CharacterRam + 8*index;
-  byte temp;
+  origin = CharacterRam + 8*index;
   
-  for(i = 0; i < 8; ++i)
-    buffer[i] = PEEK(origin+i);
+  for(count = 0; count < 8; ++count)
+    charScrollBuffer[count] = PEEK(origin+count);
   
   switch (direction)
   {
     case 0:  //Scroll Down
-      for(i = 1; i < 8; ++i)
-        POKE(i + origin, buffer[i-1]);
-      POKE(origin, buffer[7]);
+      for(count = 1; count < 8; ++count)
+        POKE(count + origin, charScrollBuffer[count-1]);
+      POKE(origin, charScrollBuffer[7]);
       break;
     case 1: // Scroll Up
-      for(i = 0; i < 8; ++i)
-        POKE(i + origin, buffer[i+1]);
-      POKE(origin + 7, buffer[0]);
+      for(count = 0; count < 8; ++count)
+        POKE(count + origin, charScrollBuffer[count+1]);
+      POKE(origin + 7, charScrollBuffer[0]);
       break;
     case 2: //  Scroll Right
-      for(i = 0; i < 8; ++i)
+      for(count = 0; count < 8; ++count)
       {
-        temp = buffer[i] >> 1;
+        temp = charScrollBuffer[count] >> 1;
         //temp >> 1;
-        WriteBit(&temp, 7, ReadBit(buffer[i], 0));
-        POKE(origin + i, temp);
+        WriteBit(&temp, 7, ReadBit(charScrollBuffer[count], 0));
+        POKE(origin + count, temp);
       }
       break;
     case 3: // Scroll Left
-      for(i = 0; i < 8; i++)
+      for(count = 0; count < 8; count++)
       {
-        temp = buffer[i] << 1;
+        temp = charScrollBuffer[count] << 1;
         //temp >> 1;
-        WriteBit(&temp, 0, ReadBit(buffer[i], 7));
-        POKE(origin + i, temp);
+        WriteBit(&temp, 0, ReadBit(charScrollBuffer[count], 7));
+        POKE(origin + count, temp);
       }
       break;
   }
@@ -195,7 +164,7 @@ void ScrollChar(byte index, byte direction)
 
 void FlashColorWait(byte index, byte length)
 {
-  int retValue = PEEK(0xD021);
+  retValue = PEEK(0xD021);
   bgcolor(index);
   bordercolor(index);
   wait_vblank(length);
