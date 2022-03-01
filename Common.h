@@ -34,7 +34,7 @@ typedef enum { false, true } bool;
 void WriteBit(byte *byteToSet, char bit, bool value);
 byte ReadBit(byte byteToRead, char bit);
 bool CheckBit(byte source, byte position);
-void PlaySong(void);
+bool raster_check(byte line);
 
 /*****************************************************************************/
 /*                                                                           */

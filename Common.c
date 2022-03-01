@@ -23,3 +23,11 @@ bool CheckBit(byte source, byte position)
 {
   return (source & (1<<position));
 }
+
+bool raster_check(byte line)
+{
+  if(VIC.rasterline == line)
+     return true;
+     else
+     return false;
+}

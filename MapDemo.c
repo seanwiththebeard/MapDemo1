@@ -1,4 +1,3 @@
-//#link "system_musicplayer.c"
 //#link "Common.c"
 //#link "Screen_Map.c"
 //#link "System_Input.c"
@@ -18,6 +17,7 @@
 #include "System_Graphics.h"
 #include "System_CharacterSets.h"
 #include "System_MessageWindow.h"
+#include "System_MusicPlayer.h"
 
 void Initialize()
 {
@@ -50,6 +50,7 @@ void main(void)
   {
     UpdateInput();
     Graphics_Update();
+    music_update();
     
     //if(InputChanged())
     {

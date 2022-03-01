@@ -5,6 +5,7 @@
 #include "System_Input.h"
 #include "System_MessageWindow.h"
 #include "System_CharacterSets.h"
+#include "System_MusicPlayer.h"
 
 //Globals
 char str[16];
