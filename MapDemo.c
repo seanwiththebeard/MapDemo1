@@ -1,3 +1,4 @@
+//#link "system_musicplayer.c"
 //#link "Common.c"
 //#link "Screen_Map.c"
 //#link "System_Input.c"
@@ -5,6 +6,7 @@
 //#link "System_CharacterSets.c"
 //#link "System_MessageWindow.c"
 //#link "Screen_Title.c"
+//#link "System_MusicPlayer.c"
 
 #include <conio.h>
 #include <c64.h>

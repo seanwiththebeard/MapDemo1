@@ -1013,6 +1013,7 @@ byte CheckInput()
     }
     if (InputFire())
     {
+      PlaySong();
       sprintf(str, "Pos = %d,%d@", characters[0].posX, characters[0].posY);
       DrawEntireMap();
       WriteLineMessageWindow(str, 0);
