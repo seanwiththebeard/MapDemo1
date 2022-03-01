@@ -20,7 +20,7 @@ char Messages[64][16] = {
 
 void DrawMessageWindow()
 {
-    addressChar = (int)&ScreenDoubleBuffer[0][0] + PosX + COLS*(PosY);
+    addressChar = (int)&ScreenDoubleBuffer[0] + PosX + COLS*(PosY);
     addressColor = addressChar + 1000;
     for (y = 0; y < Height; ++y)
         {

@@ -6,7 +6,7 @@
 #include "System_CharacterSets.h"
 #include "System_Graphics.h"
 
-byte ScreenDoubleBuffer[2][1000], charScrollBuffer[8], column, OffsetY, temp, count;
+byte ScreenDoubleBuffer[2000], charScrollBuffer[8], column, OffsetY, temp, count;
 int offset, charOffset, colorOffset, origin, retValue, bufferColorAddress, bufferScreenAddress;
 
 int YColumnIndex[25] = {
@@ -20,8 +20,8 @@ int FlashFrames = 0;
 
 void CopyDoubleBuffer()
 {
-  CopyMemory(ColorRam, (int)&ScreenDoubleBuffer[1][0], 1000);
-  CopyMemory(ScreenRam, (int)&ScreenDoubleBuffer[0][0], 1000);
+  CopyMemory(ColorRam, (int)&ScreenDoubleBuffer[1000], 1000);
+  CopyMemory(ScreenRam, (int)&ScreenDoubleBuffer[0], 1000);
 }
 
 void CopyDoubleBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
@@ -30,8 +30,8 @@ void CopyDoubleBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
   OffsetY = posX + YColumnIndex[0];
   charOffset = ScreenRam + offset;
   colorOffset = ColorRam + offset;
-  bufferColorAddress = (int)&ScreenDoubleBuffer[1][offset];
-  bufferScreenAddress = (int)&ScreenDoubleBuffer[0][offset];
+  bufferScreenAddress = (int)&ScreenDoubleBuffer[offset];
+  bufferColorAddress = (int)&ScreenDoubleBuffer[offset + 1000];
   
   raster_wait(240);
   for (column = 0; column < sizeY; ++column)
@@ -80,8 +80,8 @@ void setcolortextmode()
   
   for (offset = 0; offset < 1000; ++offset)
   {
-    ScreenDoubleBuffer[0][offset] = ' ';
-    ScreenDoubleBuffer[1][offset] = ' ';
+    ScreenDoubleBuffer[offset] = ' ';
+    ScreenDoubleBuffer[offset + 1000] = ' ';
   }
   CopyDoubleBuffer();
 }
@@ -89,15 +89,15 @@ void setcolortextmode()
 void SetScreenChar(byte index, byte xpos, byte ypos)
 {  
   offset = YColumnIndex[ypos] + xpos;
-  POKE(&ScreenDoubleBuffer[0][0] + offset, index);
-  POKE(&ScreenDoubleBuffer[1][0] + offset, AttributeSet[index]);
+  POKE(&ScreenDoubleBuffer[offset], index);
+  POKE(&ScreenDoubleBuffer[offset + 1000], AttributeSet[index]);
 }
 
 void SetScreenCharColor(byte index, byte color, byte xpos, byte ypos)
 {  
   offset = YColumnIndex[ypos] + xpos;
-  POKE(&ScreenDoubleBuffer[0][0] + offset, index);
-  POKE(&ScreenDoubleBuffer[1][0] + offset, color);
+  POKE(&ScreenDoubleBuffer[offset], index);
+  POKE(&ScreenDoubleBuffer[offset + 1000], color);
 }
 
 void DrawLineH(char index, byte color, byte x, byte y, byte length)

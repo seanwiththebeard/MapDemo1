@@ -72,8 +72,8 @@ int CharAddress, CharAddress2, ColorAddress, ColorAddress2;
 
 byte followIndex = 0;
 
-int viewportOrigin = (int)&ScreenDoubleBuffer[0][0];
-int colorOrigin = (int)&ScreenDoubleBuffer[1][0];
+int viewportOrigin = (int)&ScreenDoubleBuffer[0];
+int colorOrigin = (int)&ScreenDoubleBuffer[1000];
 
 //QuadScroll
 byte originX, originY;

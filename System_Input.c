@@ -8,7 +8,7 @@ byte joyTemp;
 
 void InitializeInput()
 {
-  joy_install (joy_static_stddrv);
+  joy_install(joy_static_stddrv);
   
 }
 void UpdateInput()
