@@ -9,6 +9,11 @@
 byte ScreenDoubleBuffer[2000], charScrollBuffer[8], column, OffsetY, temp, count;
 int offset, charOffset, colorOffset, origin, retValue, bufferColorAddress, bufferScreenAddress;
 
+byte far *ScreenChars = (byte far*)ScreenRam;
+byte far *ScreenColors = (byte far*)ColorRam;    
+
+
+
 int YColumnIndex[25] = {
   0, 40, 80, 120, 160,
   200, 240, 280, 320, 360,
@@ -17,6 +22,21 @@ int YColumnIndex[25] = {
   800, 840, 880, 920, 960};
 
 int FlashFrames = 0;
+
+
+void SetChar(byte x, byte y, byte index)
+{
+  offset = YColumnIndex[y] + x;
+  ScreenChars[offset] = index;;
+  ScreenColors[offset] = AttributeSet[index];
+}
+
+void SetCharC(byte x, byte y, byte index, byte color)
+{
+  offset = YColumnIndex[y] + x;
+  ScreenChars[offset] = index;;
+  ScreenColors[offset] = color;
+}
 
 void CopyDoubleBuffer()
 {
@@ -81,7 +101,7 @@ void setcolortextmode()
   for (offset = 0; offset < 1000; ++offset)
   {
     ScreenDoubleBuffer[offset] = ' ';
-    ScreenDoubleBuffer[offset + 1000] = ' ';
+    ScreenDoubleBuffer[offset + 1000] = 0;
   }
   CopyDoubleBuffer();
 }

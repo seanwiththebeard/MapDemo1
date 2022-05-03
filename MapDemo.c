@@ -56,5 +56,7 @@ void main(void)
     {
       CheckInput();
     }
+    SetChar(0, 0, 1);
+    
   }
 }

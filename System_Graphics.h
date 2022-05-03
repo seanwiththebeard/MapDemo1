@@ -1,4 +1,8 @@
 #include "Common.h"
+
+void SetChar(byte x, byte y, byte index);
+void SetCharC(byte x, byte y, byte index, byte color);
+
 void CopyDoubleBuffer(void);
 //void CopyDoubleBufferRows(byte posY, byte sizeY, byte length);
 void CopyDoubleBufferArea(byte posX, byte posY, byte sizeX, byte sizeY);

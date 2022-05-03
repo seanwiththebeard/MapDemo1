@@ -127,6 +127,11 @@ void DrawBufferTile(byte tileIndex, byte tileX, byte tileY) //Draws into the map
   int_offset = tileX * 2 + tileY*(viewportWidthQuad);
   tileAddress = (int) &DoubleBufferChars[int_offset];
   colorAddress = (int) &DoubleBufferColors[int_offset];
+  
+  //SetChar(tileX * 2, YColumnIndex[tileY] * 2, tiles[tileIndex].chars[0]);
+  //SetChar(tileX * 2 + 1, tileY*(viewportWidthQuad), tiles[tileIndex].chars[1]);
+  //SetChar(tileX * 2, tileY*(viewportWidthQuad) + COLS, tiles[tileIndex].chars[2]);
+  //SetChar(tileX * 2 + 1, tileY*(viewportWidthQuad) + COLS, tiles[tileIndex].chars[3]);  
 
   POKEW(tileAddress, PEEKW(&tiles[tileIndex].chars[0]));
   POKEW(tileAddress + doubleCharWidth, PEEKW(&tiles[tileIndex].chars[2]));
