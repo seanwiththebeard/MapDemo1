@@ -55,8 +55,6 @@ void main(void)
     //if(InputChanged())
     {
       CheckInput();
-    }
-    SetChar(0, 0, 1);
-    
+    }    
   }
 }

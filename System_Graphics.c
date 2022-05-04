@@ -11,7 +11,7 @@ int offset, charOffset, colorOffset, origin, retValue, bufferColorAddress, buffe
 
 byte far *ScreenChars = (byte far*)ScreenRam;
 byte far *ScreenColors = (byte far*)ColorRam;    
-
+unsigned short offset1;
 
 
 int YColumnIndex[25] = {
@@ -23,25 +23,34 @@ int YColumnIndex[25] = {
 
 int FlashFrames = 0;
 
+void UpdateColors()
+{
+  for (offset = 0; offset < 1000; ++offset)
+  {
+    ScreenColors[offset] = AttributeSet[ScreenDoubleBuffer[offset]];
+  }
+}
+
 
 void SetChar(byte x, byte y, byte index)
 {
-  offset = YColumnIndex[y] + x;
-  ScreenChars[offset] = index;;
-  ScreenColors[offset] = AttributeSet[index];
+  offset1 = YColumnIndex[y] + x;
+  ScreenChars[offset1] = index;;
+  ScreenColors[offset1] = AttributeSet[index];
 }
 
 void SetCharC(byte x, byte y, byte index, byte color)
 {
-  offset = YColumnIndex[y] + x;
-  ScreenChars[offset] = index;;
-  ScreenColors[offset] = color;
+  offset1 = YColumnIndex[y] + x;
+  ScreenChars[offset1] = index;;
+  ScreenColors[offset1] = color;
 }
 
 void CopyDoubleBuffer()
 {
   CopyMemory(ColorRam, (int)&ScreenDoubleBuffer[1000], 1000);
   CopyMemory(ScreenRam, (int)&ScreenDoubleBuffer[0], 1000);
+  //UpdateColors();
 }
 
 void CopyDoubleBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)

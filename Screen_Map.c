@@ -49,8 +49,8 @@ bool wrap = true;
 //Viewport
 #define viewportPosX 0
 #define viewportPosY 0
-#define viewportWidth 9
-#define viewportHeight 9
+#define viewportWidth 11
+#define viewportHeight 11
 #define viewportCharWidth (viewportWidth * 2)
 #define viewportCharHeight (viewportHeight * 2)
 byte doubleCharWidth = viewportCharWidth;
@@ -126,12 +126,7 @@ void DrawBufferTile(byte tileIndex, byte tileX, byte tileY) //Draws into the map
 {
   int_offset = tileX * 2 + tileY*(viewportWidthQuad);
   tileAddress = (int) &DoubleBufferChars[int_offset];
-  colorAddress = (int) &DoubleBufferColors[int_offset];
-  
-  //SetChar(tileX * 2, YColumnIndex[tileY] * 2, tiles[tileIndex].chars[0]);
-  //SetChar(tileX * 2 + 1, tileY*(viewportWidthQuad), tiles[tileIndex].chars[1]);
-  //SetChar(tileX * 2, tileY*(viewportWidthQuad) + COLS, tiles[tileIndex].chars[2]);
-  //SetChar(tileX * 2 + 1, tileY*(viewportWidthQuad) + COLS, tiles[tileIndex].chars[3]);  
+  colorAddress = (int) &DoubleBufferColors[int_offset]; 
 
   POKEW(tileAddress, PEEKW(&tiles[tileIndex].chars[0]));
   POKEW(tileAddress + doubleCharWidth, PEEKW(&tiles[tileIndex].chars[2]));
@@ -460,6 +455,8 @@ byte GetQuadInRelation(bool up, bool down, bool left, bool right)
 
 void QuadScroll(byte direction)
 {
+  SetChar(0, 0, 1); //Indicate processing
+  
   originX = characters[followIndex].quadPosX;
   originY = characters[followIndex].quadPosY;
   compareQuad = GetPlayerQuad();
@@ -624,6 +621,7 @@ void QuadScroll(byte direction)
        {
   	LoadQuadrant(indexB, quadB);
        }
+  UpdateViewport();
 }
 
 void InitializeMapData()
@@ -724,6 +722,7 @@ void InitializeMapData()
 
 void ScrollViewport(byte direction)
 {
+  
   CharAddress = (int) &DoubleBufferChars[0];
   CharAddress2 = (int) &DoubleBufferChars[2];
   ColorAddress = (int) &DoubleBufferColors[0];
