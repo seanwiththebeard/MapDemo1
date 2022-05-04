@@ -3,3 +3,4 @@
 void InitializeMapData();
 byte CheckInput();
 void DrawEntireMap();
+void LoadMap();

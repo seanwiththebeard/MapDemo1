@@ -997,6 +997,15 @@ void MoveCharacter(byte index, byte direction, bool cameraUpdate)
   }
 }
 
+void LoadMap()
+{
+  ScreenDisable();
+  InitializeMapData();
+  DrawEntireMap();
+  BlankMessageWindow();
+  ScreenEnable();
+}
+
 byte CheckInput()
 {
     if (InputUp())
@@ -1021,10 +1030,11 @@ byte CheckInput()
     }
     if (InputFire())
     {
-      PlaySong();
-      sprintf(str, "Pos = %d,%d@", characters[0].posX, characters[0].posY);
-      DrawEntireMap();
-      WriteLineMessageWindow(str, 0);
+      LoadMap();
+      //PlaySong();
+      //sprintf(str, "Pos = %d,%d@", characters[0].posX, characters[0].posY);
+      //DrawEntireMap();
+      //WriteLineMessageWindow(str, 0);
       return 1;
     }
   return 0;
