@@ -24,7 +24,7 @@ byte mapData[mapWidth][mapHeight];
 #define mapQuadHeight 8
 #define mapMatrixWidth 8
 #define mapMatrixHeight 8
-byte mapQuads[mapMatrixHeight][mapMatrixWidth] = {
+byte mapQuads[mapMatrixHeight][mapMatrixWidth] = { //Map Data
   { 0,  1,  2,  3,  4,  5,  6,  7},
   { 8,  9, 10, 11, 12, 13, 14, 15},
   {16, 17, 18, 19, 20, 21, 22, 23},
@@ -39,9 +39,9 @@ int quadX = 0;
 int quadY = 0;
 #define quadWidth 8
 #define quadHeight 8
-byte quadWidthDouble = quadWidth * 2;
-byte quadHeightDouble = quadHeight * 2;
-byte yQuadHeight = 2*mapQuadHeight;
+const byte quadWidthDouble = quadWidth * 2;
+const byte quadHeightDouble = quadHeight * 2;
+const byte yQuadHeight = 2*mapQuadHeight;
 
 
 bool wrap = true;
@@ -49,20 +49,20 @@ bool wrap = true;
 //Viewport
 #define viewportPosX 0
 #define viewportPosY 0
-#define viewportWidth 11
-#define viewportHeight 11
+#define viewportWidth 7
+#define viewportHeight 7
 #define viewportCharWidth (viewportWidth * 2)
 #define viewportCharHeight (viewportHeight * 2)
-byte doubleCharWidth = viewportCharWidth;
-byte doubleCharHeight = viewportCharHeight;
-byte viewportWidthQuad = (viewportWidth*4);
-byte LastMapScanline = (8*viewportPosY + 16*viewportHeight);
+const byte doubleCharWidth = viewportCharWidth;
+const byte doubleCharHeight = viewportCharHeight;
+const byte viewportWidthQuad = (viewportWidth*4);
+const byte LastMapScanline = (8*viewportPosY + 16*viewportHeight);
 
 //Scrolling left and right line buffer
-byte bufferLength = viewportCharWidth - 2;
+const byte bufferLength = viewportCharWidth - 2;
 byte buffer[viewportCharWidth];
-int BufferAddress = (int) &buffer[0];
-int totalSize = viewportCharHeight * viewportCharWidth;
+const int BufferAddress = (int) &buffer[0];
+const int totalSize = viewportCharHeight * viewportCharWidth;
 byte viewportBuffer[viewportWidth][viewportHeight];
 byte DoubleBufferChars[viewportCharWidth*viewportCharHeight];
 byte DoubleBufferColors[viewportCharWidth*viewportCharHeight];
