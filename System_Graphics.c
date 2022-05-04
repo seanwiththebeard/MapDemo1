@@ -27,7 +27,7 @@ void UpdateColors()
 {
   for (offset = 0; offset < 1000; ++offset)
   {
-    ScreenColors[offset] = AttributeSet[ScreenDoubleBuffer[offset]];
+    ScreenColors[offset] = AttributeSet[PEEK(ScreenRam + offset)];
   }
 }
 
@@ -50,7 +50,6 @@ void CopyDoubleBuffer()
 {
   CopyMemory(ColorRam, (int)&ScreenDoubleBuffer[1000], 1000);
   CopyMemory(ScreenRam, (int)&ScreenDoubleBuffer[0], 1000);
-  //UpdateColors();
 }
 
 void CopyDoubleBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
@@ -75,6 +74,7 @@ void CopyDoubleBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
     	bufferScreenAddress += COLS;
     	bufferColorAddress += COLS;
     }
+  
 }
 
 void setcolortextmode()

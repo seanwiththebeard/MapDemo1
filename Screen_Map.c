@@ -250,6 +250,7 @@ void UpdateViewport() //Copies the viewport buffer to the screen buffer
   BufferCharacters();
   //CopyDoubleBuffer();
   CopyDoubleBufferArea(viewportPosX, viewportPosY, doubleCharWidth, doubleCharHeight);
+  //UpdateColors();
 }
 
 void DrawSingleRow(byte row)
@@ -455,7 +456,7 @@ byte GetQuadInRelation(bool up, bool down, bool left, bool right)
 
 void QuadScroll(byte direction)
 {
-  SetChar(0, 0, 1); //Indicate processing
+  SetChar(0, 24, 'p'); //Indicate processing
   
   originX = characters[followIndex].quadPosX;
   originY = characters[followIndex].quadPosY;
@@ -622,6 +623,8 @@ void QuadScroll(byte direction)
   	LoadQuadrant(indexB, quadB);
        }
   UpdateViewport();
+  SetChar(0, 24, ' '); //Indicate processing
+  
 }
 
 void InitializeMapData()
@@ -642,7 +645,7 @@ void InitializeMapData()
       byte_index = byte_x + byte_y*8;
       byte_offset = byte_x * 2 + 32*byte_y;
 
-      tiles[byte_index].index = byte_index;
+      tiles[byte_index].index = byte_index; // Init tileset data for 64 tiles
       tiles[byte_index].chars[0] = byte_offset;
       tiles[byte_index].chars[1] = byte_offset + 1;
       tiles[byte_index].chars[2] = byte_offset + 16;
@@ -655,7 +658,7 @@ void InitializeMapData()
       
       tiles[byte_index].blocked = 0;
 
-      ScreenQuad[byte_index].CharIndex[0] = byte_offset;
+      ScreenQuad[byte_index].CharIndex[0] = byte_offset; // Init screen quad prefabs for 8x8
       ScreenQuad[byte_index].CharIndex[1] = byte_offset + 1;
       ScreenQuad[byte_index].CharIndex[2] = byte_offset + 16;
       ScreenQuad[byte_index].CharIndex[3] = byte_offset + 17;
@@ -666,8 +669,8 @@ void InitializeMapData()
       ScreenQuad[byte_index].ScatterIndex = 0;
     }
 
-    ScreenQuad[2].Chars[0] = 36;
-    ScreenQuad[2].Chars[1] = 44;
+    ScreenQuad[2].Chars[0] = 36; // Set the wizard to grass on 0
+    ScreenQuad[2].Chars[1] = 44; // Set the wizard to trees on 1
   
   //Init Characters
   for (byte_i = 0; byte_i < charactersCount; ++byte_i)
