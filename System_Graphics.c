@@ -145,6 +145,8 @@ void PrintString(char text[16], byte posx, byte posy, bool fast)
 {
   for(count = 0; count < 16; ++count)
   {
+    if (text[count] == '@')
+      break;
     if (!fast)
       raster_wait(255);
     SetScreenChar(text[count], posx + count, posy);

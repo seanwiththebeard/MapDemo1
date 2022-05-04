@@ -1,3 +1,5 @@
+
+//#link "Screen_AddCharacter.c"
 //#link "Common.c"
 //#link "Screen_Map.c"
 //#link "System_Input.c"
@@ -18,6 +20,7 @@
 #include "System_CharacterSets.h"
 #include "System_MessageWindow.h"
 #include "System_MusicPlayer.h"
+#include "Screen_AddCharacter.h"
 
 void Initialize()
 {
@@ -32,6 +35,8 @@ void Initialize()
   BlankMessageWindow();
   
   LoadMap();
+  
+  DrawAddCharacterScreen();
 
   //WriteLineMessageWindow("TheQuickBrownFox", 0);
   //WriteLineMessageWindow("JumpsOverLazyDog", 0);
