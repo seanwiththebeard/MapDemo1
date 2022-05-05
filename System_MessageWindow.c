@@ -5,11 +5,11 @@
 #include <string.h>
 
 byte PosX = 23;
-byte PosY = 16;
-byte Height = 8;
+byte PosY = 15;
+byte Height = 9;
 byte Width = 16;
-byte MessageWindow[16*8];
-byte MessageWindowColors[16*8];
+byte MessageWindow[16*9];
+byte MessageWindowColors[16*9];
 byte x, y;
 int addressChar, addressColor;
 

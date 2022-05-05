@@ -2,6 +2,7 @@
 #include "System_Graphics.h"
 #include "System_Input.h"
 #include "System_MessageWindow.h"
+#include <stdio.h>
 #include <string.h>
 
 byte windowX = 1;
@@ -14,6 +15,17 @@ byte selection = 0;
 byte countSelections = 4;
 bool exitWindow = false;
 bool nextWindow = false;
+
+byte WindowLevel = 0;
+
+
+byte STR;
+byte CON;
+byte DEX;
+byte WIS;
+byte INT;
+byte CHR;
+
 
 #define DrawSelection() (SetChar(windowX + 2, windowY + selection + 2, '@'))
 
@@ -66,6 +78,26 @@ void DrawCharWindow(byte xPos, byte yPos, byte width, byte height, char title[16
   DrawSelections();
 }
 
+void RollStats()
+{
+  char str[16];
+  STR = 16;
+  CON = 16;
+  DEX = 16;
+  WIS = 16;
+  INT = 16;
+  CHR = 16;
+  
+  WriteLineMessageWindow("Rolled Stats:@", 0);
+  sprintf(str, "STR: %d CON: %d@", STR, CON);
+  WriteLineMessageWindow(str, 0);
+  sprintf(str, "DEX: %d WIS: %d@", DEX, WIS);
+  WriteLineMessageWindow(str, 0);
+  sprintf(str, "INT: %d CHR: %d@", INT, CHR);
+  WriteLineMessageWindow(str, 0);
+  WriteLineMessageWindow("Right to reroll@", 0);
+}
+
 void WindowInput()
 {
   if (InputUp())
@@ -81,18 +113,18 @@ void WindowInput()
     }
     if (InputRight())
     {
+      if (WindowLevel == 0)
+        RollStats();
     }
     if (InputFire())
     {
-      switch (selection)
+      if (selection == countSelections)
       {
-        case 4:
-          exitWindow = true;
-          break;
-        default:
-          nextWindow = true;
-          break;
+        exitWindow = true;
+        WriteLineMessageWindow("Character Tossed@", 0);
       }
+      else
+        nextWindow = true;
     }
 }
 
@@ -100,6 +132,8 @@ void WindowInput()
 
 void GetClass()
 {
+  WindowLevel = 2;
+  
   windowX = 1;
   windowY = 10;
   countSelections = 4;
@@ -129,6 +163,8 @@ void GetClass()
 
 void GetRace()
 {
+  WindowLevel = 1;
+  
   windowX = 16;
   windowY = 1;
   countSelections = 4;
@@ -158,21 +194,25 @@ void GetRace()
   }
 }
 
+
+
 void GetStats()
 {
+  WindowLevel = 0;
   windowX = 1;
   windowY = 1;
-  countSelections = 4;
-  SetString("Roll Again@", 0);
-  SetString("Standard@", 1);
-  SetString("Minimum@", 2);
-  SetString("Maximum@", 3);
-  SetString("Exit@", 4);
+  countSelections = 1;
+  SetString("Confirm@", 0);
+  SetString("Exit@", 1);
   
   exitWindow = false;
   nextWindow = false;
   
+  
   DrawCharWindow(windowX, windowY, windowWidth, windowHeight, "Stats?@");
+  RollStats();
+  
+  
   while (!nextWindow)
   {
     UpdateInput();
