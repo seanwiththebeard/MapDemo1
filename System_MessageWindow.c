@@ -94,11 +94,12 @@ void WriteLineMessageWindow(char message[16], byte delay)
       if (delay > 0)
       {
         wait_vblank(delay);
-        //CopyDoubleBufferArea(PosX, PosY, Width, Height);
-        CopyDoubleBuffer();
+        CopyDoubleBufferArea(PosX, PosY, Width, Height);
+        //CopyDoubleBuffer();
       }
     }
   if (delay == 0)
-    CopyDoubleBuffer();      
+    CopyDoubleBufferArea(PosX, PosY, Width, Height);
+    //CopyDoubleBuffer();      
     
 }
