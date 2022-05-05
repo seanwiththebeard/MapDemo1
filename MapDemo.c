@@ -36,7 +36,7 @@ void Initialize()
   
   LoadMap();
   
-  DrawAddCharacterScreen();
+  //DrawAddCharacterScreen();
 
   //WriteLineMessageWindow("TheQuickBrownFox", 0);
   //WriteLineMessageWindow("JumpsOverLazyDog", 0);
@@ -56,9 +56,7 @@ void main(void)
     Graphics_Update();
     music_update();
     
-    //if(InputChanged())
-    {
+    if(InputChanged())
       CheckInput();
-    }    
   }
 }

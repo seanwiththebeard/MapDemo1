@@ -6,6 +6,7 @@
 #include "System_MessageWindow.h"
 #include "System_CharacterSets.h"
 #include "System_MusicPlayer.h"
+#include "Screen_AddCharacter.h"
 
 //Globals
 char str[16];
@@ -1030,7 +1031,8 @@ byte CheckInput()
     }
     if (InputFire())
     {
-      LoadMap();
+      DrawAddCharacterScreen();
+      //LoadMap();
       //PlaySong();
       //sprintf(str, "Pos = %d,%d@", characters[0].posX, characters[0].posY);
       //DrawEntireMap();
