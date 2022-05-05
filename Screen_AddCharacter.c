@@ -26,7 +26,6 @@ byte WIS;
 byte INT;
 byte CHR;
 
-
 #define DrawSelection() (SetChar(windowX + 2, windowY + selection + 2, '@'))
 
 void SetString(char value[16], byte menuItem)
@@ -80,7 +79,6 @@ void DrawCharWindow(byte xPos, byte yPos, byte width, byte height, char title[16
 
 void RollStats()
 {
-  char str[16];
   STR = 16;
   CON = 16;
   DEX = 16;
@@ -127,8 +125,6 @@ void WindowInput()
         nextWindow = true;
     }
 }
-
-
 
 void GetClass()
 {
@@ -194,8 +190,6 @@ void GetRace()
   }
 }
 
-
-
 void GetStats()
 {
   WindowLevel = 0;
@@ -208,10 +202,8 @@ void GetStats()
   exitWindow = false;
   nextWindow = false;
   
-  
   DrawCharWindow(windowX, windowY, windowWidth, windowHeight, "Stats?@");
   RollStats();
-  
   
   while (!nextWindow)
   {
@@ -221,7 +213,6 @@ void GetStats()
     if (exitWindow)
     return;
   }
-  
   exitWindow = false;
   if (nextWindow)
   {

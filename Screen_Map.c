@@ -9,7 +9,7 @@
 #include "Screen_AddCharacter.h"
 
 //Globals
-char str[16];
+//char str[16];
 int int_offset, tileAddress, colorAddress;
 byte byte_x, byte_y, byte_z, byte_a, byte_b, byte_temp, byte_i, checkCollision;
 int int_x, int_y, int_index, int_a, int_b, xPos, yPos, chardata;

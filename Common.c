@@ -1,6 +1,8 @@
 #include <peekpoke.h>
 #include "Common.h"
 
+char str[16];
+
 byte ReadBit(byte byteToRead, char bit)
 {
     bit = 1 << bit;

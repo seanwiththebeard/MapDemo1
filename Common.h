@@ -11,6 +11,8 @@ typedef uint16_t word;
 typedef int8_t sbyte;
 typedef enum { false, true } bool;
 
+extern char str[16];
+
 #define COLS 40
 #define ROWS 25
 
