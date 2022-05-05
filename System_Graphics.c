@@ -132,13 +132,15 @@ void SetScreenCharColor(byte index, byte color, byte xpos, byte ypos)
 void DrawLineH(char index, byte color, byte x, byte y, byte length)
 {
   for (count = 0; count < length; ++count)
-    SetScreenCharColor(index, color, x + count, y);
+    SetCharC(x + count, y, index, color);
+    //SetScreenCharColor(index, color, x + count, y);
 }
 
 void DrawLineV(char index, byte color, byte x, byte y, byte length)
 {
   for (count = 0; count < length; ++count)
-    SetScreenCharColor(index, color, x, y + count);
+    SetCharC(x, y + count, index, color);
+    //SetScreenCharColor(index, color, x, y + count);
 }
 
 void PrintString(char text[16], byte posx, byte posy, bool fast)
@@ -149,7 +151,8 @@ void PrintString(char text[16], byte posx, byte posy, bool fast)
       break;
     if (!fast)
       raster_wait(255);
-    SetScreenChar(text[count], posx + count, posy);
+    //SetScreenChar(text[count], posx + count, posy);
+    SetChar(posx + count, posy, text[count]);
   }
 }
 
