@@ -7,8 +7,8 @@
 
 byte windowX = 1;
 byte windowY = 1;
-#define windowWidth 16
-#define windowHeight 12
+byte windowWidth = 16;
+byte windowHeight = 12;
 
 char Selections[8][16];
 byte selection = 0;
@@ -131,7 +131,8 @@ void GetClass()
   WindowLevel = 2;
   
   windowX = 1;
-  windowY = 10;
+  windowY = 14;
+  windowHeight = 9;
   countSelections = 4;
   SetString("Fighter@", 0);
   SetString("Magic User@", 1);
@@ -161,8 +162,9 @@ void GetRace()
 {
   WindowLevel = 1;
   
-  windowX = 16;
-  windowY = 1;
+  windowX = 1;
+  windowY = 6;
+  windowHeight = 9;
   countSelections = 4;
   SetString("Human@", 0);
   SetString("Elf@", 1);
@@ -195,6 +197,7 @@ void GetStats()
   WindowLevel = 0;
   windowX = 1;
   windowY = 1;
+  windowHeight = 6;
   countSelections = 1;
   SetString("Confirm@", 0);
   SetString("Exit@", 1);
