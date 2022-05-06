@@ -16,6 +16,7 @@ extern struct
   
   	RACE,
   	CLASS,
+  	HITDICE,
   
   	LEVEL_FIGHTER,
   	LEVEL_THIEF,
@@ -26,7 +27,7 @@ extern struct
   	CARRYING_WEIGHT,
   	CARRYING_CAPACITY,
   	GOLD;
-}playerChar[4];
+}playerChar[];
 
 extern struct
 {
@@ -41,8 +42,8 @@ extern struct
   char
     	NAME[16];
   byte
-    	HITDICE;
-}RaceDescription[4];
+    	HITDICEMAX;
+}RaceDescription[];
 
 extern struct
 {
@@ -50,4 +51,6 @@ extern struct
     	NAME[16];
   byte
     	HITDICE;
-}ClassDescription[4];
+}ClassDescription[];
+
+extern int AbilityModifier[];

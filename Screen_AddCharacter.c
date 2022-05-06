@@ -34,7 +34,8 @@ byte
 	CHR,
 	
 	RACE,
-	CLASS;
+	CLASS,
+	HITDICE;
 
 void AddToParty()
 {
@@ -54,7 +55,7 @@ void AddToParty()
 
 byte RollDice(byte count, byte diceSize)
 {
-  byte result = 1;
+  byte result = 0;
   byte i;
   for (i = 0; i < count; i++)
     result += (rand() %diceSize + 1);
@@ -89,7 +90,7 @@ void DrawSelections()
   byte x;
   for (x = 0; x < countSelections + 1; ++x)
   {
-    PrintString(Selections[x], windowX + 3, windowY + 1 + selection + x, false, false);
+    PrintString(Selections[x], windowX + 3, windowY + 1 + x, false, false);
   }
 }
 
@@ -118,9 +119,7 @@ void RollStats()
   WIS = RollDice(3, 6);
   INT = RollDice(3, 6);
   CHR = RollDice(3, 6);
-  
-  
-  
+
   WriteLineMessageWindow("Rolled Stats:@", 0);
   sprintf(str, "STR: %d CON: %d@", STR, CON);
   WriteLineMessageWindow(str, 0);
@@ -130,9 +129,23 @@ void RollStats()
   WriteLineMessageWindow(str, 0);
   WriteLineMessageWindow("Right to reroll@", 0);
   
-  //sprintf(str, "Seed: %d@", randseed);
-  //WriteLineMessageWindow(str, 0);
+  SetString("+ Fighter@", 0);
+  SetString("+ Magic-User@", 1);
+  SetString("+ Cleric@", 2);
+  SetString("+ Thief@", 3);
+  SetString("Exit@", 4);  
   
+  if (STR < 9)
+    Selections[0][0] = ' ';
+  if (INT < 9)
+    Selections[1][0] = ' ';
+  if (WIS < 9)
+    Selections[2][0] = ' ';
+  if (DEX < 9)
+    Selections[3][0] = ' ';    
+  
+  //sprintf(str, "Seed: %d@", randseed);
+  //WriteLineMessageWindow(str, 0);  
 }
 
 void WindowInput()
@@ -150,17 +163,25 @@ void WindowInput()
     }
     if (InputRight())
     {
-      if (WindowLevel == 0)
+      if (WindowLevel == 2)
+      {
         RollStats();
+        DrawSelections();
+      }
     }
     if (InputFire())
     {
+      if (Selections[selection][0] == ' ')
+      {
+        WriteLineMessageWindow("Prime stat low@", 0);
+        return;
+      }
       if (selection == countSelections)
       {
         exitWindow = true;
         WriteLineMessageWindow("Character Tossed@", 0);
       }
-      else
+      else if (Selections[selection][0] != ' ')
         nextWindow = true;
     }
 }
@@ -172,15 +193,15 @@ void GetClass()
   windowY = 10;
   windowHeight = 7;
   countSelections = 4;
-  SetString("Fighter@", 0);
-  SetString("Magic-User@", 1);
-  SetString("Cleric@", 2);
-  SetString("Thief@", 3);
-  SetString("Exit@", 4);
+  
+  
   
   nextWindow = false;
   exitWindow = false;
+    
+  RollStats();
   DrawCharWindow(windowX, windowY, windowWidth, windowHeight, "Class?@");
+  
   while (!nextWindow)
   {
     UpdateInput();
@@ -194,11 +215,24 @@ void GetClass()
     WriteLineMessageWindow("Class Confirmed:@", 0);
     CLASS = selection;
     WriteLineMessageWindow(ClassDescription[CLASS].NAME, 0);
-    HPMAX = RollDice(3, ClassDescription[CLASS].HITDICE);
+    
+    if (RaceDescription[RACE].HITDICEMAX < ClassDescription[CLASS].HITDICE)
+      HITDICE = RaceDescription[RACE].HITDICEMAX;
+    else
+      HITDICE = ClassDescription[CLASS].HITDICE;
+    
+    HPMAX = RollDice(1, HITDICE) + AbilityModifier[CON];
     HP = HPMAX;
+    
+    sprintf(str, "Hit Dice: %d@", HITDICE);
+    WriteLineMessageWindow(str, 0);
+    sprintf(str, "Rolled: %d + %d@", HPMAX - AbilityModifier[CON], AbilityModifier[CON]);
+    WriteLineMessageWindow(str, 0);
     
     AddToParty();
   }
+  else
+    GetClass();
 }
 
 void GetRace()
@@ -248,7 +282,7 @@ void GetStats()
   nextWindow = false;
   
   DrawCharWindow(windowX, windowY, windowWidth, windowHeight, "Stats?@");
-  RollStats();
+  //RollStats();
   
   while (!nextWindow)
   {
@@ -263,6 +297,7 @@ void GetStats()
   {
     WriteLineMessageWindow("Stats Confirmed@", 0);
     GetRace();
+    nextWindow = false;
   }
 }
 
@@ -272,7 +307,9 @@ void DrawAddCharacterScreen()
   CurrentCharacter = 0;
   while (CurrentCharacter < 4 && !exitWindow)
   {
-    GetStats();
+    WriteLineMessageWindow("@", 0);
+    WriteLineMessageWindow("New Character@", 0);
+    GetRace();
     CopyDoubleBuffer();
     ++CurrentCharacter;
   }
