@@ -1,6 +1,5 @@
-#include "Common.h"
-
-extern struct 
+#include "BFRPG.h"
+struct 
 {
   char
     	NAME[16];
@@ -28,7 +27,7 @@ extern struct
   	GOLD;
 }playerChar[4];
 
-extern struct
+struct
 {
   int
   	CARRYING_WEIGHT,
@@ -36,18 +35,18 @@ extern struct
   	GOLD;
 }Party;
 
-extern struct
+struct
 {
   char
     	NAME[16];
   byte
     	HITDICE;
-}RaceDescription[4];
+}RaceDescription[4] = {{"Human@", 6},{"Elf@", 6}, {"Dwarf@", 6}, {"Halfling@", 6}};
 
-extern struct
+struct
 {
   char
     	NAME[16];
   byte
     	HITDICE;
-}ClassDescription[4];
+}ClassDescription[4] = {{"Fighter@", 6},{"Magic-User@", 6}, {"Cleric@", 6}, {"Thief@", 6}};

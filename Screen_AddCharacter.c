@@ -2,6 +2,8 @@
 #include "System_Graphics.h"
 #include "System_Input.h"
 #include "System_MessageWindow.h"
+#include "BFRPG.h"
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -19,14 +21,43 @@ bool nextWindow = false;
 
 byte WindowLevel = 0;
 
+byte CurrentCharacter = 0;
 
-byte STR;
-byte CON;
-byte DEX;
-byte WIS;
-byte INT;
-byte CHR;
-byte HP;
+byte
+    	HP,
+	HPMAX,
+  	STR,
+  	DEX,
+        CON,
+        INT,
+  	WIS,
+	CHR,
+	
+	RACE,
+	CLASS;
+
+void DrawStats()
+{
+  byte x;
+  for (x = 0; x < 4; x++)
+  {
+    DrawCharStats(x);
+  }
+}
+void AddToParty()
+{
+  playerChar[CurrentCharacter].HP = HP;
+  playerChar[CurrentCharacter].HPMAX = HPMAX;
+  playerChar[CurrentCharacter].STR = STR;
+  playerChar[CurrentCharacter].DEX = DEX;
+  playerChar[CurrentCharacter].CON = CON;
+  playerChar[CurrentCharacter].INT = INT;
+  playerChar[CurrentCharacter].WIS = WIS;
+  playerChar[CurrentCharacter].CHR = CHR;
+  playerChar[CurrentCharacter].RACE = RACE;
+  playerChar[CurrentCharacter].CLASS = CLASS;
+  DrawStats();
+}
 
 byte RollDice(byte count, byte diceSize)
 {
@@ -37,7 +68,7 @@ byte RollDice(byte count, byte diceSize)
   return result;
 }
 
-#define DrawSelection() (SetChar(windowX + 2, windowY + selection + 2, '@'))
+#define DrawSelection() (SetChar(windowX + 2, windowY + selection + 2, '>'))
 
 void SetString(char value[16], byte menuItem)
 {
@@ -65,7 +96,7 @@ void DrawSelections()
   byte x;
   for (x = 0; x < countSelections + 1; ++x)
   {
-    PrintString(Selections[x], windowX + 3, windowY + 2 + selection + x, false);
+    PrintString(Selections[x], windowX + 3, windowY + 2 + selection + x, false, false);
   }
 }
 
@@ -78,12 +109,9 @@ void DrawCharWindow(byte xPos, byte yPos, byte width, byte height, char title[16
     DrawLineH(' ', 0, xPos, yPos + x, width);
   }
   
-  //char index, byte color, byte x, byte y, byte length
-  DrawLineH('0', 1, xPos, yPos, width);
-  DrawLineH('0', 1, xPos, yPos + height - 1, width);
-  DrawLineV('0', 1, xPos, yPos, height);
-  DrawLineV('0', 1, xPos + width - 1, yPos, height);
-  PrintString(title, xPos + 1, yPos, false);
+  DrawBorder(xPos, yPos, width, height, false);
+  
+  PrintString(title, xPos + 1, yPos, false, false);
   DrawSelection();
   DrawSelections();
 }
@@ -98,6 +126,8 @@ void RollStats()
   INT = RollDice(3, 6);
   CHR = RollDice(3, 6);
   
+  
+  
   WriteLineMessageWindow("Rolled Stats:@", 0);
   sprintf(str, "STR: %d CON: %d@", STR, CON);
   WriteLineMessageWindow(str, 0);
@@ -107,8 +137,8 @@ void RollStats()
   WriteLineMessageWindow(str, 0);
   WriteLineMessageWindow("Right to reroll@", 0);
   
-  sprintf(str, "Seed: %d@", randseed);
-  WriteLineMessageWindow(str, 0);
+  //sprintf(str, "Seed: %d@", randseed);
+  //WriteLineMessageWindow(str, 0);
   
 }
 
@@ -144,6 +174,7 @@ void WindowInput()
 
 void GetClass()
 {
+  CLASS = 0;
   WindowLevel = 2;
   
   windowX = 1;
@@ -151,7 +182,7 @@ void GetClass()
   windowHeight = 9;
   countSelections = 4;
   SetString("Fighter@", 0);
-  SetString("Magic User@", 1);
+  SetString("Magic-User@", 1);
   SetString("Cleric@", 2);
   SetString("Thief@", 3);
   SetString("Exit@", 4);
@@ -170,12 +201,18 @@ void GetClass()
   if (nextWindow)
   {
     WriteLineMessageWindow("Class Confirmed:@", 0);
-    WriteLineMessageWindow(Selections[selection], 0);
+    CLASS = selection;
+    WriteLineMessageWindow(ClassDescription[CLASS].NAME, 0);
+    HPMAX = RollDice(3, ClassDescription[CLASS].HITDICE);
+    HP = HPMAX;
+    
+    AddToParty();
   }
 }
 
 void GetRace()
 {
+  RACE = 0;
   WindowLevel = 1;
   
   windowX = 1;
@@ -204,6 +241,7 @@ void GetRace()
   {
     WriteLineMessageWindow("Race Confirmed:@", 0);
     WriteLineMessageWindow(Selections[selection], 0);
+    RACE = selection;
     GetClass();
   }
 }

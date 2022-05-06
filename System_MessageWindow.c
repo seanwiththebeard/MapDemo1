@@ -3,13 +3,15 @@
 #include "System_CharacterSets.h"
 #include <peekpoke.h>
 #include <string.h>
+#include <stdio.h>
+#include "BFRPG.h"
 
-byte PosX = 23;
+byte PosX = 20;
 byte PosY = 15;
 byte Height = 9;
-byte Width = 16;
-byte MessageWindow[16*9];
-byte MessageWindowColors[16*9];
+byte Width = 19;
+byte MessageWindow[19*9];
+byte MessageWindowColors[19*9];
 byte x, y;
 int addressChar, addressColor;
 
@@ -17,6 +19,22 @@ char Messages[64][16] = {
     "Hello there!@",
     "This is a sign@",
     "Wizard's Forest@"};
+
+void DrawCharStats(byte characterIndex)
+{
+  byte statX = 20;
+  byte statY = 1 + characterIndex * 3;
+  DrawBorder(statX - 1, statY - 1, COLS - statX + 1, 4, false);
+  
+  sprintf(str, "HP: %d/%d@", playerChar[characterIndex].HP, playerChar[characterIndex].HPMAX);
+  PrintString(str, statX, statY, false, false);
+  sprintf(str, "%s@", RaceDescription[playerChar[characterIndex].RACE].NAME);
+  PrintString(str, statX, statY + 1, false, false);
+  sprintf(str, "%s@", ClassDescription[playerChar[characterIndex].CLASS].NAME);
+  PrintString(str, statX + 9, statY + 1, false, false);
+  ReverseBufferArea(statX - 1, statY - 1, COLS - statX + 1, 5);
+  CopyDoubleBufferArea(statX - 1, statY - 1, COLS - statX + 1, 5);
+}
 
 void DrawMessageWindow()
 {
@@ -44,11 +62,8 @@ void BlankMessageWindow()
     }
     DrawMessageWindow();
     
-    DrawLineH('0', 1, 22, 0, 17);
-    DrawLineH('0', 1, 22, 24, 17);
-    DrawLineV('0', 1, 22, 0, 24);
-    DrawLineV('0', 1, 39, 0, 25);
-    CopyDoubleBuffer();
+  DrawBorder(PosX - 1, PosY - 1, Width + 2, Height + 2, true);
+  CopyDoubleBuffer();
 }
 
 void ScrollMessageWindowUp(byte lines)

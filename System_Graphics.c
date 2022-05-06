@@ -73,6 +73,30 @@ void CopyDoubleBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
       	OffsetY += COLS;
     	bufferScreenAddress += COLS;
     	bufferColorAddress += COLS;
+    } 
+}
+
+void ReverseBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
+{
+  offset = posX + YColumnIndex[posY];
+  OffsetY = posX + YColumnIndex[0];
+  bufferScreenAddress = ScreenRam + offset;
+  bufferColorAddress = ColorRam + offset;
+  charOffset = (int)&ScreenDoubleBuffer[offset];
+  colorOffset = (int)&ScreenDoubleBuffer[offset + 1000];
+  
+  raster_wait(240);
+  for (column = 0; column < sizeY; ++column)
+    {
+    	if (column % 6 == 0)
+          raster_wait(240);
+      	CopyMemory(charOffset, bufferScreenAddress, sizeX);
+      	CopyMemory(colorOffset, bufferColorAddress, sizeX);
+      	charOffset += COLS;
+      	colorOffset += COLS;
+      	OffsetY += COLS;
+    	bufferScreenAddress += COLS;
+    	bufferColorAddress += COLS;
     }
   
 }
@@ -143,7 +167,7 @@ void DrawLineV(char index, byte color, byte x, byte y, byte length)
     //SetScreenCharColor(index, color, x, y + count);
 }
 
-void PrintString(char text[16], byte posx, byte posy, bool fast)
+void PrintString(char text[16], byte posx, byte posy, bool fast, bool buffer)
 {
   for(count = 0; count < 16; ++count)
   {
@@ -151,8 +175,10 @@ void PrintString(char text[16], byte posx, byte posy, bool fast)
       break;
     if (!fast)
       raster_wait(255);
-    //SetScreenChar(text[count], posx + count, posy);
-    SetChar(posx + count, posy, text[count]);
+    if (buffer)
+      SetScreenChar(text[count], posx + count, posy);
+    else
+      SetChar(posx + count, posy, text[count]);      
   }
 }
 
@@ -193,6 +219,22 @@ void ScrollChar(byte index, byte direction)
         POKE(origin + count, temp);
       }
       break;
+  }
+}
+
+void DrawBorder(byte xPos, byte yPos, byte width, byte height, bool buffer)
+{
+  DrawLineH(239, 1, xPos, yPos, width);
+  DrawLineH(239, 1, xPos, yPos + height - 1, width);
+  DrawLineV(255, 1, xPos, yPos, height);
+  DrawLineV(255, 1, xPos + width - 1, yPos, height);
+  SetChar(xPos, yPos, 238);
+  SetChar(xPos + width - 1, yPos, 238);
+  SetChar(xPos, yPos + height - 1, 238);
+  SetChar(xPos + width - 1, yPos + height - 1, 238);
+  if (buffer)
+  {
+    ReverseBufferArea(xPos, yPos, width, height);
   }
 }
 

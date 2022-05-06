@@ -1,5 +1,3 @@
-
-//#link "Screen_AddCharacter.c"
 //#link "Common.c"
 //#link "Screen_Map.c"
 //#link "System_Input.c"
@@ -7,7 +5,9 @@
 //#link "System_CharacterSets.c"
 //#link "System_MessageWindow.c"
 //#link "Screen_Title.c"
+//#link "Screen_AddCharacter.c"
 //#link "System_MusicPlayer.c"
+//#link "BFRPG.c"
 
 #include <conio.h>
 #include <c64.h>
@@ -15,12 +15,13 @@
 #include "Common.h"
 #include "Screen_Map.h"
 #include "Screen_Title.h"
+#include "Screen_AddCharacter.h"
 #include "System_Input.h"
 #include "System_Graphics.h"
 #include "System_CharacterSets.h"
 #include "System_MessageWindow.h"
 #include "System_MusicPlayer.h"
-#include "Screen_AddCharacter.h"
+#include "BFRPG.h"
 
 void Initialize()
 {
@@ -31,7 +32,7 @@ void Initialize()
   InitializeInput();
   setcolortextmode();
   SetCharacterSet();
-  Draw_Title();
+  //Draw_Title();
   BlankMessageWindow();
   
   LoadMap();
