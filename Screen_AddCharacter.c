@@ -8,8 +8,8 @@
 #include <string.h>
 #include <stdlib.h>
 
-byte windowX = 1;
-byte windowY = 1;
+byte windowX = 2;
+byte windowY;
 byte windowWidth = 16;
 byte windowHeight = 12;
 
@@ -36,14 +36,6 @@ byte
 	RACE,
 	CLASS;
 
-void DrawStats()
-{
-  byte x;
-  for (x = 0; x < 4; x++)
-  {
-    DrawCharStats(x);
-  }
-}
 void AddToParty()
 {
   playerChar[CurrentCharacter].HP = HP;
@@ -56,7 +48,8 @@ void AddToParty()
   playerChar[CurrentCharacter].CHR = CHR;
   playerChar[CurrentCharacter].RACE = RACE;
   playerChar[CurrentCharacter].CLASS = CLASS;
-  DrawStats();
+  
+  DrawCharStats(CurrentCharacter);
 }
 
 byte RollDice(byte count, byte diceSize)
@@ -68,7 +61,7 @@ byte RollDice(byte count, byte diceSize)
   return result;
 }
 
-#define DrawSelection() (SetChar(windowX + 2, windowY + selection + 2, '>'))
+#define DrawSelection() (SetChar(windowX + 2, windowY + selection + 1, '>'))
 
 void SetString(char value[16], byte menuItem)
 {
@@ -80,7 +73,7 @@ void SetString(char value[16], byte menuItem)
 
 void MoveSelection(bool direction)
 {
-  SetChar(windowX + 2, windowY + selection + 2, ' ');
+  SetChar(windowX + 2, windowY + selection + 1, ' ');
   
   if (!direction && selection > 0)
     --selection;
@@ -96,7 +89,7 @@ void DrawSelections()
   byte x;
   for (x = 0; x < countSelections + 1; ++x)
   {
-    PrintString(Selections[x], windowX + 3, windowY + 2 + selection + x, false, false);
+    PrintString(Selections[x], windowX + 3, windowY + 1 + selection + x, false, false);
   }
 }
 
@@ -176,10 +169,8 @@ void GetClass()
 {
   CLASS = 0;
   WindowLevel = 2;
-  
-  windowX = 1;
-  windowY = 14;
-  windowHeight = 9;
+  windowY = 10;
+  windowHeight = 7;
   countSelections = 4;
   SetString("Fighter@", 0);
   SetString("Magic-User@", 1);
@@ -214,10 +205,8 @@ void GetRace()
 {
   RACE = 0;
   WindowLevel = 1;
-  
-  windowX = 1;
-  windowY = 6;
-  windowHeight = 9;
+  windowY = 5;
+  windowHeight = 7;
   countSelections = 4;
   SetString("Human@", 0);
   SetString("Elf@", 1);
@@ -249,9 +238,8 @@ void GetRace()
 void GetStats()
 {
   WindowLevel = 0;
-  windowX = 1;
-  windowY = 1;
-  windowHeight = 6;
+  windowY = 3;
+  windowHeight = 4;
   countSelections = 1;
   SetString("Confirm@", 0);
   SetString("Exit@", 1);
@@ -280,7 +268,13 @@ void GetStats()
 
 void DrawAddCharacterScreen()
 {
-  GetStats();
-  CopyDoubleBuffer();
+  exitWindow = false;
+  CurrentCharacter = 0;
+  while (CurrentCharacter < 4 && !exitWindow)
+  {
+    GetStats();
+    CopyDoubleBuffer();
+    ++CurrentCharacter;
+  }
   //CopyDoubleBufferArea(windowX, windowY, windowWidth, windowHeight);  
 }

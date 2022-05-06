@@ -6,12 +6,12 @@
 #include <stdio.h>
 #include "BFRPG.h"
 
-byte PosX = 20;
-byte PosY = 15;
-byte Height = 9;
-byte Width = 19;
-byte MessageWindow[19*9];
-byte MessageWindowColors[19*9];
+byte PosX = 22;
+byte PosY = 14;
+#define Height 10
+#define Width 17
+byte MessageWindow[Width*Height];
+byte MessageWindowColors[Width*Height];
 byte x, y;
 int addressChar, addressColor;
 
@@ -22,16 +22,15 @@ char Messages[64][16] = {
 
 void DrawCharStats(byte characterIndex)
 {
-  byte statX = 20;
-  byte statY = 1 + characterIndex * 3;
+  byte statX = PosX;
+  byte statY = 2 + characterIndex * 3;
   DrawBorder(statX - 1, statY - 1, COLS - statX + 1, 4, false);
-  
-  sprintf(str, "HP: %d/%d@", playerChar[characterIndex].HP, playerChar[characterIndex].HPMAX);
-  PrintString(str, statX, statY, false, false);
   sprintf(str, "%s@", RaceDescription[playerChar[characterIndex].RACE].NAME);
-  PrintString(str, statX, statY + 1, false, false);
+  PrintString(str, statX, statY, false, false);
+  sprintf(str, "HP:%d/%d@", playerChar[characterIndex].HP, playerChar[characterIndex].HPMAX);  
+  PrintString(str, statX + 9, statY, false, false);
   sprintf(str, "%s@", ClassDescription[playerChar[characterIndex].CLASS].NAME);
-  PrintString(str, statX + 9, statY + 1, false, false);
+  PrintString(str, statX, statY + 1, false, false);
   ReverseBufferArea(statX - 1, statY - 1, COLS - statX + 1, 5);
   CopyDoubleBufferArea(statX - 1, statY - 1, COLS - statX + 1, 5);
 }

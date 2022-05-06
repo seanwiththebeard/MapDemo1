@@ -48,8 +48,8 @@ const byte yQuadHeight = 2*mapQuadHeight;
 bool wrap = true;
 
 //Viewport
-#define viewportPosX 0
-#define viewportPosY 0
+#define viewportPosX 1
+#define viewportPosY 2
 #define viewportWidth 9
 #define viewportHeight 9
 #define viewportCharWidth (viewportWidth * 2)
@@ -67,8 +67,7 @@ const int totalSize = viewportCharHeight * viewportCharWidth;
 byte viewportBuffer[viewportWidth][viewportHeight];
 byte DoubleBufferChars[viewportCharWidth*viewportCharHeight];
 byte DoubleBufferColors[viewportCharWidth*viewportCharHeight];
-#undef viewportCharWidth
-#undef viewportCharHeight
+
 
 int CharAddress, CharAddress2, ColorAddress, ColorAddress2;
 
@@ -633,6 +632,9 @@ void InitializeMapData()
   #define grass 36
   #define water 34
   #define signpost 35
+  
+  DrawBorder(viewportPosX - 1, viewportPosY - 1, viewportCharWidth + 2, viewportCharHeight + 2, true);
+  ReverseBufferArea(viewportPosX - 1, viewportPosY - 1, viewportCharWidth + 2, viewportCharHeight + 2);
   
   viewportOrigin += (viewportPosX + COLS * viewportPosY);
   colorOrigin += (viewportPosX + COLS * viewportPosY);
