@@ -13,6 +13,7 @@ void InitializeInput()
 }
 void UpdateInput()
 {
+  ++randseed;
   joyTemp = joy_read(0);
   
   if (joyState == joyTemp)

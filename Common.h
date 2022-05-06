@@ -12,6 +12,7 @@ typedef int8_t sbyte;
 typedef enum { false, true } bool;
 
 extern char str[16];
+extern int randseed;
 
 #define COLS 40
 #define ROWS 25

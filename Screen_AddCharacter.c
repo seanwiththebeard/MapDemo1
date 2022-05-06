@@ -4,6 +4,7 @@
 #include "System_MessageWindow.h"
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 byte windowX = 1;
 byte windowY = 1;
@@ -25,6 +26,16 @@ byte DEX;
 byte WIS;
 byte INT;
 byte CHR;
+byte HP;
+
+byte RollDice(byte count, byte diceSize)
+{
+  byte result = 1;
+  byte i;
+  for (i = 0; i < count; i++)
+    result += (rand() %diceSize + 1);
+  return result;
+}
 
 #define DrawSelection() (SetChar(windowX + 2, windowY + selection + 2, '@'))
 
@@ -79,12 +90,13 @@ void DrawCharWindow(byte xPos, byte yPos, byte width, byte height, char title[16
 
 void RollStats()
 {
-  STR = 16;
-  CON = 16;
-  DEX = 16;
-  WIS = 16;
-  INT = 16;
-  CHR = 16;
+  srand(randseed);
+  STR = RollDice(3, 6);
+  CON = RollDice(3, 6);
+  DEX = RollDice(3, 6);
+  WIS = RollDice(3, 6);
+  INT = RollDice(3, 6);
+  CHR = RollDice(3, 6);
   
   WriteLineMessageWindow("Rolled Stats:@", 0);
   sprintf(str, "STR: %d CON: %d@", STR, CON);
@@ -94,6 +106,10 @@ void RollStats()
   sprintf(str, "INT: %d CHR: %d@", INT, CHR);
   WriteLineMessageWindow(str, 0);
   WriteLineMessageWindow("Right to reroll@", 0);
+  
+  sprintf(str, "Seed: %d@", randseed);
+  WriteLineMessageWindow(str, 0);
+  
 }
 
 void WindowInput()

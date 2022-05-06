@@ -1,7 +1,9 @@
 #include <peekpoke.h>
 #include "Common.h"
+#include <c64.h>
 
 char str[16];
+int randseed = 0;
 
 byte ReadBit(byte byteToRead, char bit)
 {
