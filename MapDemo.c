@@ -8,6 +8,8 @@
 //#link "Screen_AddCharacter.c"
 //#link "System_MusicPlayer.c"
 //#link "BFRPG.c"
+//#link "Lists.c"
+
 
 #include <conio.h>
 #include <c64.h>
@@ -22,6 +24,7 @@
 #include "System_MessageWindow.h"
 #include "System_MusicPlayer.h"
 #include "BFRPG.h"
+#include "Lists.h"
 
 void Initialize()
 {

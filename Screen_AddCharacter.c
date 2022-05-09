@@ -3,6 +3,8 @@
 #include "System_Input.h"
 #include "System_MessageWindow.h"
 #include "BFRPG.h"
+#include "Lists.h"
+
 
 #include <stdio.h>
 #include <string.h>
