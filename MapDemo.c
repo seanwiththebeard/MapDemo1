@@ -28,6 +28,7 @@
 
 void Initialize()
 {
+  ListFunction();
   ScreenDisable();
   bgcolor(0);
   bordercolor(0);

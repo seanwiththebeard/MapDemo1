@@ -29,6 +29,37 @@ extern struct
   	GOLD;
 }playerChar[];
 
+typedef struct
+{
+  char
+    	NAME[16];
+  byte
+    	HP,
+  	HPMAX,
+  	STR,
+  	DEX,
+        CON,
+        INT,
+  	WIS,
+        CHR,
+  
+  	RACE,
+  	CLASS,
+  	HITDICE,
+  
+  	LEVEL_FIGHTER,
+  	LEVEL_THIEF,
+  	LEVEL_CLERIC,
+  	LEVEL_WIZARD;
+  int
+    	EXP,
+  	CARRYING_WEIGHT,
+  	CARRYING_CAPACITY,
+  	GOLD;
+  
+  struct charPlayer *next;
+}charPlayer;
+
 extern struct
 {
   int
