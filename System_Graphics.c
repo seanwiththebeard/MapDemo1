@@ -225,14 +225,17 @@ void ScrollChar(byte index, byte direction)
 void DrawBorder(byte xPos, byte yPos, byte width, byte height, bool buffer)
 {
   byte x;
-  DrawLineH(239, 1, xPos + 1, yPos, width - 1);
-  DrawLineH(239, 1, xPos + 1, yPos + height - 1, width - 1);
-  DrawLineV(255, 1, xPos, yPos + 1, height - 1);
-  DrawLineV(255, 1, xPos + width - 1, yPos + 1, height - 1);
-  SetChar(xPos, yPos, 238);
-  SetChar(xPos + width - 1, yPos, 238);
-  SetChar(xPos, yPos + height - 1, 238);
-  SetChar(xPos + width - 1, yPos + height - 1, 238);
+  #define lineColor 15
+  #define cornerColor 8
+  
+  DrawLineH(239, lineColor, xPos + 1, yPos, width - 1);
+  DrawLineH(239, lineColor, xPos + 1, yPos + height - 1, width - 1);
+  DrawLineV(255, lineColor, xPos, yPos + 1, height - 1);
+  DrawLineV(255, lineColor, xPos + width - 1, yPos + 1, height - 1);
+  SetCharC(xPos, yPos, 238, cornerColor);
+  SetCharC(xPos + width - 1, yPos, 238, cornerColor);
+  SetCharC(xPos, yPos + height - 1, 238, cornerColor);
+  SetCharC(xPos + width - 1, yPos + height - 1, 238, cornerColor);
   for (x = 0; x < height - 2; ++x)
   {
     DrawLineH(' ', 0, xPos + 1, yPos + x + 1, width - 2);

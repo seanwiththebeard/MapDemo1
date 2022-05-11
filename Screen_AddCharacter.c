@@ -226,17 +226,18 @@ void GetClass()
       HITDICE = ClassDescription[CLASS].HITDICE;
     
     temp = RollDice(1, HITDICE);
+    sprintf(str, "Hit Dice: 1d%d@", HITDICE);
+    WriteLineMessageWindow(str, 0);
+    sprintf(str, "Roll: %d + MOD %d@", temp, AbilityModifier[CON]);
+    WriteLineMessageWindow(str, 0);
     if (temp + AbilityModifier[CON] < 1)
     {
-      WriteLineMessageWindow("Dead!!!@", 0);
+      WriteLineMessageWindow("Died, no HP@", 0);
       --CurrentCharacter;
       return;
     }
 
-    sprintf(str, "Hit Dice: %d@", HITDICE);
-    WriteLineMessageWindow(str, 0);
-    sprintf(str, "Rolled: %d + %d@", temp, AbilityModifier[CON]);
-    WriteLineMessageWindow(str, 0);
+    
     
     HPMAX = temp + AbilityModifier[CON];
     HP = HPMAX;
