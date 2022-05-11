@@ -41,7 +41,7 @@ byte
 
 void AddToParty()
 {
-  playerChar *PlayerChar = getPlayerChar(CurrentCharacter);
+  struct playerChar *PlayerChar = getPlayerChar(CurrentCharacter);
   PlayerChar->HPMAX = HPMAX;
   PlayerChar->HP = HP;
   PlayerChar->STR = STR;
@@ -191,7 +191,7 @@ void WindowInput()
 
 void GetClass()
 {
-  byte temp;
+  int temp = 0;
   CLASS = 0;
   WindowLevel = 2;
   windowY = 10;
@@ -225,8 +225,14 @@ void GetClass()
     else
       HITDICE = ClassDescription[CLASS].HITDICE;
     
-    temp = RollDice(1, HITDICE) + AbilityModifier[CON];
-    
+    temp = RollDice(1, HITDICE);
+    if (temp + AbilityModifier[CON] < 1)
+    {
+      WriteLineMessageWindow("Dead!!!@", 0);
+      --CurrentCharacter;
+      return;
+    }
+
     sprintf(str, "Hit Dice: %d@", HITDICE);
     WriteLineMessageWindow(str, 0);
     sprintf(str, "Rolled: %d + %d@", temp, AbilityModifier[CON]);
@@ -235,7 +241,8 @@ void GetClass()
     HPMAX = temp + AbilityModifier[CON];
     HP = HPMAX;
     
-    AddToParty();
+    if (HPMAX > 0)
+      AddToParty();
   }
   else
     GetClass();

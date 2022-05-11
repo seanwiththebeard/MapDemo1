@@ -110,7 +110,7 @@ void DrawCharStats(byte characterIndex)
 {
   byte statX = PosX;
   byte statY = 2 + characterIndex * 3;
-  playerChar *PlayerChar = getPlayerChar(characterIndex);
+  struct playerChar *PlayerChar = getPlayerChar(characterIndex);
   
   DrawBorder(statX - 1, statY - 1, COLS - statX + 1, 4, false);
   sprintf(str, "%s@", RaceDescription[PlayerChar->RACE].NAME);
@@ -121,19 +121,4 @@ void DrawCharStats(byte characterIndex)
   PrintString(str, statX, statY + 1, false, false);
   ReverseBufferArea(statX - 1, statY - 1, COLS - statX + 1, 5);
   CopyDoubleBufferArea(statX - 1, statY - 1, COLS - statX + 1, 5);
-  
-  sprintf(str, "HPMAX:%d@", PlayerChar->HPMAX);
-  WriteLineMessageWindow(str, false);
-  sprintf(str, "STR:%d@", PlayerChar->STR);
-  WriteLineMessageWindow(str, false);
-  sprintf(str, "DEX:%d@", PlayerChar->DEX);
-  WriteLineMessageWindow(str, false);
-  sprintf(str, "CON:%d@", PlayerChar->CON);
-  WriteLineMessageWindow(str, false);  
-  sprintf(str, "INT:%d@", PlayerChar->INT);
-  WriteLineMessageWindow(str, false);  
-  sprintf(str, "WIS:%d@", PlayerChar->WIS);
-  WriteLineMessageWindow(str, false);  
-  sprintf(str, "CHR:%d@", PlayerChar->CHR);
-  WriteLineMessageWindow(str, false);  
 }
