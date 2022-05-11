@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "BFRPG.h"
+#include "Lists.h"
 
 byte PosX = 22;
 byte PosY = 14;
@@ -20,20 +21,7 @@ char Messages[64][16] = {
     "This is a sign@",
     "Wizard's Forest@"};
 
-void DrawCharStats(byte characterIndex)
-{
-  byte statX = PosX;
-  byte statY = 2 + characterIndex * 3;
-  DrawBorder(statX - 1, statY - 1, COLS - statX + 1, 4, false);
-  sprintf(str, "%s@", RaceDescription[playerChar[characterIndex].RACE].NAME);
-  PrintString(str, statX, statY, false, false);
-  sprintf(str, "HP:%d/%d@", playerChar[characterIndex].HP, playerChar[characterIndex].HPMAX);  
-  PrintString(str, statX + 9, statY, false, false);
-  sprintf(str, "%s@", ClassDescription[playerChar[characterIndex].CLASS].NAME);
-  PrintString(str, statX, statY + 1, false, false);
-  ReverseBufferArea(statX - 1, statY - 1, COLS - statX + 1, 5);
-  CopyDoubleBufferArea(statX - 1, statY - 1, COLS - statX + 1, 5);
-}
+
 
 void DrawMessageWindow()
 {
@@ -116,4 +104,36 @@ void WriteLineMessageWindow(char message[16], byte delay)
     CopyDoubleBufferArea(PosX, PosY, Width, Height);
     //CopyDoubleBuffer();      
     
+}
+
+void DrawCharStats(byte characterIndex)
+{
+  byte statX = PosX;
+  byte statY = 2 + characterIndex * 3;
+  playerChar *PlayerChar = getPlayerChar(characterIndex);
+  
+  DrawBorder(statX - 1, statY - 1, COLS - statX + 1, 4, false);
+  sprintf(str, "%s@", RaceDescription[PlayerChar->RACE].NAME);
+  PrintString(str, statX, statY, false, false);
+  sprintf(str, "HP:%d/%d@", PlayerChar->HP, PlayerChar->HPMAX);  
+  PrintString(str, statX + 9, statY, false, false);
+  sprintf(str, "%s@", ClassDescription[PlayerChar->CLASS].NAME);
+  PrintString(str, statX, statY + 1, false, false);
+  ReverseBufferArea(statX - 1, statY - 1, COLS - statX + 1, 5);
+  CopyDoubleBufferArea(statX - 1, statY - 1, COLS - statX + 1, 5);
+  
+  sprintf(str, "HPMAX:%d@", PlayerChar->HPMAX);
+  WriteLineMessageWindow(str, false);
+  sprintf(str, "STR:%d@", PlayerChar->STR);
+  WriteLineMessageWindow(str, false);
+  sprintf(str, "DEX:%d@", PlayerChar->DEX);
+  WriteLineMessageWindow(str, false);
+  sprintf(str, "CON:%d@", PlayerChar->CON);
+  WriteLineMessageWindow(str, false);  
+  sprintf(str, "INT:%d@", PlayerChar->INT);
+  WriteLineMessageWindow(str, false);  
+  sprintf(str, "WIS:%d@", PlayerChar->WIS);
+  WriteLineMessageWindow(str, false);  
+  sprintf(str, "CHR:%d@", PlayerChar->CHR);
+  WriteLineMessageWindow(str, false);  
 }

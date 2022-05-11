@@ -129,7 +129,7 @@ void setcolortextmode()
   // Set Kernel-Function Screen Position pointer (used for ClrScr, Printf)
   // Value * 256 = Screen Position Address
   // 1100 1000
-  //POKE (0x0288, 200);
+  POKE (0x0288, 200);
   
   for (offset = 0; offset < 1000; ++offset)
   {

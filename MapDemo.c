@@ -28,7 +28,6 @@
 
 void Initialize()
 {
-  ListFunction();
   ScreenDisable();
   bgcolor(0);
   bordercolor(0);
@@ -52,7 +51,7 @@ void Initialize()
 }
 
 void main(void)
-{
+{  
   Initialize();
   
   while(true)

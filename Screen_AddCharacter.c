@@ -26,8 +26,8 @@ byte WindowLevel = 0;
 byte CurrentCharacter = 0;
 
 byte
-    	HP,
-	HPMAX,
+    	HPMAX,
+	HP,
   	STR,
   	DEX,
         CON,
@@ -41,16 +41,17 @@ byte
 
 void AddToParty()
 {
-  playerChar[CurrentCharacter].HP = HP;
-  playerChar[CurrentCharacter].HPMAX = HPMAX;
-  playerChar[CurrentCharacter].STR = STR;
-  playerChar[CurrentCharacter].DEX = DEX;
-  playerChar[CurrentCharacter].CON = CON;
-  playerChar[CurrentCharacter].INT = INT;
-  playerChar[CurrentCharacter].WIS = WIS;
-  playerChar[CurrentCharacter].CHR = CHR;
-  playerChar[CurrentCharacter].RACE = RACE;
-  playerChar[CurrentCharacter].CLASS = CLASS;
+  playerChar *PlayerChar = getPlayerChar(CurrentCharacter);
+  PlayerChar->HPMAX = HPMAX;
+  PlayerChar->HP = HP;
+  PlayerChar->STR = STR;
+  PlayerChar->DEX = DEX;
+  PlayerChar->CON = CON;
+  PlayerChar->INT = INT;
+  PlayerChar->WIS = WIS;
+  PlayerChar->CHR = CHR;
+  PlayerChar->RACE = RACE;
+  PlayerChar->CLASS = CLASS;
   
   DrawCharStats(CurrentCharacter);
 }
@@ -190,6 +191,7 @@ void WindowInput()
 
 void GetClass()
 {
+  byte temp;
   CLASS = 0;
   WindowLevel = 2;
   windowY = 10;
@@ -223,13 +225,15 @@ void GetClass()
     else
       HITDICE = ClassDescription[CLASS].HITDICE;
     
-    HPMAX = RollDice(1, HITDICE) + AbilityModifier[CON];
-    HP = HPMAX;
+    temp = RollDice(1, HITDICE) + AbilityModifier[CON];
     
     sprintf(str, "Hit Dice: %d@", HITDICE);
     WriteLineMessageWindow(str, 0);
-    sprintf(str, "Rolled: %d + %d@", HPMAX - AbilityModifier[CON], AbilityModifier[CON]);
+    sprintf(str, "Rolled: %d + %d@", temp, AbilityModifier[CON]);
     WriteLineMessageWindow(str, 0);
+    
+    HPMAX = temp + AbilityModifier[CON];
+    HP = HPMAX;
     
     AddToParty();
   }

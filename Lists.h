@@ -1,3 +1,3 @@
 void create();
 void delete_pos();
-void ListFunction();
+playerChar *getPlayerChar(byte index);
