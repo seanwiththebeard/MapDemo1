@@ -1,5 +1,6 @@
 void create(void);
 void delete_pos(byte pos);
+byte CountRoster(void);
 typedef struct playerChar
 {
         byte

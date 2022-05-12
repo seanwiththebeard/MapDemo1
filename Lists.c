@@ -10,6 +10,18 @@
      
 struct playerChar *start=NULL;
 
+byte CountRoster()
+{
+  struct playerChar *temp = start;
+  byte i = 0;
+  while(temp != NULL)
+  {
+    ++i;
+    temp = temp->next;
+  }
+  return i;
+}
+
 void create()
 {
         struct playerChar *temp,*ptr;
@@ -35,18 +47,14 @@ void create()
 struct playerChar *getPlayerChar(byte index)
 {
   byte i = 0;
-  struct playerChar *tmp;
-  if (start == NULL)
-    create();
-  tmp = start;
-
+  struct playerChar *tmp = start;
   while (tmp != NULL)
   {
     if(i == index)
     {
       return tmp;
-      tmp = tmp->next;
     }
+    tmp = tmp->next;
     ++i;
   }
 }
