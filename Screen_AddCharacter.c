@@ -327,6 +327,7 @@ void GetStats()
 void DrawRoster()
 {
   byte temp = 0;
+  struct playerChar *PlayerChar = getPlayerChar(temp);
   
   sprintf(str, "Count: %d@", CountRoster());
     WriteLineMessageWindow(str, 0);
@@ -350,10 +351,13 @@ void DrawRoster()
   
   for (temp = 0; temp < CountRoster(); ++temp)
   {
-    sprintf(str, "%s@", getPlayerChar(temp)->NAME);
+    sprintf(str, "%s@", PlayerChar->NAME);
     PrintString(str, windowX + 3, windowY + 8 + temp, false, false);
-    sprintf(str, "%s@", ClassDescription[getPlayerChar(temp)->CLASS].NAME);
+    sprintf(str, "%s@", RaceDescription[PlayerChar->RACE].NAME);
     PrintString(str, windowX + 12, windowY + 8 + temp, false, false);
+    sprintf(str, "%s@", ClassDescription[PlayerChar->CLASS].NAME);
+    PrintString(str, windowX + 20, windowY + 8 + temp, false, false);
+    PlayerChar = PlayerChar->next;
   }
   
   while(!exitWindow)
