@@ -29,19 +29,29 @@ byte CurrentCharacter = 0;
 
 byte
     	HPMAX,
-	HP,
-  	STR,
-  	DEX,
-        CON,
-        INT,
-  	WIS,
-	CHR,
-	
-	RACE,
-	CLASS,
-	HITDICE;
+HP,
+STR,
+DEX,
+CON,
+INT,
+WIS,
+CHR,
+
+RACE,
+CLASS,
+HITDICE;
 
 void AddToParty()
+{
+  
+}
+
+void RemoveFromParty()
+{
+  
+}
+
+void AddToRoster()
 {
   struct playerChar *PlayerChar;
   create();
@@ -57,7 +67,7 @@ void AddToParty()
   PlayerChar->RACE = RACE;
   PlayerChar->CLASS = CLASS;
   sprintf(PlayerChar->NAME, "Hello %d @", CountRoster() - 1);
-  
+
   if (CountRoster() <= 4)
     DrawCharStats(CountRoster() - 1);
   exitWindow = true;
@@ -74,26 +84,42 @@ byte RollDice(byte count, byte diceSize)
 }
 
 #define DrawSelection() (SetChar(windowX + 2, windowY + selection + 1, '>'))
+#define DrawCurrentCharacter() (SetChar(windowX + 2, windowY + 8 + CurrentCharacter, '>'))
+
 
 void SetString(char value[16], byte menuItem)
 {
   byte x;
   for (x = 0; x < 16; ++x)
     Selections[menuItem][x] = value[x];
-    
+
 }
 
 void MoveSelection(bool direction)
 {
   SetChar(windowX + 2, windowY + selection + 1, ' ');
-  
+
   if (!direction && selection > 0)
     --selection;
-  
+
   if (direction && selection < countSelections)
     ++selection;
-  
+
   DrawSelection();
+}
+
+void MoveCurrentCharacter(bool direction)
+{
+  SetChar(windowX + 2, windowY  + 8 + CurrentCharacter, ' ');
+
+  if (!direction && CurrentCharacter > 0)
+    --CurrentCharacter;
+
+  if (direction && CurrentCharacter < CountRoster() - 1)
+    ++CurrentCharacter;
+
+  if (CountRoster() > 0)
+    DrawCurrentCharacter();
 }
 
 void DrawSelections()
@@ -113,12 +139,43 @@ void DrawCharWindow(byte xPos, byte yPos, byte width, byte height, char title[16
   {
     DrawLineH(' ', 0, xPos, yPos + x, width);
   }
-  
+
   DrawBorder(xPos, yPos, width, height, false);
-  
+
   PrintString(title, xPos + 1, yPos, false, false);
   DrawSelection();
   DrawSelections();
+}
+
+bool AreYouSure()
+{
+  windowX = 1;
+  windowY = 20;
+  windowWidth = 16;
+  windowHeight = 5;
+  countSelections = 1;
+  selection = 0;
+  SetString("No @", 0);
+  SetString("Yes@", 1);
+
+  DrawCharWindow(windowX, windowY, windowWidth, windowHeight, "Are you sure?@");
+  while (1)
+  {
+    UpdateInput();
+    if (InputChanged())
+    {
+      if (InputUp())
+      {
+        MoveSelection(false);
+      }
+      if (InputDown())
+      {
+        MoveSelection(true);
+      }
+      if (InputFire())
+        return selection;
+    }
+  }
 }
 
 void RollStats()
@@ -139,13 +196,13 @@ void RollStats()
   sprintf(str, "INT: %d CHR: %d@", INT, CHR);
   WriteLineMessageWindow(str, 0);
   WriteLineMessageWindow("Right to reroll@", 0);
-  
+
   SetString("+ Fighter@", 0);
   SetString("+ Magic-User@", 1);
   SetString("+ Cleric@", 2);
   SetString("+ Thief@", 3);
   SetString("Exit@", 4);  
-  
+
   if (STR < 9)
     Selections[0][0] = ' ';
   if (INT < 9)
@@ -154,7 +211,7 @@ void RollStats()
     Selections[2][0] = ' ';
   if (DEX < 9)
     Selections[3][0] = ' ';    
-  
+
   //sprintf(str, "Seed: %d@", randseed);
   //WriteLineMessageWindow(str, 0);  
 }
@@ -165,41 +222,65 @@ void WindowInput()
   {
     MoveSelection(false);
   }
-    if (InputDown()) 
+  if (InputDown()) 
+  {
+    MoveSelection(true);
+  }
+  if (InputLeft())
+  {
+    if (WindowLevel == 0)
     {
-      MoveSelection(true);
+      MoveCurrentCharacter(false);
     }
-    if (InputLeft())
+  }
+  if (InputRight())
+  {
+    if (WindowLevel == 0)
     {
+      MoveCurrentCharacter(true);
     }
-    if (InputRight())
+    if (WindowLevel == 2)
     {
-      if (WindowLevel == 2)
-      {
-        RollStats();
-        DrawSelections();
-      }
+      RollStats();
+      DrawSelections();
     }
-    if (InputFire())
+  }
+  if (InputFire())
+  {
+    if (WindowLevel == 0)
     {
-      if (WindowLevel == 0)
-      	if (selection == 1)
-          if (CountRoster() < 12)
-            GetRace();
-      
-      if (WindowLevel == 2)
-        if (Selections[selection][0] == ' ')
+      if (selection == 0) // Add to party
+      {}
+      if (selection == 1) // Remove from party
+      {}
+      if (selection == 2) // Create
+        if (CountRoster() < 12)
+          GetRace();
+      if (selection == 3) //Delete
+        if (CountRoster() > 0)
         {
-          WriteLineMessageWindow("Prime stat low@", 0);
-          return;
+          if (AreYouSure())
+          {
+            delete_pos(CurrentCharacter);
+          }
+          exitWindow = true;
+          nextWindow = true;
         }
-      if (selection == countSelections)
-      {
-        exitWindow = true;
-      }
-      else if (Selections[selection][0] != ' ')
-        nextWindow = true;
     }
+
+    if (WindowLevel == 2)
+      if (Selections[selection][0] == ' ')
+      {
+        WriteLineMessageWindow("Prime stat low@", 0);
+        return;
+      }
+    if (selection == countSelections)
+    {
+      exitWindow = true;
+    }
+    else if (Selections[selection][0] != ' ')
+      nextWindow = true;
+  }
 }
 
 void GetClass()
@@ -210,13 +291,13 @@ void GetClass()
   windowY = 10;
   windowHeight = 7;
   countSelections = 4;
-  
+
   nextWindow = false;
   exitWindow = false;
-    
+
   RollStats();
   DrawCharWindow(windowX, windowY, windowWidth, windowHeight, "Class?@");
-  
+
   while (!nextWindow)
   {
     UpdateInput();
@@ -230,12 +311,12 @@ void GetClass()
     WriteLineMessageWindow("Class Confirmed:@", 0);
     CLASS = selection;
     WriteLineMessageWindow(ClassDescription[CLASS].NAME, 0);
-    
+
     if (RaceDescription[RACE].HITDICEMAX < ClassDescription[CLASS].HITDICE)
       HITDICE = RaceDescription[RACE].HITDICEMAX;
     else
       HITDICE = ClassDescription[CLASS].HITDICE;
-    
+
     temp = RollDice(1, HITDICE);
     sprintf(str, "Hit Dice: 1d%d@", HITDICE);
     WriteLineMessageWindow(str, 0);
@@ -251,7 +332,7 @@ void GetClass()
     {
       HPMAX = temp + AbilityModifier[CON];
       HP = HPMAX;
-      AddToParty();
+      AddToRoster();
     }
   }
   else
@@ -270,10 +351,10 @@ void GetRace()
   SetString("Dwarf@", 2);
   SetString("Halfling@", 3);
   SetString("Exit@", 4);
-  
+
   nextWindow = false;
   exitWindow = false;
-  
+
   DrawCharWindow(windowX, windowY, windowWidth, windowHeight, "Race?@");
   while (!nextWindow)
   {
@@ -281,7 +362,7 @@ void GetRace()
     if (InputChanged())
       WindowInput();
     if (exitWindow)
-    return;
+      return;
   }
   if (nextWindow)
   {
@@ -292,47 +373,15 @@ void GetRace()
   }
 }
 
-void GetStats()
-{
-  WindowLevel = 0;
-  windowY = 3;
-  windowHeight = 4;
-  countSelections = 1;
-  SetString("Confirm@", 0);
-  SetString("Exit@", 1);
-  
-  exitWindow = false;
-  nextWindow = false;
-  
-  DrawCharWindow(windowX, windowY, windowWidth, windowHeight, "Stats?@");
-  //RollStats();
-  
-  while (!nextWindow)
-  {
-    UpdateInput();
-    if (InputChanged())
-      WindowInput();
-    if (exitWindow)
-    return;
-  }
-  exitWindow = false;
-  if (nextWindow)
-  {
-    WriteLineMessageWindow("Stats Confirmed@", 0);
-    GetRace();
-    nextWindow = false;
-  }
-}
-
 void DrawRoster()
 {
   byte temp = 0;
   struct playerChar *PlayerChar = getPlayerChar(temp);
-  
+
   sprintf(str, "Count: %d@", CountRoster());
-    WriteLineMessageWindow(str, 0);
-  
-  countSelections = 3;
+  WriteLineMessageWindow(str, 0);
+
+  countSelections = 4;
   WindowLevel = 0;
   windowX = 0;
   windowY = 0;
@@ -340,26 +389,30 @@ void DrawRoster()
   windowHeight = ROWS - 2;
   exitWindow = false;
   nextWindow = false;
-  
+
   SetString("Add to party@", 0);
-  SetString("Create@", 1);
-  SetString("Delete@", 2);
-  SetString("Exit@", 3);
-  
+  SetString("Remove from party@", 1);
+  SetString("Create@", 2);
+  SetString("Delete@", 3);
+  SetString("Exit@", 4);
+
   DrawCharWindow(windowX, windowY, COLS - 2, ROWS - 2, "Roster@");
-  
-  
-  for (temp = 0; temp < CountRoster(); ++temp)
+
+  if (CountRoster() > 0)
   {
-    sprintf(str, "%s@", PlayerChar->NAME);
-    PrintString(str, windowX + 3, windowY + 8 + temp, false, false);
-    sprintf(str, "%s@", RaceDescription[PlayerChar->RACE].NAME);
-    PrintString(str, windowX + 12, windowY + 8 + temp, false, false);
-    sprintf(str, "%s@", ClassDescription[PlayerChar->CLASS].NAME);
-    PrintString(str, windowX + 20, windowY + 8 + temp, false, false);
-    PlayerChar = PlayerChar->next;
+
+    for (temp = 0; temp < CountRoster(); ++temp)
+    {
+      sprintf(str, "%s@", PlayerChar->NAME);
+      PrintString(str, windowX + 3, windowY + 8 + temp, false, false);
+      sprintf(str, "%s@", RaceDescription[PlayerChar->RACE].NAME);
+      PrintString(str, windowX + 12, windowY + 8 + temp, false, false);
+      sprintf(str, "%s@", ClassDescription[PlayerChar->CLASS].NAME);
+      PrintString(str, windowX + 20, windowY + 8 + temp, false, false);
+      PlayerChar = PlayerChar->next;
+    }
+    DrawCurrentCharacter();
   }
-  
   while(!exitWindow)
   {
     UpdateInput();
@@ -373,9 +426,9 @@ void DrawAddCharacterScreen()
 {
   exitWindow = false;
   CurrentCharacter = 0;
-  
+
   DrawRoster();
-  
+
   while (CurrentCharacter < 4 && !exitWindow)
   {
     WriteLineMessageWindow("@", 0);
