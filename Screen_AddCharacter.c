@@ -390,8 +390,8 @@ void DrawRoster()
   exitWindow = false;
   nextWindow = false;
 
-  SetString("Add to party@", 0);
-  SetString("Remove from party@", 1);
+  SetString("Add member@", 0);
+  SetString("Remove member@", 1);
   SetString("Create@", 2);
   SetString("Delete@", 3);
   SetString("Exit@", 4);

@@ -4,6 +4,30 @@
 
 char str[16];
 int randseed = 0;
+screenName currentScreen = 0;
+
+void SwitchScreen(screenName screen)
+{
+  //Unload current screen
+  switch (currentScreen)
+  {
+    case Title:
+      break;
+    case EditParty:
+      break;
+    case Map:
+      break;
+    case Combat:
+      break;
+    case Menu:
+      break;
+    default:
+      break;
+  }
+  
+  //Load specified screen
+  currentScreen = screen;
+}
 
 byte ReadBit(byte byteToRead, char bit)
 {

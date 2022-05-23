@@ -10,6 +10,7 @@ typedef uint8_t byte;
 typedef uint16_t word;
 typedef int8_t sbyte;
 typedef enum { false, true } bool;
+typedef enum { Title, EditParty, Map, Combat, Menu, SaveLoad } screenName;
 
 extern char str[16];
 extern int randseed;
@@ -33,7 +34,7 @@ extern int randseed;
 #define ScreenRam 0xC800
 #define ColorRam 0xD800
 
-
+void SwitchScreen(screenName screen);
 void WriteBit(byte *byteToSet, char bit, bool value);
 byte ReadBit(byte byteToRead, char bit);
 bool CheckBit(byte source, byte position);
