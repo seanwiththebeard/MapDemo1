@@ -1,6 +1,6 @@
 #include "Common.h"
 
 void InitializeMapData();
-byte CheckInput();
+byte MapUpdate();
 void DrawEntireMap();
 void LoadMap();

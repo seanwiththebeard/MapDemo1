@@ -429,7 +429,7 @@ void DrawAddCharacterScreen()
 
   DrawRoster();
 
-  while (CurrentCharacter < 4 && !exitWindow)
+  while (!exitWindow)
   {
     WriteLineMessageWindow("@", 0);
     WriteLineMessageWindow("New Character@", 0);
@@ -437,6 +437,7 @@ void DrawAddCharacterScreen()
     CopyDoubleBuffer();
     ++CurrentCharacter;
   }
+  SwitchScreen(Map);
   //CopyDoubleBufferArea(windowX, windowY, windowWidth, windowHeight);  
 }
 

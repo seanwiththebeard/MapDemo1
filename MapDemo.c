@@ -38,7 +38,7 @@ void Initialize()
   //Draw_Title();
   BlankMessageWindow();
   
-  LoadMap();
+  SwitchScreen(Map);
   
   //DrawAddCharacterScreen();
 
@@ -46,7 +46,7 @@ void Initialize()
   //WriteLineMessageWindow("JumpsOverLazyDog", 0);
   //WriteLineMessageWindow("0123456789:;<=>?", 0);
   //WriteLineMessageWindow(" ! #$%&'()*+,-./", 0);
-  //ScreenEnable();
+  ScreenEnable();
   
 }
 
@@ -61,6 +61,6 @@ void main(void)
     music_update();
     
     if(InputChanged())
-      CheckInput();
+      UpdateScreen();
   }
 }

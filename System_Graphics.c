@@ -7,7 +7,7 @@
 #include "System_Graphics.h"
 
 byte ScreenDoubleBuffer[2000], charScrollBuffer[8], column, OffsetY, temp, count;
-int offset, charOffset, colorOffset, origin, retValue, bufferColorAddress, bufferScreenAddress;
+int offset, charOffset, colorOffset, origin, retValue, bufferColorAddress, bufferScreenAddress, i;
 
 byte far *ScreenChars = (byte far*)ScreenRam;
 byte far *ScreenColors = (byte far*)ColorRam;    
@@ -74,6 +74,20 @@ void CopyDoubleBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
     	bufferScreenAddress += COLS;
     	bufferColorAddress += COLS;
     } 
+}
+
+void ClearScreen()
+{
+  for (i = 1000; i < 2000; ++i)
+  {
+    ScreenDoubleBuffer[i] = 0;
+  }
+  for (i = 0; i < 1000; ++i)
+  {
+    ScreenDoubleBuffer[i] = ' ';
+  }
+  
+  CopyDoubleBuffer();
 }
 
 void ReverseBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)

@@ -35,6 +35,8 @@ extern int randseed;
 #define ColorRam 0xD800
 
 void SwitchScreen(screenName screen);
+void UpdateScreen(void);
+
 void WriteBit(byte *byteToSet, char bit, bool value);
 byte ReadBit(byte byteToRead, char bit);
 bool CheckBit(byte source, byte position);

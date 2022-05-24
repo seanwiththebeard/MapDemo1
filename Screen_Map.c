@@ -636,8 +636,8 @@ void InitializeMapData()
   DrawBorder(viewportPosX - 1, viewportPosY - 1, viewportCharWidth + 2, viewportCharHeight + 2, true);
   ReverseBufferArea(viewportPosX - 1, viewportPosY - 1, viewportCharWidth + 2, viewportCharHeight + 2);
   
-  viewportOrigin += (viewportPosX + COLS * viewportPosY);
-  colorOrigin += (viewportPosX + COLS * viewportPosY);
+  viewportOrigin = (int)&ScreenDoubleBuffer[0] +  (viewportPosX + COLS * viewportPosY);
+  colorOrigin = (int)&ScreenDoubleBuffer[1000] + (viewportPosX + COLS * viewportPosY);
   
   cameraOffsetX = viewportWidth / 2;
   cameraOffsetY = viewportHeight / 2;
@@ -1009,7 +1009,7 @@ void LoadMap()
   ScreenEnable();
 }
 
-byte CheckInput()
+byte MapUpdate()
 {
     if (InputUp())
     {
@@ -1033,7 +1033,7 @@ byte CheckInput()
     }
     if (InputFire())
     {
-      DrawAddCharacterScreen();
+      SwitchScreen(EditParty);
       //LoadMap();
       //PlaySong();
       //sprintf(str, "Pos = %d,%d@", characters[0].posX, characters[0].posY);

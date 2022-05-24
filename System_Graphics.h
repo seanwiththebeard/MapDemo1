@@ -4,6 +4,7 @@ void SetChar(byte x, byte y, byte index);
 void SetCharC(byte x, byte y, byte index, byte color);
 
 void UpdateColors(void);
+void ClearScreen(void);
 
 void CopyDoubleBuffer(void);
 //void CopyDoubleBufferRows(byte posY, byte sizeY, byte length);
