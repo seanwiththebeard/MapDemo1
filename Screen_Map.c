@@ -872,10 +872,8 @@ bool CheckCollision(byte charIndex, byte Direction)
 
 void DrawEntireMap()
 {
-  ScreenDisable();
-  DrawBorder(viewportPosX - 1, viewportPosY - 1, viewportCharWidth + 2, viewportCharHeight + 2, true);
+  DrawBorder(viewportPosX - 1, viewportPosY - 1, viewportCharWidth + 2, viewportCharHeight + 2, true, false);
   //ReverseBufferArea(viewportPosX - 1, viewportPosY - 1, viewportCharWidth + 2, viewportCharHeight + 2);
-  
   CameraFollow();
   int_a = offsetX;
   int_b = offsetY;
@@ -901,7 +899,7 @@ void DrawEntireMap()
   {
     UpdateViewport();
   }
-  ScreenEnable();
+  DrawMessageWindow();
 }
 
 void MoveCharacter(byte index, byte direction, bool cameraUpdate)

@@ -35,12 +35,13 @@ void SwitchScreen(screenName screen)
   //Load specified screen
   UpdateInput();
   currentScreen = screen;
-  ScreenEnable();
+  
   switch (currentScreen)
   {
     case Title:
       break;
     case EditParty:
+      ScreenEnable();
       DrawAddCharacterScreen();
       break;
     case Map:
@@ -55,6 +56,7 @@ void SwitchScreen(screenName screen)
     default:
       break;
   }
+  ScreenEnable();
 }
 
 void UpdateScreen()

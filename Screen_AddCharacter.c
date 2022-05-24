@@ -140,7 +140,7 @@ void DrawCharWindow(byte xPos, byte yPos, byte width, byte height, char title[16
     DrawLineH(' ', 0, xPos, yPos + x, width);
   }
 
-  DrawBorder(xPos, yPos, width, height, false);
+  DrawBorder(xPos, yPos, width, height, false, true);
 
   PrintString(title, xPos + 1, yPos, false, false);
   DrawSelection();

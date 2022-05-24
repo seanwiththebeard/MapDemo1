@@ -20,7 +20,7 @@ void Graphics_Update(void);
 void PrintString(char text[16], byte posx, byte posy, bool fast, bool buffer);
 void DrawLineH(char index, byte color, byte x, byte y, byte length);
 void DrawLineV(char index, byte color, byte x, byte y, byte length);
-void DrawBorder(byte xPos, byte yPos, byte width, byte height, bool buffer);
+void DrawBorder(byte xPos, byte yPos, byte width, byte height, bool buffer, bool fill);
 
 extern int YColumnIndex[];
 extern byte ScreenDoubleBuffer[2000];

@@ -236,7 +236,7 @@ void ScrollChar(byte index, byte direction)
   }
 }
 
-void DrawBorder(byte xPos, byte yPos, byte width, byte height, bool buffer)
+void DrawBorder(byte xPos, byte yPos, byte width, byte height, bool buffer, bool fill)
 {
   byte x;
   #define lineColor 15
@@ -250,10 +250,11 @@ void DrawBorder(byte xPos, byte yPos, byte width, byte height, bool buffer)
   SetCharC(xPos + width - 1, yPos, 238, cornerColor);
   SetCharC(xPos, yPos + height - 1, 238, cornerColor);
   SetCharC(xPos + width - 1, yPos + height - 1, 238, cornerColor);
-  for (x = 0; x < height - 2; ++x)
-  {
-    DrawLineH(' ', 0, xPos + 1, yPos + x + 1, width - 2);
-  }
+  if (fill)
+    for (x = 0; x < height - 2; ++x)
+    {
+      DrawLineH(' ', 0, xPos + 1, yPos + x + 1, width - 2);
+    }
   if (buffer)
   {
     ReverseBufferArea(xPos, yPos, width, height);

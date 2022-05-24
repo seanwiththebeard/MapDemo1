@@ -25,20 +25,29 @@ char Messages[64][16] = {
 
 void DrawMessageWindow()
 {
-    addressChar = (int)&ScreenDoubleBuffer[0] + PosX + COLS*(PosY);
-    addressColor = addressChar + 1000;
-    for (y = 0; y < Height; ++y)
-        {
-            //SetScreenChar(MessageWindow[x + Height*y], PosX + x, PosY + (y * COLS));
-            //memcpy((int*)address, &MessageWindow[y * Width], Width);
-            CopyMemory((int) addressChar, (int) &MessageWindow[y * Width], Width);
-            CopyMemory((int) addressColor, (int) &MessageWindowColors[y * Width], Width);
-            //memcpy(address + 0x1000,&(AttributeSet[0][MessageWindow[Width * x]]), Width);
-            addressChar += COLS;
-            addressColor += COLS;
-            //POKEW(tileaddress, PEEKW(&MessageWindow[x * 2][y]));
-            //POKEW(tileaddress + 0x1000, PEEKW(&AttributeSet[0][MessageWindow[x * 2][y]]));
-        }
+  DrawBorder(PosX - 1, PosY - 1, Width + 2, Height + 2, true, false);
+  
+  //Buffer
+  //addressChar = (int)&ScreenDoubleBuffer[0] + PosX + COLS*(PosY);
+  //addressColor = addressChar + 1000;
+  
+  //Direct
+  addressChar = ScreenRam + PosX + COLS*(PosY);
+  addressColor = ColorRam + PosX + COLS*(PosY);
+  
+  for (y = 0; y < Height; ++y)
+  {
+    //SetScreenChar(MessageWindow[x + Height*y], PosX + x, PosY + (y * COLS));
+    //memcpy((int*)address, &MessageWindow[y * Width], Width);
+    CopyMemory((int) addressChar, (int) &MessageWindow[y * Width], Width);
+    CopyMemory((int) addressColor, (int) &MessageWindowColors[y * Width], Width);
+    //memcpy(address + 0x1000,&(AttributeSet[0][MessageWindow[Width * x]]), Width);
+    addressChar += COLS;
+    addressColor += COLS;
+    //POKEW(tileaddress, PEEKW(&MessageWindow[x * 2][y]));
+    //POKEW(tileaddress + 0x1000, PEEKW(&AttributeSet[0][MessageWindow[x * 2][y]]));
+  }
+  ReverseBufferArea(PosX, PosY, Width, Height);
 }
 void BlankMessageWindow()
 {
@@ -49,7 +58,7 @@ void BlankMessageWindow()
     }
     DrawMessageWindow();
     
-  DrawBorder(PosX - 1, PosY - 1, Width + 2, Height + 2, true);
+  DrawBorder(PosX - 1, PosY - 1, Width + 2, Height + 2, true, true);
   CopyDoubleBuffer();
 }
 
@@ -63,47 +72,45 @@ void ScrollMessageWindowUp(byte lines)
       MessageWindowColors[x] = MessageWindowColors[x + Width];
     }
     
-    for (; x < Width * Height; ++x)
+    
+  }
+  for (x = Width * (Height - 1); x < Width * Height; ++x)
     {
       MessageWindow[x]= ' ';
       MessageWindowColors[x] = 0;
     }
-    DrawMessageWindow();
-  }
+  DrawMessageWindow();
 }
 
 void WriteLineMessageWindow(char message[16], byte delay)
 {
-    ScrollMessageWindowUp(1);  
-    for(x = 0; x < Width; ++x)
+  ScrollMessageWindowUp(1);  
+  for(x = 0; x < Width; ++x)
+  {
+    if (message[x] == '@')
     {
-      if (message[x] == '@')
+      while (x < Width)
       {
-        while (x < Width)
-        {
-            MessageWindow[(Width*Height - Width) + x] = ' ';
-            MessageWindowColors[(Width*Height - Width) + x] = 0;
-            ++x;
-        }
-        break;
+        MessageWindow[(Width*Height - Width) + x] = ' ';
+        MessageWindowColors[(Width*Height - Width) + x] = 0;
+        ++x;
       }
-      else
-      {
-        MessageWindow[(Width*Height - Width) + x] = message[x];
-        MessageWindowColors[(Width*Height - Width) + x] = AttributeSet[message[x]];
-      }
-      SetScreenCharColor(message[x], AttributeSet[message[x]], PosX + x, PosY + Height - 1);
-      if (delay > 0)
-      {
-        wait_vblank(delay);
-        CopyDoubleBufferArea(PosX, PosY, Width, Height);
-        //CopyDoubleBuffer();
-      }
+      break;
     }
-  if (delay == 0)
-    CopyDoubleBufferArea(PosX, PosY, Width, Height);
-    //CopyDoubleBuffer();      
-    
+    else
+    {
+      MessageWindow[(Width*Height - Width) + x] = message[x];
+      MessageWindowColors[(Width*Height - Width) + x] = AttributeSet[message[x]];
+    }
+    //SetScreenCharColor(message[x], AttributeSet[message[x]], PosX + x, PosY + Height - 1);
+    SetCharC(PosX + x, PosY + Height - 1, message[x], AttributeSet[message[x]]);
+    if (delay > 0)
+    {
+      wait_vblank(delay);
+      //CopyDoubleBufferArea(PosX, PosY, Width, Height);
+    }
+  }
+  ReverseBufferArea(PosX, PosY, Width, Height);  
 }
 
 void DrawCharStats(byte characterIndex)
@@ -112,7 +119,7 @@ void DrawCharStats(byte characterIndex)
   byte statY = 2 + characterIndex * 3;
   struct playerChar *PlayerChar = getPlayerChar(characterIndex);
   
-  DrawBorder(statX - 1, statY - 1, COLS - statX + 1, 4, false);
+  DrawBorder(statX - 1, statY - 1, COLS - statX + 1, 4, false, true);
   sprintf(str, "%s@", RaceDescription[PlayerChar->RACE].NAME);
   PrintString(str, statX, statY, false, false);
   sprintf(str, "HP:%d/%d@", PlayerChar->HP, PlayerChar->HPMAX);  
