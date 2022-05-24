@@ -36,9 +36,11 @@ void Initialize()
   setcolortextmode();
   SetCharacterSet();
   //Draw_Title();
-  BlankMessageWindow();
+  LoadMap();
   
   SwitchScreen(Map);
+  BlankMessageWindow();
+  
   
   //DrawAddCharacterScreen();
 

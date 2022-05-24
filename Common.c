@@ -13,6 +13,7 @@ screenName currentScreen = Title;
 
 void SwitchScreen(screenName screen)
 {
+  ScreenDisable();
   ClearScreen();
   //Unload current screen
   switch (currentScreen)
@@ -34,6 +35,7 @@ void SwitchScreen(screenName screen)
   //Load specified screen
   UpdateInput();
   currentScreen = screen;
+  ScreenEnable();
   switch (currentScreen)
   {
     case Title:
@@ -42,7 +44,8 @@ void SwitchScreen(screenName screen)
       DrawAddCharacterScreen();
       break;
     case Map:
-      LoadMap();
+      //LoadMap();
+      DrawEntireMap();
       MapUpdate();
       break;
     case Combat:

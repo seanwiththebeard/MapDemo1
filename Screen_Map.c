@@ -633,9 +633,6 @@ void InitializeMapData()
   #define water 34
   #define signpost 35
   
-  DrawBorder(viewportPosX - 1, viewportPosY - 1, viewportCharWidth + 2, viewportCharHeight + 2, true);
-  ReverseBufferArea(viewportPosX - 1, viewportPosY - 1, viewportCharWidth + 2, viewportCharHeight + 2);
-  
   viewportOrigin = (int)&ScreenDoubleBuffer[0] +  (viewportPosX + COLS * viewportPosY);
   colorOrigin = (int)&ScreenDoubleBuffer[1000] + (viewportPosX + COLS * viewportPosY);
   
@@ -875,10 +872,13 @@ bool CheckCollision(byte charIndex, byte Direction)
 
 void DrawEntireMap()
 {
+  ScreenDisable();
+  DrawBorder(viewportPosX - 1, viewportPosY - 1, viewportCharWidth + 2, viewportCharHeight + 2, true);
+  //ReverseBufferArea(viewportPosX - 1, viewportPosY - 1, viewportCharWidth + 2, viewportCharHeight + 2);
+  
   CameraFollow();
   int_a = offsetX;
   int_b = offsetY;
-
   //Buffer the matrix of tiles for our viewport
   for(byte_y = 0; byte_y < viewportHeight; ++byte_y)
   {
@@ -896,11 +896,12 @@ void DrawEntireMap()
     int_a = offsetX;
     ++int_b;
   }
-
+  
   //Update the viewport
   {
     UpdateViewport();
   }
+  ScreenEnable();
 }
 
 void MoveCharacter(byte index, byte direction, bool cameraUpdate)
