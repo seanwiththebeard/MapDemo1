@@ -242,7 +242,7 @@ void DrawBorder(byte xPos, byte yPos, byte width, byte height, bool buffer, bool
   #define lineColor 15
   #define cornerColor 8
   
-  DrawLineH(239, lineColor, xPos + 1, yPos, width - 1);
+  DrawLineH(239, lineColor, xPos + 1, yPos, width - 2);
   DrawLineH(239, lineColor, xPos + 1, yPos + height - 1, width - 1);
   DrawLineV(255, lineColor, xPos, yPos + 1, height - 1);
   DrawLineV(255, lineColor, xPos + width - 1, yPos + 1, height - 1);
