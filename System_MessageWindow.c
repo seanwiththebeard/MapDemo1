@@ -121,11 +121,11 @@ void DrawCharStats(byte characterIndex)
   
   DrawBorder(statX - 1, statY - 1, COLS - statX + 1, 4, false, true);
   sprintf(str, "%s@", RaceDescription[PlayerChar->RACE].NAME);
-  PrintString(str, statX, statY, false, false);
+  PrintString(str, statX, statY, true, false);
   sprintf(str, "HP:%d/%d@", PlayerChar->HP, PlayerChar->HPMAX);  
-  PrintString(str, statX + 9, statY, false, false);
+  PrintString(str, statX + 9, statY, true, false);
   sprintf(str, "%s@", ClassDescription[PlayerChar->CLASS].NAME);
-  PrintString(str, statX, statY + 1, false, false);
+  PrintString(str, statX, statY + 1, true, false);
   ReverseBufferArea(statX - 1, statY - 1, COLS - statX + 1, 5);
   CopyDoubleBufferArea(statX - 1, statY - 1, COLS - statX + 1, 5);
 }

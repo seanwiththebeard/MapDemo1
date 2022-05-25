@@ -22,6 +22,7 @@ byte selection = 0;
 byte countSelections = 4;
 bool exitWindow = false;
 bool nextWindow = false;
+bool repeatRoster = true;
 
 byte WindowLevel = 0;
 
@@ -70,8 +71,8 @@ void AddToRoster()
 
   if (CountRoster() <= 4)
     DrawCharStats(CountRoster() - 1);
-  exitWindow = true;
-  nextWindow = true;
+  //exitWindow = true;
+  //nextWindow = true;
 }
 
 byte RollDice(byte count, byte diceSize)
@@ -127,7 +128,7 @@ void DrawSelections()
   byte x;
   for (x = 0; x < countSelections + 1; ++x)
   {
-    PrintString(Selections[x], windowX + 3, windowY + 1 + x, false, false);
+    PrintString(Selections[x], windowX + 3, windowY + 1 + x, true, false);
   }
 }
 
@@ -142,7 +143,7 @@ void DrawCharWindow(byte xPos, byte yPos, byte width, byte height, char title[16
 
   DrawBorder(xPos, yPos, width, height, false, true);
 
-  PrintString(title, xPos + 1, yPos, false, false);
+  PrintString(title, xPos + 1, yPos, true, false);
   DrawSelection();
   DrawSelections();
 }
@@ -216,73 +217,6 @@ void RollStats()
   //WriteLineMessageWindow(str, 0);  
 }
 
-void WindowInput()
-{
-  if (InputUp())
-  {
-    MoveSelection(false);
-  }
-  if (InputDown()) 
-  {
-    MoveSelection(true);
-  }
-  if (InputLeft())
-  {
-    if (WindowLevel == 0)
-    {
-      MoveCurrentCharacter(false);
-    }
-  }
-  if (InputRight())
-  {
-    if (WindowLevel == 0)
-    {
-      MoveCurrentCharacter(true);
-    }
-    if (WindowLevel == 2)
-    {
-      RollStats();
-      DrawSelections();
-    }
-  }
-  if (InputFire())
-  {
-    if (WindowLevel == 0)
-    {
-      if (selection == 0) // Add to party
-      {}
-      if (selection == 1) // Remove from party
-      {}
-      if (selection == 2) // Create
-        if (CountRoster() < 12)
-          GetRace();
-      if (selection == 3) //Delete
-        if (CountRoster() > 0)
-        {
-          if (AreYouSure())
-          {
-            delete_pos(CurrentCharacter);
-          }
-          exitWindow = true;
-          nextWindow = true;
-        }
-    }
-
-    if (WindowLevel == 2)
-      if (Selections[selection][0] == ' ')
-      {
-        WriteLineMessageWindow("Prime stat low@", 0);
-        return;
-      }
-    if (selection == countSelections)
-    {
-      exitWindow = true;
-    }
-    else if (Selections[selection][0] != ' ')
-      nextWindow = true;
-  }
-}
-
 void GetClass()
 {
   int temp = 0;
@@ -302,7 +236,34 @@ void GetClass()
   {
     UpdateInput();
     if (InputChanged())
-      WindowInput();
+    {
+      if (InputUp())
+        MoveSelection(false);
+      if (InputDown())
+        MoveSelection(true);
+
+      if (InputRight())
+      {
+        RollStats();
+        DrawSelections();
+      }
+      
+      if (InputFire())
+      {
+          if (Selections[selection][0] == ' ')
+          {
+            WriteLineMessageWindow("Prime stat low@", 0);
+            return;
+          }
+        if (selection == countSelections)
+        {
+          nextWindow = true;
+          exitWindow = true;
+        }
+        else if (Selections[selection][0] != ' ')
+          nextWindow = true;
+      }
+    }
     if (exitWindow)
       return;
   }
@@ -325,8 +286,8 @@ void GetClass()
     if (temp + AbilityModifier[CON] < 1)
     {
       WriteLineMessageWindow("Died, no HP@", 0);
-      exitWindow = true;
-      nextWindow = true;
+      //exitWindow = true;
+      //nextWindow = true;
     }
     else
     {
@@ -354,13 +315,28 @@ void GetRace()
 
   nextWindow = false;
   exitWindow = false;
-
+  
+  ClearScreen();
+  
   DrawCharWindow(windowX, windowY, windowWidth, windowHeight, "Race?@");
   while (!nextWindow)
   {
     UpdateInput();
     if (InputChanged())
-      WindowInput();
+    {
+      if (InputUp())
+        MoveSelection(false);
+      if (InputDown())
+        MoveSelection(true);
+      if (InputFire())
+      {
+        nextWindow = true;
+        if (selection == countSelections)
+        {
+          exitWindow = true;
+        }
+      }
+    }
     if (exitWindow)
       return;
   }
@@ -377,6 +353,9 @@ void DrawRoster()
 {
   byte temp = 0;
   struct playerChar *PlayerChar = getPlayerChar(temp);
+  
+  repeatRoster = true;
+  
 
   sprintf(str, "Count: %d@", CountRoster());
   WriteLineMessageWindow(str, 0);
@@ -404,20 +383,60 @@ void DrawRoster()
     for (temp = 0; temp < CountRoster(); ++temp)
     {
       sprintf(str, "%s@", PlayerChar->NAME);
-      PrintString(str, windowX + 3, windowY + 8 + temp, false, false);
+      PrintString(str, windowX + 3, windowY + 8 + temp, true, false);
       sprintf(str, "%s@", RaceDescription[PlayerChar->RACE].NAME);
-      PrintString(str, windowX + 12, windowY + 8 + temp, false, false);
+      PrintString(str, windowX + 12, windowY + 8 + temp, true, false);
       sprintf(str, "%s@", ClassDescription[PlayerChar->CLASS].NAME);
-      PrintString(str, windowX + 20, windowY + 8 + temp, false, false);
+      PrintString(str, windowX + 20, windowY + 8 + temp, true, false);
       PlayerChar = PlayerChar->next;
     }
     DrawCurrentCharacter();
   }
-  while(!exitWindow)
+  while(repeatRoster)
   {
     UpdateInput();
     if (InputChanged())
-      WindowInput();
+    {
+      if (InputUp())
+        MoveSelection(false);
+      if (InputDown()) 
+        MoveSelection(true);
+
+      if (InputLeft())
+        MoveCurrentCharacter(false);
+      if (InputRight())
+        MoveCurrentCharacter(true);
+      
+      if (InputFire())
+      {
+        switch(selection)
+        {
+          case 0: //Add to party
+            break;
+          case 1: //Remove from party
+            break;
+          case 2: //Create
+            if (CountRoster() < 12)
+            {
+              GetRace();
+              repeatRoster = false;
+            }
+            break;
+          case 3: //Delete
+            if (CountRoster() > 0)
+              if (AreYouSure())
+              {
+                delete_pos(CurrentCharacter);
+                return;
+              }
+            break;
+          case 4:
+            repeatRoster = false;
+            exitWindow = true;
+            break;
+        }
+      }
+    }
   }
   CopyDoubleBuffer();
 }
@@ -427,15 +446,15 @@ void DrawAddCharacterScreen()
   exitWindow = false;
   CurrentCharacter = 0;
 
-  DrawRoster();
+  //GetRace();
+  
 
   while (!exitWindow)
   {
-    WriteLineMessageWindow("@", 0);
-    WriteLineMessageWindow("New Character@", 0);
-    GetRace();
-    CopyDoubleBuffer();
-    ++CurrentCharacter;
+    DrawRoster();
+    ClearScreen();
+    //CopyDoubleBuffer();
+    //++CurrentCharacter;
   }
   SwitchScreen(Map);
   //CopyDoubleBufferArea(windowX, windowY, windowWidth, windowHeight);  
