@@ -46,6 +46,17 @@ void SetCharC(byte x, byte y, byte index, byte color)
   ScreenColors[offset1] = color;
 }
 
+void DrawCharacterSet(byte destX, byte destY)
+{
+  byte posX, posY;
+  DrawBorder(destX - 1, destY - 1, 18, 18, false, false);
+   for (posY = 0; posY < 16; ++posY)
+        for (posX = 0; posX < 16; ++posX)
+                SetScreenChar(posY*16 + posX, posX + destX, posY + destY);
+  CopyDoubleBufferArea(destX, destY, 16, 16);
+
+}
+
 void CopyDoubleBuffer()
 {
   CopyMemory(ColorRam, (int)&ScreenDoubleBuffer[1000], 1000);

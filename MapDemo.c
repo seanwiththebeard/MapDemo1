@@ -9,6 +9,8 @@
 //#link "System_MusicPlayer.c"
 //#link "BFRPG.c"
 //#link "Lists.c"
+//#link "Screen_Combat.c"
+
 
 
 #include <conio.h>
@@ -25,6 +27,8 @@
 #include "System_MusicPlayer.h"
 #include "BFRPG.h"
 #include "Lists.h"
+#include "Screen_Combat.h"
+
 
 void Initialize()
 {
@@ -41,6 +45,9 @@ void Initialize()
   SwitchScreen(Map);
   BlankMessageWindow();
   
+  DrawCharacterSet(23, 2);
+  
+  
   
   //DrawAddCharacterScreen();
 
@@ -55,6 +62,7 @@ void Initialize()
 void main(void)
 {  
   Initialize();
+  
   
   while(true)
   {

@@ -6,6 +6,7 @@ void SetCharC(byte x, byte y, byte index, byte color);
 void UpdateColors(void);
 void ClearScreen(void);
 
+void DrawCharacterSet(byte destX, byte destY);
 void CopyDoubleBuffer(void);
 //void CopyDoubleBufferRows(byte posY, byte sizeY, byte length);
 void CopyDoubleBufferArea(byte posX, byte posY, byte sizeX, byte sizeY);

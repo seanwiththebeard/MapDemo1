@@ -375,7 +375,7 @@ void DrawRoster()
   SetString("Delete@", 3);
   SetString("Exit@", 4);
 
-  DrawCharWindow(windowX, windowY, COLS - 2, ROWS - 2, "Roster@");
+  DrawCharWindow(windowX, windowY, COLS - 2, ROWS - 2, "Roster@"); 
 
   if (CountRoster() > 0)
   {
