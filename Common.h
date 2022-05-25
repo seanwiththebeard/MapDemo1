@@ -14,6 +14,7 @@ typedef enum { Title, EditParty, Map, Combat, Menu, SaveLoad } screenName;
 
 extern char str[16];
 extern int randseed;
+extern 
 
 #define COLS 40
 #define ROWS 25

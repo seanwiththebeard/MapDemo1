@@ -1,9 +1,11 @@
+//Roster
 void create(void);
 void delete_pos(byte pos);
 byte CountRoster(void);
 typedef struct playerChar
 {
-        byte
+  bool inParty;
+  byte
     	HP,
   	HPMAX,
   	STR,
@@ -27,3 +29,11 @@ typedef struct playerChar
 };
 
 struct playerChar *getPlayerChar(byte index);
+
+
+//Party
+void AddParty(byte index);
+void DeleteParty(byte pos);
+byte CountParty(void);
+
+struct playerChar *getPartyMember(byte index);

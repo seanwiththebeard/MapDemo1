@@ -11,6 +11,7 @@
 #include <stdlib.h>
 
 void GetRace(void);
+void DrawRoster(void);
 
 byte windowX = 2;
 byte windowY;
@@ -44,12 +45,14 @@ HITDICE;
 
 void AddToParty()
 {
-  
+  AddParty(CurrentCharacter);
+  DrawRoster();
 }
 
 void RemoveFromParty()
 {
-  
+  DeleteParty(CurrentCharacter);
+  DrawRoster();
 }
 
 void AddToRoster()
@@ -67,6 +70,7 @@ void AddToRoster()
   PlayerChar->CHR = CHR;
   PlayerChar->RACE = RACE;
   PlayerChar->CLASS = CLASS;
+  PlayerChar->inParty = false;
   sprintf(PlayerChar->NAME, "Hello %d @", CountRoster() - 1);
 
   if (CountRoster() <= 4)
@@ -382,7 +386,10 @@ void DrawRoster()
 
     for (temp = 0; temp < CountRoster(); ++temp)
     {
-      sprintf(str, "%s@", PlayerChar->NAME);
+      if (PlayerChar->inParty)
+        sprintf(str, "P%s@", PlayerChar->NAME);
+      else
+        sprintf(str, " %s@", PlayerChar->NAME);
       PrintString(str, windowX + 3, windowY + 8 + temp, true, false);
       sprintf(str, "%s@", RaceDescription[PlayerChar->RACE].NAME);
       PrintString(str, windowX + 12, windowY + 8 + temp, true, false);
@@ -412,8 +419,10 @@ void DrawRoster()
         switch(selection)
         {
           case 0: //Add to party
+            AddToParty();
             break;
           case 1: //Remove from party
+            RemoveFromParty();
             break;
           case 2: //Create
             if (CountRoster() < 12)
