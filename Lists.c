@@ -94,19 +94,47 @@ void delete_pos(byte pos)
   }
 }
 
+//Party
 struct playerChar *startParty=NULL;
+
+byte CountParty()
+{
+  struct playerChar *temp = startParty;
+  byte i = 0;
+  while(temp != NULL)
+  {
+    ++i;
+    temp = temp->next;
+  }
+  return i;
+}
+
+struct playerChar *getPartyMember(byte index)
+{
+  byte i = 0;
+  struct playerChar *tmp = startParty;
+  while (tmp != NULL)
+  {
+    if(i == index)
+    {
+      return tmp;
+    }
+    tmp = tmp->next;
+    ++i;
+  }
+}
 
 void AddParty(byte index)
 {
   struct playerChar *temp,*ptr,*src;
   temp=(struct playerChar *)malloc(sizeof(struct playerChar));
   src = getPlayerChar(index);
-  memcpy(temp, src, sizeof(struct playerChar));
-  delete_pos(index);
 
   if(temp==NULL)
     exit(0);
-
+  
+  memcpy(temp, src, sizeof(struct playerChar));
+  
   temp->next=NULL;
   if(startParty==NULL)
     startParty=temp;
@@ -119,6 +147,7 @@ void AddParty(byte index)
     }
     ptr->next=temp;
   }
+  delete_pos(index);
 }
 void DeleteParty(byte index)
 {

@@ -356,7 +356,8 @@ void GetRace()
 void DrawRoster()
 {
   byte temp = 0;
-  struct playerChar *PlayerChar = getPlayerChar(temp);
+  struct playerChar *PlayerChar = getPlayerChar(0);
+  struct playerChar *PartyChar = getPartyMember(0);
   
   repeatRoster = true;
   
@@ -372,6 +373,7 @@ void DrawRoster()
   windowHeight = ROWS - 2;
   exitWindow = false;
   nextWindow = false;
+  CurrentCharacter = 0;
 
   SetString("Add member@", 0);
   SetString("Remove member@", 1);
@@ -379,17 +381,14 @@ void DrawRoster()
   SetString("Delete@", 3);
   SetString("Exit@", 4);
 
-  DrawCharWindow(windowX, windowY, COLS - 2, ROWS - 2, "Roster@"); 
-
+  DrawCharWindow(windowX, windowY, COLS - 2, ROWS - 2, "Edit Party@"); 
+  //ListRoster
+  PrintString("*Roster*@", windowX + 3, windowY + 7, true, false);
   if (CountRoster() > 0)
   {
-
     for (temp = 0; temp < CountRoster(); ++temp)
     {
-      if (PlayerChar->inParty)
-        sprintf(str, "P%s@", PlayerChar->NAME);
-      else
-        sprintf(str, " %s@", PlayerChar->NAME);
+      sprintf(str, " %s@", PlayerChar->NAME);
       PrintString(str, windowX + 3, windowY + 8 + temp, true, false);
       sprintf(str, "%s@", RaceDescription[PlayerChar->RACE].NAME);
       PrintString(str, windowX + 12, windowY + 8 + temp, true, false);
@@ -398,6 +397,23 @@ void DrawRoster()
       PlayerChar = PlayerChar->next;
     }
     DrawCurrentCharacter();
+  }
+  //ListParty
+  PrintString("*Party*@", windowX + 3, windowY + 19, true, false);
+  
+  if (CountParty() > 0)
+  {
+    PartyChar = getPartyMember(0);
+    for (temp = 0; temp < CountParty(); ++temp)
+    {
+      sprintf(str, " %s@", PartyChar->NAME);
+      PrintString(str, windowX + 3, windowY + 20 + temp, true, false);
+      sprintf(str, "%s@", RaceDescription[PartyChar->RACE].NAME);
+      PrintString(str, windowX + 12, windowY + 20 + temp, true, false);
+      sprintf(str, "%s@", ClassDescription[PartyChar->CLASS].NAME);
+      PrintString(str, windowX + 20, windowY + 20 + temp, true, false);
+      PartyChar = PartyChar->next;
+    }
   }
   while(repeatRoster)
   {
@@ -419,10 +435,17 @@ void DrawRoster()
         switch(selection)
         {
           case 0: //Add to party
-            AddToParty();
+            if (CountRoster() > 0)
+            {
+              AddToParty();
+              return;
+            }
             break;
           case 1: //Remove from party
             RemoveFromParty();
+            CurrentCharacter = 0;
+            MoveCurrentCharacter(false);
+            return;
             break;
           case 2: //Create
             if (CountRoster() < 12)
