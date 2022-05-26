@@ -356,6 +356,7 @@ void GetRace()
 void DrawRoster()
 {
   byte temp = 0;
+  byte partyPos;
   struct playerChar *PlayerChar = getPlayerChar(0);
   struct playerChar *PartyChar = getPartyMember(0);
   
@@ -399,19 +400,21 @@ void DrawRoster()
     DrawCurrentCharacter();
   }
   //ListParty
-  PrintString("*Party*@", windowX + 3, windowY + 19, true, false);
   
   if (CountParty() > 0)
   {
+    partyPos = 9 + CountRoster();
+    PrintString("*Party*@", windowX + 3, windowY + partyPos, true, false);
+    ++partyPos;
     PartyChar = getPartyMember(0);
     for (temp = 0; temp < CountParty(); ++temp)
     {
       sprintf(str, " %s@", PartyChar->NAME);
-      PrintString(str, windowX + 3, windowY + 20 + temp, true, false);
+      PrintString(str, windowX + 3, windowY + partyPos + temp, true, false);
       sprintf(str, "%s@", RaceDescription[PartyChar->RACE].NAME);
-      PrintString(str, windowX + 12, windowY + 20 + temp, true, false);
+      PrintString(str, windowX + 12, windowY + partyPos + temp, true, false);
       sprintf(str, "%s@", ClassDescription[PartyChar->CLASS].NAME);
-      PrintString(str, windowX + 20, windowY + 20 + temp, true, false);
+      PrintString(str, windowX + 20, windowY + partyPos + temp, true, false);
       PartyChar = PartyChar->next;
     }
   }
