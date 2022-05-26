@@ -33,7 +33,7 @@ struct playerChar *getPlayerChar(byte index);
 
 //Party
 void AddParty(byte index);
-void DeleteParty(byte pos);
+void RemoveParty(void);
 byte CountParty(void);
 
 struct playerChar *getPartyMember(byte index);

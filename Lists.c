@@ -149,8 +149,66 @@ void AddParty(byte index)
   }
   delete_pos(index);
 }
-void DeleteParty(byte index)
+
+void DeleteParty(byte pos)
 {
-  ++index;
+  int i;
+  struct playerChar *temp,*ptr;
+
+  if(startParty==NULL)
+    exit(0);
+  else
+  {
+    if(pos==0)
+    {
+      ptr=startParty;
+      startParty=startParty->next ;
+    }
+    else
+    {
+      ptr=startParty;
+      for(i=0;i<pos;i++)
+      {
+        temp=ptr; 
+        ptr=ptr->next ;
+        if(ptr==NULL)
+        {
+          WriteLineMessageWindow("Position not Found:@", 0);
+          return;
+        }
+      }
+      temp->next =ptr->next ;
+    }
+    //sprintf(str, "Deleted element:%d",ptr->character.NAME);
+    //WriteLineMessageWindow(str, 0);
+    free(ptr);
+  }
+}
+
+void RemoveParty()
+{
+  byte index = CountParty()-1;
+  struct playerChar *temp,*ptr,*src;
+  temp=(struct playerChar *)malloc(sizeof(struct playerChar));
+  src = getPartyMember(index);
+
+  if(temp==NULL)
+    exit(0);
+  
+  memcpy(temp, src, sizeof(struct playerChar));
+  
+  temp->next=NULL;
+  if(startRoster==NULL)
+    startRoster=temp;
+  else
+  {
+    ptr=startRoster;
+    while(ptr->next!=NULL)
+    {
+      ptr=ptr->next;
+    }
+    ptr->next=temp;
+  }
+  DeleteParty(index);
 }
 

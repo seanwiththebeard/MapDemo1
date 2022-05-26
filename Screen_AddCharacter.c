@@ -51,7 +51,7 @@ void AddToParty()
 
 void RemoveFromParty()
 {
-  DeleteParty(CurrentCharacter);
+  RemoveParty();
   DrawRoster();
 }
 
@@ -376,8 +376,8 @@ void DrawRoster()
   nextWindow = false;
   CurrentCharacter = 0;
 
-  SetString("Add member@", 0);
-  SetString("Remove member@", 1);
+  SetString("Add selected@", 0);
+  SetString("Remove last@", 1);
   SetString("Create@", 2);
   SetString("Delete@", 3);
   SetString("Exit@", 4);
@@ -438,17 +438,22 @@ void DrawRoster()
         switch(selection)
         {
           case 0: //Add to party
-            if (CountRoster() > 0)
+            if ((CountRoster() > 0) && (CountParty() < 5))
             {
               AddToParty();
+              CurrentCharacter = 0;
+              MoveCurrentCharacter(false);
               return;
             }
             break;
           case 1: //Remove from party
-            RemoveFromParty();
-            CurrentCharacter = 0;
-            MoveCurrentCharacter(false);
+            if (CountParty() > 0 && CountRoster() < 13)
+            {
+              RemoveFromParty();
+              CurrentCharacter = 0;
+              MoveCurrentCharacter(false);
             return;
+            }
             break;
           case 2: //Create
             if (CountRoster() < 12)
