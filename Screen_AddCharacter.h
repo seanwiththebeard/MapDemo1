@@ -1,1 +1,2 @@
-void DrawAddCharacterScreen();
+#include "Common.h"
+screenName DrawAddCharacterScreen();

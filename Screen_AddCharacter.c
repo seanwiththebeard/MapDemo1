@@ -13,6 +13,8 @@
 void GetRace(void);
 void DrawRoster(void);
 
+screenName nextScreen;
+
 byte windowX = 2;
 byte windowY;
 byte windowWidth = 16;
@@ -371,7 +373,7 @@ void DrawRoster()
   sprintf(str, "Count: %d@", CountRoster());
   WriteLineMessageWindow(str, 0);
 
-  countSelections = 4;
+  countSelections = 5;
   WindowLevel = 0;
   windowX = 0;
   windowY = 0;
@@ -385,7 +387,8 @@ void DrawRoster()
   SetString("Remove last@", 1);
   SetString("Create@", 2);
   SetString("Delete@", 3);
-  SetString("Exit@", 4);
+  SetString("Start Adventure@", 4);
+  SetString("Back to Title@", 5);
 
   DrawCharWindow(windowX, windowY, COLS - 2, ROWS - 2, "Edit Party@"); 
   //ListRoster
@@ -478,6 +481,12 @@ void DrawRoster()
           case 4:
             repeatRoster = false;
             exitWindow = true;
+            nextScreen = Map;
+            break;
+          case 5:
+            repeatRoster = false;
+            exitWindow = true;
+            nextScreen = Title;
             break;
         }
       }
@@ -486,7 +495,7 @@ void DrawRoster()
   CopyDoubleBuffer();
 }
 
-void DrawAddCharacterScreen()
+screenName DrawAddCharacterScreen()
 {
   exitWindow = false;
   CurrentCharacter = 0;
@@ -501,7 +510,7 @@ void DrawAddCharacterScreen()
     //CopyDoubleBuffer();
     //++CurrentCharacter;
   }
-  SwitchScreen(Map);
+  return nextScreen;
   //CopyDoubleBufferArea(windowX, windowY, windowWidth, windowHeight);  
 }
 

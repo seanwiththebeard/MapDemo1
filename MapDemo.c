@@ -11,8 +11,6 @@
 //#link "Lists.c"
 //#link "Screen_Combat.c"
 
-
-
 #include <conio.h>
 #include <c64.h>
 
@@ -29,7 +27,6 @@
 #include "Lists.h"
 #include "Screen_Combat.h"
 
-
 void Initialize()
 {
   ScreenDisable();
@@ -42,7 +39,6 @@ void Initialize()
   //Draw_Title();
   LoadMap();
   
-  SwitchScreen(Map);
   BlankMessageWindow();
   
   DrawCharacterSet(23, 2);
@@ -62,7 +58,7 @@ void Initialize()
 void main(void)
 {  
   Initialize();
-  
+  SwitchScreen(Title);  
   
   while(true)
   {

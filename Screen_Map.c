@@ -1002,44 +1002,53 @@ void MoveCharacter(byte index, byte direction, bool cameraUpdate)
 
 void LoadMap()
 {
-  ScreenDisable();
   InitializeMapData();
   DrawEntireMap();
   BlankMessageWindow();
-  ScreenEnable();
 }
 
-byte MapUpdate()
+screenName MapUpdate()
 {
-    if (InputUp())
+  screenName nextScreen;
+  bool exit = false;
+  DrawEntireMap();
+
+  while (!exit)
+  {
+    UpdateInput();
+    if (InputChanged())
     {
-      MoveCharacter(0, 0, true);
-      return 1;
+      if (InputUp())
+      {
+        MoveCharacter(0, 0, true);
+        //return 1;
+      }
+      if (InputDown()) 
+      {
+        MoveCharacter(0, 1, true); 
+        //return 1;
+      }
+      if (InputLeft())
+      {
+        MoveCharacter(0, 2, true);
+        //return 1;
+      }
+      if (InputRight())
+      {
+        MoveCharacter(0, 3, true);
+        //return 1;
+      }
+      if (InputFire())
+      {
+        SwitchScreen(EditParty);
+        //LoadMap();
+        //PlaySong();
+        //sprintf(str, "Pos = %d,%d@", characters[0].posX, characters[0].posY);
+        //DrawEntireMap();
+        //WriteLineMessageWindow(str, 0);
+        //return 1;
+      }
     }
-    if (InputDown()) 
-    {
-      MoveCharacter(0, 1, true); 
-      return 1;
-    }
-    if (InputLeft())
-    {
-      MoveCharacter(0, 2, true);
-      return 1;
-    }
-    if (InputRight())
-    {
-      MoveCharacter(0, 3, true);
-      return 1;
-    }
-    if (InputFire())
-    {
-      SwitchScreen(EditParty);
-      //LoadMap();
-      //PlaySong();
-      //sprintf(str, "Pos = %d,%d@", characters[0].posX, characters[0].posY);
-      //DrawEntireMap();
-      //WriteLineMessageWindow(str, 0);
-      return 1;
-    }
-  return 0;
+  }
+  return nextScreen;
 }

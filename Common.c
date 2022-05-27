@@ -3,6 +3,7 @@
 #include <c64.h>
 #include "System_Graphics.h"
 
+#include "Screen_Title.h"
 #include "Screen_Map.h"
 #include "Screen_AddCharacter.h"
 #include "System_Input.h"
@@ -35,19 +36,20 @@ void SwitchScreen(screenName screen)
   //Load specified screen
   UpdateInput();
   currentScreen = screen;
+  ScreenEnable();
   
   switch (currentScreen)
   {
     case Title:
+      
+      currentScreen = Update_Title();
       break;
     case EditParty:
-      ScreenEnable();
-      DrawAddCharacterScreen();
+      currentScreen = DrawAddCharacterScreen();
       break;
     case Map:
       //LoadMap();
-      DrawEntireMap();
-      MapUpdate();
+      currentScreen = MapUpdate();
       break;
     case Combat:
       break;
@@ -56,7 +58,8 @@ void SwitchScreen(screenName screen)
     default:
       break;
   }
-  ScreenEnable();
+  
+  SwitchScreen(currentScreen);
 }
 
 void UpdateScreen()
