@@ -392,17 +392,17 @@ void DrawRoster()
 
   DrawCharWindow(windowX, windowY, COLS - 2, ROWS - 2, "Edit Party@"); 
   //ListRoster
-  PrintString("*Roster*@", windowX + 3, windowY + 7, true, false);
+  PrintString("*Roster*@", windowX + 3, windowY + 8, true, false);
   if (CountRoster() > 0)
   {
     for (temp = 0; temp < CountRoster(); ++temp)
     {
       sprintf(str, " %s@", PlayerChar->NAME);
-      PrintString(str, windowX + 3, windowY + 8 + temp, true, false);
+      PrintString(str, windowX + 3, windowY + 9 + temp, true, false);
       sprintf(str, "%s@", RaceDescription[PlayerChar->RACE].NAME);
-      PrintString(str, windowX + 12, windowY + 8 + temp, true, false);
+      PrintString(str, windowX + 12, windowY + 9 + temp, true, false);
       sprintf(str, "%s@", ClassDescription[PlayerChar->CLASS].NAME);
-      PrintString(str, windowX + 20, windowY + 8 + temp, true, false);
+      PrintString(str, windowX + 20, windowY + 9 + temp, true, false);
       PlayerChar = PlayerChar->next;
     }
     DrawCurrentCharacter();
@@ -411,7 +411,7 @@ void DrawRoster()
   
   if (CountParty() > 0)
   {
-    partyPos = 9 + CountRoster();
+    partyPos = 10 + CountRoster();
     PrintString("*Party*@", windowX + 3, windowY + partyPos, true, false);
     ++partyPos;
     PartyChar = getPartyMember(0);
@@ -479,9 +479,14 @@ void DrawRoster()
               }
             break;
           case 4:
-            repeatRoster = false;
-            exitWindow = true;
-            nextScreen = Map;
+            if (CountParty() > 0)
+            {
+              repeatRoster = false;
+              exitWindow = true;
+              nextScreen = Map;
+            }
+            else
+              WriteLineMessageWindow("Party Empty!@", 0);
             break;
           case 5:
             repeatRoster = false;
