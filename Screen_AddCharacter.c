@@ -73,8 +73,6 @@ void AddToRoster()
   PlayerChar->inParty = false;
   sprintf(PlayerChar->NAME, "Hello %d @", CountRoster() - 1);
 
-  if (CountRoster() <= 4)
-    DrawCharStats(CountRoster() - 1);
   //exitWindow = true;
   //nextWindow = true;
 }
@@ -257,7 +255,7 @@ void GetClass()
           if (Selections[selection][0] == ' ')
           {
             WriteLineMessageWindow("Prime stat low@", 0);
-            return;
+            nextWindow = false;
           }
         if (selection == countSelections)
         {
@@ -269,7 +267,10 @@ void GetClass()
       }
     }
     if (exitWindow)
+    {
+      exitWindow = false;
       return;
+    }
   }
   if (nextWindow)
   {
@@ -290,6 +291,7 @@ void GetClass()
     if (temp + AbilityModifier[CON] < 1)
     {
       WriteLineMessageWindow("Died, no HP@", 0);
+      nextWindow = false;
       //exitWindow = true;
       //nextWindow = true;
     }
@@ -342,7 +344,10 @@ void GetRace()
       }
     }
     if (exitWindow)
+    {
+      exitWindow = false;
       return;
+    }
   }
   if (nextWindow)
   {
@@ -438,7 +443,7 @@ void DrawRoster()
         switch(selection)
         {
           case 0: //Add to party
-            if ((CountRoster() > 0) && (CountParty() < 5))
+            if ((CountRoster() > 0) && (CountParty() < 4))
             {
               AddToParty();
               CurrentCharacter = 0;
@@ -447,7 +452,7 @@ void DrawRoster()
             }
             break;
           case 1: //Remove from party
-            if (CountParty() > 0 && CountRoster() < 13)
+            if (CountParty() > 0 && CountRoster() < 12)
             {
               RemoveFromParty();
               CurrentCharacter = 0;

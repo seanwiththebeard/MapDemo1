@@ -113,11 +113,11 @@ void WriteLineMessageWindow(char message[16], byte delay)
   ReverseBufferArea(PosX, PosY, Width, Height);  
 }
 
-void DrawCharStats(byte characterIndex)
+void DrawCharStatus(byte characterIndex)
 {
   byte statX = PosX;
   byte statY = 2 + characterIndex * 3;
-  struct playerChar *PlayerChar = getPlayerChar(characterIndex);
+  struct playerChar *PlayerChar = getPartyMember(characterIndex);
   
   DrawBorder(statX - 1, statY - 1, COLS - statX + 1, 4, false, true);
   sprintf(str, "%s@", RaceDescription[PlayerChar->RACE].NAME);
@@ -128,4 +128,11 @@ void DrawCharStats(byte characterIndex)
   PrintString(str, statX, statY + 1, true, false);
   ReverseBufferArea(statX - 1, statY - 1, COLS - statX + 1, 5);
   CopyDoubleBufferArea(statX - 1, statY - 1, COLS - statX + 1, 5);
+}
+
+void DrawCharStats()
+{
+  byte i;
+  for (i = 0; i < CountParty(); ++i)
+    DrawCharStatus(i);
 }

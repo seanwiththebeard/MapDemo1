@@ -900,6 +900,7 @@ void DrawEntireMap()
     UpdateViewport();
   }
   DrawMessageWindow();
+  DrawCharStats();
 }
 
 void MoveCharacter(byte index, byte direction, bool cameraUpdate)
