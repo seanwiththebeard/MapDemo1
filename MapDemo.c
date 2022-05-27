@@ -10,6 +10,8 @@
 //#link "BFRPG.c"
 //#link "Lists.c"
 //#link "Screen_Combat.c"
+//#link "Screen_Credits.c"
+
 
 #include <conio.h>
 #include <c64.h>
@@ -26,6 +28,8 @@
 #include "BFRPG.h"
 #include "Lists.h"
 #include "Screen_Combat.h"
+#include "Screen_Credits.h"
+
 
 void Initialize()
 {

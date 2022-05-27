@@ -4,6 +4,7 @@
 #include "System_Graphics.h"
 
 #include "Screen_Title.h"
+#include "Screen_Credits.h"
 #include "Screen_Map.h"
 #include "Screen_AddCharacter.h"
 #include "System_Input.h"
@@ -16,23 +17,6 @@ void SwitchScreen(screenName screen)
 {
   ScreenDisable();
   ClearScreen();
-  //Unload current screen
-  switch (currentScreen)
-  {
-    case Title:
-      break;
-    case EditParty:
-      break;
-    case Map:
-      break;
-    case Combat:
-      break;
-    case Menu:
-      break;
-    default:
-      break;
-  }
-  
   //Load specified screen
   UpdateInput();
   currentScreen = screen;
@@ -41,8 +25,10 @@ void SwitchScreen(screenName screen)
   switch (currentScreen)
   {
     case Title:
-      
       currentScreen = Update_Title();
+      break;
+    case Credits:
+      currentScreen = Update_Credits();
       break;
     case EditParty:
       currentScreen = DrawAddCharacterScreen();

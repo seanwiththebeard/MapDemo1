@@ -10,7 +10,7 @@ typedef uint8_t byte;
 typedef uint16_t word;
 typedef int8_t sbyte;
 typedef enum { false, true } bool;
-typedef enum { Title, EditParty, Map, Combat, Menu, SaveLoad } screenName;
+typedef enum { Title, Credits, EditParty, Map, Combat, Menu, SaveLoad } screenName;
 
 extern char str[16];
 extern int randseed;
