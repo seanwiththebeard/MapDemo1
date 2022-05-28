@@ -23,6 +23,22 @@ int YColumnIndex[25] = {
 
 int FlashFrames = 0;
 
+void MoveScreenUp()
+{
+  byte i;
+  raster_wait(1);
+  CopyMemory(ScreenRam, &ScreenChars[COLS], YColumnIndex[24]);
+
+  //byte i;
+  for (i = 0; i < COLS; ++i)
+    ScreenChars[960+i] = ' ';
+    
+  //CopyMemory(ScreenRam, ((int)ScreenRam) + 40, 1000);
+  
+  //gotoxy(0, 24);
+  //printf("Test\n",);
+}
+
 void UpdateColors()
 {
   for (offset = 0; offset < 1000; ++offset)
@@ -91,7 +107,7 @@ void ClearScreen()
 {
   for (i = 1000; i < 2000; ++i)
   {
-    ScreenDoubleBuffer[i] = 0;
+    ScreenDoubleBuffer[i] = 1;
   }
   for (i = 0; i < 1000; ++i)
   {

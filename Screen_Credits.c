@@ -3,32 +3,41 @@
 #include "System_MessageWindow.h"
 #include "Common.h"
 #include <c64.h>
+#include <stdio.h>
+#include <conio.h>
 
-byte yscroll = 0;
+byte yscroll;
+int xoffset = 0;
+int xoffsetdir = 1;
 
 void ScrollUp()
 {
-  byte i;
-  byte temp = VIC.ctrl1;
-  //WriteLineMessageWindow("@", 0);
-  
-  for (i = 0; i < 5; ++i)
+  byte i = 0;  
+  yscroll--;
+  VIC.ctrl1 = VIC.ctrl1 & 0xf8;
+  VIC.ctrl1 |= (yscroll & 7);   
+  if ((yscroll & 7) == 7)
   {
-    wait_vblank(10);
-    --VIC.ctrl1;
-  }  
-  
-  //VIC.ctrl1 = temp;
-  
-  
+    MoveScreenUp();
+    gotoxy(0, 24);
+    PrintString("Hello@", xoffset, 24, true, false);
+    xoffset += xoffsetdir;
+    if (xoffset < 1)
+      xoffsetdir = 1;
+    if (xoffset > 8)
+      xoffsetdir = -1;
+  }
+  wait_vblank(20);
 }
 
 screenName Update_Credits()
 {
-  
   screenName nextScreen = Title;
   bool exit = false;
-  VIC.ctrl1 += 4;
+  yscroll = 0;
+  
+  ClearScreen();
+ // WriteLineMessageWindow("Credits@", 0);
   
   while (!exit)
   {
@@ -36,9 +45,8 @@ screenName Update_Credits()
     if (InputChanged())
       if (InputFire())
         exit = true;
-    WriteLineMessageWindow("Credits@", 20);
     ScrollUp();
-    --yscroll;
+    
   }
   
   return nextScreen;
