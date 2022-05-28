@@ -27,7 +27,7 @@ void ScrollUp()
     if (xoffset > 8)
       xoffsetdir = -1;
   }
-  wait_vblank(20);
+  wait_vblank(7);
 }
 
 screenName Update_Credits()
