@@ -2,14 +2,17 @@
 #include "System_Graphics.h"
 #include "System_MessageWindow.h"
 #include "Common.h"
+#include <stdio.h>
+#include "System_MusicPlayer.h"
 
 byte yscroll;
 /*byte sinevalue[32] = {12,14,17,19,20,22,23,24,
 24,24,23,22,20,19,17,14,
 12,10,7,5,4,2,1,0,
 0,0,1,2,4,5,7,10};*/
-byte xoff = 0;
-byte xcredit = 0;
+byte xoff;
+byte xcredit;
+byte delay;
 
 char CreditsLines[8][16] = {
     "Credits@",
@@ -36,11 +39,19 @@ void ScrollUp()
     //gotoxy(0, 24);
     if ((xoff & 2) == 2 && xcredit < 8)
     {
-      PrintString(CreditsLines[xcredit], xcredit % 2, 24, true, false);
+      PrintString(CreditsLines[xcredit], xcredit % 2, 24, false, false);
       ++xcredit;
     }
   }
-  wait_vblank(4);
+  if (xcredit == 8)
+  {
+    //char str[3];
+    ++delay;
+    //sprintf(str,"%d@", delay);
+    //PrintString(str, xcredit % 2, 24, true, false);
+    
+  }
+  wait_vblank_music(4);
 }
 
 screenName Update_Credits()
@@ -50,9 +61,10 @@ screenName Update_Credits()
   yscroll = 0;
   xoff = 0;
   xcredit = 0;
+  delay = 0;
   
   ClearScreen();
- // WriteLineMessageWindow("Credits@", 0);
+  PlaySong();
   
   while (!exit)
   {
@@ -61,8 +73,9 @@ screenName Update_Credits()
       if (InputFire())
         exit = true;
     ScrollUp();
-    
+    if (delay == 200)
+      exit = true;
   }
-  
+  music_stop();
   return nextScreen;
 }

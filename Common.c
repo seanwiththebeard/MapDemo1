@@ -8,10 +8,42 @@
 #include "Screen_Map.h"
 #include "Screen_AddCharacter.h"
 #include "System_Input.h"
+#include "System_MusicPlayer.h"
 
 char str[16];
 int randseed = 0;
 screenName currentScreen = Title;
+
+void raster_wait(byte line)
+{
+  while ((VIC.rasterline < line))
+  {}
+}
+void raster_wait_music(byte line)
+{
+  music_update();
+  while ((VIC.rasterline < line))
+  {
+  }
+}
+
+void wait_vblank(byte frames) 
+{
+  byte count = frames;
+  for (count = frames; count; --count)
+  {
+    raster_wait(255);    
+  }
+}
+
+void wait_vblank_music(byte frames) 
+{
+  byte count = frames;
+  for (count = frames; count; --count)
+  {
+    raster_wait_music(255);    
+  }
+}
 
 void SwitchScreen(screenName screen)
 {
