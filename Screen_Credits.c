@@ -38,6 +38,7 @@ screenName Update_Credits()
         exit = true;
     WriteLineMessageWindow("Credits@", 20);
     ScrollUp();
+    --yscroll;
   }
   
   return nextScreen;
