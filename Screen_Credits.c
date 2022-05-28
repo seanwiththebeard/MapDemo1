@@ -15,13 +15,14 @@ void ScrollUp()
   byte i = 0;  
   yscroll--;
   VIC.ctrl1 = VIC.ctrl1 & 0xf8;
-  VIC.ctrl1 |= (yscroll & 7);   
+  VIC.ctrl1 |= (yscroll & 7);
   if ((yscroll & 7) == 7)
   {
     MoveScreenUp();
     gotoxy(0, 24);
     PrintString("Hello@", xoffset, 24, true, false);
     xoffset += xoffsetdir;
+
     if (xoffset < 1)
       xoffsetdir = 1;
     if (xoffset > 8)
