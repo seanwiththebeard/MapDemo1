@@ -2,7 +2,6 @@
 #include <peekpoke.h>
 #include "Common.h"
 #include <conio.h>
-#include <stdio.h>
 #include "System_CharacterSets.h"
 #include "System_Graphics.h"
 

@@ -2,7 +2,6 @@
 #include "System_Graphics.h"
 #include "System_CharacterSets.h"
 #include <peekpoke.h>
-#include <string.h>
 #include <stdio.h>
 #include "BFRPG.h"
 #include "Lists.h"
