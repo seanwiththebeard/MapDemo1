@@ -30,7 +30,6 @@
 #include "Screen_Combat.h"
 #include "Screen_Credits.h"
 
-
 void Initialize()
 {
   ScreenDisable();
