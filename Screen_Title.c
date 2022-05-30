@@ -5,7 +5,7 @@
 
 screenName Update_Title()
 {
-  screenName nextScreen = Credits;
+  screenName nextScreen = EditParty;
   bool exit = false;
   DrawBorder(12, 6, 16, 5, true, true);
   PrintString("Title Screen@", 14, 8, true, false);

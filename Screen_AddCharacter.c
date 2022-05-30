@@ -19,6 +19,7 @@ byte windowX = 2;
 byte windowY;
 byte windowWidth = 16;
 byte windowHeight = 12;
+byte rosterPos;
 
 char Selections[8][16];
 byte selection = 0;
@@ -89,7 +90,7 @@ byte RollDice(byte count, byte diceSize)
 }
 
 #define DrawSelection() (SetChar(windowX + 2, windowY + selection + 1, '>'))
-#define DrawCurrentCharacter() (SetChar(windowX + 2, windowY + 8 + CurrentCharacter, '>'))
+#define DrawCurrentCharacter() (SetChar(windowX + 2, windowY + rosterPos + CurrentCharacter, '>'))
 
 
 void SetString(char value[16], byte menuItem)
@@ -115,7 +116,7 @@ void MoveSelection(bool direction)
 
 void MoveCurrentCharacter(bool direction)
 {
-  SetChar(windowX + 2, windowY  + 8 + CurrentCharacter, ' ');
+  SetChar(windowX + 2, windowY  + rosterPos + CurrentCharacter, ' ');
 
   if (!direction && CurrentCharacter > 0)
     --CurrentCharacter;
@@ -373,7 +374,7 @@ void DrawRoster()
   sprintf(str, "Count: %d@", CountRoster());
   WriteLineMessageWindow(str, 0);
 
-  countSelections = 5;
+  countSelections = 6;
   WindowLevel = 0;
   windowX = 0;
   windowY = 0;
@@ -389,20 +390,22 @@ void DrawRoster()
   SetString("Delete@", 3);
   SetString("Start Adventure@", 4);
   SetString("Back to Title@", 5);
+  SetString("Credits@", 6);
 
   DrawCharWindow(windowX, windowY, COLS - 2, ROWS - 2, "Edit Party@"); 
   //ListRoster
-  PrintString("*Roster*@", windowX + 3, windowY + 8, true, false);
+  PrintString("*Roster*@", windowX + 3, windowY + 9, true, false);
   if (CountRoster() > 0)
   {
+    rosterPos = countSelections + 4;
     for (temp = 0; temp < CountRoster(); ++temp)
     {
       sprintf(str, " %s@", PlayerChar->NAME);
-      PrintString(str, windowX + 3, windowY + 9 + temp, true, false);
+      PrintString(str, windowX + 3, windowY + rosterPos + temp, true, false);
       sprintf(str, "%s@", RaceDescription[PlayerChar->RACE].NAME);
-      PrintString(str, windowX + 12, windowY + 9 + temp, true, false);
+      PrintString(str, windowX + 12, windowY + rosterPos + temp, true, false);
       sprintf(str, "%s@", ClassDescription[PlayerChar->CLASS].NAME);
-      PrintString(str, windowX + 20, windowY + 9 + temp, true, false);
+      PrintString(str, windowX + 20, windowY + rosterPos + temp, true, false);
       PlayerChar = PlayerChar->next;
     }
     DrawCurrentCharacter();
@@ -411,7 +414,7 @@ void DrawRoster()
   
   if (CountParty() > 0)
   {
-    partyPos = 10 + CountRoster();
+    partyPos = rosterPos + 1 + CountRoster();
     PrintString("*Party*@", windowX + 3, windowY + partyPos, true, false);
     ++partyPos;
     PartyChar = getPartyMember(0);
@@ -435,12 +438,13 @@ void DrawRoster()
         MoveSelection(false);
       if (InputDown()) 
         MoveSelection(true);
-
-      if (InputLeft())
+      if (CountRoster() > 0)
+      {
+        if (InputLeft())
         MoveCurrentCharacter(false);
       if (InputRight())
         MoveCurrentCharacter(true);
-      
+      }
       if (InputFire())
       {
         switch(selection)
@@ -492,6 +496,11 @@ void DrawRoster()
             repeatRoster = false;
             exitWindow = true;
             nextScreen = Title;
+            break;
+          case 6:
+            repeatRoster = false;
+            exitWindow = true;
+            nextScreen = Credits;
             break;
         }
       }

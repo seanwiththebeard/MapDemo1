@@ -10,19 +10,34 @@ byte yscroll;
 24,24,23,22,20,19,17,14,
 12,10,7,5,4,2,1,0,
 0,0,1,2,4,5,7,10};*/
-byte xoff;
 byte xcredit;
 byte delay;
+byte xoff;
+bool skipline;
 
-char CreditsLines[8][16] = {
-    "Credits@",
-    "(c) 2022@",
-    "Lead Designer:@",
-    "Me@",
-    "Programmer:@",
-    "Somebody@",
-    "Special Thanks@",
-    "YOU!@"};
+#define linecount 14
+
+char CreditsLines[][20] =
+{
+  "Credits@",
+  "(c) 2022@",
+  "All rights reserved@",
+  
+  "Lead Designer@",
+  "and Programmer:@",
+  "Somebody@",
+  
+  "Makes use of the@",
+  "following@",
+  "libraries@",
+  
+  "C/ASM SID Player:@",
+  "https://github.com/@",
+  "solidcore-commodore@",
+  
+  "Special Thanks@",
+  "YOU!@"
+  };
 
 void ScrollUp()
 {
@@ -33,17 +48,21 @@ void ScrollUp()
   if ((yscroll & 7) == 7)
   {
     MoveScreenUp();
-    ++xoff;
-    if (xoff == 31)
-      xoff = 0;
-    //gotoxy(0, 24);
-    if ((xoff & 2) == 2 && xcredit < 8)
+    if (xcredit < linecount)
     {
-      PrintString(CreditsLines[xcredit], xcredit % 2, 24, true, false);
-      ++xcredit;
+      if (xoff %4 != 0)
+      {
+        PrintString(CreditsLines[xcredit], xcredit % 3, 24, true, false);
+        ++xcredit;   
+      }
+      else
+        PrintString("@", xcredit % 3, 24, true, false);
+        
     }
+      
+    ++xoff;
   }
-  if (xcredit == 8)
+  if (xcredit == linecount)
   {
     //char str[3];
     ++delay;
@@ -51,17 +70,19 @@ void ScrollUp()
     //PrintString(str, xcredit % 2, 24, true, false);
     
   }
-  wait_vblank(8);
+  wait_vblank(2);
 }
 
 screenName Update_Credits()
 {
+  byte temp = VIC.ctrl1;
   screenName nextScreen = Title;
   bool exit = false;
   yscroll = 0;
-  xoff = 0;
   xcredit = 0;
   delay = 0;
+  xoff = 0;
+  skipline = false;
   
   ClearScreen();
   PlaySID();
@@ -69,13 +90,15 @@ screenName Update_Credits()
   while (!exit)
   {
     UpdateInput();
+    ScrollUp();
+    
     if (InputChanged())
       if (InputFire())
         exit = true;
-    ScrollUp();
     if (delay == 200)
       exit = true;
   }
   StopSID();
+  VIC.ctrl1 = temp;
   return nextScreen;
 }

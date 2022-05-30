@@ -207,9 +207,9 @@ void DrawLineV(char index, byte color, byte x, byte y, byte length)
     //SetScreenCharColor(index, color, x, y + count);
 }
 
-void PrintString(char text[16], byte posx, byte posy, bool fast, bool buffer)
+void PrintString(char text[20], byte posx, byte posy, bool fast, bool buffer)
 {
-  for(count = 0; count < 16; ++count)
+  for(count = 0; count < 20; ++count)
   {
     if (text[count] == '@')
       break;
