@@ -3,7 +3,7 @@
 #include "System_MessageWindow.h"
 #include "Common.h"
 #include <stdio.h>
-#include "System_MusicPlayer.h"
+#include "SIDPlayer.h"
 
 byte yscroll;
 /*byte sinevalue[32] = {12,14,17,19,20,22,23,24,
@@ -39,7 +39,7 @@ void ScrollUp()
     //gotoxy(0, 24);
     if ((xoff & 2) == 2 && xcredit < 8)
     {
-      PrintString(CreditsLines[xcredit], xcredit % 2, 24, false, false);
+      PrintString(CreditsLines[xcredit], xcredit % 2, 24, true, false);
       ++xcredit;
     }
   }
@@ -64,7 +64,7 @@ screenName Update_Credits()
   delay = 0;
   
   ClearScreen();
-  PlaySong();
+  PlaySID();
   
   while (!exit)
   {
@@ -76,6 +76,6 @@ screenName Update_Credits()
     if (delay == 200)
       exit = true;
   }
-  music_stop();
+  StopSID();
   return nextScreen;
 }

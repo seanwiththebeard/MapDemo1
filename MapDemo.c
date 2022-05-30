@@ -6,12 +6,16 @@
 //#link "System_MessageWindow.c"
 //#link "Screen_Title.c"
 //#link "Screen_AddCharacter.c"
-//#link "System_MusicPlayer.c"
 //#link "BFRPG.c"
 //#link "Lists.c"
 //#link "Screen_Combat.c"
 //#link "Screen_Credits.c"
+#include "SIDPlayer.h"
 
+//#link "SIDPlayer.c"
+
+//#link "SIDPlayerASM.s"
+//#resource "song.sid"
 
 #include <conio.h>
 #include <c64.h>
@@ -24,7 +28,6 @@
 #include "System_Graphics.h"
 #include "System_CharacterSets.h"
 #include "System_MessageWindow.h"
-#include "System_MusicPlayer.h"
 #include "BFRPG.h"
 #include "Lists.h"
 #include "Screen_Combat.h"
@@ -67,7 +70,6 @@ void main(void)
   {
     UpdateInput();
     Graphics_Update();
-    music_update();
     
     if(InputChanged())
       UpdateScreen();

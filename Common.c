@@ -8,7 +8,6 @@
 #include "Screen_Map.h"
 #include "Screen_AddCharacter.h"
 #include "System_Input.h"
-#include "System_MusicPlayer.h"
 
 char str[16];
 int randseed = 0;
@@ -21,7 +20,7 @@ void raster_wait(byte line)
 }
 void raster_wait_music(byte line)
 {
-  music_update();
+  //music_update();
   while ((VIC.rasterline < line))
   {
   }
