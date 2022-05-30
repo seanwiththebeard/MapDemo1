@@ -51,7 +51,7 @@ void ScrollUp()
     //PrintString(str, xcredit % 2, 24, true, false);
     
   }
-  wait_vblank_music(4);
+  wait_vblank(8);
 }
 
 screenName Update_Credits()

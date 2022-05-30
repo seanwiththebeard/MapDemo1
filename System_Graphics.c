@@ -214,7 +214,7 @@ void PrintString(char text[16], byte posx, byte posy, bool fast, bool buffer)
     if (text[count] == '@')
       break;
     if (!fast)
-      raster_wait_music(255);
+      raster_wait(255);
     if (buffer)
       SetScreenChar(text[count], posx + count, posy);
     else

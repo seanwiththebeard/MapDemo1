@@ -24,9 +24,7 @@ extern
 
 #define CopyMemory(dest, src, length)(memcpy((int*)dest, (int*)src, length))
 void raster_wait(byte line);
-void raster_wait_music(byte line);
 void wait_vblank(byte frames);
-void wait_vblank_music(byte frames);
 
 #define ScreenDisable() (POKE(0xD011, PEEK(0xD011)&239))
 #define ScreenEnable() (POKE(0xD011, PEEK(0xD011)|16))
