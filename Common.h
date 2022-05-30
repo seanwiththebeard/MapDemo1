@@ -19,9 +19,6 @@ extern
 #define COLS 40
 #define ROWS 25
 
-#define false 0
-#define true 1
-
 #define CopyMemory(dest, src, length)(memcpy((int*)dest, (int*)src, length))
 void raster_wait(byte line);
 void wait_vblank(byte frames);

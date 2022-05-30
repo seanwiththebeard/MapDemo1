@@ -7,8 +7,8 @@
 #include <c64.h>
 
 
-unsigned int SIDSIZE = (1024)*2; //8kb should be more than enough
-unsigned int SIDLOAD = 0xAA00;	//Make sure you offset your sid at $4000 using sidereloc -p 40
+unsigned int SIDSIZE = (1024)*2;
+unsigned int SIDLOAD = 0xAA00;
 
 void PlaySID(void)
 	{
