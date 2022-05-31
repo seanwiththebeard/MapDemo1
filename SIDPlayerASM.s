@@ -5,8 +5,8 @@
 .export _STOPSID
 _SIDFILE: .INCBIN "song.sid",$7e ;Pachelbel.sid, note not every SID will work, check after running sidreloc.exe to see where the load and play positions went
 
-SIDLOADPOS = $B800;
-SIDPLAYPOS = $B806;
+SIDLOADPOS = $C000;
+SIDPLAYPOS = $C006;
 
 
 _STOPSID:
