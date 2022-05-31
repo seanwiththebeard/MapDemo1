@@ -1,4 +1,10 @@
 #include "Common.h"
+
+extern byte *CharRam;
+#define CharacterRom 0xD000
+#define ScreenRam 0xC800
+#define ColorRam 0xD800
+
 void MoveScreenUp(void);
 
 void SetChar(byte x, byte y, byte index);
@@ -12,7 +18,8 @@ void CopyDoubleBuffer(void);
 //void CopyDoubleBufferRows(byte posY, byte sizeY, byte length);
 void CopyDoubleBufferArea(byte posX, byte posY, byte sizeX, byte sizeY);
 void ReverseBufferArea(byte posX, byte posY, byte sizeX, byte sizeY);
-void setcolortextmode(void);
+void SelectVICBanks(byte bank, byte screenpos, byte charpos);
+//void setcolortextmode(void);
 void SetScreenChar(byte index, byte xpos, byte ypos);
 void SetScreenCharColor(byte index, byte color, byte xpos, byte ypos);
 void ScrollChar(byte index, byte direction);

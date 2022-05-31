@@ -2,16 +2,17 @@
 #include <peekpoke.h>
 #include "Common.h"
 #include <conio.h>
+#include <stdio.h>
 #include "System_CharacterSets.h"
 #include "System_Graphics.h"
 
 byte ScreenDoubleBuffer[2000], charScrollBuffer[8], column, OffsetY, temp, count;
 int offset, charOffset, colorOffset, origin, retValue, bufferColorAddress, bufferScreenAddress, i;
 
-byte far *ScreenChars = (byte far*)ScreenRam;
-byte far *ScreenColors = (byte far*)ColorRam;    
+byte *ScreenChars = (byte *)0x0400;
+byte *ScreenColors = (byte *)ColorRam;
+byte *CharRam;
 unsigned short offset1;
-
 
 int YColumnIndex[25] = {
   0, 40, 80, 120, 160,
@@ -28,6 +29,7 @@ void MoveScreenUp()
   raster_wait(1);
   CopyMemory(ScreenRam, &ScreenChars[COLS], YColumnIndex[24]);
 
+  
   //byte i;
   for (i = 0; i < COLS; ++i)
     ScreenChars[960+i] = ' ';
@@ -141,7 +143,34 @@ void ReverseBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
   
 }
 
-void setcolortextmode()
+void SelectVICBanks(byte bank, byte screenpos, byte charpos)
+{
+  byte screenchar = 0; // PEEK(0xD018);
+  byte cursorPos = (bank * (16*1024) + (screenpos * 1024)) / 256;
+  byte banksel = PEEK(0xDD00);
+  int screenposition = 256*cursorPos;
+  
+  ScreenChars = 0;
+  ScreenChars += screenposition;
+  
+  CharRam = 0;
+  CharRam += (bank * (16*1024) + charpos * 2048);
+  
+  /*
+  $DD00 = %xxxxxx11 -> bank0: $0000-$3fff
+  $DD00 = %xxxxxx10 -> bank1: $4000-$7fff
+  $DD00 = %xxxxxx01 -> bank2: $8000-$bfff
+  $DD00 = %xxxxxx00 -> bank3: $c000-$ffff*/
+  POKE (0xDD00, (PEEK(0XDD00)&(255 - bank)));
+  
+  screenpos = screenpos << 4;
+  charpos = charpos << 1;
+  POKE (0xD018, screenpos + charpos);
+  
+  POKE (0x0288, cursorPos);
+}
+
+/*void setcolortextmode()
 {
   //POKE(0xDC0E, PEEK(0xDC0E)&254); // Pause Keyscan
   //POKE(0x0001, (PEEK(0x0001)&251)); // Character ROM select
@@ -177,10 +206,10 @@ void setcolortextmode()
     ScreenDoubleBuffer[offset + 1000] = 0;
   }
   CopyDoubleBuffer();
-}
+}*/
 
 void SetScreenChar(byte index, byte xpos, byte ypos)
-{  
+{
   offset = YColumnIndex[ypos] + xpos;
   POKE(&ScreenDoubleBuffer[offset], index);
   POKE(&ScreenDoubleBuffer[offset + 1000], AttributeSet[index]);
@@ -224,7 +253,7 @@ void PrintString(char text[20], byte posx, byte posy, bool fast, bool buffer)
 
 void ScrollChar(byte index, byte direction)
 {
-  origin = CharacterRam + 8*index;
+  origin = (int)&CharRam[0] + 8*index;
   
   for(count = 0; count < 8; ++count)
     charScrollBuffer[count] = PEEK(origin+count);

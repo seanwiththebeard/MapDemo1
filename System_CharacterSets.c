@@ -1,4 +1,5 @@
 #include "Common.h"
+#include "System_Graphics.h"
 
 static byte CharacterSet[2048]=
 {/*{w:8,h:8,brev:1,count:256}*/ 0x00,0x07,0x0C,0x0A,0x0B,0x0D,0x1B,0x10,0x00,0xE0,0x30,0x10,0x10,0xB0,0xD8,0x08
@@ -150,7 +151,7 @@ byte AttributeSet[256]=
 
 void SetCharacterSet()
 {
-  CopyMemory(CharacterRam, &CharacterSet[0], 2048);
+  CopyMemory((int)&CharRam[0], &CharacterSet[0], 2048);
 }
 
 /*void UpdateCharacterSet()

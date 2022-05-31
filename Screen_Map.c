@@ -376,7 +376,7 @@ void LoadQuadrant(byte quadIndex, byte quad)
       break;
     }
 
-    chardata = CharacterRam + 8*ScreenQuad[quadIndex].CharIndex[byte_z];
+    chardata = (int)&CharRam[0] + 8*ScreenQuad[quadIndex].CharIndex[byte_z];
     for (byte_y = 0; byte_y < quadHeight; ++byte_y)
     {
       for (byte_x = 0; byte_x < quadWidth; ++byte_x)

@@ -26,11 +26,6 @@ void wait_vblank(byte frames);
 #define ScreenDisable() (POKE(0xD011, PEEK(0xD011)&239))
 #define ScreenEnable() (POKE(0xD011, PEEK(0xD011)|16))
 
-#define CharacterRam 0xC000
-#define CharacterRom 0xD000
-#define ScreenRam 0xC800
-#define ColorRam 0xD800
-
 void SwitchScreen(screenName screen);
 void UpdateScreen(void);
 

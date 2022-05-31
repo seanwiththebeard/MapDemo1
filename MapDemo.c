@@ -32,6 +32,7 @@
 #include "Lists.h"
 #include "Screen_Combat.h"
 #include "Screen_Credits.h"
+#include <stdio.h>
 
 void Initialize()
 {
@@ -40,7 +41,9 @@ void Initialize()
   bordercolor(0);
 
   InitializeInput();
-  setcolortextmode();
+  
+  SelectVICBanks(3, 2, 0);
+  
   SetCharacterSet();
   //Draw_Title();
   LoadMap();
@@ -66,12 +69,12 @@ void main(void)
   Initialize();
   SwitchScreen(Title);  
   
-  while(true)
+  /*while(true)
   {
     UpdateInput();
     Graphics_Update();
     
     if(InputChanged())
       UpdateScreen();
-  }
+  }*/
 }
