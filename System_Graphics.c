@@ -6,7 +6,7 @@
 #include "System_CharacterSets.h"
 #include "System_Graphics.h"
 
-byte ScreenDoubleBuffer[2000], charScrollBuffer[8], column, OffsetY, temp, count;
+byte ScreenDoubleBuffer[2000], charScrollBuffer[8], column, OffsetY, temp, count, ColCount;
 int offset, charOffset, colorOffset, origin, retValue, bufferColorAddress, bufferScreenAddress, i;
 
 byte *ScreenChars = (byte *)0x0400;
@@ -25,14 +25,13 @@ int FlashFrames = 0;
 
 void MoveScreenUp()
 {
-  byte i;
   raster_wait(1);
   CopyMemory(&ScreenChars[0], &ScreenChars[COLS], YColumnIndex[24]);
 
   
   //byte i;
-  for (i = 0; i < COLS; ++i)
-    ScreenChars[960+i] = ' ';
+  for (ColCount = 0; ColCount < COLS; ++ColCount)
+    ScreenChars[960+ColCount] = ' ';
     
   //CopyMemory(ScreenRam, ((int)ScreenRam) + 40, 1000);
   

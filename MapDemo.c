@@ -11,11 +11,12 @@
 //#link "Screen_Combat.c"
 //#link "Screen_Credits.c"
 #include "SIDPlayer.h"
-
 //#link "SIDPlayer.c"
-
 //#link "SIDPlayerASM.s"
 //#resource "song.sid"
+
+//#resource "c64_1.cfg"
+#define CFGFILE c64_1.cfg
 
 #include <conio.h>
 #include <c64.h>
@@ -42,7 +43,7 @@ void Initialize()
 
   InitializeInput();
   
-  SelectVICBanks(3, 2, 7);
+  SelectVICBanks(3, 3, 7);
   //SelectVICBanks(3, 2, 0);
   
   
