@@ -37,32 +37,17 @@
 
 void Initialize()
 {
+  SelectVICBanks(3, 2, 7);
   ScreenDisable();
   bgcolor(0);
   bordercolor(0);
-
   InitializeInput();
-  
-  SelectVICBanks(3, 2, 7);
-  //SelectVICBanks(3, 2, 0);
-  
-  
   SetCharacterSet();
-  //Draw_Title();
   LoadMap();
   
   BlankMessageWindow();
   
   DrawCharacterSet(23, 2);
-  
-  
-  
-  //DrawAddCharacterScreen();
-
-  //WriteLineMessageWindow("TheQuickBrownFox", 0);
-  //WriteLineMessageWindow("JumpsOverLazyDog", 0);
-  //WriteLineMessageWindow("0123456789:;<=>?", 0);
-  //WriteLineMessageWindow(" ! #$%&'()*+,-./", 0);
   ScreenEnable();
   
 }

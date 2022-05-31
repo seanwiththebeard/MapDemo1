@@ -6,11 +6,11 @@
 #include "System_CharacterSets.h"
 #include "System_Graphics.h"
 
-byte ScreenDoubleBuffer[2000], charScrollBuffer[8], column, OffsetY, temp, count, ColCount;
+byte charScrollBuffer[8], column, OffsetY, temp, count, ColCount;
 int offset, charOffset, colorOffset, origin, retValue, bufferColorAddress, bufferScreenAddress, i;
 
-byte *ScreenCharBuffer;
-byte *ScreenColorBuffer;
+byte *ScreenCharBuffer = 0;
+byte *ScreenColorBuffer = 0;
 
 byte *ScreenChars;
 byte *ScreenColors = (byte *)0xD800;
@@ -78,8 +78,8 @@ void DrawCharacterSet(byte destX, byte destY)
 
 void CopyDoubleBuffer()
 {
-  CopyMemory(ColorRam, (int)&ScreenDoubleBuffer[1000], 1000);
-  CopyMemory(&ScreenChars[0], (int)&ScreenDoubleBuffer[0], 1000);
+  CopyMemory(ColorRam, &ScreenColorBuffer[0], 1000);
+  CopyMemory(&ScreenChars[0], &ScreenCharBuffer[0], 1000);
 }
 
 void CopyDoubleBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
@@ -88,8 +88,8 @@ void CopyDoubleBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
   OffsetY = posX + YColumnIndex[0];
   charOffset = (int)&ScreenChars[0] + offset;
   colorOffset = ColorRam + offset;
-  bufferScreenAddress = (int)&ScreenDoubleBuffer[offset];
-  bufferColorAddress = (int)&ScreenDoubleBuffer[offset + 1000];
+  bufferScreenAddress = (int)&ScreenCharBuffer[offset];
+  bufferColorAddress = (int)&ScreenColorBuffer[offset];
   
   raster_wait(240);
   for (column = 0; column < sizeY; ++column)
@@ -108,15 +108,11 @@ void CopyDoubleBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
 
 void ClearScreen()
 {
-  for (i = 1000; i < 2000; ++i)
-  {
-    ScreenDoubleBuffer[i] = 1;
-  }
   for (i = 0; i < 1000; ++i)
   {
-    ScreenDoubleBuffer[i] = ' ';
+    ScreenColorBuffer[i] = 0;
+    ScreenCharBuffer[i] = ' ';
   }
-  
   CopyDoubleBuffer();
 }
 
@@ -126,8 +122,8 @@ void ReverseBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
   OffsetY = posX + YColumnIndex[0];
   bufferScreenAddress = (int)&ScreenChars[0] + offset;
   bufferColorAddress = ColorRam + offset;
-  charOffset = (int)&ScreenDoubleBuffer[offset];
-  colorOffset = (int)&ScreenDoubleBuffer[offset + 1000];
+  charOffset = (int)&ScreenCharBuffer[offset];
+  colorOffset = (int)&ScreenColorBuffer[offset];
   
   raster_wait(240);
   for (column = 0; column < sizeY; ++column)
@@ -156,10 +152,11 @@ void SelectVICBanks(byte bank, byte screenpos, byte charpos)
   CharRam += (bank * (16*1024) + charpos * 2048);
   
   ScreenCharBuffer = 0;
-  ScreenCharBuffer += screenposition += 0x0400;
+  ScreenCharBuffer += screenposition;
+  ScreenCharBuffer += 0x0400; // Buffer location 1024b after the screen position
   
   ScreenColorBuffer = 0;
-  ScreenColorBuffer += 0x0400;
+  ScreenColorBuffer += 0x0400; // Use the default screen character space for color buffer
   
   /*
   Bank 3:
@@ -233,15 +230,15 @@ void SelectVICBanks(byte bank, byte screenpos, byte charpos)
 void SetScreenChar(byte index, byte xpos, byte ypos)
 {
   offset = YColumnIndex[ypos] + xpos;
-  POKE(&ScreenDoubleBuffer[offset], index);
-  POKE(&ScreenDoubleBuffer[offset + 1000], AttributeSet[index]);
+  POKE(&ScreenCharBuffer[offset], index);
+  POKE(&ScreenColorBuffer[offset], AttributeSet[index]);
 }
 
 void SetScreenCharColor(byte index, byte color, byte xpos, byte ypos)
 {  
   offset = YColumnIndex[ypos] + xpos;
-  POKE(&ScreenDoubleBuffer[offset], index);
-  POKE(&ScreenDoubleBuffer[offset + 1000], color);
+  POKE(&ScreenCharBuffer[offset], index);
+  POKE(&ScreenColorBuffer[offset], color);
 }
 
 void DrawLineH(char index, byte color, byte x, byte y, byte length)

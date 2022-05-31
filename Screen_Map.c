@@ -72,8 +72,8 @@ int CharAddress, CharAddress2, ColorAddress, ColorAddress2;
 
 byte followIndex = 0;
 
-int viewportOrigin = (int)&ScreenDoubleBuffer[0];
-int colorOrigin = (int)&ScreenDoubleBuffer[1000];
+int viewportOrigin = (int)&ScreenCharBuffer;
+int colorOrigin = (int)&ScreenColorBuffer;
 
 //QuadScroll
 byte originX, originY;
@@ -632,8 +632,8 @@ void InitializeMapData()
   #define water 34
   #define signpost 35
   
-  viewportOrigin = (int)&ScreenDoubleBuffer[0] +  (viewportPosX + COLS * viewportPosY);
-  colorOrigin = (int)&ScreenDoubleBuffer[1000] + (viewportPosX + COLS * viewportPosY);
+  viewportOrigin = (int)&ScreenCharBuffer[0] +  (viewportPosX + COLS * viewportPosY);
+  colorOrigin = (int)&ScreenColorBuffer[0] + (viewportPosX + COLS * viewportPosY);
   
   cameraOffsetX = viewportWidth / 2;
   cameraOffsetY = viewportHeight / 2;

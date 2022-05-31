@@ -33,4 +33,5 @@ void DrawLineV(char index, byte color, byte x, byte y, byte length);
 void DrawBorder(byte xPos, byte yPos, byte width, byte height, bool buffer, bool fill);
 
 extern int YColumnIndex[];
-extern byte ScreenDoubleBuffer[2000];
+extern byte *ScreenCharBuffer;
+extern byte *ScreenColorBuffer;
