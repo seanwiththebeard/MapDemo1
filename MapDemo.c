@@ -43,7 +43,7 @@ void Initialize()
 
   InitializeInput();
   
-  SelectVICBanks(3, 3, 7);
+  SelectVICBanks(3, 2, 7);
   //SelectVICBanks(3, 2, 0);
   
   

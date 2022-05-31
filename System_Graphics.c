@@ -9,8 +9,11 @@
 byte ScreenDoubleBuffer[2000], charScrollBuffer[8], column, OffsetY, temp, count, ColCount;
 int offset, charOffset, colorOffset, origin, retValue, bufferColorAddress, bufferScreenAddress, i;
 
-byte *ScreenChars = (byte *)0x0400;
-byte *ScreenColors = (byte *)ColorRam;
+byte *ScreenCharBuffer;
+byte *ScreenColorBuffer;
+
+byte *ScreenChars;
+byte *ScreenColors = (byte *)0xD800;
 byte *CharRam;
 unsigned short offset1;
 
@@ -144,10 +147,7 @@ void ReverseBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
 
 void SelectVICBanks(byte bank, byte screenpos, byte charpos)
 {
-  byte screenchar = 0; // PEEK(0xD018);
-  byte cursorPos = (bank * (16*1024) + (screenpos * 1024)) / 256;
-  byte banksel = PEEK(0xDD00);
-  int screenposition = 256*cursorPos;
+  int screenposition = (bank * (16*1024) + (screenpos * 1024));
   
   ScreenChars = 0;
   ScreenChars += screenposition;
@@ -155,18 +155,41 @@ void SelectVICBanks(byte bank, byte screenpos, byte charpos)
   CharRam = 0;
   CharRam += (bank * (16*1024) + charpos * 2048);
   
+  ScreenCharBuffer = 0;
+  ScreenCharBuffer += screenposition += 0x0400;
+  
+  ScreenColorBuffer = 0;
+  ScreenColorBuffer += 0x0400;
+  
   /*
+  Bank 3:
+  character generator ROM is unavailable – Must be copied to RAM
+  4K of RAM – unused by the system
+  4K of I/O registers
+  8K Operating System Kernal ROM
+  good place for graphics memory
+  BASIC is not limited
+  contains enough free RAM for 4 text screens
+  ROM area could be used to store two character sets and 64 sprite shapes
+  No RAM exits for a high resolution screen
+  Avoid using 52224-53247 for graphics if using DOS support
+  Hi-res could be acccessed by using the area under Kernal ROM – need to turn off interrupts and switch out the ROM to use the RAM
+
   $DD00 = %xxxxxx11 -> bank0: $0000-$3fff
   $DD00 = %xxxxxx10 -> bank1: $4000-$7fff
   $DD00 = %xxxxxx01 -> bank2: $8000-$bfff
   $DD00 = %xxxxxx00 -> bank3: $c000-$ffff*/
+  
+  //Select Bank
   POKE (0xDD00, (PEEK(0XDD00)&(255 - bank)));
   
+  //Set Screen and Character Ram Position
   screenpos = screenpos << 4;
   charpos = charpos << 1;
   POKE (0xD018, screenpos + charpos);
   
-  POKE (0x0288, cursorPos);
+  //Cursor Position
+  POKE (0x0288, screenposition / 256);
 }
 
 /*void setcolortextmode()
