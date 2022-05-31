@@ -110,7 +110,7 @@ void ClearScreen()
 {
   for (i = 0; i < 1000; ++i)
   {
-    ScreenColorBuffer[i] = 0;
+    ScreenColorBuffer[i] = 1;
     ScreenCharBuffer[i] = ' ';
   }
   CopyDoubleBuffer();

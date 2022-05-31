@@ -3,7 +3,6 @@
 .export _SIDPLAY
 .export _SIDINIT
 .export _STOPSID
-_SIDFILE: .INCBIN "song.sid",$7e ;Pachelbel.sid, note not every SID will work, check after running sidreloc.exe to see where the load and play positions went
 
 SIDLOADPOS = $C000;
 SIDPLAYPOS = $C006;
@@ -51,3 +50,9 @@ IRQ:
 
 	JSR SIDSTEP
         JMP $EA31
+.segment "SIDRAM"        
+_SIDFILE: .INCBIN "song.sid",$7e ;Pachelbel.sid, note not every SID will work, check after running sidreloc.exe to see where the load and play positions went
+.segment "CHARRAM"        
+_charfile: .INCBIN "song.sid",$7e ;Pachelbel.sid, note not every SID will work, check after running sidreloc.exe to see where the load and play positions went
+.segment "MAPDATA"
+.segment "COLORDATA"
