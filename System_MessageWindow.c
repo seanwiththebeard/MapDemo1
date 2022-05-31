@@ -31,7 +31,7 @@ void DrawMessageWindow()
   //addressColor = addressChar + 1000;
   
   //Direct
-  addressChar = ScreenRam + PosX + COLS*(PosY);
+  addressChar = (int)&ScreenChars[0] + PosX + COLS*(PosY);
   addressColor = ColorRam + PosX + COLS*(PosY);
   
   for (y = 0; y < Height; ++y)

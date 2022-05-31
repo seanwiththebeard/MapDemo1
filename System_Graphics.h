@@ -2,7 +2,8 @@
 
 extern byte *CharRam;
 #define CharacterRom 0xD000
-#define ScreenRam 0xC800
+extern byte *ScreenChars;
+//#define ScreenRam 0xC800
 #define ColorRam 0xD800
 
 void MoveScreenUp(void);

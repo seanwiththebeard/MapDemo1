@@ -43,6 +43,8 @@ void Initialize()
   InitializeInput();
   
   SelectVICBanks(3, 2, 0);
+  //SelectVICBanks(3, 2, 0);
+  
   
   SetCharacterSet();
   //Draw_Title();

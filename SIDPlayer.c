@@ -8,7 +8,7 @@
 
 
 unsigned int SIDSIZE = (1024)*2;
-unsigned int SIDLOAD = 0xAA00;
+unsigned int SIDLOAD = 0xB800;
 
 void PlaySID(void)
 	{

@@ -27,7 +27,7 @@ void MoveScreenUp()
 {
   byte i;
   raster_wait(1);
-  CopyMemory(ScreenRam, &ScreenChars[COLS], YColumnIndex[24]);
+  CopyMemory(&ScreenChars[0], &ScreenChars[COLS], YColumnIndex[24]);
 
   
   //byte i;
@@ -44,7 +44,7 @@ void UpdateColors()
 {
   for (offset = 0; offset < 1000; ++offset)
   {
-    ScreenColors[offset] = AttributeSet[PEEK(ScreenRam + offset)];
+    ScreenColors[offset] = AttributeSet[PEEK(&ScreenChars[0] + offset)];
   }
 }
 
@@ -77,14 +77,14 @@ void DrawCharacterSet(byte destX, byte destY)
 void CopyDoubleBuffer()
 {
   CopyMemory(ColorRam, (int)&ScreenDoubleBuffer[1000], 1000);
-  CopyMemory(ScreenRam, (int)&ScreenDoubleBuffer[0], 1000);
+  CopyMemory(&ScreenChars[0], (int)&ScreenDoubleBuffer[0], 1000);
 }
 
 void CopyDoubleBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
 {
   offset = posX + YColumnIndex[posY];
   OffsetY = posX + YColumnIndex[0];
-  charOffset = ScreenRam + offset;
+  charOffset = (int)&ScreenChars[0] + offset;
   colorOffset = ColorRam + offset;
   bufferScreenAddress = (int)&ScreenDoubleBuffer[offset];
   bufferColorAddress = (int)&ScreenDoubleBuffer[offset + 1000];
@@ -122,7 +122,7 @@ void ReverseBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
 {
   offset = posX + YColumnIndex[posY];
   OffsetY = posX + YColumnIndex[0];
-  bufferScreenAddress = ScreenRam + offset;
+  bufferScreenAddress = (int)&ScreenChars[0] + offset;
   bufferColorAddress = ColorRam + offset;
   charOffset = (int)&ScreenDoubleBuffer[offset];
   colorOffset = (int)&ScreenDoubleBuffer[offset + 1000];
