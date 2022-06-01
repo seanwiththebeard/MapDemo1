@@ -17,6 +17,8 @@ byte *ScreenColors = (byte *)0xD800;
 byte *CharRam;
 unsigned short offset1;
 
+int screenposition;
+
 int YColumnIndex[25] = {
   0, 40, 80, 120, 160,
   200, 240, 280, 320, 360,
@@ -30,16 +32,9 @@ void MoveScreenUp()
 {
   raster_wait(1);
   CopyMemory(&ScreenChars[0], &ScreenChars[COLS], YColumnIndex[24]);
-
   
-  //byte i;
   for (ColCount = 0; ColCount < COLS; ++ColCount)
     ScreenChars[960+ColCount] = ' ';
-    
-  //CopyMemory(ScreenRam, ((int)ScreenRam) + 40, 1000);
-  
-  //gotoxy(0, 24);
-  //printf("Test\n",);
 }
 
 void UpdateColors()
@@ -143,7 +138,9 @@ void ReverseBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
 
 void SelectVICBanks(byte bank, byte screenpos, byte charpos)
 {
-  int screenposition = (bank * (16*1024) + (screenpos * 1024));
+  //Select Bank
+  POKE (0xDD00, (PEEK(0XDD00)&(255 - bank)));
+  screenposition = (bank * (16*1024) + (screenpos * 1024));
   
   ScreenChars = 0;
   ScreenChars += screenposition;
@@ -177,8 +174,6 @@ void SelectVICBanks(byte bank, byte screenpos, byte charpos)
   $DD00 = %xxxxxx01 -> bank2: $8000-$bfff
   $DD00 = %xxxxxx00 -> bank3: $c000-$ffff*/
   
-  //Select Bank
-  POKE (0xDD00, (PEEK(0XDD00)&(255 - bank)));
   
   //Set Screen and Character Ram Position
   screenpos = screenpos << 4;

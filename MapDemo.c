@@ -37,12 +37,12 @@
 
 void Initialize()
 {
-  SelectVICBanks(3, 2, 7);
   ScreenDisable();
+  SelectVICBanks(3, 2, 7);
+  SetCharacterSet();
   bgcolor(0);
   bordercolor(0);
   InitializeInput();
-  SetCharacterSet();
   LoadMap();
   
   BlankMessageWindow();
@@ -54,6 +54,8 @@ void Initialize()
 
 void main(void)
 {  
+  //SetCharacterSet();
+  
   Initialize();
   SwitchScreen(Title);  
   
