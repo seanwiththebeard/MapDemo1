@@ -41,8 +41,8 @@ void Initialize()
   
   
   ScreenDisable();
-  SelectVICBanks(3, 2, 7);
-  SetCharacterSet();
+  SelectVICBanks(3, 2, 4);
+  //SetCharacterSet();
   bgcolor(0);
   bordercolor(0);
   InitializeInput();
