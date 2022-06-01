@@ -34,9 +34,12 @@
 #include "Screen_Combat.h"
 #include "Screen_Credits.h"
 #include <stdio.h>
+#include <peekpoke.h>
 
 void Initialize()
 {
+  
+  
   ScreenDisable();
   SelectVICBanks(3, 2, 7);
   SetCharacterSet();
@@ -44,11 +47,10 @@ void Initialize()
   bordercolor(0);
   InitializeInput();
   LoadMap();
-  
   BlankMessageWindow();
-  
-  DrawCharacterSet(23, 2);
+  ClearScreen();
   ScreenEnable();
+  
   
 }
 
@@ -57,6 +59,8 @@ void main(void)
   //SetCharacterSet();
   
   Initialize();
+  //POKE(0x0001, PEEK(0x0001) - 2);
+  
   SwitchScreen(Title);  
   
   /*while(true)
