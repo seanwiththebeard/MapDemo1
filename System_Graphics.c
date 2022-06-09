@@ -73,8 +73,9 @@ void DrawCharacterSet(byte destX, byte destY)
 
 void CopyDoubleBuffer()
 {
-  CopyMemory(ColorRam, &ScreenColorBuffer[0], 1000);
-  CopyMemory(&ScreenChars[0], &ScreenCharBuffer[0], 1000);
+  memcpy((int*)ColorRam, &ScreenColorBuffer[0], 1000);
+  memcpy(&ScreenChars[0], &ScreenCharBuffer[0], 1000);
+  
 }
 
 void CopyDoubleBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
@@ -108,7 +109,10 @@ void ClearScreen()
     ScreenColorBuffer[i] = 1;
     ScreenCharBuffer[i] = ' ';
   }
+  
   CopyDoubleBuffer();
+  
+  
 }
 
 void ReverseBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)

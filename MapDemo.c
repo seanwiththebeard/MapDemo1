@@ -10,9 +10,10 @@
 //#link "Lists.c"
 //#link "Screen_Combat.c"
 //#link "Screen_Credits.c"
-#include "SIDPlayer.h"
 //#link "SIDPlayer.c"
 //#link "SIDPlayerASM.s"
+//#link "FileIO.c"
+
 //#resource "song.sid"
 
 //#resource "c64_1.cfg"
@@ -20,6 +21,7 @@
 
 #include <conio.h>
 #include <c64.h>
+#include <stdio.h>
 
 #include "Common.h"
 #include "Screen_Map.h"
@@ -33,24 +35,25 @@
 #include "Lists.h"
 #include "Screen_Combat.h"
 #include "Screen_Credits.h"
-#include <stdio.h>
-#include <peekpoke.h>
+#include "SIDPlayer.h"
+#include "FileIO.h"
 
 void Initialize()
 {
-  
-  
+  DiskSave("charram", (int)CharRam, 0x1000);
   ScreenDisable();
-  SelectVICBanks(3, 2, 4);
-  //SetCharacterSet();
+  SelectVICBanks(3, 2, 7);
+  SetCharacterSet();
+  ClearScreen();
   bgcolor(0);
   bordercolor(0);
   InitializeInput();
   LoadMap();
-  BlankMessageWindow();
-  ClearScreen();
-  ScreenEnable();
   
+  BlankMessageWindow();
+  
+  DrawCharacterSet(23, 2);
+  ScreenEnable();
   
 }
 
@@ -59,8 +62,6 @@ void main(void)
   //SetCharacterSet();
   
   Initialize();
-  //POKE(0x0001, PEEK(0x0001) - 2);
-  
   SwitchScreen(Title);  
   
   /*while(true)
