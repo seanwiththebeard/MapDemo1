@@ -42,8 +42,8 @@ void Initialize()
 {
   DiskSave("charram", (int)CharRam, 0x1000);
   ScreenDisable();
-  SelectVICBanks(3, 2, 7);
-  SetCharacterSet();
+  SelectVICBanks(3, 2, 0);
+  //SetCharacterSet();
   ClearScreen();
   bgcolor(0);
   bordercolor(0);
