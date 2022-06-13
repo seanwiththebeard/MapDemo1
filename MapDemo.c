@@ -12,9 +12,12 @@
 //#link "Screen_Credits.c"
 //#link "SIDPlayer.c"
 //#link "SIDPlayerASM.s"
+//#link "CharacterSetASM.s"
+
 //#link "FileIO.c"
 
 //#resource "song.sid"
+//#resource "CharacterSet.bin"
 
 //#resource "c64_1.cfg"
 #define CFGFILE c64_1.cfg
@@ -40,19 +43,15 @@
 
 void Initialize()
 {
-  DiskSave("charram", (int)CharRam, 0x1000);
   ScreenDisable();
   SelectVICBanks(3, 2, 0);
-  //SetCharacterSet();
   ClearScreen();
   bgcolor(0);
   bordercolor(0);
   InitializeInput();
   LoadMap();
-  
-  BlankMessageWindow();
-  
-  DrawCharacterSet(23, 2);
+  //DiskLoad("CharacterSet.bin", (int)CharRam);
+  //DiskLoad("song.sid", (int)SIDLOAD);
   ScreenEnable();
   
 }

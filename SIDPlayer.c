@@ -7,8 +7,7 @@
 #include <c64.h>
 
 
-unsigned int SIDSIZE = (1024)*2;
-unsigned int SIDLOAD = 0xB000;
+
 
 void PlaySID(void)
 	{
