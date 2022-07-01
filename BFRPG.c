@@ -1,4 +1,5 @@
-#include "BFRPG.h"
+//#include "BFRPG.h"
+#include "Common.h"
 
 struct
 {
