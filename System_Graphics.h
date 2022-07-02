@@ -23,6 +23,10 @@ void SelectVICBanks(byte bank, byte screenpos, byte charpos);
 //void setcolortextmode(void);
 void SetScreenChar(byte index, byte xpos, byte ypos);
 void SetScreenCharColor(byte index, byte color, byte xpos, byte ypos);
+
+void SetTileOrigin(byte x, byte y);
+void DrawTileFast(byte index, byte x, byte y);
+
 void ScrollChar(byte index, byte direction);
 void FlashColor(byte index, byte length);
 void FlashColorWait(byte index, byte length);

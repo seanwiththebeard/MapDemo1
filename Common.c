@@ -8,6 +8,7 @@
 #include "Screen_Map.h"
 #include "Screen_AddCharacter.h"
 #include "System_Input.h"
+#include "Screen_Combat.h"
 
 char str[16];
 int randseed = 0;
@@ -53,6 +54,7 @@ void SwitchScreen(screenName screen)
       currentScreen = MapUpdate();
       break;
     case Combat:
+      currentScreen = Update_Combat();
       break;
     case Menu:
       break;

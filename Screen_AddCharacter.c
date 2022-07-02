@@ -23,7 +23,7 @@ byte rosterPos;
 
 char Selections[8][16];
 byte selection = 0;
-byte countSelections = 4;
+byte countSelections = 5;
 bool exitWindow = false;
 bool nextWindow = false;
 bool repeatRoster = true;
@@ -374,7 +374,7 @@ void DrawRoster()
   sprintf(str, "Count: %d@", CountRoster());
   WriteLineMessageWindow(str, 0);
 
-  countSelections = 6;
+  countSelections = 7;
   WindowLevel = 0;
   windowX = 0;
   windowY = 0;
@@ -391,6 +391,7 @@ void DrawRoster()
   SetString("Start Adventure@", 4);
   SetString("Back to Title@", 5);
   SetString("Credits@", 6);
+  SetString("Combat Test@", 7);
 
   DrawCharWindow(windowX, windowY, COLS - 2, ROWS - 2, "Edit Party@"); 
   //ListRoster
@@ -501,6 +502,11 @@ void DrawRoster()
             repeatRoster = false;
             exitWindow = true;
             nextScreen = Credits;
+            break;
+          case 7:
+            repeatRoster = false;
+            exitWindow = true;
+            nextScreen = Combat;
             break;
         }
       }

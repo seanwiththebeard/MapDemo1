@@ -71,6 +71,33 @@ void DrawCharacterSet(byte destX, byte destY)
 
 }
 
+int originOffset = 0;
+
+void SetTileOrigin(byte x, byte y)
+{
+  originOffset = YColumnIndex[y] + x;  
+}
+
+byte indexes[4];
+void DrawTileFast(byte index, byte x, byte y)
+{  
+  index = (index << 1) + ((index >> 3) << 4);
+  indexes[0] = index;
+  indexes[1] = index + 1;
+  indexes[2] = index + 16;
+  indexes[3] = index + 17;
+  
+  x = x << 1;
+  y = y << 1;
+  
+  offset1 = YColumnIndex[y] + x + originOffset;
+  memcpy(&ScreenChars[offset1], &indexes[0], 2);
+  memcpy(&ScreenColors[offset1], &AttributeSet[indexes[0]], 2);
+  offset1 += COLS;
+  memcpy(&ScreenColors[offset1], &AttributeSet[indexes[2]], 2);
+  memcpy(&ScreenChars[offset1], &indexes[2], 2);
+}
+
 void CopyDoubleBuffer()
 {
   memcpy((int*)ColorRam, &ScreenColorBuffer[0], 1000);
