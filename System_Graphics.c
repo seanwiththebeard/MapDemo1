@@ -79,8 +79,9 @@ void SetTileOrigin(byte x, byte y)
 }
 
 byte indexes[4];
-void DrawTileFast(byte index, byte x, byte y)
-{  
+
+void DrawTileFast(byte index, byte x, byte y, bool buffer)
+{ 
   index = (index << 1) + ((index >> 3) << 4);
   indexes[0] = index;
   indexes[1] = index + 1;
@@ -89,13 +90,24 @@ void DrawTileFast(byte index, byte x, byte y)
   
   x = x << 1;
   y = y << 1;
-  
+
   offset1 = YColumnIndex[y] + x + originOffset;
-  memcpy(&ScreenChars[offset1], &indexes[0], 2);
-  memcpy(&ScreenColors[offset1], &AttributeSet[indexes[0]], 2);
-  offset1 += COLS;
-  memcpy(&ScreenColors[offset1], &AttributeSet[indexes[2]], 2);
-  memcpy(&ScreenChars[offset1], &indexes[2], 2);
+  if (buffer)
+  {
+    memcpy(&ScreenCharBuffer[offset1], &indexes[0], 2);
+    memcpy(&ScreenColorBuffer[offset1], &AttributeSet[indexes[0]], 2);
+    offset1 += COLS;
+    memcpy(&ScreenCharBuffer[offset1], &indexes[2], 2);
+    memcpy(&ScreenColorBuffer[offset1], &AttributeSet[indexes[2]], 2);
+  }
+  else
+  {
+    memcpy(&ScreenChars[offset1], &indexes[0], 2);
+    memcpy(&ScreenColors[offset1], &AttributeSet[indexes[0]], 2);
+    offset1 += COLS;
+    memcpy(&ScreenChars[offset1], &indexes[2], 2);
+    memcpy(&ScreenColors[offset1], &AttributeSet[indexes[2]], 2);
+  }
 }
 
 void CopyDoubleBuffer()
