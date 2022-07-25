@@ -4,7 +4,7 @@
 #include <conio.h>
 #include <stdio.h>
 #include "System_CharacterSets.h"
-#include "System_Graphics.h"
+#include "Platform.h"
 
 byte charScrollBuffer[8], column, OffsetY, temp, count, ColCount;
 int offset, charOffset, colorOffset, origin, retValue, bufferColorAddress, bufferScreenAddress, i;

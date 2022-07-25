@@ -1,7 +1,5 @@
-#include "System_Input.h"
-#include "System_Graphics.h"
 #include "Common.h"
-#include "SIDPlayer.h"
+#include "Platform.h"
 
 screenName Update_Title()
 {

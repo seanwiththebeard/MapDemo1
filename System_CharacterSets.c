@@ -1,5 +1,5 @@
 #include "Common.h"
-#include "System_Graphics.h"
+#include "Platform.h"
 //#link "CharacterSetASM.s"
 
 

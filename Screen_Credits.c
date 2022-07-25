@@ -1,9 +1,7 @@
-#include "System_Input.h"
-#include "System_Graphics.h"
 #include "System_MessageWindow.h"
 #include "Common.h"
 #include <stdio.h>
-#include "SIDPlayer.h"
+#include "Platform.h"
 
 byte yscroll;
 /*byte sinevalue[32] = {12,14,17,19,20,22,23,24,

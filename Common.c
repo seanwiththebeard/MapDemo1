@@ -1,14 +1,14 @@
 #include <peekpoke.h>
 #include "Common.h"
 #include <c64.h>
-#include "System_Graphics.h"
 
 #include "Screen_Title.h"
 #include "Screen_Credits.h"
 #include "Screen_Map.h"
 #include "Screen_AddCharacter.h"
-#include "System_Input.h"
 #include "Screen_Combat.h"
+
+#include "Platform.h"
 
 char str[16];
 int randseed = 0;

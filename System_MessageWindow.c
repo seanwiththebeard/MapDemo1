@@ -1,10 +1,10 @@
 #include "Common.h"
-#include "System_Graphics.h"
 #include "System_CharacterSets.h"
 #include <peekpoke.h>
 #include <stdio.h>
 #include "BFRPG.h"
 #include "Lists.h"
+#include "Platform.h"
 
 byte PosX = 22;
 byte PosY = 14;

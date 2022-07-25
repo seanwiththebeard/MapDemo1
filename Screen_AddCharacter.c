@@ -1,9 +1,8 @@
 #include "Common.h"
-#include "System_Graphics.h"
-#include "System_Input.h"
 #include "System_MessageWindow.h"
 #include "BFRPG.h"
 #include "Lists.h"
+#include "Platform.h"
 
 
 #include <stdio.h>

@@ -1,11 +1,10 @@
 #include <stdio.h>
 #include <peekpoke.h>
-#include "System_Graphics.h"
 #include "Common.h"
-#include "System_Input.h"
 #include "System_MessageWindow.h"
 #include "System_CharacterSets.h"
 #include "Screen_AddCharacter.h"
+#include "Platform.h"
 
 //Globals
 //char str[16];
@@ -1015,7 +1014,7 @@ screenName MapUpdate()
   while (!exit)
   {
     UpdateInput();
-    if (InputChanged())
+    //if (InputChanged())
     {
       if (InputUp())
       {

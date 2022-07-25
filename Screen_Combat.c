@@ -1,7 +1,6 @@
 #include "Common.h"
-#include "System_Graphics.h"
-#include "System_Input.h"
 #include "Lists.h"
+#include "Platform.h"
 
 byte index = 36;
 
@@ -13,7 +12,7 @@ void DrawMap()
   for (y = 0; y < 8; ++y)
     for (x = 0; x < 8; ++x)
     {
-      DrawTileFast(index, x, y);
+      DrawTileFast(index, x, y, false);
     }
 }
 
@@ -21,7 +20,7 @@ void DrawCharacters()
 {
   byte i;
   for (i = 0; i < CountParty(); ++i)
-    DrawTileFast(i, 2+i, 6);
+    DrawTileFast(i, 2+i, 6, false);
 }
 
 screenName Update_Combat()
