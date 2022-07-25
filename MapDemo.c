@@ -23,8 +23,6 @@
 #define CFGFILE c64_1.cfg
 
 #include <conio.h>
-#include <c64.h>
-#include <stdio.h>
 
 #include "Common.h"
 #include "Screen_Map.h"
