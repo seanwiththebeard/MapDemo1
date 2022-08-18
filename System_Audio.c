@@ -6,6 +6,10 @@
 //#resource "song.sid"
 #include <c64.h>
 
+void SIDINIT(void); 
+void SIDPLAY(void);
+void SIDSTOP(void);
+
 void PlaySID(void)
 {
   memcpy((void*)(SIDLOAD),(void*)&SIDFILE,SIDSIZE);	//Load music into memory 
@@ -13,11 +17,11 @@ void PlaySID(void)
   SIDPLAY();						//Play 	
 }
 
-void StopSID()
+void StopSID(void)
 {
   SID.flt_freq = 0x00;
   SID.flt_ctrl = 0x00;
   SID.amp = 0x00;
-  STOPSID();
+  SIDSTOP();
 }
 

@@ -1,14 +1,13 @@
-.export _SIDINIT
 .export _SIDFILE
-.export _SIDPLAY
 .export _SIDINIT
-.export _STOPSID
+.export _SIDPLAY
+.export _SIDSTOP
 
 SIDLOADPOS = $B800;
 SIDPLAYPOS = $B806;
 
 
-_STOPSID:
+_SIDSTOP:
 	LDA #$00
 	STA $D01A
         CLI
