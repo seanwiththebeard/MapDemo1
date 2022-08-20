@@ -25,14 +25,4 @@ void SetCharacterSet()
 {
   //CopyMemory((int)&CharRam[0], &CharacterSet[0], 2048);
   CopyMemory((int)&CharRam[0], 0xc800, 2048);
-  
 }
-
-/*void UpdateCharacterSet()
-{
-  int i;
-  for (i = 384;i < 2048; i++)
-  {
-      POKE(CharacterRAM + i + 384, CharacterSet[i]);  
-  }
-}*/

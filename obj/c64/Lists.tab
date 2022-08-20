@@ -1,0 +1,4431 @@
+
+SC_FUNC: _CountRoster: Symbol table
+===================================
+__fixargs__:
+    Flags: SC_CONST SC_DEF
+    Type:  unsigned int
+__argsize__:
+    Flags: SC_CONST SC_DEF
+    Type:  unsigned char
+temp:
+    Flags: SC_AUTO SC_DEF SC_REF
+    Type:  struct playerChar *
+i:
+    Flags: SC_AUTO SC_DEF SC_REF
+    Type:  unsigned char
+
+
+
+
+SC_FUNC: _create: Symbol table
+==============================
+__fixargs__:
+    Flags: SC_CONST SC_DEF
+    Type:  unsigned int
+__argsize__:
+    Flags: SC_CONST SC_DEF
+    Type:  unsigned char
+temp:
+    Flags: SC_AUTO SC_DEF SC_REF
+    Type:  struct playerChar *
+ptr:
+    Flags: SC_AUTO SC_DEF SC_REF
+    Type:  struct playerChar *
+
+
+
+
+SC_FUNC: _getPlayerChar: Symbol table
+=====================================
+index:
+    Flags: SC_PARAM SC_AUTO SC_DEF SC_REF 0x100000
+    Type:  unsigned char
+__fixargs__:
+    Flags: SC_CONST SC_DEF
+    Type:  unsigned int
+__argsize__:
+    Flags: SC_CONST SC_DEF
+    Type:  unsigned char
+i:
+    Flags: SC_AUTO SC_DEF SC_REF
+    Type:  unsigned char
+tmp:
+    Flags: SC_AUTO SC_DEF SC_REF
+    Type:  struct playerChar *
+
+
+
+
+SC_FUNC: _delete_pos: Symbol table
+==================================
+pos:
+    Flags: SC_PARAM SC_AUTO SC_DEF SC_REF 0x100000
+    Type:  unsigned char
+__fixargs__:
+    Flags: SC_CONST SC_DEF
+    Type:  unsigned int
+__argsize__:
+    Flags: SC_CONST SC_DEF
+    Type:  unsigned char
+i:
+    Flags: SC_AUTO SC_DEF SC_REF
+    Type:  int
+temp:
+    Flags: SC_AUTO SC_DEF SC_REF
+    Type:  struct playerChar *
+ptr:
+    Flags: SC_AUTO SC_DEF SC_REF
+    Type:  struct playerChar *
+
+
+
+
+SC_FUNC: _CountParty: Symbol table
+==================================
+__fixargs__:
+    Flags: SC_CONST SC_DEF
+    Type:  unsigned int
+__argsize__:
+    Flags: SC_CONST SC_DEF
+    Type:  unsigned char
+temp:
+    Flags: SC_AUTO SC_DEF SC_REF
+    Type:  struct playerChar *
+i:
+    Flags: SC_AUTO SC_DEF SC_REF
+    Type:  unsigned char
+
+
+
+
+SC_FUNC: _getPartyMember: Symbol table
+======================================
+index:
+    Flags: SC_PARAM SC_AUTO SC_DEF SC_REF 0x100000
+    Type:  unsigned char
+__fixargs__:
+    Flags: SC_CONST SC_DEF
+    Type:  unsigned int
+__argsize__:
+    Flags: SC_CONST SC_DEF
+    Type:  unsigned char
+i:
+    Flags: SC_AUTO SC_DEF SC_REF
+    Type:  unsigned char
+tmp:
+    Flags: SC_AUTO SC_DEF SC_REF
+    Type:  struct playerChar *
+
+
+
+
+SC_FUNC: _AddParty: Symbol table
+================================
+index:
+    Flags: SC_PARAM SC_AUTO SC_DEF SC_REF 0x100000
+    Type:  unsigned char
+__fixargs__:
+    Flags: SC_CONST SC_DEF
+    Type:  unsigned int
+__argsize__:
+    Flags: SC_CONST SC_DEF
+    Type:  unsigned char
+temp:
+    Flags: SC_AUTO SC_DEF SC_REF
+    Type:  struct playerChar *
+ptr:
+    Flags: SC_AUTO SC_DEF SC_REF
+    Type:  struct playerChar *
+src:
+    Flags: SC_AUTO SC_DEF SC_REF
+    Type:  struct playerChar *
+
+
+
+
+SC_FUNC: _DeleteParty: Symbol table
+===================================
+pos:
+    Flags: SC_PARAM SC_AUTO SC_DEF SC_REF 0x100000
+    Type:  unsigned char
+__fixargs__:
+    Flags: SC_CONST SC_DEF
+    Type:  unsigned int
+__argsize__:
+    Flags: SC_CONST SC_DEF
+    Type:  unsigned char
+i:
+    Flags: SC_AUTO SC_DEF SC_REF
+    Type:  int
+temp:
+    Flags: SC_AUTO SC_DEF SC_REF
+    Type:  struct playerChar *
+ptr:
+    Flags: SC_AUTO SC_DEF SC_REF
+    Type:  struct playerChar *
+
+
+
+
+SC_FUNC: _RemoveParty: Symbol table
+===================================
+__fixargs__:
+    Flags: SC_CONST SC_DEF
+    Type:  unsigned int
+__argsize__:
+    Flags: SC_CONST SC_DEF
+    Type:  unsigned char
+index:
+    Flags: SC_AUTO SC_DEF SC_REF
+    Type:  unsigned char
+temp:
+    Flags: SC_AUTO SC_DEF SC_REF
+    Type:  struct playerChar *
+ptr:
+    Flags: SC_AUTO SC_DEF SC_REF
+    Type:  struct playerChar *
+src:
+    Flags: SC_AUTO SC_DEF SC_REF
+    Type:  struct playerChar *
+
+
+
+
+Global symbol table
+===================
+size_t:
+    AsmName: _size_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned int
+div_t:
+    AsmName: _div_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  struct $anon-struct-0001
+ldiv_t:
+    AsmName: _ldiv_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  struct $anon-struct-0002
+malloc:
+    AsmName: _malloc
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_REF 0x100000
+    Type:  void *(unsigned int)
+calloc:
+    AsmName: _calloc
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void *(unsigned int, unsigned int)
+realloc:
+    AsmName: _realloc
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void *(void *, unsigned int)
+free:
+    AsmName: _free
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_REF 0x100000
+    Type:  void (void *)
+posix_memalign:
+    AsmName: _posix_memalign
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (void **, unsigned int, unsigned int)
+_heapadd:
+    AsmName: __heapadd
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void *, unsigned int)
+_heapblocksize:
+    AsmName: __heapblocksize
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (const void *)
+_heapmemavail:
+    AsmName: __heapmemavail
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (void)
+_heapmaxavail:
+    AsmName: __heapmaxavail
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (void)
+rand:
+    AsmName: _rand
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (void)
+srand:
+    AsmName: _srand
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned int)
+_randomize:
+    AsmName: __randomize
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+abort:
+    AsmName: _abort
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+abs:
+    AsmName: _abs
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (int)
+labs:
+    AsmName: _labs
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  long (long)
+atoi:
+    AsmName: _atoi
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *)
+atol:
+    AsmName: _atol
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  long (const char *)
+atexit:
+    AsmName: _atexit
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (void (*)(void))
+bsearch:
+    AsmName: _bsearch
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void *(const void *, const void *, unsigned int, unsigned int, int (*)(const void *, const void *))
+div:
+    AsmName: _div
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  struct $anon-struct-0001 (int, int)
+exit:
+    AsmName: _exit
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_REF 0x100000
+    Type:  void (int)
+getenv:
+    AsmName: _getenv
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(const char *)
+qsort:
+    AsmName: _qsort
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void *, unsigned int, unsigned int, int (*)(const void *, const void *))
+strtol:
+    AsmName: _strtol
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  long (const char *, char **, int)
+strtoul:
+    AsmName: _strtoul
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned long (const char *, char **, int)
+system:
+    AsmName: _system
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *)
+_swap:
+    AsmName: __swap
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void *, void *, unsigned int)
+itoa:
+    AsmName: _itoa
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(int, char *, int)
+utoa:
+    AsmName: _utoa
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(unsigned int, char *, int)
+ltoa:
+    AsmName: _ltoa
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(long, char *, int)
+ultoa:
+    AsmName: _ultoa
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(unsigned long, char *, int)
+putenv:
+    AsmName: _putenv
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (char *)
+ptrdiff_t:
+    AsmName: _ptrdiff_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  int
+wchar_t:
+    AsmName: _wchar_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  char
+va_list:
+    AsmName: _va_list
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned char *
+FILE:
+    AsmName: _FILE
+    Flags: SC_TYPEDEF 0x100000
+    Type:  struct _FILE
+fpos_t:
+    AsmName: _fpos_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned long
+stdin:
+    AsmName: _stdin
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  struct _FILE *
+stdout:
+    AsmName: _stdout
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  struct _FILE *
+stderr:
+    AsmName: _stderr
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  struct _FILE *
+clearerr:
+    AsmName: _clearerr
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (struct _FILE *)
+fclose:
+    AsmName: _fclose
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *)
+feof:
+    AsmName: _feof
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *)
+ferror:
+    AsmName: _ferror
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *)
+fflush:
+    AsmName: _fflush
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *)
+fgetc:
+    AsmName: _fgetc
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *)
+fgets:
+    AsmName: _fgets
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *, unsigned int, struct _FILE *)
+fopen:
+    AsmName: _fopen
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  struct _FILE *(const char *, const char *)
+fprintf:
+    AsmName: _fprintf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *, const char *, ...)
+fputc:
+    AsmName: _fputc
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (int, struct _FILE *)
+fputs:
+    AsmName: _fputs
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, struct _FILE *)
+fread:
+    AsmName: _fread
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (void *, unsigned int, unsigned int, struct _FILE *)
+freopen:
+    AsmName: _freopen
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  struct _FILE *(const char *, const char *, struct _FILE *)
+fwrite:
+    AsmName: _fwrite
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (const void *, unsigned int, unsigned int, struct _FILE *)
+fgetpos:
+    AsmName: _fgetpos
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *, unsigned long *)
+fsetpos:
+    AsmName: _fsetpos
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *, const unsigned long *)
+ftell:
+    AsmName: _ftell
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  long (struct _FILE *)
+fseek:
+    AsmName: _fseek
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *, long, int)
+rewind:
+    AsmName: _rewind
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (struct _FILE *)
+getchar:
+    AsmName: _getchar
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (void)
+gets:
+    AsmName: _gets
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *)
+perror:
+    AsmName: _perror
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (const char *)
+printf:
+    AsmName: _printf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, ...)
+putchar:
+    AsmName: _putchar
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (int)
+puts:
+    AsmName: _puts
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *)
+remove:
+    AsmName: _remove
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *)
+rename:
+    AsmName: _rename
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, const char *)
+snprintf:
+    AsmName: _snprintf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (char *, unsigned int, const char *, ...)
+sprintf:
+    AsmName: _sprintf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (char *, const char *, ...)
+ungetc:
+    AsmName: _ungetc
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (int, struct _FILE *)
+vfprintf:
+    AsmName: _vfprintf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *, const char *, unsigned char *)
+vprintf:
+    AsmName: _vprintf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, unsigned char *)
+vsnprintf:
+    AsmName: _vsnprintf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (char *, unsigned int, const char *, unsigned char *)
+vsprintf:
+    AsmName: _vsprintf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (char *, const char *, unsigned char *)
+scanf:
+    AsmName: _scanf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, ...)
+fscanf:
+    AsmName: _fscanf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *, const char *, ...)
+sscanf:
+    AsmName: _sscanf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, const char *, ...)
+vscanf:
+    AsmName: _vscanf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, unsigned char *)
+vsscanf:
+    AsmName: _vsscanf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, const char *, unsigned char *)
+vfscanf:
+    AsmName: _vfscanf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *, const char *, unsigned char *)
+fdopen:
+    AsmName: _fdopen
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  struct _FILE *(int, const char *)
+fileno:
+    AsmName: _fileno
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *)
+_poserror:
+    AsmName: __poserror
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (const char *)
+c64_65816_emd:
+    AsmName: _c64_65816_emd
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_c256k_emd:
+    AsmName: _c64_c256k_emd
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_dqbb_emd:
+    AsmName: _c64_dqbb_emd
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_georam_emd:
+    AsmName: _c64_georam_emd
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_isepic_emd:
+    AsmName: _c64_isepic_emd
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_kerberos_emd:
+    AsmName: _c64_kerberos_emd
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_ram_emd:
+    AsmName: _c64_ram_emd
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_ramcart_emd:
+    AsmName: _c64_ramcart_emd
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_reu_emd:
+    AsmName: _c64_reu_emd
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_vdc_emd:
+    AsmName: _c64_vdc_emd
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+dtv_himem_emd:
+    AsmName: _dtv_himem_emd
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_hitjoy_joy:
+    AsmName: _c64_hitjoy_joy
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_numpad_joy:
+    AsmName: _c64_numpad_joy
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_ptvjoy_joy:
+    AsmName: _c64_ptvjoy_joy
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_stdjoy_joy:
+    AsmName: _c64_stdjoy_joy
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_1351_mou:
+    AsmName: _c64_1351_mou
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_joy_mou:
+    AsmName: _c64_joy_mou
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_inkwell_mou:
+    AsmName: _c64_inkwell_mou
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_pot_mou:
+    AsmName: _c64_pot_mou
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_swlink_ser:
+    AsmName: _c64_swlink_ser
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_hi_tgi:
+    AsmName: _c64_hi_tgi
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+get_ostype:
+    AsmName: _get_ostype
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+_cbm_filetype:
+    AsmName: __cbm_filetype
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char)
+_filetype:
+    AsmName: __filetype
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char
+get_tv:
+    AsmName: _get_tv
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+kbrepeat:
+    AsmName: _kbrepeat
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char)
+waitvsync:
+    AsmName: _waitvsync
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+cbm_k_acptr:
+    AsmName: _cbm_k_acptr
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+cbm_k_basin:
+    AsmName: _cbm_k_basin
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+cbm_k_bsout:
+    AsmName: _cbm_k_bsout
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cbm_k_chkin:
+    AsmName: _cbm_k_chkin
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char)
+cbm_k_chrin:
+    AsmName: _cbm_k_chrin
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+cbm_k_chrout:
+    AsmName: _cbm_k_chrout
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cbm_k_ciout:
+    AsmName: _cbm_k_ciout
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cbm_k_ckout:
+    AsmName: _cbm_k_ckout
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char)
+cbm_k_clall:
+    AsmName: _cbm_k_clall
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+cbm_k_close:
+    AsmName: _cbm_k_close
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cbm_k_clrch:
+    AsmName: _cbm_k_clrch
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+cbm_k_getin:
+    AsmName: _cbm_k_getin
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+cbm_k_iobase:
+    AsmName: _cbm_k_iobase
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (void)
+cbm_k_listen:
+    AsmName: _cbm_k_listen
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cbm_k_load:
+    AsmName: _cbm_k_load
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (unsigned char, unsigned int)
+cbm_k_open:
+    AsmName: _cbm_k_open
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+cbm_k_readst:
+    AsmName: _cbm_k_readst
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+cbm_k_save:
+    AsmName: _cbm_k_save
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned int, unsigned int)
+cbm_k_scnkey:
+    AsmName: _cbm_k_scnkey
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+cbm_k_second:
+    AsmName: _cbm_k_second
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cbm_k_setlfs:
+    AsmName: _cbm_k_setlfs
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char, unsigned char, unsigned char)
+cbm_k_setnam:
+    AsmName: _cbm_k_setnam
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (const char *)
+cbm_k_settim:
+    AsmName: _cbm_k_settim
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned long)
+cbm_k_talk:
+    AsmName: _cbm_k_talk
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cbm_k_tksa:
+    AsmName: _cbm_k_tksa
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cbm_k_udtim:
+    AsmName: _cbm_k_udtim
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+cbm_k_unlsn:
+    AsmName: _cbm_k_unlsn
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+cbm_k_untlk:
+    AsmName: _cbm_k_untlk
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+cbm_load:
+    AsmName: _cbm_load
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (const char *, unsigned char, void *)
+cbm_save:
+    AsmName: _cbm_save
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (const char *, unsigned char, const void *, unsigned int)
+cbm_open:
+    AsmName: _cbm_open
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char, unsigned char, unsigned char, const char *)
+cbm_close:
+    AsmName: _cbm_close
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cbm_read:
+    AsmName: _cbm_read
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (unsigned char, void *, unsigned int)
+cbm_write:
+    AsmName: _cbm_write
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (unsigned char, const void *, unsigned int)
+cbm_opendir:
+    AsmName: _cbm_opendir
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char, unsigned char, ...)
+cbm_readdir:
+    AsmName: _cbm_readdir
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char, struct cbm_dirent *)
+cbm_closedir:
+    AsmName: _cbm_closedir
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+clrscr:
+    AsmName: _clrscr
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+kbhit:
+    AsmName: _kbhit
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+gotox:
+    AsmName: _gotox
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+gotoy:
+    AsmName: _gotoy
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+gotoxy:
+    AsmName: _gotoxy
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char, unsigned char)
+wherex:
+    AsmName: _wherex
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+wherey:
+    AsmName: _wherey
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+cputc:
+    AsmName: _cputc
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (char)
+cputcxy:
+    AsmName: _cputcxy
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char, unsigned char, char)
+cputs:
+    AsmName: _cputs
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (const char *)
+cputsxy:
+    AsmName: _cputsxy
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char, unsigned char, const char *)
+cprintf:
+    AsmName: _cprintf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, ...)
+vcprintf:
+    AsmName: _vcprintf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, unsigned char *)
+cgetc:
+    AsmName: _cgetc
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char (void)
+cscanf:
+    AsmName: _cscanf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, ...)
+vcscanf:
+    AsmName: _vcscanf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, unsigned char *)
+cpeekc:
+    AsmName: _cpeekc
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char (void)
+cpeekcolor:
+    AsmName: _cpeekcolor
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+cpeekrevers:
+    AsmName: _cpeekrevers
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+cpeeks:
+    AsmName: _cpeeks
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (char *, unsigned int)
+cursor:
+    AsmName: _cursor
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char)
+revers:
+    AsmName: _revers
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char)
+textcolor:
+    AsmName: _textcolor
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char)
+bgcolor:
+    AsmName: _bgcolor
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char)
+bordercolor:
+    AsmName: _bordercolor
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char)
+chline:
+    AsmName: _chline
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+chlinexy:
+    AsmName: _chlinexy
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char, unsigned char, unsigned char)
+cvline:
+    AsmName: _cvline
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cvlinexy:
+    AsmName: _cvlinexy
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char, unsigned char, unsigned char)
+cclear:
+    AsmName: _cclear
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cclearxy:
+    AsmName: _cclearxy
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char, unsigned char, unsigned char)
+screensize:
+    AsmName: _screensize
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char *, unsigned char *)
+cputhex8:
+    AsmName: _cputhex8
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cputhex16:
+    AsmName: _cputhex16
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned int)
+int8_t:
+    AsmName: _int8_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  signed char
+int16_t:
+    AsmName: _int16_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  int
+int32_t:
+    AsmName: _int32_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  long
+uint8_t:
+    AsmName: _uint8_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned char
+uint16_t:
+    AsmName: _uint16_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned int
+uint32_t:
+    AsmName: _uint32_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned long
+int_least8_t:
+    AsmName: _int_least8_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  signed char
+int_least16_t:
+    AsmName: _int_least16_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  int
+int_least32_t:
+    AsmName: _int_least32_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  long
+uint_least8_t:
+    AsmName: _uint_least8_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned char
+uint_least16_t:
+    AsmName: _uint_least16_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned int
+uint_least32_t:
+    AsmName: _uint_least32_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned long
+int_fast8_t:
+    AsmName: _int_fast8_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  signed char
+int_fast16_t:
+    AsmName: _int_fast16_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  int
+int_fast32_t:
+    AsmName: _int_fast32_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  long
+uint_fast8_t:
+    AsmName: _uint_fast8_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned char
+uint_fast16_t:
+    AsmName: _uint_fast16_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned int
+uint_fast32_t:
+    AsmName: _uint_fast32_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned long
+intptr_t:
+    AsmName: _intptr_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  int
+uintptr_t:
+    AsmName: _uintptr_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned int
+intmax_t:
+    AsmName: _intmax_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  long
+uintmax_t:
+    AsmName: _uintmax_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned long
+strcat:
+    AsmName: _strcat
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *, const char *)
+strchr:
+    AsmName: _strchr
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(const char *, int)
+strcmp:
+    AsmName: _strcmp
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, const char *)
+strcoll:
+    AsmName: _strcoll
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, const char *)
+strcpy:
+    AsmName: _strcpy
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *, const char *)
+strcspn:
+    AsmName: _strcspn
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (const char *, const char *)
+strerror:
+    AsmName: _strerror
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(int)
+strlen:
+    AsmName: _strlen
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (const char *)
+strncat:
+    AsmName: _strncat
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *, const char *, unsigned int)
+strncmp:
+    AsmName: _strncmp
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, const char *, unsigned int)
+strncpy:
+    AsmName: _strncpy
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *, const char *, unsigned int)
+strpbrk:
+    AsmName: _strpbrk
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(const char *, const char *)
+strrchr:
+    AsmName: _strrchr
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(const char *, int)
+strspn:
+    AsmName: _strspn
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (const char *, const char *)
+strstr:
+    AsmName: _strstr
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(const char *, const char *)
+strtok:
+    AsmName: _strtok
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *, const char *)
+strxfrm:
+    AsmName: _strxfrm
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (char *, const char *, unsigned int)
+memchr:
+    AsmName: _memchr
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void *(const void *, int, unsigned int)
+memcmp:
+    AsmName: _memcmp
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const void *, const void *, unsigned int)
+memcpy:
+    AsmName: _memcpy
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_REF 0x100000
+    Type:  void *(void *, const void *, unsigned int)
+memmove:
+    AsmName: _memmove
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void *(void *, const void *, unsigned int)
+memset:
+    AsmName: _memset
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void *(void *, int, unsigned int)
+_bzero:
+    AsmName: __bzero
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void *(void *, unsigned int)
+bzero:
+    AsmName: _bzero
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void *, unsigned int)
+strdup:
+    AsmName: _strdup
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(const char *)
+stricmp:
+    AsmName: _stricmp
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, const char *)
+strcasecmp:
+    AsmName: _strcasecmp
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, const char *)
+strnicmp:
+    AsmName: _strnicmp
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, const char *, unsigned int)
+strncasecmp:
+    AsmName: _strncasecmp
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, const char *, unsigned int)
+strlwr:
+    AsmName: _strlwr
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *)
+strlower:
+    AsmName: _strlower
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *)
+strupr:
+    AsmName: _strupr
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *)
+strupper:
+    AsmName: _strupper
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *)
+strqtok:
+    AsmName: _strqtok
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *, const char *)
+_stroserror:
+    AsmName: __stroserror
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  const char *(unsigned char)
+byte:
+    AsmName: _byte
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned char
+word:
+    AsmName: _word
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned int
+sbyte:
+    AsmName: _sbyte
+    Flags: SC_TYPEDEF 0x100000
+    Type:  signed char
+false:
+    Flags: SC_ENUMERATOR SC_CONST
+    Type:  int
+true:
+    Flags: SC_ENUMERATOR SC_CONST
+    Type:  int
+bool:
+    AsmName: _bool
+    Flags: SC_TYPEDEF 0x100000
+    Type:  enum $anon-enum-0013
+Title:
+    Flags: SC_ENUMERATOR SC_CONST
+    Type:  int
+Credits:
+    Flags: SC_ENUMERATOR SC_CONST
+    Type:  int
+EditParty:
+    Flags: SC_ENUMERATOR SC_CONST
+    Type:  int
+Map:
+    Flags: SC_ENUMERATOR SC_CONST
+    Type:  int
+Combat:
+    Flags: SC_ENUMERATOR SC_CONST
+    Type:  int
+Menu:
+    Flags: SC_ENUMERATOR SC_CONST
+    Type:  int
+SaveLoad:
+    Flags: SC_ENUMERATOR SC_CONST
+    Type:  int
+screenName:
+    AsmName: _screenName
+    Flags: SC_TYPEDEF 0x100000
+    Type:  enum $anon-enum-0014
+str:
+    AsmName: _str
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char[16]
+randseed:
+    AsmName: _randseed
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int
+raster_wait:
+    AsmName: _raster_wait
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+wait_vblank:
+    AsmName: _wait_vblank
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+SwitchScreen:
+    AsmName: _SwitchScreen
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (enum $anon-enum-0014)
+UpdateScreen:
+    AsmName: _UpdateScreen
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+WriteBit:
+    AsmName: _WriteBit
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char *, char, enum $anon-enum-0013)
+ReadBit:
+    AsmName: _ReadBit
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char, char)
+CheckBit:
+    AsmName: _CheckBit
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  enum $anon-enum-0013 (unsigned char, unsigned char)
+raster_check:
+    AsmName: _raster_check
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  enum $anon-enum-0013 (unsigned char)
+Party:
+    AsmName: _Party
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  struct $anon-struct-0015
+RaceDescription:
+    AsmName: _RaceDescription
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  struct $anon-struct-0016[]
+ClassDescription:
+    AsmName: _ClassDescription
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  struct $anon-struct-0017[]
+AbilityModifier:
+    AsmName: _AbilityModifier
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int[]
+DrawMessageWindow:
+    AsmName: _DrawMessageWindow
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void ()
+BlankMessageWindow:
+    AsmName: _BlankMessageWindow
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void ()
+WriteLineMessageWindow:
+    AsmName: _WriteLineMessageWindow
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_REF 0x100000
+    Type:  void (char *, unsigned char)
+Messages:
+    AsmName: _Messages
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char[64][16]
+DrawCharStats:
+    AsmName: _DrawCharStats
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void ()
+create:
+    AsmName: _create
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
+    Type:  void (void)
+delete_pos:
+    AsmName: _delete_pos
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF SC_REF 0x100000
+    Type:  void (unsigned char)
+CountRoster:
+    AsmName: _CountRoster
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
+    Type:  unsigned char (void)
+getPlayerChar:
+    AsmName: _getPlayerChar
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF SC_REF 0x100000
+    Type:  struct playerChar *(unsigned char)
+AddParty:
+    AsmName: _AddParty
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
+    Type:  void (unsigned char)
+RemoveParty:
+    AsmName: _RemoveParty
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
+    Type:  void (void)
+CountParty:
+    AsmName: _CountParty
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF SC_REF 0x100000
+    Type:  unsigned char (void)
+getPartyMember:
+    AsmName: _getPartyMember
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF SC_REF 0x100000
+    Type:  struct playerChar *(unsigned char)
+startRoster:
+    AsmName: _startRoster
+    Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
+    Type:  struct playerChar *
+startParty:
+    AsmName: _startParty
+    Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
+    Type:  struct playerChar *
+DeleteParty:
+    AsmName: _DeleteParty
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DEF SC_REF 0x100000
+    Type:  void (unsigned char)
+
+
+
+
+Global tag table
+================
+$anon-struct-0001:
+    Flags: SC_STRUCT SC_DEF
+    Type:  (none)
+$anon-struct-0002:
+    Flags: SC_STRUCT SC_DEF
+    Type:  (none)
+_FILE:
+    Flags: SC_STRUCT
+    Type:  (none)
+__vic2:
+    Flags: SC_STRUCT SC_DEF
+    Type:  (none)
+$anon-union-0007:
+    Flags: SC_UNION SC_DEF
+    Type:  (none)
+$anon-struct-0008:
+    Flags: SC_STRUCT SC_DEF
+    Type:  (none)
+$anon-struct-0009:
+    Flags: SC_STRUCT SC_DEF
+    Type:  (none)
+$anon-union-000A:
+    Flags: SC_UNION SC_DEF
+    Type:  (none)
+$anon-struct-000B:
+    Flags: SC_STRUCT SC_DEF
+    Type:  (none)
+$anon-struct-000C:
+    Flags: SC_STRUCT SC_DEF
+    Type:  (none)
+$anon-union-000D:
+    Flags: SC_UNION SC_DEF
+    Type:  (none)
+$anon-struct-000E:
+    Flags: SC_STRUCT SC_DEF
+    Type:  (none)
+$anon-union-000F:
+    Flags: SC_UNION SC_DEF
+    Type:  (none)
+$anon-struct-0010:
+    Flags: SC_STRUCT SC_DEF
+    Type:  (none)
+$anon-union-0011:
+    Flags: SC_UNION SC_DEF
+    Type:  (none)
+$anon-struct-0012:
+    Flags: SC_STRUCT SC_DEF
+    Type:  (none)
+__sid_voice:
+    Flags: SC_STRUCT SC_DEF
+    Type:  (none)
+__sid:
+    Flags: SC_STRUCT SC_DEF
+    Type:  (none)
+__6526:
+    Flags: SC_STRUCT SC_DEF
+    Type:  (none)
+cbm_dirent:
+    Flags: SC_STRUCT SC_DEF
+    Type:  (none)
+$anon-enum-0013:
+    Flags: SC_ENUM SC_DEF
+    Type:  (none)
+$anon-enum-0014:
+    Flags: SC_ENUM SC_DEF
+    Type:  (none)
+$anon-struct-0015:
+    Flags: SC_STRUCT SC_DEF
+    Type:  (none)
+$anon-struct-0016:
+    Flags: SC_STRUCT SC_DEF
+    Type:  (none)
+$anon-struct-0017:
+    Flags: SC_STRUCT SC_DEF
+    Type:  (none)
+playerChar:
+    Flags: SC_STRUCT SC_DEF
+    Type:  (none)
+
+
+
+
+Global struct and union definitions
+=========================
+
+SC_STRUCT: $anon-struct-0001
+============================
+rem:
+    Flags: SC_STRUCTFIELD
+    Type:  int
+quot:
+    Flags: SC_STRUCTFIELD
+    Type:  int
+
+
+
+
+SC_STRUCT: $anon-struct-0002
+============================
+rem:
+    Flags: SC_STRUCTFIELD
+    Type:  long
+quot:
+    Flags: SC_STRUCTFIELD
+    Type:  long
+
+
+
+
+SC_STRUCT: __vic2
+=================
+$anon-field-0000:
+    Flags: SC_STRUCTFIELD
+    Type:  union $anon-union-0007
+spr0_x:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr0_y:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr1_x:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr1_y:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr2_x:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr2_y:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr3_x:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr3_y:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr4_x:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr4_y:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr5_x:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr5_y:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr6_x:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr6_y:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr7_x:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr7_y:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr_pos:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  struct $anon-struct-0009[8]
+spr_hi_x:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+ctrl1:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+rasterline:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+$anon-field-0001:
+    Flags: SC_STRUCTFIELD
+    Type:  union $anon-union-000A
+strobe_x:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+strobe_y:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+strobe:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  struct $anon-struct-000C
+spr_ena:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+ctrl2:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+spr_exp_y:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+addr:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+irr:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+imr:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+spr_bg_prio:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+spr_mcolor:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+spr_exp_x:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+spr_coll:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+spr_bg_coll:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+bordercolor:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+$anon-field-0002:
+    Flags: SC_STRUCTFIELD
+    Type:  union $anon-union-000D
+bgcolor0:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+bgcolor1:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+bgcolor2:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+bgcolor3:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+bgcolor:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char[4]
+$anon-field-0003:
+    Flags: SC_STRUCTFIELD
+    Type:  union $anon-union-000F
+spr_mcolor0:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr_mcolor1:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr_mcolors:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char[2]
+$anon-field-0004:
+    Flags: SC_STRUCTFIELD
+    Type:  union $anon-union-0011
+spr0_color:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr1_color:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr2_color:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr3_color:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr4_color:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr5_color:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr6_color:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr7_color:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr_color:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char[8]
+x_kbd:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+clock:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+
+
+
+
+SC_UNION: $anon-union-0007
+==========================
+$anon-field-0000:
+    Flags: SC_STRUCTFIELD
+    Type:  struct $anon-struct-0008
+spr0_x:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr0_y:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr1_x:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr1_y:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr2_x:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr2_y:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr3_x:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr3_y:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr4_x:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr4_y:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr5_x:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr5_y:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr6_x:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr6_y:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr7_x:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr7_y:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr_pos:
+    Flags: SC_STRUCTFIELD
+    Type:  struct $anon-struct-0009[8]
+
+
+
+
+SC_STRUCT: $anon-struct-0008
+============================
+spr0_x:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+spr0_y:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+spr1_x:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+spr1_y:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+spr2_x:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+spr2_y:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+spr3_x:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+spr3_y:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+spr4_x:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+spr4_y:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+spr5_x:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+spr5_y:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+spr6_x:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+spr6_y:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+spr7_x:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+spr7_y:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+
+
+
+
+SC_STRUCT: $anon-struct-0009
+============================
+x:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+y:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+
+
+
+
+SC_UNION: $anon-union-000A
+==========================
+$anon-field-0000:
+    Flags: SC_STRUCTFIELD
+    Type:  struct $anon-struct-000B
+strobe_x:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+strobe_y:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+strobe:
+    Flags: SC_STRUCTFIELD
+    Type:  struct $anon-struct-000C
+
+
+
+
+SC_STRUCT: $anon-struct-000B
+============================
+strobe_x:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+strobe_y:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+
+
+
+
+SC_STRUCT: $anon-struct-000C
+============================
+x:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+y:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+
+
+
+
+SC_UNION: $anon-union-000D
+==========================
+$anon-field-0000:
+    Flags: SC_STRUCTFIELD
+    Type:  struct $anon-struct-000E
+bgcolor0:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+bgcolor1:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+bgcolor2:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+bgcolor3:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+bgcolor:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char[4]
+
+
+
+
+SC_STRUCT: $anon-struct-000E
+============================
+bgcolor0:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+bgcolor1:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+bgcolor2:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+bgcolor3:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+
+
+
+
+SC_UNION: $anon-union-000F
+==========================
+$anon-field-0000:
+    Flags: SC_STRUCTFIELD
+    Type:  struct $anon-struct-0010
+spr_mcolor0:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr_mcolor1:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr_mcolors:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char[2]
+
+
+
+
+SC_STRUCT: $anon-struct-0010
+============================
+spr_mcolor0:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+spr_mcolor1:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+
+
+
+
+SC_UNION: $anon-union-0011
+==========================
+$anon-field-0000:
+    Flags: SC_STRUCTFIELD
+    Type:  struct $anon-struct-0012
+spr0_color:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr1_color:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr2_color:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr3_color:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr4_color:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr5_color:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr6_color:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr7_color:
+    Flags: SC_STRUCTFIELD 0x1000000
+    Type:  unsigned char
+spr_color:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char[8]
+
+
+
+
+SC_STRUCT: $anon-struct-0012
+============================
+spr0_color:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+spr1_color:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+spr2_color:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+spr3_color:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+spr4_color:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+spr5_color:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+spr6_color:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+spr7_color:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+
+
+
+
+SC_STRUCT: __sid_voice
+======================
+freq:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned int
+pw:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned int
+ctrl:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+ad:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+sr:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+
+
+
+
+SC_STRUCT: __sid
+================
+v1:
+    Flags: SC_STRUCTFIELD
+    Type:  struct __sid_voice
+v2:
+    Flags: SC_STRUCTFIELD
+    Type:  struct __sid_voice
+v3:
+    Flags: SC_STRUCTFIELD
+    Type:  struct __sid_voice
+flt_freq:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned int
+flt_ctrl:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+amp:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+ad1:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+ad2:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+noise:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+read3:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+
+
+
+
+SC_STRUCT: __6526
+=================
+pra:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+prb:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+ddra:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+ddrb:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+ta_lo:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+ta_hi:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+tb_lo:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+tb_hi:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+tod_10:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+tod_sec:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+tod_min:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+tod_hour:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+sdr:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+icr:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+cra:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+crb:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+
+
+
+
+SC_STRUCT: cbm_dirent
+=====================
+name:
+    Flags: SC_STRUCTFIELD
+    Type:  char[17]
+size:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned int
+type:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+access:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+
+
+
+
+SC_STRUCT: $anon-enum-0013
+==========================
+size_t:
+    AsmName: _size_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned int
+div_t:
+    AsmName: _div_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  struct $anon-struct-0001
+ldiv_t:
+    AsmName: _ldiv_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  struct $anon-struct-0002
+malloc:
+    AsmName: _malloc
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_REF 0x100000
+    Type:  void *(unsigned int)
+calloc:
+    AsmName: _calloc
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void *(unsigned int, unsigned int)
+realloc:
+    AsmName: _realloc
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void *(void *, unsigned int)
+free:
+    AsmName: _free
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_REF 0x100000
+    Type:  void (void *)
+posix_memalign:
+    AsmName: _posix_memalign
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (void **, unsigned int, unsigned int)
+_heapadd:
+    AsmName: __heapadd
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void *, unsigned int)
+_heapblocksize:
+    AsmName: __heapblocksize
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (const void *)
+_heapmemavail:
+    AsmName: __heapmemavail
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (void)
+_heapmaxavail:
+    AsmName: __heapmaxavail
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (void)
+rand:
+    AsmName: _rand
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (void)
+srand:
+    AsmName: _srand
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned int)
+_randomize:
+    AsmName: __randomize
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+abort:
+    AsmName: _abort
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+abs:
+    AsmName: _abs
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (int)
+labs:
+    AsmName: _labs
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  long (long)
+atoi:
+    AsmName: _atoi
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *)
+atol:
+    AsmName: _atol
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  long (const char *)
+atexit:
+    AsmName: _atexit
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (void (*)(void))
+bsearch:
+    AsmName: _bsearch
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void *(const void *, const void *, unsigned int, unsigned int, int (*)(const void *, const void *))
+div:
+    AsmName: _div
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  struct $anon-struct-0001 (int, int)
+exit:
+    AsmName: _exit
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_REF 0x100000
+    Type:  void (int)
+getenv:
+    AsmName: _getenv
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(const char *)
+qsort:
+    AsmName: _qsort
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void *, unsigned int, unsigned int, int (*)(const void *, const void *))
+strtol:
+    AsmName: _strtol
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  long (const char *, char **, int)
+strtoul:
+    AsmName: _strtoul
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned long (const char *, char **, int)
+system:
+    AsmName: _system
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *)
+_swap:
+    AsmName: __swap
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void *, void *, unsigned int)
+itoa:
+    AsmName: _itoa
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(int, char *, int)
+utoa:
+    AsmName: _utoa
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(unsigned int, char *, int)
+ltoa:
+    AsmName: _ltoa
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(long, char *, int)
+ultoa:
+    AsmName: _ultoa
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(unsigned long, char *, int)
+putenv:
+    AsmName: _putenv
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (char *)
+ptrdiff_t:
+    AsmName: _ptrdiff_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  int
+wchar_t:
+    AsmName: _wchar_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  char
+va_list:
+    AsmName: _va_list
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned char *
+FILE:
+    AsmName: _FILE
+    Flags: SC_TYPEDEF 0x100000
+    Type:  struct _FILE
+fpos_t:
+    AsmName: _fpos_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned long
+stdin:
+    AsmName: _stdin
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  struct _FILE *
+stdout:
+    AsmName: _stdout
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  struct _FILE *
+stderr:
+    AsmName: _stderr
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  struct _FILE *
+clearerr:
+    AsmName: _clearerr
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (struct _FILE *)
+fclose:
+    AsmName: _fclose
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *)
+feof:
+    AsmName: _feof
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *)
+ferror:
+    AsmName: _ferror
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *)
+fflush:
+    AsmName: _fflush
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *)
+fgetc:
+    AsmName: _fgetc
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *)
+fgets:
+    AsmName: _fgets
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *, unsigned int, struct _FILE *)
+fopen:
+    AsmName: _fopen
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  struct _FILE *(const char *, const char *)
+fprintf:
+    AsmName: _fprintf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *, const char *, ...)
+fputc:
+    AsmName: _fputc
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (int, struct _FILE *)
+fputs:
+    AsmName: _fputs
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, struct _FILE *)
+fread:
+    AsmName: _fread
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (void *, unsigned int, unsigned int, struct _FILE *)
+freopen:
+    AsmName: _freopen
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  struct _FILE *(const char *, const char *, struct _FILE *)
+fwrite:
+    AsmName: _fwrite
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (const void *, unsigned int, unsigned int, struct _FILE *)
+fgetpos:
+    AsmName: _fgetpos
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *, unsigned long *)
+fsetpos:
+    AsmName: _fsetpos
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *, const unsigned long *)
+ftell:
+    AsmName: _ftell
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  long (struct _FILE *)
+fseek:
+    AsmName: _fseek
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *, long, int)
+rewind:
+    AsmName: _rewind
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (struct _FILE *)
+getchar:
+    AsmName: _getchar
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (void)
+gets:
+    AsmName: _gets
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *)
+perror:
+    AsmName: _perror
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (const char *)
+printf:
+    AsmName: _printf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, ...)
+putchar:
+    AsmName: _putchar
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (int)
+puts:
+    AsmName: _puts
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *)
+remove:
+    AsmName: _remove
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *)
+rename:
+    AsmName: _rename
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, const char *)
+snprintf:
+    AsmName: _snprintf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (char *, unsigned int, const char *, ...)
+sprintf:
+    AsmName: _sprintf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (char *, const char *, ...)
+ungetc:
+    AsmName: _ungetc
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (int, struct _FILE *)
+vfprintf:
+    AsmName: _vfprintf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *, const char *, unsigned char *)
+vprintf:
+    AsmName: _vprintf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, unsigned char *)
+vsnprintf:
+    AsmName: _vsnprintf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (char *, unsigned int, const char *, unsigned char *)
+vsprintf:
+    AsmName: _vsprintf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (char *, const char *, unsigned char *)
+scanf:
+    AsmName: _scanf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, ...)
+fscanf:
+    AsmName: _fscanf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *, const char *, ...)
+sscanf:
+    AsmName: _sscanf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, const char *, ...)
+vscanf:
+    AsmName: _vscanf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, unsigned char *)
+vsscanf:
+    AsmName: _vsscanf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, const char *, unsigned char *)
+vfscanf:
+    AsmName: _vfscanf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *, const char *, unsigned char *)
+fdopen:
+    AsmName: _fdopen
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  struct _FILE *(int, const char *)
+fileno:
+    AsmName: _fileno
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *)
+_poserror:
+    AsmName: __poserror
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (const char *)
+c64_65816_emd:
+    AsmName: _c64_65816_emd
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_c256k_emd:
+    AsmName: _c64_c256k_emd
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_dqbb_emd:
+    AsmName: _c64_dqbb_emd
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_georam_emd:
+    AsmName: _c64_georam_emd
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_isepic_emd:
+    AsmName: _c64_isepic_emd
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_kerberos_emd:
+    AsmName: _c64_kerberos_emd
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_ram_emd:
+    AsmName: _c64_ram_emd
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_ramcart_emd:
+    AsmName: _c64_ramcart_emd
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_reu_emd:
+    AsmName: _c64_reu_emd
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_vdc_emd:
+    AsmName: _c64_vdc_emd
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+dtv_himem_emd:
+    AsmName: _dtv_himem_emd
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_hitjoy_joy:
+    AsmName: _c64_hitjoy_joy
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_numpad_joy:
+    AsmName: _c64_numpad_joy
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_ptvjoy_joy:
+    AsmName: _c64_ptvjoy_joy
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_stdjoy_joy:
+    AsmName: _c64_stdjoy_joy
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_1351_mou:
+    AsmName: _c64_1351_mou
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_joy_mou:
+    AsmName: _c64_joy_mou
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_inkwell_mou:
+    AsmName: _c64_inkwell_mou
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_pot_mou:
+    AsmName: _c64_pot_mou
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_swlink_ser:
+    AsmName: _c64_swlink_ser
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_hi_tgi:
+    AsmName: _c64_hi_tgi
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+get_ostype:
+    AsmName: _get_ostype
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+_cbm_filetype:
+    AsmName: __cbm_filetype
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char)
+_filetype:
+    AsmName: __filetype
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char
+get_tv:
+    AsmName: _get_tv
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+kbrepeat:
+    AsmName: _kbrepeat
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char)
+waitvsync:
+    AsmName: _waitvsync
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+cbm_k_acptr:
+    AsmName: _cbm_k_acptr
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+cbm_k_basin:
+    AsmName: _cbm_k_basin
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+cbm_k_bsout:
+    AsmName: _cbm_k_bsout
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cbm_k_chkin:
+    AsmName: _cbm_k_chkin
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char)
+cbm_k_chrin:
+    AsmName: _cbm_k_chrin
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+cbm_k_chrout:
+    AsmName: _cbm_k_chrout
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cbm_k_ciout:
+    AsmName: _cbm_k_ciout
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cbm_k_ckout:
+    AsmName: _cbm_k_ckout
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char)
+cbm_k_clall:
+    AsmName: _cbm_k_clall
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+cbm_k_close:
+    AsmName: _cbm_k_close
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cbm_k_clrch:
+    AsmName: _cbm_k_clrch
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+cbm_k_getin:
+    AsmName: _cbm_k_getin
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+cbm_k_iobase:
+    AsmName: _cbm_k_iobase
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (void)
+cbm_k_listen:
+    AsmName: _cbm_k_listen
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cbm_k_load:
+    AsmName: _cbm_k_load
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (unsigned char, unsigned int)
+cbm_k_open:
+    AsmName: _cbm_k_open
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+cbm_k_readst:
+    AsmName: _cbm_k_readst
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+cbm_k_save:
+    AsmName: _cbm_k_save
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned int, unsigned int)
+cbm_k_scnkey:
+    AsmName: _cbm_k_scnkey
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+cbm_k_second:
+    AsmName: _cbm_k_second
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cbm_k_setlfs:
+    AsmName: _cbm_k_setlfs
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char, unsigned char, unsigned char)
+cbm_k_setnam:
+    AsmName: _cbm_k_setnam
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (const char *)
+cbm_k_settim:
+    AsmName: _cbm_k_settim
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned long)
+cbm_k_talk:
+    AsmName: _cbm_k_talk
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cbm_k_tksa:
+    AsmName: _cbm_k_tksa
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cbm_k_udtim:
+    AsmName: _cbm_k_udtim
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+cbm_k_unlsn:
+    AsmName: _cbm_k_unlsn
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+cbm_k_untlk:
+    AsmName: _cbm_k_untlk
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+cbm_load:
+    AsmName: _cbm_load
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (const char *, unsigned char, void *)
+cbm_save:
+    AsmName: _cbm_save
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (const char *, unsigned char, const void *, unsigned int)
+cbm_open:
+    AsmName: _cbm_open
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char, unsigned char, unsigned char, const char *)
+cbm_close:
+    AsmName: _cbm_close
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cbm_read:
+    AsmName: _cbm_read
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (unsigned char, void *, unsigned int)
+cbm_write:
+    AsmName: _cbm_write
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (unsigned char, const void *, unsigned int)
+cbm_opendir:
+    AsmName: _cbm_opendir
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char, unsigned char, ...)
+cbm_readdir:
+    AsmName: _cbm_readdir
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char, struct cbm_dirent *)
+cbm_closedir:
+    AsmName: _cbm_closedir
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+clrscr:
+    AsmName: _clrscr
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+kbhit:
+    AsmName: _kbhit
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+gotox:
+    AsmName: _gotox
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+gotoy:
+    AsmName: _gotoy
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+gotoxy:
+    AsmName: _gotoxy
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char, unsigned char)
+wherex:
+    AsmName: _wherex
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+wherey:
+    AsmName: _wherey
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+cputc:
+    AsmName: _cputc
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (char)
+cputcxy:
+    AsmName: _cputcxy
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char, unsigned char, char)
+cputs:
+    AsmName: _cputs
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (const char *)
+cputsxy:
+    AsmName: _cputsxy
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char, unsigned char, const char *)
+cprintf:
+    AsmName: _cprintf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, ...)
+vcprintf:
+    AsmName: _vcprintf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, unsigned char *)
+cgetc:
+    AsmName: _cgetc
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char (void)
+cscanf:
+    AsmName: _cscanf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, ...)
+vcscanf:
+    AsmName: _vcscanf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, unsigned char *)
+cpeekc:
+    AsmName: _cpeekc
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char (void)
+cpeekcolor:
+    AsmName: _cpeekcolor
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+cpeekrevers:
+    AsmName: _cpeekrevers
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+cpeeks:
+    AsmName: _cpeeks
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (char *, unsigned int)
+cursor:
+    AsmName: _cursor
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char)
+revers:
+    AsmName: _revers
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char)
+textcolor:
+    AsmName: _textcolor
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char)
+bgcolor:
+    AsmName: _bgcolor
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char)
+bordercolor:
+    AsmName: _bordercolor
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char)
+chline:
+    AsmName: _chline
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+chlinexy:
+    AsmName: _chlinexy
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char, unsigned char, unsigned char)
+cvline:
+    AsmName: _cvline
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cvlinexy:
+    AsmName: _cvlinexy
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char, unsigned char, unsigned char)
+cclear:
+    AsmName: _cclear
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cclearxy:
+    AsmName: _cclearxy
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char, unsigned char, unsigned char)
+screensize:
+    AsmName: _screensize
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char *, unsigned char *)
+cputhex8:
+    AsmName: _cputhex8
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cputhex16:
+    AsmName: _cputhex16
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned int)
+int8_t:
+    AsmName: _int8_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  signed char
+int16_t:
+    AsmName: _int16_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  int
+int32_t:
+    AsmName: _int32_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  long
+uint8_t:
+    AsmName: _uint8_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned char
+uint16_t:
+    AsmName: _uint16_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned int
+uint32_t:
+    AsmName: _uint32_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned long
+int_least8_t:
+    AsmName: _int_least8_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  signed char
+int_least16_t:
+    AsmName: _int_least16_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  int
+int_least32_t:
+    AsmName: _int_least32_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  long
+uint_least8_t:
+    AsmName: _uint_least8_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned char
+uint_least16_t:
+    AsmName: _uint_least16_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned int
+uint_least32_t:
+    AsmName: _uint_least32_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned long
+int_fast8_t:
+    AsmName: _int_fast8_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  signed char
+int_fast16_t:
+    AsmName: _int_fast16_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  int
+int_fast32_t:
+    AsmName: _int_fast32_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  long
+uint_fast8_t:
+    AsmName: _uint_fast8_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned char
+uint_fast16_t:
+    AsmName: _uint_fast16_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned int
+uint_fast32_t:
+    AsmName: _uint_fast32_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned long
+intptr_t:
+    AsmName: _intptr_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  int
+uintptr_t:
+    AsmName: _uintptr_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned int
+intmax_t:
+    AsmName: _intmax_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  long
+uintmax_t:
+    AsmName: _uintmax_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned long
+strcat:
+    AsmName: _strcat
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *, const char *)
+strchr:
+    AsmName: _strchr
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(const char *, int)
+strcmp:
+    AsmName: _strcmp
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, const char *)
+strcoll:
+    AsmName: _strcoll
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, const char *)
+strcpy:
+    AsmName: _strcpy
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *, const char *)
+strcspn:
+    AsmName: _strcspn
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (const char *, const char *)
+strerror:
+    AsmName: _strerror
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(int)
+strlen:
+    AsmName: _strlen
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (const char *)
+strncat:
+    AsmName: _strncat
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *, const char *, unsigned int)
+strncmp:
+    AsmName: _strncmp
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, const char *, unsigned int)
+strncpy:
+    AsmName: _strncpy
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *, const char *, unsigned int)
+strpbrk:
+    AsmName: _strpbrk
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(const char *, const char *)
+strrchr:
+    AsmName: _strrchr
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(const char *, int)
+strspn:
+    AsmName: _strspn
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (const char *, const char *)
+strstr:
+    AsmName: _strstr
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(const char *, const char *)
+strtok:
+    AsmName: _strtok
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *, const char *)
+strxfrm:
+    AsmName: _strxfrm
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (char *, const char *, unsigned int)
+memchr:
+    AsmName: _memchr
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void *(const void *, int, unsigned int)
+memcmp:
+    AsmName: _memcmp
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const void *, const void *, unsigned int)
+memcpy:
+    AsmName: _memcpy
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_REF 0x100000
+    Type:  void *(void *, const void *, unsigned int)
+memmove:
+    AsmName: _memmove
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void *(void *, const void *, unsigned int)
+memset:
+    AsmName: _memset
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void *(void *, int, unsigned int)
+_bzero:
+    AsmName: __bzero
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void *(void *, unsigned int)
+bzero:
+    AsmName: _bzero
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void *, unsigned int)
+strdup:
+    AsmName: _strdup
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(const char *)
+stricmp:
+    AsmName: _stricmp
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, const char *)
+strcasecmp:
+    AsmName: _strcasecmp
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, const char *)
+strnicmp:
+    AsmName: _strnicmp
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, const char *, unsigned int)
+strncasecmp:
+    AsmName: _strncasecmp
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, const char *, unsigned int)
+strlwr:
+    AsmName: _strlwr
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *)
+strlower:
+    AsmName: _strlower
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *)
+strupr:
+    AsmName: _strupr
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *)
+strupper:
+    AsmName: _strupper
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *)
+strqtok:
+    AsmName: _strqtok
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *, const char *)
+_stroserror:
+    AsmName: __stroserror
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  const char *(unsigned char)
+byte:
+    AsmName: _byte
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned char
+word:
+    AsmName: _word
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned int
+sbyte:
+    AsmName: _sbyte
+    Flags: SC_TYPEDEF 0x100000
+    Type:  signed char
+false:
+    Flags: SC_ENUMERATOR SC_CONST
+    Type:  int
+true:
+    Flags: SC_ENUMERATOR SC_CONST
+    Type:  int
+bool:
+    AsmName: _bool
+    Flags: SC_TYPEDEF 0x100000
+    Type:  enum $anon-enum-0013
+Title:
+    Flags: SC_ENUMERATOR SC_CONST
+    Type:  int
+Credits:
+    Flags: SC_ENUMERATOR SC_CONST
+    Type:  int
+EditParty:
+    Flags: SC_ENUMERATOR SC_CONST
+    Type:  int
+Map:
+    Flags: SC_ENUMERATOR SC_CONST
+    Type:  int
+Combat:
+    Flags: SC_ENUMERATOR SC_CONST
+    Type:  int
+Menu:
+    Flags: SC_ENUMERATOR SC_CONST
+    Type:  int
+SaveLoad:
+    Flags: SC_ENUMERATOR SC_CONST
+    Type:  int
+screenName:
+    AsmName: _screenName
+    Flags: SC_TYPEDEF 0x100000
+    Type:  enum $anon-enum-0014
+str:
+    AsmName: _str
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char[16]
+randseed:
+    AsmName: _randseed
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int
+raster_wait:
+    AsmName: _raster_wait
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+wait_vblank:
+    AsmName: _wait_vblank
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+SwitchScreen:
+    AsmName: _SwitchScreen
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (enum $anon-enum-0014)
+UpdateScreen:
+    AsmName: _UpdateScreen
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+WriteBit:
+    AsmName: _WriteBit
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char *, char, enum $anon-enum-0013)
+ReadBit:
+    AsmName: _ReadBit
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char, char)
+CheckBit:
+    AsmName: _CheckBit
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  enum $anon-enum-0013 (unsigned char, unsigned char)
+raster_check:
+    AsmName: _raster_check
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  enum $anon-enum-0013 (unsigned char)
+Party:
+    AsmName: _Party
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  struct $anon-struct-0015
+RaceDescription:
+    AsmName: _RaceDescription
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  struct $anon-struct-0016[]
+ClassDescription:
+    AsmName: _ClassDescription
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  struct $anon-struct-0017[]
+AbilityModifier:
+    AsmName: _AbilityModifier
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int[]
+DrawMessageWindow:
+    AsmName: _DrawMessageWindow
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void ()
+BlankMessageWindow:
+    AsmName: _BlankMessageWindow
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void ()
+WriteLineMessageWindow:
+    AsmName: _WriteLineMessageWindow
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_REF 0x100000
+    Type:  void (char *, unsigned char)
+Messages:
+    AsmName: _Messages
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char[64][16]
+DrawCharStats:
+    AsmName: _DrawCharStats
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void ()
+create:
+    AsmName: _create
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
+    Type:  void (void)
+delete_pos:
+    AsmName: _delete_pos
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF SC_REF 0x100000
+    Type:  void (unsigned char)
+CountRoster:
+    AsmName: _CountRoster
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
+    Type:  unsigned char (void)
+getPlayerChar:
+    AsmName: _getPlayerChar
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF SC_REF 0x100000
+    Type:  struct playerChar *(unsigned char)
+AddParty:
+    AsmName: _AddParty
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
+    Type:  void (unsigned char)
+RemoveParty:
+    AsmName: _RemoveParty
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
+    Type:  void (void)
+CountParty:
+    AsmName: _CountParty
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF SC_REF 0x100000
+    Type:  unsigned char (void)
+getPartyMember:
+    AsmName: _getPartyMember
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF SC_REF 0x100000
+    Type:  struct playerChar *(unsigned char)
+startRoster:
+    AsmName: _startRoster
+    Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
+    Type:  struct playerChar *
+startParty:
+    AsmName: _startParty
+    Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
+    Type:  struct playerChar *
+DeleteParty:
+    AsmName: _DeleteParty
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DEF SC_REF 0x100000
+    Type:  void (unsigned char)
+
+
+
+
+SC_STRUCT: $anon-enum-0014
+==========================
+size_t:
+    AsmName: _size_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned int
+div_t:
+    AsmName: _div_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  struct $anon-struct-0001
+ldiv_t:
+    AsmName: _ldiv_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  struct $anon-struct-0002
+malloc:
+    AsmName: _malloc
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_REF 0x100000
+    Type:  void *(unsigned int)
+calloc:
+    AsmName: _calloc
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void *(unsigned int, unsigned int)
+realloc:
+    AsmName: _realloc
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void *(void *, unsigned int)
+free:
+    AsmName: _free
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_REF 0x100000
+    Type:  void (void *)
+posix_memalign:
+    AsmName: _posix_memalign
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (void **, unsigned int, unsigned int)
+_heapadd:
+    AsmName: __heapadd
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void *, unsigned int)
+_heapblocksize:
+    AsmName: __heapblocksize
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (const void *)
+_heapmemavail:
+    AsmName: __heapmemavail
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (void)
+_heapmaxavail:
+    AsmName: __heapmaxavail
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (void)
+rand:
+    AsmName: _rand
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (void)
+srand:
+    AsmName: _srand
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned int)
+_randomize:
+    AsmName: __randomize
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+abort:
+    AsmName: _abort
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+abs:
+    AsmName: _abs
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (int)
+labs:
+    AsmName: _labs
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  long (long)
+atoi:
+    AsmName: _atoi
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *)
+atol:
+    AsmName: _atol
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  long (const char *)
+atexit:
+    AsmName: _atexit
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (void (*)(void))
+bsearch:
+    AsmName: _bsearch
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void *(const void *, const void *, unsigned int, unsigned int, int (*)(const void *, const void *))
+div:
+    AsmName: _div
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  struct $anon-struct-0001 (int, int)
+exit:
+    AsmName: _exit
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_REF 0x100000
+    Type:  void (int)
+getenv:
+    AsmName: _getenv
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(const char *)
+qsort:
+    AsmName: _qsort
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void *, unsigned int, unsigned int, int (*)(const void *, const void *))
+strtol:
+    AsmName: _strtol
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  long (const char *, char **, int)
+strtoul:
+    AsmName: _strtoul
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned long (const char *, char **, int)
+system:
+    AsmName: _system
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *)
+_swap:
+    AsmName: __swap
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void *, void *, unsigned int)
+itoa:
+    AsmName: _itoa
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(int, char *, int)
+utoa:
+    AsmName: _utoa
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(unsigned int, char *, int)
+ltoa:
+    AsmName: _ltoa
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(long, char *, int)
+ultoa:
+    AsmName: _ultoa
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(unsigned long, char *, int)
+putenv:
+    AsmName: _putenv
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (char *)
+ptrdiff_t:
+    AsmName: _ptrdiff_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  int
+wchar_t:
+    AsmName: _wchar_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  char
+va_list:
+    AsmName: _va_list
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned char *
+FILE:
+    AsmName: _FILE
+    Flags: SC_TYPEDEF 0x100000
+    Type:  struct _FILE
+fpos_t:
+    AsmName: _fpos_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned long
+stdin:
+    AsmName: _stdin
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  struct _FILE *
+stdout:
+    AsmName: _stdout
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  struct _FILE *
+stderr:
+    AsmName: _stderr
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  struct _FILE *
+clearerr:
+    AsmName: _clearerr
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (struct _FILE *)
+fclose:
+    AsmName: _fclose
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *)
+feof:
+    AsmName: _feof
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *)
+ferror:
+    AsmName: _ferror
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *)
+fflush:
+    AsmName: _fflush
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *)
+fgetc:
+    AsmName: _fgetc
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *)
+fgets:
+    AsmName: _fgets
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *, unsigned int, struct _FILE *)
+fopen:
+    AsmName: _fopen
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  struct _FILE *(const char *, const char *)
+fprintf:
+    AsmName: _fprintf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *, const char *, ...)
+fputc:
+    AsmName: _fputc
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (int, struct _FILE *)
+fputs:
+    AsmName: _fputs
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, struct _FILE *)
+fread:
+    AsmName: _fread
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (void *, unsigned int, unsigned int, struct _FILE *)
+freopen:
+    AsmName: _freopen
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  struct _FILE *(const char *, const char *, struct _FILE *)
+fwrite:
+    AsmName: _fwrite
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (const void *, unsigned int, unsigned int, struct _FILE *)
+fgetpos:
+    AsmName: _fgetpos
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *, unsigned long *)
+fsetpos:
+    AsmName: _fsetpos
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *, const unsigned long *)
+ftell:
+    AsmName: _ftell
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  long (struct _FILE *)
+fseek:
+    AsmName: _fseek
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *, long, int)
+rewind:
+    AsmName: _rewind
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (struct _FILE *)
+getchar:
+    AsmName: _getchar
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (void)
+gets:
+    AsmName: _gets
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *)
+perror:
+    AsmName: _perror
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (const char *)
+printf:
+    AsmName: _printf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, ...)
+putchar:
+    AsmName: _putchar
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (int)
+puts:
+    AsmName: _puts
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *)
+remove:
+    AsmName: _remove
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *)
+rename:
+    AsmName: _rename
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, const char *)
+snprintf:
+    AsmName: _snprintf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (char *, unsigned int, const char *, ...)
+sprintf:
+    AsmName: _sprintf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (char *, const char *, ...)
+ungetc:
+    AsmName: _ungetc
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (int, struct _FILE *)
+vfprintf:
+    AsmName: _vfprintf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *, const char *, unsigned char *)
+vprintf:
+    AsmName: _vprintf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, unsigned char *)
+vsnprintf:
+    AsmName: _vsnprintf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (char *, unsigned int, const char *, unsigned char *)
+vsprintf:
+    AsmName: _vsprintf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (char *, const char *, unsigned char *)
+scanf:
+    AsmName: _scanf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, ...)
+fscanf:
+    AsmName: _fscanf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *, const char *, ...)
+sscanf:
+    AsmName: _sscanf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, const char *, ...)
+vscanf:
+    AsmName: _vscanf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, unsigned char *)
+vsscanf:
+    AsmName: _vsscanf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, const char *, unsigned char *)
+vfscanf:
+    AsmName: _vfscanf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *, const char *, unsigned char *)
+fdopen:
+    AsmName: _fdopen
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  struct _FILE *(int, const char *)
+fileno:
+    AsmName: _fileno
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (struct _FILE *)
+_poserror:
+    AsmName: __poserror
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (const char *)
+c64_65816_emd:
+    AsmName: _c64_65816_emd
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_c256k_emd:
+    AsmName: _c64_c256k_emd
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_dqbb_emd:
+    AsmName: _c64_dqbb_emd
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_georam_emd:
+    AsmName: _c64_georam_emd
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_isepic_emd:
+    AsmName: _c64_isepic_emd
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_kerberos_emd:
+    AsmName: _c64_kerberos_emd
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_ram_emd:
+    AsmName: _c64_ram_emd
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_ramcart_emd:
+    AsmName: _c64_ramcart_emd
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_reu_emd:
+    AsmName: _c64_reu_emd
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_vdc_emd:
+    AsmName: _c64_vdc_emd
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+dtv_himem_emd:
+    AsmName: _dtv_himem_emd
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_hitjoy_joy:
+    AsmName: _c64_hitjoy_joy
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_numpad_joy:
+    AsmName: _c64_numpad_joy
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_ptvjoy_joy:
+    AsmName: _c64_ptvjoy_joy
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_stdjoy_joy:
+    AsmName: _c64_stdjoy_joy
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_1351_mou:
+    AsmName: _c64_1351_mou
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_joy_mou:
+    AsmName: _c64_joy_mou
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_inkwell_mou:
+    AsmName: _c64_inkwell_mou
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_pot_mou:
+    AsmName: _c64_pot_mou
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_swlink_ser:
+    AsmName: _c64_swlink_ser
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+c64_hi_tgi:
+    AsmName: _c64_hi_tgi
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void[]
+get_ostype:
+    AsmName: _get_ostype
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+_cbm_filetype:
+    AsmName: __cbm_filetype
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char)
+_filetype:
+    AsmName: __filetype
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char
+get_tv:
+    AsmName: _get_tv
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+kbrepeat:
+    AsmName: _kbrepeat
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char)
+waitvsync:
+    AsmName: _waitvsync
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+cbm_k_acptr:
+    AsmName: _cbm_k_acptr
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+cbm_k_basin:
+    AsmName: _cbm_k_basin
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+cbm_k_bsout:
+    AsmName: _cbm_k_bsout
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cbm_k_chkin:
+    AsmName: _cbm_k_chkin
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char)
+cbm_k_chrin:
+    AsmName: _cbm_k_chrin
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+cbm_k_chrout:
+    AsmName: _cbm_k_chrout
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cbm_k_ciout:
+    AsmName: _cbm_k_ciout
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cbm_k_ckout:
+    AsmName: _cbm_k_ckout
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char)
+cbm_k_clall:
+    AsmName: _cbm_k_clall
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+cbm_k_close:
+    AsmName: _cbm_k_close
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cbm_k_clrch:
+    AsmName: _cbm_k_clrch
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+cbm_k_getin:
+    AsmName: _cbm_k_getin
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+cbm_k_iobase:
+    AsmName: _cbm_k_iobase
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (void)
+cbm_k_listen:
+    AsmName: _cbm_k_listen
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cbm_k_load:
+    AsmName: _cbm_k_load
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (unsigned char, unsigned int)
+cbm_k_open:
+    AsmName: _cbm_k_open
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+cbm_k_readst:
+    AsmName: _cbm_k_readst
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+cbm_k_save:
+    AsmName: _cbm_k_save
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned int, unsigned int)
+cbm_k_scnkey:
+    AsmName: _cbm_k_scnkey
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+cbm_k_second:
+    AsmName: _cbm_k_second
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cbm_k_setlfs:
+    AsmName: _cbm_k_setlfs
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char, unsigned char, unsigned char)
+cbm_k_setnam:
+    AsmName: _cbm_k_setnam
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (const char *)
+cbm_k_settim:
+    AsmName: _cbm_k_settim
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned long)
+cbm_k_talk:
+    AsmName: _cbm_k_talk
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cbm_k_tksa:
+    AsmName: _cbm_k_tksa
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cbm_k_udtim:
+    AsmName: _cbm_k_udtim
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+cbm_k_unlsn:
+    AsmName: _cbm_k_unlsn
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+cbm_k_untlk:
+    AsmName: _cbm_k_untlk
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+cbm_load:
+    AsmName: _cbm_load
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (const char *, unsigned char, void *)
+cbm_save:
+    AsmName: _cbm_save
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (const char *, unsigned char, const void *, unsigned int)
+cbm_open:
+    AsmName: _cbm_open
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char, unsigned char, unsigned char, const char *)
+cbm_close:
+    AsmName: _cbm_close
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cbm_read:
+    AsmName: _cbm_read
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (unsigned char, void *, unsigned int)
+cbm_write:
+    AsmName: _cbm_write
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (unsigned char, const void *, unsigned int)
+cbm_opendir:
+    AsmName: _cbm_opendir
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char, unsigned char, ...)
+cbm_readdir:
+    AsmName: _cbm_readdir
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char, struct cbm_dirent *)
+cbm_closedir:
+    AsmName: _cbm_closedir
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+clrscr:
+    AsmName: _clrscr
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+kbhit:
+    AsmName: _kbhit
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+gotox:
+    AsmName: _gotox
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+gotoy:
+    AsmName: _gotoy
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+gotoxy:
+    AsmName: _gotoxy
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char, unsigned char)
+wherex:
+    AsmName: _wherex
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+wherey:
+    AsmName: _wherey
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+cputc:
+    AsmName: _cputc
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (char)
+cputcxy:
+    AsmName: _cputcxy
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char, unsigned char, char)
+cputs:
+    AsmName: _cputs
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (const char *)
+cputsxy:
+    AsmName: _cputsxy
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char, unsigned char, const char *)
+cprintf:
+    AsmName: _cprintf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, ...)
+vcprintf:
+    AsmName: _vcprintf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, unsigned char *)
+cgetc:
+    AsmName: _cgetc
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char (void)
+cscanf:
+    AsmName: _cscanf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, ...)
+vcscanf:
+    AsmName: _vcscanf
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, unsigned char *)
+cpeekc:
+    AsmName: _cpeekc
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char (void)
+cpeekcolor:
+    AsmName: _cpeekcolor
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+cpeekrevers:
+    AsmName: _cpeekrevers
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (void)
+cpeeks:
+    AsmName: _cpeeks
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (char *, unsigned int)
+cursor:
+    AsmName: _cursor
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char)
+revers:
+    AsmName: _revers
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char)
+textcolor:
+    AsmName: _textcolor
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char)
+bgcolor:
+    AsmName: _bgcolor
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char)
+bordercolor:
+    AsmName: _bordercolor
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char)
+chline:
+    AsmName: _chline
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+chlinexy:
+    AsmName: _chlinexy
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char, unsigned char, unsigned char)
+cvline:
+    AsmName: _cvline
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cvlinexy:
+    AsmName: _cvlinexy
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char, unsigned char, unsigned char)
+cclear:
+    AsmName: _cclear
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cclearxy:
+    AsmName: _cclearxy
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char, unsigned char, unsigned char)
+screensize:
+    AsmName: _screensize
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char *, unsigned char *)
+cputhex8:
+    AsmName: _cputhex8
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+cputhex16:
+    AsmName: _cputhex16
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned int)
+int8_t:
+    AsmName: _int8_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  signed char
+int16_t:
+    AsmName: _int16_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  int
+int32_t:
+    AsmName: _int32_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  long
+uint8_t:
+    AsmName: _uint8_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned char
+uint16_t:
+    AsmName: _uint16_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned int
+uint32_t:
+    AsmName: _uint32_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned long
+int_least8_t:
+    AsmName: _int_least8_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  signed char
+int_least16_t:
+    AsmName: _int_least16_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  int
+int_least32_t:
+    AsmName: _int_least32_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  long
+uint_least8_t:
+    AsmName: _uint_least8_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned char
+uint_least16_t:
+    AsmName: _uint_least16_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned int
+uint_least32_t:
+    AsmName: _uint_least32_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned long
+int_fast8_t:
+    AsmName: _int_fast8_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  signed char
+int_fast16_t:
+    AsmName: _int_fast16_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  int
+int_fast32_t:
+    AsmName: _int_fast32_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  long
+uint_fast8_t:
+    AsmName: _uint_fast8_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned char
+uint_fast16_t:
+    AsmName: _uint_fast16_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned int
+uint_fast32_t:
+    AsmName: _uint_fast32_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned long
+intptr_t:
+    AsmName: _intptr_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  int
+uintptr_t:
+    AsmName: _uintptr_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned int
+intmax_t:
+    AsmName: _intmax_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  long
+uintmax_t:
+    AsmName: _uintmax_t
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned long
+strcat:
+    AsmName: _strcat
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *, const char *)
+strchr:
+    AsmName: _strchr
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(const char *, int)
+strcmp:
+    AsmName: _strcmp
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, const char *)
+strcoll:
+    AsmName: _strcoll
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, const char *)
+strcpy:
+    AsmName: _strcpy
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *, const char *)
+strcspn:
+    AsmName: _strcspn
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (const char *, const char *)
+strerror:
+    AsmName: _strerror
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(int)
+strlen:
+    AsmName: _strlen
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (const char *)
+strncat:
+    AsmName: _strncat
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *, const char *, unsigned int)
+strncmp:
+    AsmName: _strncmp
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, const char *, unsigned int)
+strncpy:
+    AsmName: _strncpy
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *, const char *, unsigned int)
+strpbrk:
+    AsmName: _strpbrk
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(const char *, const char *)
+strrchr:
+    AsmName: _strrchr
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(const char *, int)
+strspn:
+    AsmName: _strspn
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (const char *, const char *)
+strstr:
+    AsmName: _strstr
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(const char *, const char *)
+strtok:
+    AsmName: _strtok
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *, const char *)
+strxfrm:
+    AsmName: _strxfrm
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned int (char *, const char *, unsigned int)
+memchr:
+    AsmName: _memchr
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void *(const void *, int, unsigned int)
+memcmp:
+    AsmName: _memcmp
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const void *, const void *, unsigned int)
+memcpy:
+    AsmName: _memcpy
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_REF 0x100000
+    Type:  void *(void *, const void *, unsigned int)
+memmove:
+    AsmName: _memmove
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void *(void *, const void *, unsigned int)
+memset:
+    AsmName: _memset
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void *(void *, int, unsigned int)
+_bzero:
+    AsmName: __bzero
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void *(void *, unsigned int)
+bzero:
+    AsmName: _bzero
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void *, unsigned int)
+strdup:
+    AsmName: _strdup
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(const char *)
+stricmp:
+    AsmName: _stricmp
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, const char *)
+strcasecmp:
+    AsmName: _strcasecmp
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, const char *)
+strnicmp:
+    AsmName: _strnicmp
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, const char *, unsigned int)
+strncasecmp:
+    AsmName: _strncasecmp
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (const char *, const char *, unsigned int)
+strlwr:
+    AsmName: _strlwr
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *)
+strlower:
+    AsmName: _strlower
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *)
+strupr:
+    AsmName: _strupr
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *)
+strupper:
+    AsmName: _strupper
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *)
+strqtok:
+    AsmName: _strqtok
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char *(char *, const char *)
+_stroserror:
+    AsmName: __stroserror
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  const char *(unsigned char)
+byte:
+    AsmName: _byte
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned char
+word:
+    AsmName: _word
+    Flags: SC_TYPEDEF 0x100000
+    Type:  unsigned int
+sbyte:
+    AsmName: _sbyte
+    Flags: SC_TYPEDEF 0x100000
+    Type:  signed char
+false:
+    Flags: SC_ENUMERATOR SC_CONST
+    Type:  int
+true:
+    Flags: SC_ENUMERATOR SC_CONST
+    Type:  int
+bool:
+    AsmName: _bool
+    Flags: SC_TYPEDEF 0x100000
+    Type:  enum $anon-enum-0013
+Title:
+    Flags: SC_ENUMERATOR SC_CONST
+    Type:  int
+Credits:
+    Flags: SC_ENUMERATOR SC_CONST
+    Type:  int
+EditParty:
+    Flags: SC_ENUMERATOR SC_CONST
+    Type:  int
+Map:
+    Flags: SC_ENUMERATOR SC_CONST
+    Type:  int
+Combat:
+    Flags: SC_ENUMERATOR SC_CONST
+    Type:  int
+Menu:
+    Flags: SC_ENUMERATOR SC_CONST
+    Type:  int
+SaveLoad:
+    Flags: SC_ENUMERATOR SC_CONST
+    Type:  int
+screenName:
+    AsmName: _screenName
+    Flags: SC_TYPEDEF 0x100000
+    Type:  enum $anon-enum-0014
+str:
+    AsmName: _str
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char[16]
+randseed:
+    AsmName: _randseed
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int
+raster_wait:
+    AsmName: _raster_wait
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+wait_vblank:
+    AsmName: _wait_vblank
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char)
+SwitchScreen:
+    AsmName: _SwitchScreen
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (enum $anon-enum-0014)
+UpdateScreen:
+    AsmName: _UpdateScreen
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+WriteBit:
+    AsmName: _WriteBit
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (unsigned char *, char, enum $anon-enum-0013)
+ReadBit:
+    AsmName: _ReadBit
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  unsigned char (unsigned char, char)
+CheckBit:
+    AsmName: _CheckBit
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  enum $anon-enum-0013 (unsigned char, unsigned char)
+raster_check:
+    AsmName: _raster_check
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  enum $anon-enum-0013 (unsigned char)
+Party:
+    AsmName: _Party
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  struct $anon-struct-0015
+RaceDescription:
+    AsmName: _RaceDescription
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  struct $anon-struct-0016[]
+ClassDescription:
+    AsmName: _ClassDescription
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  struct $anon-struct-0017[]
+AbilityModifier:
+    AsmName: _AbilityModifier
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int[]
+DrawMessageWindow:
+    AsmName: _DrawMessageWindow
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void ()
+BlankMessageWindow:
+    AsmName: _BlankMessageWindow
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void ()
+WriteLineMessageWindow:
+    AsmName: _WriteLineMessageWindow
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_REF 0x100000
+    Type:  void (char *, unsigned char)
+Messages:
+    AsmName: _Messages
+    Flags: SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  char[64][16]
+DrawCharStats:
+    AsmName: _DrawCharStats
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void ()
+create:
+    AsmName: _create
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
+    Type:  void (void)
+delete_pos:
+    AsmName: _delete_pos
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF SC_REF 0x100000
+    Type:  void (unsigned char)
+CountRoster:
+    AsmName: _CountRoster
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
+    Type:  unsigned char (void)
+getPlayerChar:
+    AsmName: _getPlayerChar
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF SC_REF 0x100000
+    Type:  struct playerChar *(unsigned char)
+AddParty:
+    AsmName: _AddParty
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
+    Type:  void (unsigned char)
+RemoveParty:
+    AsmName: _RemoveParty
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
+    Type:  void (void)
+CountParty:
+    AsmName: _CountParty
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF SC_REF 0x100000
+    Type:  unsigned char (void)
+getPartyMember:
+    AsmName: _getPartyMember
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF SC_REF 0x100000
+    Type:  struct playerChar *(unsigned char)
+startRoster:
+    AsmName: _startRoster
+    Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
+    Type:  struct playerChar *
+startParty:
+    AsmName: _startParty
+    Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
+    Type:  struct playerChar *
+DeleteParty:
+    AsmName: _DeleteParty
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DEF SC_REF 0x100000
+    Type:  void (unsigned char)
+
+
+
+
+SC_STRUCT: $anon-struct-0015
+============================
+CARRYING_WEIGHT:
+    Flags: SC_STRUCTFIELD
+    Type:  int
+CARRYING_CAPACITY:
+    Flags: SC_STRUCTFIELD
+    Type:  int
+GOLD:
+    Flags: SC_STRUCTFIELD
+    Type:  int
+
+
+
+
+SC_STRUCT: $anon-struct-0016
+============================
+NAME:
+    Flags: SC_STRUCTFIELD
+    Type:  char[16]
+HITDICEMAX:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+
+
+
+
+SC_STRUCT: $anon-struct-0017
+============================
+NAME:
+    Flags: SC_STRUCTFIELD
+    Type:  char[16]
+HITDICE:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+
+
+
+
+SC_STRUCT: playerChar
+=====================
+inParty:
+    Flags: SC_STRUCTFIELD
+    Type:  enum $anon-enum-0013
+HP:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+HPMAX:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+STR:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+DEX:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+CON:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+INT:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+WIS:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+CHR:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+RACE:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+CLASS:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+HITDICE:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+LEVEL:
+    Flags: SC_STRUCTFIELD
+    Type:  unsigned char
+EXP:
+    Flags: SC_STRUCTFIELD
+    Type:  int
+CARRYING_WEIGHT:
+    Flags: SC_STRUCTFIELD
+    Type:  int
+CARRYING_CAPACITY:
+    Flags: SC_STRUCTFIELD
+    Type:  int
+NAME:
+    Flags: SC_STRUCTFIELD
+    Type:  char[16]
+next:
+    Flags: SC_STRUCTFIELD
+    Type:  struct playerChar *
+
+
+

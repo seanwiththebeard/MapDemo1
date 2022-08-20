@@ -17,10 +17,6 @@
 //#link "System_FileIO.c"
 //#link "System_Input.c"
 
-//#resource "song.sid"
-//#resource "CharacterSet.bin"
-//#resource "c64_1.cfg"
-#define CFGFILE c64_1.cfg
 
 #include <conio.h>
 
@@ -38,23 +34,20 @@
 
 void Initialize()
 {
-  ScreenDisable();
-  SelectVICBanks(3, 2, 0);
+  //ScreenDisable();
+  SelectVICBanks(3, 2, 4);
   ClearScreen();
   bgcolor(0);
   bordercolor(0);
   InitializeInput();
   LoadMap();
-  //DiskLoad("CharacterSet.bin", (int)CharRam);
-  //DiskLoad("song.sid", (int)SIDLOAD);
+  DiskLoad("song.dat", (int)SIDLOAD);
+  DiskLoad("CharacterSet.bin", (int)CharRam);
   ScreenEnable();
-  
 }
 
 void main(void)
-{  
-  //SetCharacterSet();
-  
+{   
   Initialize();
   SwitchScreen(Title);  
   

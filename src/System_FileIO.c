@@ -12,6 +12,7 @@ void DiskSave(char filename[], int source, int length)
   cbm_k_open();
   cbm_k_save(source, source + length - 1);
   cbm_k_close(0);
+  //cbm_k_clall;
 }
 
 void DiskLoad(char filename[], int dest)
@@ -21,4 +22,5 @@ void DiskLoad(char filename[], int dest)
   cbm_k_open();
   cbm_k_load(0, dest);
   cbm_k_close(0);
+  //cbm_k_clall;
 }

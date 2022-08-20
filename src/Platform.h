@@ -11,6 +11,7 @@ void SetChar(byte x, byte y, byte index);
 void SetCharC(byte x, byte y, byte index, byte color);
 void UpdateColors(void);
 void ClearScreen(void);
+void ScrollReset(void);
 void DrawCharacterSet(byte destX, byte destY);
 void CopyDoubleBuffer(void);
 //void CopyDoubleBufferRows(byte posY, byte sizeY, byte length);
@@ -35,11 +36,11 @@ extern byte *ScreenCharBuffer;
 extern byte *ScreenColorBuffer;
 
 //Audio
-extern char SIDFILE[];
+//extern char SIDFILE[];
 extern void PlaySID(void);
 extern void StopSID(void);
 #define SIDSIZE (1024)*2
-#define SIDLOAD 0xB000
+#define SIDLOAD 0xC000
 
 
 //File I/O

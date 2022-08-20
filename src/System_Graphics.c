@@ -30,8 +30,10 @@ int FlashFrames = 0;
 
 void MoveScreenUp()
 {
-  raster_wait(1);
-  CopyMemory(&ScreenChars[0], &ScreenChars[COLS], YColumnIndex[24]);
+  ScreenDisable();
+  //raster_wait(255);
+  memcpy(&ScreenChars[0], &ScreenChars[COLS], YColumnIndex[24]);
+  ScreenEnable();
   
   for (ColCount = 0; ColCount < COLS; ++ColCount)
     ScreenChars[960+ColCount] = ' ';
@@ -149,9 +151,13 @@ void ClearScreen()
     ScreenCharBuffer[i] = ' ';
   }
   
-  CopyDoubleBuffer();
-  
-  
+  CopyDoubleBuffer();  
+}
+
+void ScrollReset()
+{
+	VIC.ctrl1 = 0x1b;
+	VIC.ctrl2 = 0xc8; 
 }
 
 void ReverseBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
@@ -188,7 +194,7 @@ void SelectVICBanks(byte bank, byte screenpos, byte charpos)
   ScreenChars = 0;
   ScreenChars += screenposition;
   
-  CharRam = 0;
+  CharRam = 2;
   CharRam += (bank * (16*1024) + charpos * 2048);
   
   ScreenCharBuffer = 0;

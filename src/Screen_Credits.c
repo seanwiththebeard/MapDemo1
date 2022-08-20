@@ -73,7 +73,6 @@ void ScrollUp()
 
 screenName Update_Credits()
 {
-  byte temp = VIC.ctrl1;
   screenName nextScreen = Title;
   bool exit = false;
   yscroll = 0;
@@ -97,6 +96,7 @@ screenName Update_Credits()
       exit = true;
   }
   StopSID();
-  VIC.ctrl1 = temp;
+  ClearScreen();
+  ScrollReset();
   return nextScreen;
 }

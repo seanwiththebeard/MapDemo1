@@ -1,11 +1,17 @@
+;.export _SIDFILE
 .export _SIDINIT
-.export _SIDFILE
 .export _SIDPLAY
-_SIDFILE: .INCBIN "song.sid",$7e
+.export _SIDSTOP
 
-SIDLOADPOS = $4000;
-SIDPLAYPOS = $4003;
+SIDLOADPOS = $C000;
+SIDPLAYPOS = $C006; 06 + 7e offset
 
+
+_SIDSTOP:
+	LDA #$00
+	STA $D01A
+        CLI
+        RTS
 SIDSTEP: 		;step SID
 	jsr SIDPLAYPOS  ;jump to SIDPLAYPOS, return
 	rts 
@@ -41,5 +47,8 @@ IRQ:
 	LDA #$00
 	STA $D012	
 
-	JSR SIDSTEP	;step sid
-	JMP $EA31	;jump to kernal stndard input service routines
+	JSR SIDSTEP
+    JMP $EA31
+        
+;.segment "SIDRAM"
+;_SIDFILE: .INCBIN "song.sid",$7e ; header offset $7e

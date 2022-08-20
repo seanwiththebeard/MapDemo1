@@ -12,7 +12,7 @@ void SIDSTOP(void);
 
 void PlaySID(void)
 {
-  memcpy((void*)(SIDLOAD),(void*)&SIDFILE,SIDSIZE);	//Load music into memory 
+  //memcpy((void*)(SIDLOAD),(void*)&SIDFILE,SIDSIZE);	//Load music into memory 
   SIDINIT(); 						//Init SID
   SIDPLAY();						//Play 	
 }
