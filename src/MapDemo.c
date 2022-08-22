@@ -34,8 +34,8 @@
 
 void Initialize()
 {
-  //ScreenDisable();
-  SelectVICBanks(3, 2, 4);
+  ScreenDisable();
+  SelectVICBanks(3, 2, 7);
   ClearScreen();
   bgcolor(0);
   bordercolor(0);
@@ -49,7 +49,7 @@ void Initialize()
 void main(void)
 {   
   Initialize();
-  SwitchScreen(Title);  
+  SwitchScreen(Credits);  
   
   /*while(true)
   {

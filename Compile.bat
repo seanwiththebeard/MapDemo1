@@ -1,3 +1,3 @@
-make clean
-make
-x64sc Program.prg
+make -f MakePublish clean
+make -f MakePublish
+x64sc Program_No_Debug.c64

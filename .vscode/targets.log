@@ -1,0 +1,986 @@
+make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --question
+Using saved OPTIONS=mapfile,labelfile,debugfile,debugtables 
+ 
+# GNU Make 4.3
+# Built for Windows32
+# Copyright (C) 1988-2020 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Sat Aug 20 18:40:51 2022
+
+# Variables
+
+# environment
+FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
+# environment
+SYSTEMDRIVE = C:
+# environment
+LC_ALL = C
+# environment
+C64FOREVERDATA = C:\Users\Public\Documents\CBM Files\
+# makefile (from 'Makefile', line 142)
+OBJDIR := obj
+# environment
+USERPROFILE = C:\Users\sean
+# environment
+VBOX_MSI_INSTALL_PATH = C:\Program Files\Oracle\VirtualBox\
+# makefile (from 'Makefile', line 93)
+define _listing_
+  CFLAGS += --listing $$(@:.o=.lst)
+  ASFLAGS += --listing $$(@:.o=.lst)
+  REMOVES += $(addsuffix .lst,$(basename $(OBJECTS)))
+endef
+# environment
+LOCALAPPDATA = C:\Users\sean\AppData\Local
+# environment
+MEDIT_CHITUBOX_BASIC_BRIDGE = C:\Program Files\CHITUBOX  V1.9.3
+# environment
+VSCODE_CWD = C:\Users\sean\AppData\Local\Programs\Microsoft VS Code
+# makefile (from 'Makefile', line 152)
+plus4_EMUCMD := xplus4 -TEDdsize -autoload
+# environment
+CHOCOLATEYINSTALL = C:\ProgramData\chocolatey
+# environment
+SYSTEMROOT = C:\WINDOWS
+# makefile (from 'Makefile', line 21)
+LIBS := 
+# environment
+PROCESSOR_LEVEL = 6
+# environment
+PSMODULEPATH = C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules
+# makefile (from 'Makefile', line 330)
+OBJDIRLIST := obj/c64
+# default
+MAKE_COMMAND := C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe
+# environment
+RETROPLATFORMDATA = C:\ProgramData\Cloanto\RetroPlatform\
+# makefile (from 'Makefile', line 106)
+define _labelfile_
+  LDFLAGS += -Ln $$@.lbl
+  REMOVES += $(PROGRAM).lbl
+endef
+# automatic
+@D = $(patsubst %/,%,$(patsubst %\,%,$(dir $@)))
+# environment
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_24948_KVZYOGDYXWSVOKCF
+# environment
+FPS_BROWSER_USER_PROFILE_STRING = Default
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# default
+.VARIABLES := 
+# automatic
+%D = $(patsubst %/,%,$(patsubst %\,%,$(dir $%)))
+# makefile (from 'Makefile', line 192)
+COMMA := ,
+# automatic
+^D = $(patsubst %/,%,$(patsubst %\,%,$(dir $^)))
+# automatic
+%F = $(notdir $%)
+# environment
+VSCODE_CODE_CACHE_PATH = C:\Users\sean\AppData\Roaming\Code\CachedData\e4503b30fc78200f846c62cf8091b76ff5547662
+# environment
+LANG = C
+# makefile (from 'Makefile', line 156)
+cbm610_EMUCMD := xcbm2 -model 610 -Crtcdsize -autoload
+# default
+.LOADED := 
+# environment
+TMP = C:\Users\sean\AppData\Local\Temp
+# default
+.INCLUDE_DIRS = .
+# makefile (from 'Makefile', line 83)
+_optspeed_ =   CFLAGS += -Oris
+# environment
+PROCESSOR_ARCHITEW6432 = AMD64
+# 'override' directive (from 'Makefile', line 205)
+PROGRAM := program.c64
+# makefile
+MAKEFLAGS = pqrR
+# environment
+ONEDRIVE = C:\Users\sean\OneDrive
+# makefile (from 'Makefile', line 100)
+define _mapfile_
+  LDFLAGS += --mapfile $$@.map
+  REMOVES += $(PROGRAM).map
+endef
+# makefile
+CURDIR := c:/Dev/VSCode Workspace/MapDemo1
+# makefile (from 'Makefile', line 230)
+DEPENDS := obj/c64/BFRPG.d obj/c64/Common.d obj/c64/Lists.d obj/c64/MapDemo.d obj/c64/Screen_AddCharacter.d obj/c64/Screen_Combat.d obj/c64/Screen_Credits.d obj/c64/Screen_Map.d obj/c64/Screen_Title.d obj/c64/System_Audio.d obj/c64/System_CharacterSets.d obj/c64/System_FileIO.d obj/c64/System_Graphics.d obj/c64/System_Input.d obj/c64/System_MessageWindow.d obj/c64/System_MusicPlayer.d obj/c64/CharacterSetASM.d obj/c64/SIDPlayerASM.d
+# makefile (from 'Makefile', line 189)
+RMDIR = rmdir $(subst /,\,$1)
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# automatic
+*D = $(patsubst %/,%,$(patsubst %\,%,$(dir $*)))
+# environment
+PROGRAMFILES = C:\Program Files (x86)
+# makefile (from 'Makefile', line 151)
+pet_EMUCMD := xpet -Crtcdsize -autoload
+# environment
+MFLAGS = -pqrR
+# default
+.SHELLFLAGS := -c
+# environment
+COMMONPROGRAMW6432 = C:\Program Files\Common Files
+# automatic
++D = $(patsubst %/,%,$(patsubst %\,%,$(dir $+)))
+# makefile (from 'Makefile.options', line 1)
+MAKEFILE_LIST := Makefile obj/c64/BFRPG.d obj/c64/Common.d obj/c64/Lists.d obj/c64/MapDemo.d obj/c64/Screen_AddCharacter.d obj/c64/Screen_Combat.d obj/c64/Screen_Credits.d obj/c64/Screen_Map.d obj/c64/Screen_Title.d obj/c64/System_Audio.d obj/c64/System_CharacterSets.d obj/c64/System_FileIO.d obj/c64/System_Graphics.d obj/c64/System_Input.d obj/c64/System_MessageWindow.d obj/c64/System_MusicPlayer.d obj/c64/CharacterSetASM.d obj/c64/SIDPlayerASM.d Makefile.options
+# makefile (from 'Makefile', line 158)
+cx16_EMUCMD := x16emu -run -prg
+# makefile (from 'Makefile', line 34)
+ASFLAGS = -g
+# automatic
+@F = $(notdir $@)
+# environment
+VSCODE_PID = 24948
+# makefile (from 'Makefile', line 200)
+TARGETLIST := c64
+# makefile (from 'Makefile', line 88)
+_optsize_ =   CFLAGS += -Or
+# makefile (from 'Makefile', line 148)
+c64_EMUCMD := x64 -kernal kernal -VICIIdsize -autoload
+# automatic
+?D = $(patsubst %/,%,$(patsubst %\,%,$(dir $?)))
+# makefile (from 'Makefile', line 26)
+CONFIG := c64_1.cfg
+# automatic
+*F = $(notdir $*)
+# automatic
+<D = $(patsubst %/,%,$(patsubst %\,%,$(dir $<)))
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# makefile (from 'Makefile', line 150)
+vic20_EMUCMD := xvic -kernal kernal -VICdsize -autoload
+# environment
+INCLUDE = C:\WATCOM\H;C:\WATCOM\H\NT;C:\WATCOM\H\NT\DIRECTX;C:\WATCOM\H\NT\DDK
+# environment
+ONEDRIVECONSUMER = C:\Users\sean\OneDrive
+# default
+MAKE_HOST := Windows32
+# environment
+PROGRAMDATA = C:\ProgramData
+# default
+SHELL := sh.exe
+# environment
+HOMEPATH = \Users\sean
+# default
+MAKECMDGOALS := all
+# makefile (from 'Makefile', line 144)
+TARGETOBJDIR := obj/c64
+# environment
+DRIVERDATA = C:\Windows\System32\Drivers\DriverData
+# environment
+COMSPEC = C:\WINDOWS\system32\cmd.exe
+# environment
+WINDIR = C:\WINDOWS
+# environment
+MAKELEVEL := 0
+# makefile (from 'Makefile', line 188)
+MKDIR = mkdir $(subst /,\,$1)
+# default
+MAKE = $(MAKE_COMMAND)
+# environment
+PATH = C:\WATCOM\BINNT;C:\WATCOM\BINW;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\LLVM\bin;C:\Program Files\Cloanto\Amiga Explorer\Windows\;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files (x86)\Smart Projects\IsoBuster;C:\Program Files\dotnet\;C:\Users\sean\AppData\Local\Microsoft\WindowsApps;C:\Users\sean\.dotnet\tools;C:\Users\sean\AppData\Local\Programs\Microsoft VS Code\bin;
+# environment
+ZES_ENABLE_SYSMAN = 1
+# environment
+COMPUTERNAME = SEAN-ZENBOOK-FL
+# default
+MAKEFILES := 
+# automatic
+^F = $(notdir $^)
+# environment
+PROMPT = $P$G
+# makefile (from 'Makefile', line 112)
+define _debugfile_
+  LDFLAGS += -Wl --dbgfile,$$@.dbg
+  REMOVES += $(PROGRAM).dbg
+endef
+# environment
+CHOCOLATEYLASTPATHUPDATE = 132642593475590485
+# environment
+LOGONSERVER = \\SEAN-ZENBOOK-FL
+# makefile (from 'Makefile', line 157)
+atari_EMUCMD := atari800 -windowed -xl -pal -nopatchall -run
+# makefile (from 'Makefile', line 70)
+STATEFILE := Makefile.options
+# makefile (from 'Makefile', line 190)
+RMFILES = $(if $1,del /f $(subst /,\,$1))
+# makefile (from 'Makefile', line 154)
+c16_EMUCMD := xplus4 -ramsize 16 -TEDdsize -autoload
+# environment
+USERNAME = sean
+# environment
+COMMONPROGRAMFILES = C:\Program Files (x86)\Common Files
+# automatic
+?F = $(notdir $?)
+# makefile (from 'Makefile', line 155)
+cbm510_EMUCMD := xcbm2 -model 510 -VICIIdsize -autoload
+# environment
+PROGRAMW6432 = C:\Program Files
+# makefile (from 'Makefile', line 193)
+SPACE := $(subst ,, )
+# environment
+PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+# automatic
++F = $(notdir $+)
+# environment
+WATCOM = C:\WATCOM
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# makefile (from 'Makefile', line 224)
+OBJECTS := obj/c64/BFRPG.o obj/c64/Common.o obj/c64/Lists.o obj/c64/MapDemo.o obj/c64/Screen_AddCharacter.o obj/c64/Screen_Combat.o obj/c64/Screen_Credits.o obj/c64/Screen_Map.o obj/c64/Screen_Title.o obj/c64/System_Audio.o obj/c64/System_CharacterSets.o obj/c64/System_FileIO.o obj/c64/System_Graphics.o obj/c64/System_Input.o obj/c64/System_MessageWindow.o obj/c64/System_MusicPlayer.o obj/c64/CharacterSetASM.o obj/c64/SIDPlayerASM.o
+# environment
+USERDOMAIN = SEAN-ZENBOOK-FL
+# 'override' directive
+GNUMAKEFLAGS := 
+# makefile (from 'Makefile',  
+line 50)
+EMUCMD := x64sc -initbreak 2112 -autostart
+# environment
+OS = Windows_NT
+# makefile (from 'Makefile', line 59)
+PREEMUCMD := 
+# makefile
+.DEFAULT_GOAL := all
+# environment
+C64FOREVERROOT = C:\Program Files (x86)\Cloanto\C64 Forever\
+# makefile (from 'Makefile', line 207)
+CSOURCES := src/BFRPG.c src/Common.c src/Lists.c src/MapDemo.c src/Screen_AddCharacter.c src/Screen_Combat.c src/Screen_Credits.c src/Screen_Map.c src/Screen_Title.c src/System_Audio.c src/System_CharacterSets.c src/System_FileIO.c src/System_Graphics.c src/System_Input.c src/System_MessageWindow.c src/System_MusicPlayer.c
+# makefile (from 'Makefile', line 227)
+INTERMEDIATES := obj/c64/BFRPG.i obj/c64/Common.i obj/c64/Lists.i obj/c64/MapDemo.i obj/c64/Screen_AddCharacter.i obj/c64/Screen_Combat.i obj/c64/Screen_Credits.i obj/c64/Screen_Map.i obj/c64/Screen_Title.i obj/c64/System_Audio.i obj/c64/System_CharacterSets.i obj/c64/System_FileIO.i obj/c64/System_Graphics.i obj/c64/System_Input.i obj/c64/System_MessageWindow.i obj/c64/System_MusicPlayer.i
+# default
+MAKE_VERSION := 4.3
+# 'override' directive
+.SHELLSTATUS := 0
+# environment
+EDPATH = C:\WATCOM\EDDAT
+# environment
+PROGRAMFILES(X86) = C:\Program Files (x86)
+# makefile (from 'Makefile', line 282)
+LDFLAGS = -g --mapfile $@.map -Ln $@.lbl -Wl --dbgfile,$@.dbg
+# environment
+USERDOMAIN_ROAMINGPROFILE = SEAN-ZENBOOK-FL
+# environment
+NUMBER_OF_PROCESSORS = 8
+# makefile (from 'Makefile', line 12)
+TARGETS := c64
+# environment
+PUBLIC = C:\Users\Public
+# environment
+MOZ_PLUGIN_PATH = C:\Program Files (x86)\Foxit Software\Foxit PDF Reader\plugins\
+# environment
+APPDATA = C:\Users\sean\AppData\Roaming
+# makefile (from 'Makefile', line 30)
+CFLAGS = -g -Oirs
+# environment
+HOMEDRIVE = C:
+# environment
+PROCESSOR_ARCHITECTURE = x86
+# makefile (from 'Makefile', line 233)
+TABS := obj/c64/BFRPG.tab obj/c64/Common.tab obj/c64/Lists.tab obj/c64/MapDemo.tab obj/c64/Screen_AddCharacter.tab obj/c64/Screen_Combat.tab obj/c64/Screen_Credits.tab obj/c64/Screen_Map.tab obj/c64/Screen_Title.tab obj/c64/System_Audio.tab obj/c64/System_CharacterSets.tab obj/c64/System_FileIO.tab obj/c64/System_Graphics.tab obj/c64/System_Input.tab obj/c64/System_MessageWindow.tab obj/c64/System_MusicPlayer.tab obj/c64/CharacterSetASM.tab obj/c64/SIDPlayerASM.tab
+# makefile (from 'Makefile', line 60)
+POSTEMUCMD := 
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# makefile (from 'Makefile', line 285)
+CC65TARGET := c64
+# environment
+COMMONPROGRAMFILES(X86) = C:\Program Files (x86)\Common Files
+# makefile (from 'Makefile', line 276)
+OPTIONS = $(_OPTIONS_)
+# makefile (from 'Makefile', line 282)
+REMOVES = program.c64.map program.c64.lbl program.c64.dbg
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+TEMP = C:\Users\sean\AppData\Local\Temp
+# environment
+VSCODE_IPC_HOOK = \\.\pipe\2c9e53770c02fc7d3c7c40bb47ba7e93-1.70.2-main-sock
+# environment
+WIPFC = C:\WATCOM\WIPFC
+# makefile (from 'Makefile', line 136)
+SRCDIR := src
+# makefile (from 'Makefile', line 66)
+VICE_HOME := 
+# default
+.RECIPEPREFIX := 
+# automatic
+<F = $(notdir $<)
+# makefile (from 'Makefile', line 149)
+c128_EMUCMD := x128 -kernal kernal -VICIIdsize -autoload
+# default
+SUFFIXES := 
+# environment
+ALLUSERSPROFILE = C:\ProgramData
+# environment
+SESSIONNAME = Console
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync load
+# environment
+PROCESSOR_REVISION = 8c01
+# environment
+WHTMLHELP = C:\WATCOM\BINNT\HELP
+# makefile (from 'Makefile.options', line 1)
+_OPTIONS_ = mapfile,labelfile,debugfile,debugtables 
+# makefile (from 'Makefile', line 213)
+SOURCES := src/BFRPG.c src/Common.c src/Lists.c src/MapDemo.c src/Screen_AddCharacter.c src/Screen_Combat.c src/Screen_Credits.c src/Screen_Map.c src/Screen_Title.c src/System_Audio.c src/System_CharacterSets.c src/System_FileIO.c src/System_Graphics.c src/System_Input.c src/System_MessageWindow.c src/System_MusicPlayer.c src/CharacterSetASM.s src/SIDPlayerASM.s
+# makefile (from 'Makefile', line 194)
+define NEWLINE
+
+
+endef
+# environment
+PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+# variable set hash-table stats:
+# Load=154/1024=15%, Rehash=0, Collisions=30/349=9%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# src (key c:/Dev/VSCode Workspace/MapDemo1/src, mtime 1661034365): 34 files, no impossibilities.
+# src/c64: could not be stat'd.
+# . (key c:/Dev/VSCode Workspace/MapDemo1, mtime 1661034365): 20 files, no impossibilities.
+# obj (key c:/Dev/VSCode Workspace/MapDemo1/obj, mtime 1661034043): 3 files, no impossibilities.
+
+# 57 files, no impossibilities in 4 directories.
+
+# Implicit Rules
+
+obj/c64/%.o: %.c | obj/c64
+#  recipe to execute (from 'Makefile', line 294):
+	cl65 -t $(CC65TARGET) -c --create-dep $(@:.o=.d) -Wc "--debug-tables" -Wc "$(@:.o=.tab)" $(CFLAGS) -o $@ $<
+
+obj/c64/%.o: %.s | obj/c64
+#  recipe to execute (from 'Makefile', line 299):
+	cl65 -t $(CC65TARGET) -c --create-dep $(@:.o=.d) $(ASFLAGS) -o $@ $<
+
+obj/c64/%.o: %.asm | obj/c64
+#  recipe to execute (from 'Makefile', line 304):
+	cl65 -t $(CC65TARGET) -c --create-dep $(@:.o=.d) $(ASFLAGS) -o $@ $<
+
+# 3 implicit rules, 0 (0.0%) terminal.
+# Files
+
+# Not a target:
+obj/c64/System_CharacterSets.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-20 18:26:05
+#  File has been updated.
+#  Successfully updated.
+
+obj/c64/System_Input.o: src/System_Input.c src/System_Input.c src/Common.h Makefile.options | obj/c64
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'System_Input'
+#  Last modified 2022-08-20 18:26:05
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 294):
+	cl65 -t $(CC65TARGET) -c --create-dep $(@:.o=.d) -Wc "--debug-tables" -Wc "$(@:.o=.tab)" $(CFLAGS) -o $@ $<
+
+# Not a target:
+obj/c64/System_Graphics.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-20 18:26:05
+#  File has been updated.
+#  Successfully updated.
+
+obj/c64:
+#  Implicit rule search has not been done.
+#  Last modified 2022-08-20 18:26:05
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 289):
+	$(call MKDIR,$@)
+
+src/BFRPG.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-19 00:42:10
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+obj/c64/System_FileIO.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-20 18:26:05
+#  File has been updated.
+#  Successfully updated.
+
+src/MapDemo.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-20 18:26:02
+#  File has been updated.
+#  Successfully updated.
+
+program.c64: c64_1.cfg obj/c64/BFRPG.o obj/c64/Common.o obj/c64/Lists.o obj/c64/MapDemo.o obj/c64/Screen_AddCharacter.o obj/c64/Screen_Combat.o obj/c64/Screen_Credits.o obj/c64/Screen_Map.o obj/c64/Screen_Title.o obj/c64/System_Audio.o obj/c64/System_CharacterSets.o obj/c64/System_FileIO.o obj/c64/System_Graphics.o obj/c64/System_Input.o obj/c64/System_MessageWindow.o obj/c64/System_MusicPlayer.o obj/c64/CharacterSetASM.o obj/c64/SIDPlayerASM.o
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: ''
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := program.c64
+# automatic
+# * := 
+# automatic
+# < := c64_1.cfg
+# automatic
+# + := c64_1.cfg obj/c64/BFRPG.o obj/c64/Common.o obj/c64/Lists.o obj/c64/MapDemo.o obj/c64/Screen_AddCharacter.o obj/c64/Screen_Combat.o obj/c64/Screen_Credits.o obj/c64/Screen_Map.o obj/c64/Screen_Title.o obj/c64/System_Audio.o obj/c64/System_CharacterSets.o obj/c64/System_FileIO.o obj/c64/System_Graphics.o obj/c64/System_Input.o obj/c64/System_MessageWindow.o obj/c64/System_MusicPlayer.o obj/c64/CharacterSetASM.o obj/c64/SIDPlayerASM.o
+# automatic
+# % := 
+# automatic
+# ^ := c64_1.cfg obj/c64/BFRPG.o obj/c64/Common.o obj/c64/Lists.o obj/c64/MapDemo.o obj/c64/Screen_AddCharacter.o obj/c64/Screen_Combat.o obj/c64/Screen_Credits.o obj/c64/Screen_Map.o obj/c64/Screen_Title.o obj/c64/System_Audio.o obj/c64/System_CharacterSets.o obj/c64/System_FileIO.o obj/c64/System_Graphics.o obj/c64/System_Input.o obj/c64/System_MessageWindow.o obj/c64/System_MusicPlayer.o obj/c64/CharacterSetASM.o obj/c64/SIDPlayerASM.o
+# automatic
+# ? := c64_1.cfg obj/c64/BFRPG.o obj/c64/Common.o obj/c64/Lists.o obj/c64/MapDemo.o obj/c64/Screen_AddCharacter.o obj/c64/Screen_Combat.o obj/c64/Screen_Credits.o obj/c64/Screen_Map.o obj/c64/Screen_Title.o obj/c64/System_Audio.o obj/c64/System_CharacterSets.o obj/c64/System_FileIO.o obj/c64/System_Graphics.o obj/c64/System_Input.o obj/c64/System_MessageWindow.o obj/c64/System_MusicPlayer.o obj/c64/CharacterSetASM.o obj/c64/SIDPlayerASM.o
+# automatic
+# | := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=2/18=11%
+#  recipe to execute (from 'Makefile', line 309):
+	cl65 -t $(CC65TARGET) $(LDFLAGS) -o $@ $(patsubst %.cfg,-C %.cfg,$^)
+
+src/System_MessageWindow.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-19 00:42:10
+#  File has been updated.
+#  Successfully updated.
+
+obj/c64/CharacterSetASM.o: src/CharacterSetASM.s src/CharacterSetASM.s Makefile.options | obj/c64
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'CharacterSetASM'
+#  Last modified 2022-08-20 18:26:05
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 299):
+	cl65 -t $(CC65TARGET) -c --create-dep $(@:.o=.d) $(ASFLAGS) -o $@ $<
+
+# Not a target:
+c64_1.cfg:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-20 16:32:03
+#  File has been updated.
+#  Successfully updated.
+
+src/System_MessageWindow.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-19 00:42:10
+#  File has been updated.
+#  Successfully updated.
+
+src/System_Audio.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-19 19:42:52
+#  File has been updated.
+#  Successfully updated.
+
+src/System_Graphics.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-20 15:51:42
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+*.mk:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+obj/c64/MapDemo.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-20 18:26:04
+#  File has been updated.
+#  Successfully updated.
+
+obj/c64/System_FileIO.o: src/System_FileIO.c src/System_FileIO.c Makefile.options | obj/c64
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'System_FileIO'
+#  Last modified 2022-08-20 18:26:05
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 294):
+	cl65 -t $(CC65TARGET) -c --create-dep $(@:.o=.d) -Wc "--debug-tables" -Wc "$(@:.o=.tab)" $(CFLAGS) -o $@ $<
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-20 18:10:55
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+obj/c64/Common.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-20 18:26:04
+#  File has been updated.
+#  Successfully updated.
+
+src/SIDPlayerASM.s:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-20 16:19:24
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+obj/c64/Lists.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-20 18:26:04
+#  File has been updated.
+#  Successfully updated.
+
+obj/c64/Common.o: src/Common.c src/Common.c src/Common.h src/Screen_Title.h src/Screen_Credits.h src/Screen_Map.h src/Screen_AddCharacter.h src/Screen_Combat.h src/Platform.h Makefile.options | obj/c64
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'Common'
+#  Last modified 2022-08-20 18:26:04
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 294):
+	cl65 -t $(CC65TARGET) -c --create-dep $(@:.o=.d) -Wc "--debug-tables" -Wc "$(@:.o=.tab)" $(CFLAGS) -o $@ $<
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 317):
+	$(call RMFILES,$(OBJECTS))
+	$(call RMFILES,$(DEPENDS))
+	$(call RMFILES,$(TABS))
+	$(call RMFILES,$(REMOVES))
+	$(call RMFILES,$(PROGRAM))
+
+src/System_CharacterSets.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-19 00:42:10
+#  File has been updated.
+#  Successfully updated.
+
+src/Common.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-19 00:42:10
+#  File has been updated.
+#  Successfully updated.
+
+src/Screen_Combat.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-19 00:42:10
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+obj/c64/System_Audio.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-20 18:26:05
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+obj/c64/CharacterSetASM.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-20 18:26:05
+#  File has been updated.
+#  Successfully updated.
+
+src/Common.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-19 00:42:10
+#  File has been updated.
+#  Successfully updated.
+
+src/Screen_Credits.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-18 21:49:42
+#  File has been updated.
+#  Successfully updated.
+
+src/System_CharacterSets.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-20 15:12:16
+#  File has been updated.
+#  Successfully updated.
+
+obj/c64/BFRPG.o: src/BFRPG.c src/BFRPG.c src/Common.h Makefile.options | obj/c64
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'BFRPG'
+#  Last modified 2022-08-20 18:26:04
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 294):
+	cl65 -t $(CC65TARGET) -c --create-dep $(@:.o=.d) -Wc "--debug-tables" -Wc "$(@:.o=.tab)" $(CFLAGS) -o $@ $<
+
+obj/c64/SIDPlayerASM.o: src/SIDPlayerASM.s src/SIDPlayerASM.s Makefile.options | obj/c64
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'SIDPlayerASM'
+#  Last modified 2022-08-20 18:26:05
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 299):
+	cl65 -t $(CC65TARGET) -c --create-dep $(@:.o=.d) $(ASFLAGS) -o $@ $<
+
+obj/c64/Screen_Map.o: src/Screen_Map.c src/Screen_Map.c src/Common.h src/System_MessageWindow.h src/System_CharacterSets.h src/Screen_AddCharacter.h src/Platform.h Makefile.options | obj/c64
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'Screen_Map'
+#  Last modified 2022-08-20 18:26:04
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 294):
+	cl65 -t $(CC65TARGET) -c --create-dep $(@:.o=.d) -Wc "--debug-tables" -Wc "$(@:.o=.tab)" $(CFLAGS) -o $@ $<
+
+src/Screen_Map.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-19 00:42:10
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+obj/c64/Screen_Combat.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-20 18:26:04
+#  File has been updated.
+#  Successfully updated.
+
+src/System_MusicPlayer.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-20 16:38:43
+#  File has been updated.
+#  Successfully updated.
+
+src/Lists.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-19 00:42:10
+#  File has been updated.
+#  Successfully updated.
+
+obj/c64/System_MusicPlayer.o: src/System_MusicPlayer.c src/System_MusicPlayer.c src/Common.h Makefile.options | obj/c64
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'System_MusicPlayer'
+#  Last modified 2022-08-20 18:26:05
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 294):
+	cl65 -t $(CC65TARGET) -c --create-dep $(@:.o=.d) -Wc "--debug-tables" -Wc "$(@:.o=.tab)" $(CFLAGS) -o $@ $<
+
+src/Screen_Credits.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-19 00:42:10
+#  File has been updated.
+#  Successfully updated.
+
+src/Screen_Title.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-19 00:42:10
+#  File has been updated.
+#  Successfully updated.
+
+src/System_FileIO.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-20 15:39:46
+#  File has been updated.
+#  Successfully updated.
+
+src/Screen_AddCharacter.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-19 00:42:10
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+src/Screen_AddCharacter.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-19 00:42:10
+#  File has been updated.
+#  Successfully updated.
+
+all: program.c64
+#  Phony target (prerequisite of .PHONY).
+#  Command line target.
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/5=0%
+
+obj/c64/System_CharacterSets.o: src/System_CharacterSets.c src/System_CharacterSets.c src/Common.h src/Platform.h Makefile.options | obj/c64
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'System_CharacterSets'
+#  Last modified 2022-08-20 18:26:05
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 294):
+	cl65 -t $(CC65TARGET) -c --create-dep $(@:.o=.d) -Wc "--debug-tables" -Wc "$(@:.o=.tab)" $(CFLAGS) -o $@ $<
+
+# Not a target:
+obj/c64/Screen_AddCharacter.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-20 18:26:04
+#  File has been updated.
+#  Successfully updated.
+
+love:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 339):
+	@echo "Not war, eh?"
+
+zap:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 333):
+	$(foreach o,$(OBJDIRLIST),-$(call RMFILES,$o/*.o $o/*.d $o/*.lst)$(NEWLINE))
+	$(foreach o,$(OBJDIRLIST),-$(call RMDIR,$o)$(NEWLINE))
+	-$(call RMDIR,$(OBJDIR))
+	-$(call RMFILES,$(basename $(PROGRAM)).* $(STATEFILE))
+
+src/Lists.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-19 00:42:10
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+obj/c64/BFRPG.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-20 18:26:04
+#  File has been updated.
+#  Successfully updated.
+
+obj/c64/Screen_Credits.o: src/Screen_Credits.c src/Screen_Credits.c src/System_MessageWindow.h src/Common.h src/Platform.h Makefile.options | obj/c64
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'Screen_Credits'
+#  Last modified 2022-08-20 18:26:04
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 294):
+	cl65 -t $(CC65TARGET) -c --create-dep $(@:.o=.d) -Wc "--debug-tables" -Wc "$(@:.o=.tab)" $(CFLAGS) -o $@ $<
+
+obj/c64/System_Audio.o: src/System_Audio.c src/System_Audio.c src/Platform.h src/Common.h Makefile.options | obj/c64
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'System_Audio'
+#  Last modified 2022-08-20 18:26:05
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 294):
+	cl65 -t $(CC65TARGET) -c --create-dep $(@:.o=.d) -Wc "--debug-tables" -Wc "$(@:.o=.tab)" $(CFLAGS) -o $@ $<
+
+obj/c64/Screen_Combat.o: src/Screen_Combat.c src/Screen_Combat.c src/Common.h src/Lists.h src/Platform.h Makefile.options | obj/c64
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'Screen_Combat'
+#  Last modified 2022-08-20 18:26:04
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 294):
+	cl65 -t $(CC65TARGET) -c --create-dep $(@:.o=.d) -Wc "--debug-tables" -Wc "$(@:.o=.tab)" $(CFLAGS) -o $@ $<
+
+test: program.c64
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 312):
+	$(PREEMUCMD)
+	$(EMUCMD) $<
+	$(POSTEMUCMD)
+
+obj/c64/MapDemo.o: src/MapDemo.c src/MapDemo.c src/Platform.h src/Common.h src/Screen_Map.h src/Screen_Title.h src/Screen_AddCharacter.h src/System_CharacterSets.h src/System_MessageWindow.h src/BFRPG.h src/Lists.h src/Screen_Combat.h src/Screen_Credits.h Makefile.options | obj/c64
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'MapDemo'
+#  Last modified 2022-08-20 18:26:04
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 294):
+	cl65 -t $(CC65TARGET) -c --create-dep $(@:.o=.d) -Wc "--debug-tables" -Wc "$(@:.o=.tab)" $(CFLAGS) -o $@ $<
+
+src/System_Input.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-19 00:42:10
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+obj/c64/Screen_Title.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-20 18:26:04
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+obj/c64/System_Input.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-20 18:26:05
+#  File has been updated.
+#  Successfully updated.
+
+src/Platform.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-20 16:19:04
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+obj/c64/System_MusicPlayer.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-20 18:26:05
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+obj/c64/SIDPlayerASM.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-20 18:26:05
+#  File has been updated.
+#  Successfully updated.
+
+src/BFRPG.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-19 00:42:10
+#  File has been updated.
+#  Successfully updated.
+
+obj/c64/System_MessageWindow.o: src/System_MessageWindow.c src/System_MessageWindow.c src/Common.h src/System_CharacterSets.h src/BFRPG.h src/Lists.h src/Platform.h Makefile.options | obj/c64
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'System_MessageWindow'
+#  Last modified 2022-08-20 18:26:05
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 294):
+	cl65 -t $(CC65TARGET) -c --create-dep $(@:.o=.d) -Wc "--debug-tables" -Wc "$(@:.o=.tab)" $(CFLAGS) -o $@ $<
+
+# Not a target:
+Makefile.options:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-20 18:13:24
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+obj/c64/Screen_Credits.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-20 18:26:04
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+obj/c64/System_MessageWindow.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-20 18:26:05
+#  File has been updated.
+#  Successfully updated.
+
+src/Screen_Map.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-19 00:42:10
+#  File has been updated.
+#  Successfully updated.
+
+src/Screen_Combat.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-19 00:42:10
+#  File has been updated.
+#  Successfully updated.
+
+obj/c64/Screen_AddCharacter.o: src/Screen_AddCharacter.c src/Screen_AddCharacter.c src/Common.h src/System_MessageWindow.h src/BFRPG.h src/Lists.h src/Platform.h Makefile.options | obj/c64
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'Screen_AddCharacter'
+#  Last modified 2022-08-20 18:26:04
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 294):
+	cl65 -t $(CC65TARGET) -c --create-dep $(@:.o=.d) -Wc "--debug-tables" -Wc "$(@:.o=.tab)" $(CFLAGS) -o $@ $<
+
+obj/c64/System_Graphics.o: src/System_Graphics.c src/System_Graphics.c src/Common.h src/System_CharacterSets.h src/Platform.h Makefile.options | obj/c64
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'System_Graphics'
+#  Last modified 2022-08-20 18:26:05
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 294):
+	cl65 -t $(CC65TARGET) -c --create-dep $(@:.o=.d) -Wc "--debug-tables" -Wc "$(@:.o=.tab)" $(CFLAGS) -o $@ $<
+
+# Not a target:
+obj/c64/Screen_Map.d:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-20 18:26:04
+#  File has been updated.
+#  Successfully updated.
+
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+obj/c64/Screen_Title.o: src/Screen_Title.c src/Screen_Title.c src/Common.h src/Platform.h Makefile.options | obj/c64
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'Screen_Title'
+#  Last modified 2022-08-20 18:26:04
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 294):
+	cl65 -t $(CC65TARGET) -c --create-dep $(@:.o=.d) -Wc "--debug-tables" -Wc "$(@:.o=.tab)" $(CFLAGS) -o $@ $<
+
+.PHONY: all test clean zap love
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+src/Screen_Title.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-19 00:42:10
+#  File has been updated.
+#  Successfully updated.
+
+src/CharacterSetASM.s:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-20 14:51:39
+#  File has been updated.
+#  Successfully updated.
+
+obj/c64/Lists.o: src/Lists.c src/Lists.c src/Common.h src/BFRPG.h src/System_MessageWindow.h src/Lists.h Makefile.options | obj/c64
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'Lists'
+#  Last modified 2022-08-20 18:26:04
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 294):
+	cl65 -t $(CC65TARGET) -c --create-dep $(@:.o=.d) -Wc "--debug-tables" -Wc "$(@:.o=.tab)" $(CFLAGS) -o $@ $<
+
+# files hash-table stats:
+# Load=79/1024=8%, Rehash=0, Collisions=62/568=11%
+# VPATH Search Paths
+
+vpath %.c src/c64;src
+vpath %.s src/c64;src
+vpath %.asm src/c64;src
+vpath %.a65 src/c64;src
+
+# 4 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 155 / storage = 2547 B / avg = 16 B
+# current buf: size = 8174 B / used = 2547 B / count = 155 / avg = 16 B
+
+# strcache performance: lookups = 593 / hit rate = 73%
+# hash-table stats:
+# Load=155/8192=2%, Rehash=0, Collisions=11/593=2%
+# Finished Make data base on Sat Aug 20 18:40:51 2022
+
+ 

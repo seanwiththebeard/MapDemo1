@@ -1,4 +1,28 @@
 
+SC_FUNC: _ChangeBufferTarget: Symbol table
+==========================================
+__fixargs__:
+    Flags: SC_CONST SC_DEF
+    Type:  unsigned int
+__argsize__:
+    Flags: SC_CONST SC_DEF
+    Type:  unsigned char
+
+
+
+
+SC_FUNC: _FlipBuffer: Symbol table
+==================================
+__fixargs__:
+    Flags: SC_CONST SC_DEF
+    Type:  unsigned int
+__argsize__:
+    Flags: SC_CONST SC_DEF
+    Type:  unsigned char
+
+
+
+
 SC_FUNC: _MoveScreenUp: Symbol table
 ====================================
 __fixargs__:
@@ -1439,7 +1463,7 @@ ReverseBufferArea:
     Type:  void (unsigned char, unsigned char, unsigned char, unsigned char)
 SelectVICBanks:
     AsmName: _SelectVICBanks
-    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF SC_REF 0x100000
     Type:  void (unsigned char, unsigned char, unsigned char)
 SetScreenChar:
     AsmName: _SetScreenChar
@@ -1609,10 +1633,26 @@ i:
     AsmName: _i
     Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
     Type:  int
+BufferChars:
+    AsmName: _BufferChars
+    Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
+    Type:  unsigned char *
 ScreenColors:
     AsmName: _ScreenColors
     Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
     Type:  unsigned char *
+lastBank:
+    AsmName: _lastBank
+    Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
+    Type:  unsigned char
+lastScreenPos:
+    AsmName: _lastScreenPos
+    Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
+    Type:  unsigned char
+lastCharPos:
+    AsmName: _lastCharPos
+    Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
+    Type:  unsigned char
 offset1:
     AsmName: _offset1
     Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
@@ -1625,6 +1665,18 @@ FlashFrames:
     AsmName: _FlashFrames
     Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
     Type:  int
+bufferSelect:
+    AsmName: _bufferSelect
+    Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
+    Type:  enum $anon-enum-000D
+ChangeBufferTarget:
+    AsmName: _ChangeBufferTarget
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DEF 0x100000
+    Type:  void (void)
+FlipBuffer:
+    AsmName: _FlipBuffer
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DEF SC_REF 0x100000
+    Type:  void (void)
 originOffset:
     AsmName: _originOffset
     Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
@@ -3281,7 +3333,7 @@ ReverseBufferArea:
     Type:  void (unsigned char, unsigned char, unsigned char, unsigned char)
 SelectVICBanks:
     AsmName: _SelectVICBanks
-    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF SC_REF 0x100000
     Type:  void (unsigned char, unsigned char, unsigned char)
 SetScreenChar:
     AsmName: _SetScreenChar
@@ -3451,10 +3503,26 @@ i:
     AsmName: _i
     Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
     Type:  int
+BufferChars:
+    AsmName: _BufferChars
+    Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
+    Type:  unsigned char *
 ScreenColors:
     AsmName: _ScreenColors
     Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
     Type:  unsigned char *
+lastBank:
+    AsmName: _lastBank
+    Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
+    Type:  unsigned char
+lastScreenPos:
+    AsmName: _lastScreenPos
+    Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
+    Type:  unsigned char
+lastCharPos:
+    AsmName: _lastCharPos
+    Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
+    Type:  unsigned char
 offset1:
     AsmName: _offset1
     Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
@@ -3467,6 +3535,18 @@ FlashFrames:
     AsmName: _FlashFrames
     Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
     Type:  int
+bufferSelect:
+    AsmName: _bufferSelect
+    Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
+    Type:  enum $anon-enum-000D
+ChangeBufferTarget:
+    AsmName: _ChangeBufferTarget
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DEF 0x100000
+    Type:  void (void)
+FlipBuffer:
+    AsmName: _FlipBuffer
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DEF SC_REF 0x100000
+    Type:  void (void)
 originOffset:
     AsmName: _originOffset
     Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
@@ -4454,7 +4534,7 @@ ReverseBufferArea:
     Type:  void (unsigned char, unsigned char, unsigned char, unsigned char)
 SelectVICBanks:
     AsmName: _SelectVICBanks
-    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF SC_REF 0x100000
     Type:  void (unsigned char, unsigned char, unsigned char)
 SetScreenChar:
     AsmName: _SetScreenChar
@@ -4624,10 +4704,26 @@ i:
     AsmName: _i
     Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
     Type:  int
+BufferChars:
+    AsmName: _BufferChars
+    Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
+    Type:  unsigned char *
 ScreenColors:
     AsmName: _ScreenColors
     Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
     Type:  unsigned char *
+lastBank:
+    AsmName: _lastBank
+    Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
+    Type:  unsigned char
+lastScreenPos:
+    AsmName: _lastScreenPos
+    Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
+    Type:  unsigned char
+lastCharPos:
+    AsmName: _lastCharPos
+    Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
+    Type:  unsigned char
 offset1:
     AsmName: _offset1
     Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
@@ -4640,6 +4736,18 @@ FlashFrames:
     AsmName: _FlashFrames
     Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
     Type:  int
+bufferSelect:
+    AsmName: _bufferSelect
+    Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
+    Type:  enum $anon-enum-000D
+ChangeBufferTarget:
+    AsmName: _ChangeBufferTarget
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DEF 0x100000
+    Type:  void (void)
+FlipBuffer:
+    AsmName: _FlipBuffer
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DEF SC_REF 0x100000
+    Type:  void (void)
 originOffset:
     AsmName: _originOffset
     Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000

@@ -1,0 +1,25 @@
+make.exe --dry-run --always-make --keep-going --print-directory
+make: Entering directory 'c:/Dev/VSCode Workspace/MapDemo1'
+Using saved OPTIONS=mapfile,labelfile,debugfile,debugtables 
+mkdir obj\c64
+cl65 -t c64 -c --create-dep obj/c64/BFRPG.d -Wc "--debug-tables" -Wc "obj/c64/BFRPG.tab" -g -Oirs -o obj/c64/BFRPG.o src/BFRPG.c
+cl65 -t c64 -c --create-dep obj/c64/Common.d -Wc "--debug-tables" -Wc "obj/c64/Common.tab" -g -Oirs -o obj/c64/Common.o src/Common.c
+cl65 -t c64 -c --create-dep obj/c64/Lists.d -Wc "--debug-tables" -Wc "obj/c64/Lists.tab" -g -Oirs -o obj/c64/Lists.o src/Lists.c
+cl65 -t c64 -c --create-dep obj/c64/MapDemo.d -Wc "--debug-tables" -Wc "obj/c64/MapDemo.tab" -g -Oirs -o obj/c64/MapDemo.o src/MapDemo.c
+cl65 -t c64 -c --create-dep obj/c64/Screen_AddCharacter.d -Wc "--debug-tables" -Wc "obj/c64/Screen_AddCharacter.tab" -g -Oirs -o obj/c64/Screen_AddCharacter.o src/Screen_AddCharacter.c
+cl65 -t c64 -c --create-dep obj/c64/Screen_Combat.d -Wc "--debug-tables" -Wc "obj/c64/Screen_Combat.tab" -g -Oirs -o obj/c64/Screen_Combat.o src/Screen_Combat.c
+cl65 -t c64 -c --create-dep obj/c64/Screen_Credits.d -Wc "--debug-tables" -Wc "obj/c64/Screen_Credits.tab" -g -Oirs -o obj/c64/Screen_Credits.o src/Screen_Credits.c
+cl65 -t c64 -c --create-dep obj/c64/Screen_Map.d -Wc "--debug-tables" -Wc "obj/c64/Screen_Map.tab" -g -Oirs -o obj/c64/Screen_Map.o src/Screen_Map.c
+cl65 -t c64 -c --create-dep obj/c64/Screen_Title.d -Wc "--debug-tables" -Wc "obj/c64/Screen_Title.tab" -g -Oirs -o obj/c64/Screen_Title.o src/Screen_Title.c
+cl65 -t c64 -c --create-dep obj/c64/System_Audio.d -Wc "--debug-tables" -Wc "obj/c64/System_Audio.tab" -g -Oirs -o obj/c64/System_Audio.o src/System_Audio.c
+cl65 -t c64 -c --create-dep obj/c64/System_CharacterSets.d -Wc "--debug-tables" -Wc "obj/c64/System_CharacterSets.tab" -g -Oirs -o obj/c64/System_CharacterSets.o src/System_CharacterSets.c
+cl65 -t c64 -c --create-dep obj/c64/System_FileIO.d -Wc "--debug-tables" -Wc "obj/c64/System_FileIO.tab" -g -Oirs -o obj/c64/System_FileIO.o src/System_FileIO.c
+cl65 -t c64 -c --create-dep obj/c64/System_Graphics.d -Wc "--debug-tables" -Wc "obj/c64/System_Graphics.tab" -g -Oirs -o obj/c64/System_Graphics.o src/System_Graphics.c
+cl65 -t c64 -c --create-dep obj/c64/System_Input.d -Wc "--debug-tables" -Wc "obj/c64/System_Input.tab" -g -Oirs -o obj/c64/System_Input.o src/System_Input.c
+cl65 -t c64 -c --create-dep obj/c64/System_MessageWindow.d -Wc "--debug-tables" -Wc "obj/c64/System_MessageWindow.tab" -g -Oirs -o obj/c64/System_MessageWindow.o src/System_MessageWindow.c
+cl65 -t c64 -c --create-dep obj/c64/System_MusicPlayer.d -Wc "--debug-tables" -Wc "obj/c64/System_MusicPlayer.tab" -g -Oirs -o obj/c64/System_MusicPlayer.o src/System_MusicPlayer.c
+cl65 -t c64 -c --create-dep obj/c64/CharacterSetASM.d -g -o obj/c64/CharacterSetASM.o src/CharacterSetASM.s
+cl65 -t c64 -c --create-dep obj/c64/SIDPlayerASM.d -g -o obj/c64/SIDPlayerASM.o src/SIDPlayerASM.s
+cl65 -t c64 -g --mapfile program.c64.map -Ln program.c64.lbl -Wl --dbgfile,program.c64.dbg -o program.c64 -C c64_1.cfg obj/c64/BFRPG.o obj/c64/Common.o obj/c64/Lists.o obj/c64/MapDemo.o obj/c64/Screen_AddCharacter.o obj/c64/Screen_Combat.o obj/c64/Screen_Credits.o obj/c64/Screen_Map.o obj/c64/Screen_Title.o obj/c64/System_Audio.o obj/c64/System_CharacterSets.o obj/c64/System_FileIO.o obj/c64/System_Graphics.o obj/c64/System_Input.o obj/c64/System_MessageWindow.o obj/c64/System_MusicPlayer.o obj/c64/CharacterSetASM.o obj/c64/SIDPlayerASM.o
+make: Leaving directory 'c:/Dev/VSCode Workspace/MapDemo1'
+ 

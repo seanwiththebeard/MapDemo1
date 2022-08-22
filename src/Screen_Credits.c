@@ -39,11 +39,13 @@ char CreditsLines[][20] =
 
 void ScrollUp()
 {
-  byte i = 0;  
-  yscroll--;
-  VIC.ctrl1 = VIC.ctrl1 & 0xf8;
-  VIC.ctrl1 |= (yscroll & 7);
-  if ((yscroll & 7) == 7)
+  if (xcredit == linecount)
+  {
+    //char str[3];
+    ++delay;
+    //sprintf(str,"%d@", delay);
+    //PrintString(str, xcredit % 2, 24, true, false);
+  }
   {
     MoveScreenUp();
     if (xcredit < linecount)
@@ -55,24 +57,15 @@ void ScrollUp()
       }
       else
         PrintString("@", xcredit % 3, 24, true, false);
-        
     }
-      
     ++xoff;
   }
-  if (xcredit == linecount)
-  {
-    //char str[3];
-    ++delay;
-    //sprintf(str,"%d@", delay);
-    //PrintString(str, xcredit % 2, 24, true, false);
-    
-  }
-  wait_vblank(2);
+  
 }
 
 screenName Update_Credits()
 {
+  byte temp = VIC.ctrl1;
   screenName nextScreen = Title;
   bool exit = false;
   yscroll = 0;
@@ -92,11 +85,10 @@ screenName Update_Credits()
     if (InputChanged())
       if (InputFire())
         exit = true;
-    if (delay == 200)
+    if (delay == 35)
       exit = true;
   }
   StopSID();
-  ClearScreen();
-  ScrollReset();
+  VIC.ctrl1 = temp;
   return nextScreen;
 }

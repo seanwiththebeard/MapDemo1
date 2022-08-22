@@ -5,6 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Compile and Launch VICE",
+            "type": "PowerShell",
+            "request": "launch",
+            "script": "${workspaceFolder}/Compile.bat",
+            "cwd": "${workspaceFolder}"
+        },
+        
+        {
             "type": "cc65-vice",
             "request": "launch",
             "name": "CC65 Vice Launch",
@@ -21,9 +29,9 @@
             },
             "stopOnEntry": false,
             "stopOnExit": false,
-            "port": 29786,
+            "port": 29788,
             "emulatorArgs": [
-                "-model", "pal",
+                "-model", "ntsc",
                 //-attach8rw "./disk.d64"
             ]
         }

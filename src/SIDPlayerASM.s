@@ -4,7 +4,7 @@
 .export _SIDSTOP
 
 SIDLOADPOS = $C000;
-SIDPLAYPOS = $C006; 06 + 7e offset
+SIDPLAYPOS = $C006;
 
 
 _SIDSTOP:

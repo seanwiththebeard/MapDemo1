@@ -28,15 +28,44 @@ int YColumnIndex[25] = {
 
 int FlashFrames = 0;
 
+bool bufferselect = 0;
+byte charpos = 2;
+
+void FlipBuffer()
+{
+  {
+    if (bufferselect)
+    {
+      SelectVICBanks(3, charpos + 1, 7);
+      bufferselect = false;
+    }
+    else
+    {
+      SelectVICBanks(3, charpos, 7);
+      bufferselect = true;
+    }
+  }
+}
 void MoveScreenUp()
 {
-  ScreenDisable();
-  //raster_wait(255);
-  memcpy(&ScreenChars[0], &ScreenChars[COLS], YColumnIndex[24]);
-  ScreenEnable();
+  byte ys = 0;
+  CopyMemory(&ScreenCharBuffer[0], &ScreenChars[COLS], YColumnIndex[24]);
+  FlipBuffer();
+  
+  for (ys = 7; ys > 0; ys--)
+  {
+    // set scroll registers
+    VIC.ctrl1 = (VIC.ctrl1 & 0xf8);
+    VIC.ctrl1 |= (ys & 7);
+    // wait for vsync
+    wait_vblank(1);
+  }
   
   for (ColCount = 0; ColCount < COLS; ++ColCount)
-    ScreenChars[960+ColCount] = ' ';
+    ScreenCharBuffer[960+ColCount] = ' ';
+  
+  //wait_vblank(1);
+
 }
 
 void UpdateColors()
@@ -147,17 +176,15 @@ void ClearScreen()
 {
   for (i = 0; i < 1000; ++i)
   {
+    ScreenColors[i] = 1;
     ScreenColorBuffer[i] = 1;
     ScreenCharBuffer[i] = ' ';
+    ScreenChars[i] = ' ';
   }
   
-  CopyDoubleBuffer();  
-}
-
-void ScrollReset()
-{
-	VIC.ctrl1 = 0x1b;
-	VIC.ctrl2 = 0xc8; 
+  FlipBuffer();
+  
+  
 }
 
 void ReverseBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
@@ -187,8 +214,10 @@ void ReverseBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
 
 void SelectVICBanks(byte bank, byte screenpos, byte charpos)
 {
-  //Select Bank
-  POKE (0xDD00, (PEEK(0XDD00)&(255 - bank)));
+  int* regd018 = (int*)0xd018;
+  byte vicreg = 0x00;
+  
+  
   screenposition = (bank * (16*1024) + (screenpos * 1024));
   
   ScreenChars = 0;
@@ -199,7 +228,11 @@ void SelectVICBanks(byte bank, byte screenpos, byte charpos)
   
   ScreenCharBuffer = 0;
   ScreenCharBuffer += screenposition;
-  ScreenCharBuffer += 0x0400; // Buffer location 1024b after the screen position
+  if (bufferselect)
+    ScreenCharBuffer -= 0x0400; // Buffer location 1024b after the screen position
+  else
+    ScreenCharBuffer += 0x0400; // Buffer location 1024b after the screen position
+    
   
   ScreenColorBuffer = 0;
   ScreenColorBuffer += 0x0400; // Use the default screen character space for color buffer
@@ -223,11 +256,17 @@ void SelectVICBanks(byte bank, byte screenpos, byte charpos)
   $DD00 = %xxxxxx01 -> bank2: $8000-$bfff
   $DD00 = %xxxxxx00 -> bank3: $c000-$ffff*/
   
+   //Select Bank
+  POKE (0xDD00, (PEEK(0XDD00)&(255 - bank)));
   
   //Set Screen and Character Ram Position
   screenpos = screenpos << 4;
   charpos = charpos << 1;
-  POKE (0xD018, screenpos + charpos);
+  vicreg = screenpos + charpos;
+  raster_wait(255);
+  regd018[0] = vicreg;
+  //POKE (0xD018, screenpos + charpos);
+ 
   
   //Cursor Position
   POKE (0x0288, screenposition / 256);

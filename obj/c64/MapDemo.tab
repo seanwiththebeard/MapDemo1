@@ -376,10 +376,10 @@ bool:
     Flags: SC_TYPEDEF 0x100000
     Type:  enum $anon-enum-000D
 Title:
-    Flags: SC_ENUMERATOR SC_CONST SC_REF
+    Flags: SC_ENUMERATOR SC_CONST
     Type:  int
 Credits:
-    Flags: SC_ENUMERATOR SC_CONST
+    Flags: SC_ENUMERATOR SC_CONST SC_REF
     Type:  int
 EditParty:
     Flags: SC_ENUMERATOR SC_CONST
@@ -2063,10 +2063,10 @@ bool:
     Flags: SC_TYPEDEF 0x100000
     Type:  enum $anon-enum-000D
 Title:
-    Flags: SC_ENUMERATOR SC_CONST SC_REF
+    Flags: SC_ENUMERATOR SC_CONST
     Type:  int
 Credits:
-    Flags: SC_ENUMERATOR SC_CONST
+    Flags: SC_ENUMERATOR SC_CONST SC_REF
     Type:  int
 EditParty:
     Flags: SC_ENUMERATOR SC_CONST
@@ -3072,10 +3072,10 @@ bool:
     Flags: SC_TYPEDEF 0x100000
     Type:  enum $anon-enum-000D
 Title:
-    Flags: SC_ENUMERATOR SC_CONST SC_REF
+    Flags: SC_ENUMERATOR SC_CONST
     Type:  int
 Credits:
-    Flags: SC_ENUMERATOR SC_CONST
+    Flags: SC_ENUMERATOR SC_CONST SC_REF
     Type:  int
 EditParty:
     Flags: SC_ENUMERATOR SC_CONST
