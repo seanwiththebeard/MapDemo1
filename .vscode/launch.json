@@ -5,10 +5,17 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Compile and Launch VICE",
+            "name": "No Debug - NTSC VICE",
             "type": "PowerShell",
             "request": "launch",
             "script": "${workspaceFolder}/Compile.bat",
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "name": "No Debug - PAL VICE",
+            "type": "PowerShell",
+            "request": "launch",
+            "script": "${workspaceFolder}/Compile_PAL.bat",
             "cwd": "${workspaceFolder}"
         },
         

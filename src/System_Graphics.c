@@ -15,6 +15,7 @@ byte *ScreenColorBuffer = 0;
 byte *ScreenChars;
 byte *ScreenColors = (byte *)0xD800;
 byte *CharRam;
+byte lastBank, lastScreenPos, lastCharPos;
 unsigned short offset1;
 
 int screenposition;
@@ -29,43 +30,62 @@ int YColumnIndex[25] = {
 int FlashFrames = 0;
 
 bool bufferselect = 0;
-byte charpos = 2;
+//byte charpos = 2;
 
 void FlipBuffer()
 {
   {
     if (bufferselect)
     {
-      SelectVICBanks(3, charpos + 1, 7);
       bufferselect = false;
+      SelectVICBanks(lastBank, lastScreenPos - 1, lastCharPos);
     }
     else
     {
-      SelectVICBanks(3, charpos, 7);
       bufferselect = true;
+      SelectVICBanks(lastBank, lastScreenPos + 1, lastCharPos);
     }
   }
 }
+
 void MoveScreenUp()
 {
-  byte ys = 0;
+  byte ys;
+
   CopyMemory(&ScreenCharBuffer[0], &ScreenChars[COLS], YColumnIndex[24]);
   FlipBuffer();
-  
-  for (ys = 7; ys > 0; ys--)
+
+  for (ys = 7; ys != 0; --ys)
   {
     // set scroll registers
     VIC.ctrl1 = (VIC.ctrl1 & 0xf8);
     VIC.ctrl1 |= (ys & 7);
+    VIC.ctrl1 = clearBit(VIC.ctrl1, 3);
     // wait for vsync
-    wait_vblank(1);
+    wait_vblank(4);
   }
-  
+
   for (ColCount = 0; ColCount < COLS; ++ColCount)
     ScreenCharBuffer[960+ColCount] = ' ';
-  
-  //wait_vblank(1);
+}
 
+void MoveScreenDown()
+{
+  byte ys;
+  CopyMemory(&ScreenCharBuffer[COLS], &ScreenChars[0], YColumnIndex[24]);
+  FlipBuffer();
+  
+  for (ys = 0; ys < 7; ++ys)
+  {
+    // set scroll registers
+    VIC.ctrl1 = (VIC.ctrl1 & 0xf8);
+    VIC.ctrl1 |= (ys & 7);
+    VIC.ctrl1 = clearBit(VIC.ctrl1, 3);
+    // wait for vsync
+    wait_vblank(2);
+  }
+  for (ColCount = 0; ColCount < COLS; ++ColCount)
+    ScreenCharBuffer[ColCount] = ' ';
 }
 
 void UpdateColors()
@@ -217,7 +237,10 @@ void SelectVICBanks(byte bank, byte screenpos, byte charpos)
   int* regd018 = (int*)0xd018;
   byte vicreg = 0x00;
   
-  
+  lastBank = bank;
+  lastScreenPos = screenpos;
+  lastCharPos = charpos;
+
   screenposition = (bank * (16*1024) + (screenpos * 1024));
   
   ScreenChars = 0;

@@ -7,6 +7,7 @@ extern byte *ScreenChars;
 //#define ScreenRam 0xC800
 #define ColorRam 0xD800
 void MoveScreenUp(void);
+void MoveScreenDown(void);
 void SetChar(byte x, byte y, byte index);
 void SetCharC(byte x, byte y, byte index, byte color);
 void UpdateColors(void);

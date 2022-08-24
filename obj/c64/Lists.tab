@@ -1232,6 +1232,10 @@ WriteBit:
     AsmName: _WriteBit
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
     Type:  void (unsigned char *, char, enum $anon-enum-0013)
+clearBit:
+    AsmName: _clearBit
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (unsigned char *, int)
 ReadBit:
     AsmName: _ReadBit
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
@@ -3098,6 +3102,10 @@ WriteBit:
     AsmName: _WriteBit
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
     Type:  void (unsigned char *, char, enum $anon-enum-0013)
+clearBit:
+    AsmName: _clearBit
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (unsigned char *, int)
 ReadBit:
     AsmName: _ReadBit
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
@@ -4235,6 +4243,10 @@ WriteBit:
     AsmName: _WriteBit
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
     Type:  void (unsigned char *, char, enum $anon-enum-0013)
+clearBit:
+    AsmName: _clearBit
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (unsigned char *, int)
 ReadBit:
     AsmName: _ReadBit
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000

@@ -98,6 +98,42 @@ __argsize__:
 
 
 
+SC_FUNC: _setBit: Symbol table
+==============================
+byteToSet:
+    Flags: SC_PARAM SC_AUTO SC_DEF SC_REF 0x100000
+    Type:  unsigned char *
+k:
+    Flags: SC_PARAM SC_AUTO SC_DEF SC_REF 0x100000
+    Type:  unsigned char
+__fixargs__:
+    Flags: SC_CONST SC_DEF
+    Type:  unsigned int
+__argsize__:
+    Flags: SC_CONST SC_DEF
+    Type:  unsigned char
+
+
+
+
+SC_FUNC: _clearBit: Symbol table
+================================
+byteToSet:
+    Flags: SC_PARAM SC_AUTO SC_DEF SC_REF 0x100000
+    Type:  unsigned char *
+k:
+    Flags: SC_PARAM SC_AUTO SC_DEF SC_REF 0x100000
+    Type:  int
+__fixargs__:
+    Flags: SC_CONST SC_DEF
+    Type:  unsigned int
+__argsize__:
+    Flags: SC_CONST SC_DEF
+    Type:  unsigned char
+
+
+
+
 SC_FUNC: _CheckBit: Symbol table
 ================================
 source:
@@ -536,6 +572,10 @@ WriteBit:
     AsmName: _WriteBit
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
     Type:  void (unsigned char *, char, enum $anon-enum-000D)
+clearBit:
+    AsmName: _clearBit
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
+    Type:  int (unsigned char *, int)
 ReadBit:
     AsmName: _ReadBit
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
@@ -590,6 +630,10 @@ ScreenChars:
     Type:  unsigned char *
 MoveScreenUp:
     AsmName: _MoveScreenUp
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+MoveScreenDown:
+    AsmName: _MoveScreenDown
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
     Type:  void (void)
 SetChar:
@@ -748,6 +792,10 @@ currentScreen:
     AsmName: _currentScreen
     Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
     Type:  enum $anon-enum-000E
+setBit:
+    AsmName: _setBit
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DEF 0x100000
+    Type:  void (unsigned char *, unsigned char)
 
 
 
@@ -1820,6 +1868,10 @@ WriteBit:
     AsmName: _WriteBit
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
     Type:  void (unsigned char *, char, enum $anon-enum-000D)
+clearBit:
+    AsmName: _clearBit
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
+    Type:  int (unsigned char *, int)
 ReadBit:
     AsmName: _ReadBit
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
@@ -1874,6 +1926,10 @@ ScreenChars:
     Type:  unsigned char *
 MoveScreenUp:
     AsmName: _MoveScreenUp
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+MoveScreenDown:
+    AsmName: _MoveScreenDown
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
     Type:  void (void)
 SetChar:
@@ -2032,6 +2088,10 @@ currentScreen:
     AsmName: _currentScreen
     Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
     Type:  enum $anon-enum-000E
+setBit:
+    AsmName: _setBit
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DEF 0x100000
+    Type:  void (unsigned char *, unsigned char)
 
 
 
@@ -2441,6 +2501,10 @@ WriteBit:
     AsmName: _WriteBit
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
     Type:  void (unsigned char *, char, enum $anon-enum-000D)
+clearBit:
+    AsmName: _clearBit
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
+    Type:  int (unsigned char *, int)
 ReadBit:
     AsmName: _ReadBit
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
@@ -2495,6 +2559,10 @@ ScreenChars:
     Type:  unsigned char *
 MoveScreenUp:
     AsmName: _MoveScreenUp
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
+MoveScreenDown:
+    AsmName: _MoveScreenDown
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
     Type:  void (void)
 SetChar:
@@ -2653,6 +2721,10 @@ currentScreen:
     AsmName: _currentScreen
     Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
     Type:  enum $anon-enum-000E
+setBit:
+    AsmName: _setBit
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DEF 0x100000
+    Type:  void (unsigned char *, unsigned char)
 
 
 

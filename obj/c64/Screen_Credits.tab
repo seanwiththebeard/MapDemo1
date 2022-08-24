@@ -7,9 +7,6 @@ __fixargs__:
 __argsize__:
     Flags: SC_CONST SC_DEF
     Type:  unsigned char
-i:
-    Flags: SC_AUTO SC_DEF SC_REF
-    Type:  unsigned char
 
 
 
@@ -21,6 +18,9 @@ __fixargs__:
     Type:  unsigned int
 __argsize__:
     Flags: SC_CONST SC_DEF
+    Type:  unsigned char
+temp:
+    Flags: SC_AUTO SC_DEF SC_REF
     Type:  unsigned char
 nextScreen:
     Flags: SC_AUTO SC_DEF SC_REF
@@ -423,7 +423,7 @@ raster_wait:
     Type:  void (unsigned char)
 wait_vblank:
     AsmName: _wait_vblank
-    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_REF 0x100000
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
     Type:  void (unsigned char)
 SwitchScreen:
     AsmName: _SwitchScreen
@@ -437,6 +437,10 @@ WriteBit:
     AsmName: _WriteBit
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
     Type:  void (unsigned char *, char, enum $anon-enum-000D)
+clearBit:
+    AsmName: _clearBit
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (unsigned char *, int)
 ReadBit:
     AsmName: _ReadBit
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
@@ -677,6 +681,10 @@ MoveScreenUp:
     AsmName: _MoveScreenUp
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_REF 0x100000
     Type:  void (void)
+MoveScreenDown:
+    AsmName: _MoveScreenDown
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
 SetChar:
     AsmName: _SetChar
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
@@ -695,7 +703,7 @@ ClearScreen:
     Type:  void (void)
 ScrollReset:
     AsmName: _ScrollReset
-    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_REF 0x100000
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
     Type:  void (void)
 DrawCharacterSet:
     AsmName: _DrawCharacterSet
@@ -1922,7 +1930,7 @@ raster_wait:
     Type:  void (unsigned char)
 wait_vblank:
     AsmName: _wait_vblank
-    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_REF 0x100000
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
     Type:  void (unsigned char)
 SwitchScreen:
     AsmName: _SwitchScreen
@@ -1936,6 +1944,10 @@ WriteBit:
     AsmName: _WriteBit
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
     Type:  void (unsigned char *, char, enum $anon-enum-000D)
+clearBit:
+    AsmName: _clearBit
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (unsigned char *, int)
 ReadBit:
     AsmName: _ReadBit
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
@@ -2176,6 +2188,10 @@ MoveScreenUp:
     AsmName: _MoveScreenUp
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_REF 0x100000
     Type:  void (void)
+MoveScreenDown:
+    AsmName: _MoveScreenDown
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
 SetChar:
     AsmName: _SetChar
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
@@ -2194,7 +2210,7 @@ ClearScreen:
     Type:  void (void)
 ScrollReset:
     AsmName: _ScrollReset
-    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_REF 0x100000
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
     Type:  void (void)
 DrawCharacterSet:
     AsmName: _DrawCharacterSet
@@ -2755,7 +2771,7 @@ raster_wait:
     Type:  void (unsigned char)
 wait_vblank:
     AsmName: _wait_vblank
-    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_REF 0x100000
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
     Type:  void (unsigned char)
 SwitchScreen:
     AsmName: _SwitchScreen
@@ -2769,6 +2785,10 @@ WriteBit:
     AsmName: _WriteBit
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
     Type:  void (unsigned char *, char, enum $anon-enum-000D)
+clearBit:
+    AsmName: _clearBit
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  int (unsigned char *, int)
 ReadBit:
     AsmName: _ReadBit
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
@@ -3009,6 +3029,10 @@ MoveScreenUp:
     AsmName: _MoveScreenUp
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_REF 0x100000
     Type:  void (void)
+MoveScreenDown:
+    AsmName: _MoveScreenDown
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
+    Type:  void (void)
 SetChar:
     AsmName: _SetChar
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
@@ -3027,7 +3051,7 @@ ClearScreen:
     Type:  void (void)
 ScrollReset:
     AsmName: _ScrollReset
-    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_REF 0x100000
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
     Type:  void (void)
 DrawCharacterSet:
     AsmName: _DrawCharacterSet

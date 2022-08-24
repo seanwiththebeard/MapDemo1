@@ -1,16 +1,4 @@
 
-SC_FUNC: _ChangeBufferTarget: Symbol table
-==========================================
-__fixargs__:
-    Flags: SC_CONST SC_DEF
-    Type:  unsigned int
-__argsize__:
-    Flags: SC_CONST SC_DEF
-    Type:  unsigned char
-
-
-
-
 SC_FUNC: _FlipBuffer: Symbol table
 ==================================
 __fixargs__:
@@ -30,6 +18,24 @@ __fixargs__:
     Type:  unsigned int
 __argsize__:
     Flags: SC_CONST SC_DEF
+    Type:  unsigned char
+ys:
+    Flags: SC_AUTO SC_DEF SC_REF
+    Type:  unsigned char
+
+
+
+
+SC_FUNC: _MoveScreenDown: Symbol table
+======================================
+__fixargs__:
+    Flags: SC_CONST SC_DEF
+    Type:  unsigned int
+__argsize__:
+    Flags: SC_CONST SC_DEF
+    Type:  unsigned char
+ys:
+    Flags: SC_AUTO SC_DEF SC_REF
     Type:  unsigned char
 
 
@@ -206,18 +212,6 @@ __argsize__:
 
 
 
-SC_FUNC: _ScrollReset: Symbol table
-===================================
-__fixargs__:
-    Flags: SC_CONST SC_DEF
-    Type:  unsigned int
-__argsize__:
-    Flags: SC_CONST SC_DEF
-    Type:  unsigned char
-
-
-
-
 SC_FUNC: _ReverseBufferArea: Symbol table
 =========================================
 posX:
@@ -258,6 +252,12 @@ __fixargs__:
     Type:  unsigned int
 __argsize__:
     Flags: SC_CONST SC_DEF
+    Type:  unsigned char
+regd018:
+    Flags: SC_AUTO SC_DEF SC_REF
+    Type:  int *
+vicreg:
+    Flags: SC_AUTO SC_DEF SC_REF
     Type:  unsigned char
 
 
@@ -834,7 +834,7 @@ false:
     Flags: SC_ENUMERATOR SC_CONST SC_REF
     Type:  int
 true:
-    Flags: SC_ENUMERATOR SC_CONST
+    Flags: SC_ENUMERATOR SC_CONST SC_REF
     Type:  int
 bool:
     AsmName: _bool
@@ -893,6 +893,10 @@ WriteBit:
     AsmName: _WriteBit
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_REF 0x100000
     Type:  void (unsigned char *, char, enum $anon-enum-000D)
+clearBit:
+    AsmName: _clearBit
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_REF 0x100000
+    Type:  int (unsigned char *, int)
 ReadBit:
     AsmName: _ReadBit
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_REF 0x100000
@@ -1425,6 +1429,10 @@ MoveScreenUp:
     AsmName: _MoveScreenUp
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
     Type:  void (void)
+MoveScreenDown:
+    AsmName: _MoveScreenDown
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
+    Type:  void (void)
 SetChar:
     AsmName: _SetChar
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF SC_REF 0x100000
@@ -1443,7 +1451,7 @@ ClearScreen:
     Type:  void (void)
 ScrollReset:
     AsmName: _ScrollReset
-    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
     Type:  void (void)
 DrawCharacterSet:
     AsmName: _DrawCharacterSet
@@ -1451,7 +1459,7 @@ DrawCharacterSet:
     Type:  void (unsigned char, unsigned char)
 CopyDoubleBuffer:
     AsmName: _CopyDoubleBuffer
-    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF SC_REF 0x100000
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
     Type:  void (void)
 CopyDoubleBufferArea:
     AsmName: _CopyDoubleBufferArea
@@ -1633,10 +1641,6 @@ i:
     AsmName: _i
     Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
     Type:  int
-BufferChars:
-    AsmName: _BufferChars
-    Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
-    Type:  unsigned char *
 ScreenColors:
     AsmName: _ScreenColors
     Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
@@ -1665,14 +1669,10 @@ FlashFrames:
     AsmName: _FlashFrames
     Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
     Type:  int
-bufferSelect:
-    AsmName: _bufferSelect
+bufferselect:
+    AsmName: _bufferselect
     Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
     Type:  enum $anon-enum-000D
-ChangeBufferTarget:
-    AsmName: _ChangeBufferTarget
-    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DEF 0x100000
-    Type:  void (void)
 FlipBuffer:
     AsmName: _FlipBuffer
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DEF SC_REF 0x100000
@@ -2704,7 +2704,7 @@ false:
     Flags: SC_ENUMERATOR SC_CONST SC_REF
     Type:  int
 true:
-    Flags: SC_ENUMERATOR SC_CONST
+    Flags: SC_ENUMERATOR SC_CONST SC_REF
     Type:  int
 bool:
     AsmName: _bool
@@ -2763,6 +2763,10 @@ WriteBit:
     AsmName: _WriteBit
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_REF 0x100000
     Type:  void (unsigned char *, char, enum $anon-enum-000D)
+clearBit:
+    AsmName: _clearBit
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_REF 0x100000
+    Type:  int (unsigned char *, int)
 ReadBit:
     AsmName: _ReadBit
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_REF 0x100000
@@ -3295,6 +3299,10 @@ MoveScreenUp:
     AsmName: _MoveScreenUp
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
     Type:  void (void)
+MoveScreenDown:
+    AsmName: _MoveScreenDown
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
+    Type:  void (void)
 SetChar:
     AsmName: _SetChar
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF SC_REF 0x100000
@@ -3313,7 +3321,7 @@ ClearScreen:
     Type:  void (void)
 ScrollReset:
     AsmName: _ScrollReset
-    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
     Type:  void (void)
 DrawCharacterSet:
     AsmName: _DrawCharacterSet
@@ -3321,7 +3329,7 @@ DrawCharacterSet:
     Type:  void (unsigned char, unsigned char)
 CopyDoubleBuffer:
     AsmName: _CopyDoubleBuffer
-    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF SC_REF 0x100000
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
     Type:  void (void)
 CopyDoubleBufferArea:
     AsmName: _CopyDoubleBufferArea
@@ -3503,10 +3511,6 @@ i:
     AsmName: _i
     Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
     Type:  int
-BufferChars:
-    AsmName: _BufferChars
-    Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
-    Type:  unsigned char *
 ScreenColors:
     AsmName: _ScreenColors
     Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
@@ -3535,14 +3539,10 @@ FlashFrames:
     AsmName: _FlashFrames
     Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
     Type:  int
-bufferSelect:
-    AsmName: _bufferSelect
+bufferselect:
+    AsmName: _bufferselect
     Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
     Type:  enum $anon-enum-000D
-ChangeBufferTarget:
-    AsmName: _ChangeBufferTarget
-    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DEF 0x100000
-    Type:  void (void)
 FlipBuffer:
     AsmName: _FlipBuffer
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DEF SC_REF 0x100000
@@ -3905,7 +3905,7 @@ false:
     Flags: SC_ENUMERATOR SC_CONST SC_REF
     Type:  int
 true:
-    Flags: SC_ENUMERATOR SC_CONST
+    Flags: SC_ENUMERATOR SC_CONST SC_REF
     Type:  int
 bool:
     AsmName: _bool
@@ -3964,6 +3964,10 @@ WriteBit:
     AsmName: _WriteBit
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_REF 0x100000
     Type:  void (unsigned char *, char, enum $anon-enum-000D)
+clearBit:
+    AsmName: _clearBit
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_REF 0x100000
+    Type:  int (unsigned char *, int)
 ReadBit:
     AsmName: _ReadBit
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_REF 0x100000
@@ -4496,6 +4500,10 @@ MoveScreenUp:
     AsmName: _MoveScreenUp
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
     Type:  void (void)
+MoveScreenDown:
+    AsmName: _MoveScreenDown
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
+    Type:  void (void)
 SetChar:
     AsmName: _SetChar
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF SC_REF 0x100000
@@ -4514,7 +4522,7 @@ ClearScreen:
     Type:  void (void)
 ScrollReset:
     AsmName: _ScrollReset
-    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL 0x100000
     Type:  void (void)
 DrawCharacterSet:
     AsmName: _DrawCharacterSet
@@ -4522,7 +4530,7 @@ DrawCharacterSet:
     Type:  void (unsigned char, unsigned char)
 CopyDoubleBuffer:
     AsmName: _CopyDoubleBuffer
-    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF SC_REF 0x100000
+    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DECL SC_DEF 0x100000
     Type:  void (void)
 CopyDoubleBufferArea:
     AsmName: _CopyDoubleBufferArea
@@ -4704,10 +4712,6 @@ i:
     AsmName: _i
     Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
     Type:  int
-BufferChars:
-    AsmName: _BufferChars
-    Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
-    Type:  unsigned char *
 ScreenColors:
     AsmName: _ScreenColors
     Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
@@ -4736,14 +4740,10 @@ FlashFrames:
     AsmName: _FlashFrames
     Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
     Type:  int
-bufferSelect:
-    AsmName: _bufferSelect
+bufferselect:
+    AsmName: _bufferselect
     Flags: SC_STATIC SC_EXTERN SC_STORAGE SC_DEF SC_REF 0x100000
     Type:  enum $anon-enum-000D
-ChangeBufferTarget:
-    AsmName: _ChangeBufferTarget
-    Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DEF 0x100000
-    Type:  void (void)
 FlipBuffer:
     AsmName: _FlipBuffer
     Flags: SC_FUNC SC_STATIC SC_EXTERN SC_DEF SC_REF 0x100000

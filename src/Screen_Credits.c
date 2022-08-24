@@ -47,16 +47,16 @@ void ScrollUp()
     //PrintString(str, xcredit % 2, 24, true, false);
   }
   {
-    MoveScreenUp();
+    MoveScreenDown();
     if (xcredit < linecount)
     {
       if (xoff %4 != 0)
       {
-        PrintString(CreditsLines[xcredit], xcredit % 3, 24, true, false);
+        PrintString(CreditsLines[xcredit], xcredit % 3, 0, true, true);
         ++xcredit;   
       }
       else
-        PrintString("@", xcredit % 3, 24, true, false);
+        PrintString("@", xcredit % 3, 0, true, true);
     }
     ++xoff;
   }

@@ -4,68 +4,68 @@ BFRPG.o:
     BSS               Offs=000000  Size=000006  Align=00001  Fill=0000
     DATA              Offs=000000  Size=0000B0  Align=00001  Fill=0000
 Common.o:
-    CODE              Offs=000000  Size=000152  Align=00001  Fill=0000
+    CODE              Offs=000000  Size=0001BD  Align=00001  Fill=0000
     BSS               Offs=000006  Size=000010  Align=00001  Fill=0000
     DATA              Offs=0000B0  Size=000003  Align=00001  Fill=0000
 Lists.o:
-    CODE              Offs=000152  Size=000500  Align=00001  Fill=0000
+    CODE              Offs=0001BD  Size=000500  Align=00001  Fill=0000
     RODATA            Offs=000000  Size=000015  Align=00001  Fill=0000
     DATA              Offs=0000B3  Size=000004  Align=00001  Fill=0000
 MapDemo.o:
-    CODE              Offs=000652  Size=00005D  Align=00001  Fill=0000
+    CODE              Offs=0006BD  Size=00005D  Align=00001  Fill=0000
     RODATA            Offs=000015  Size=00001A  Align=00001  Fill=0000
 Screen_AddCharacter.o:
-    CODE              Offs=0006AF  Size=000F56  Align=00001  Fill=0000
+    CODE              Offs=00071A  Size=000F56  Align=00001  Fill=0000
     RODATA            Offs=00002F  Size=0001D6  Align=00001  Fill=0000
     BSS               Offs=000016  Size=00008E  Align=00001  Fill=0000
     DATA              Offs=0000B7  Size=00000A  Align=00001  Fill=0000
 Screen_Combat.o:
-    CODE              Offs=001605  Size=00010F  Align=00001  Fill=0000
+    CODE              Offs=001670  Size=00010F  Align=00001  Fill=0000
     RODATA            Offs=000205  Size=000009  Align=00001  Fill=0000
     DATA              Offs=0000C1  Size=000001  Align=00001  Fill=0000
 Screen_Credits.o:
-    CODE              Offs=001714  Size=000117  Align=00001  Fill=0000
+    CODE              Offs=00177F  Size=0000EF  Align=00001  Fill=0000
     RODATA            Offs=00020E  Size=000002  Align=00001  Fill=0000
     BSS               Offs=0000A4  Size=000005  Align=00001  Fill=0000
     DATA              Offs=0000C2  Size=000118  Align=00001  Fill=0000
 Screen_Map.o:
-    CODE              Offs=00182B  Size=0021BD  Align=00001  Fill=0000
+    CODE              Offs=00186E  Size=0021BD  Align=00001  Fill=0000
     RODATA            Offs=000210  Size=00000C  Align=00001  Fill=0000
     BSS               Offs=0000A9  Size=000E84  Align=00001  Fill=0000
     DATA              Offs=0001DA  Size=00004F  Align=00001  Fill=0000
 Screen_Title.o:
-    CODE              Offs=0039E8  Size=0000B2  Align=00001  Fill=0000
+    CODE              Offs=003A2B  Size=0000B2  Align=00001  Fill=0000
     RODATA            Offs=00021C  Size=00001B  Align=00001  Fill=0000
 System_Audio.o:
-    CODE              Offs=003A9A  Size=000017  Align=00001  Fill=0000
+    CODE              Offs=003ADD  Size=000017  Align=00001  Fill=0000
 System_CharacterSets.o:
-    CODE              Offs=003AB1  Size=000015  Align=00001  Fill=0000
+    CODE              Offs=003AF4  Size=000015  Align=00001  Fill=0000
     DATA              Offs=000229  Size=000100  Align=00001  Fill=0000
 System_FileIO.o:
-    CODE              Offs=003AC6  Size=0000B2  Align=00001  Fill=0000
+    CODE              Offs=003B09  Size=0000B2  Align=00001  Fill=0000
     RODATA            Offs=000237  Size=000006  Align=00001  Fill=0000
 System_Graphics.o:
-    CODE              Offs=003B78  Size=000E0C  Align=00001  Fill=0000
-    BSS               Offs=000F2D  Size=00002E  Align=00001  Fill=0000
+    CODE              Offs=003BBB  Size=000F2B  Align=00001  Fill=0000
+    BSS               Offs=000F2D  Size=00002C  Align=00001  Fill=0000
     DATA              Offs=000329  Size=00003D  Align=00001  Fill=0000
 System_Input.o:
-    CODE              Offs=004984  Size=000097  Align=00001  Fill=0000
-    BSS               Offs=000F5B  Size=000001  Align=00001  Fill=0000
+    CODE              Offs=004AE6  Size=000097  Align=00001  Fill=0000
+    BSS               Offs=000F59  Size=000001  Align=00001  Fill=0000
     DATA              Offs=000366  Size=000003  Align=00001  Fill=0000
 System_MessageWindow.o:
-    CODE              Offs=004A1B  Size=000553  Align=00001  Fill=0000
+    CODE              Offs=004B7D  Size=000553  Align=00001  Fill=0000
     RODATA            Offs=00023D  Size=00000E  Align=00001  Fill=0000
-    BSS               Offs=000F5C  Size=00015A  Align=00001  Fill=0000
+    BSS               Offs=000F5A  Size=00015A  Align=00001  Fill=0000
     DATA              Offs=000369  Size=000402  Align=00001  Fill=0000
 System_MusicPlayer.o:
-    CODE              Offs=004F6E  Size=000190  Align=00001  Fill=0000
+    CODE              Offs=0050D0  Size=000190  Align=00001  Fill=0000
     RODATA            Offs=00024B  Size=000775  Align=00001  Fill=0000
     DATA              Offs=00076B  Size=000006  Align=00001  Fill=0000
 CharacterSetASM.o:
 SIDPlayerASM.o:
-    CODE              Offs=0050FE  Size=000043  Align=00001  Fill=0000
+    CODE              Offs=005260  Size=000043  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(_directerrno.o):
-    CODE              Offs=005141  Size=00000A  Align=00001  Fill=0000
+    CODE              Offs=0052A3  Size=00000A  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(_heap.o):
     DATA              Offs=000771  Size=00000A  Align=00001  Fill=0000
     ONCE              Offs=000000  Size=000010  Align=00001  Fill=0000
@@ -74,48 +74,48 @@ c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(_longminstr.o):
     RODATA            Offs=0009D0  Size=00000C  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(_oserror.o):
-    BSS               Offs=0010B6  Size=000001  Align=00001  Fill=0000
+    BSS               Offs=0010B4  Size=000001  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(_printf.o):
-    CODE              Offs=00514B  Size=0003A5  Align=00001  Fill=0000
-    BSS               Offs=0010B7  Size=00002B  Align=00001  Fill=0000
+    CODE              Offs=0052AD  Size=0003A5  Align=00001  Fill=0000
+    BSS               Offs=0010B5  Size=00002B  Align=00001  Fill=0000
     DATA              Offs=00077B  Size=000003  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(_seterrno.o):
-    CODE              Offs=0054F0  Size=000009  Align=00001  Fill=0000
+    CODE              Offs=005652  Size=000009  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(add.o):
-    CODE              Offs=0054F9  Size=00001C  Align=00001  Fill=0000
+    CODE              Offs=00565B  Size=00001C  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(addeqsp.o):
-    CODE              Offs=005515  Size=000011  Align=00001  Fill=0000
+    CODE              Offs=005677  Size=000011  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(addysp.o):
-    CODE              Offs=005526  Size=00000E  Align=00001  Fill=0000
+    CODE              Offs=005688  Size=00000E  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(aslax2.o):
-    CODE              Offs=005534  Size=00000B  Align=00001  Fill=0000
+    CODE              Offs=005696  Size=00000B  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(aslax3.o):
-    CODE              Offs=00553F  Size=00000E  Align=00001  Fill=0000
+    CODE              Offs=0056A1  Size=00000E  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(aslax4.o):
-    CODE              Offs=00554D  Size=000011  Align=00001  Fill=0000
+    CODE              Offs=0056AF  Size=000011  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(axlong.o):
-    CODE              Offs=00555E  Size=00000D  Align=00001  Fill=0000
+    CODE              Offs=0056C0  Size=00000D  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(bordercolor.o):
-    CODE              Offs=00556B  Size=000008  Align=00001  Fill=0000
+    CODE              Offs=0056CD  Size=000008  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(c_close.o):
-    CODE              Offs=005573  Size=000004  Align=00001  Fill=0000
+    CODE              Offs=0056D5  Size=000004  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(c_load.o):
-    CODE              Offs=005577  Size=00001D  Align=00001  Fill=0000
+    CODE              Offs=0056D9  Size=00001D  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(c_open.o):
-    CODE              Offs=005594  Size=000009  Align=00001  Fill=0000
+    CODE              Offs=0056F6  Size=000009  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(c_save.o):
-    CODE              Offs=00559D  Size=000016  Align=00001  Fill=0000
+    CODE              Offs=0056FF  Size=000016  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(c_setlfs.o):
-    CODE              Offs=0055B3  Size=00000E  Align=00001  Fill=0000
+    CODE              Offs=005715  Size=00000E  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(c_setnam.o):
-    CODE              Offs=0055C1  Size=000013  Align=00001  Fill=0000
+    CODE              Offs=005723  Size=000013  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(callmain.o):
-    CODE              Offs=0055D4  Size=000017  Align=00001  Fill=0000
+    CODE              Offs=005736  Size=000017  Align=00001  Fill=0000
     DATA              Offs=00077E  Size=000004  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(color.o):
-    CODE              Offs=0055EB  Size=000010  Align=00001  Fill=0000
+    CODE              Offs=00574D  Size=000010  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(condes.o):
-    CODE              Offs=0055FB  Size=00000C  Align=00001  Fill=0000
+    CODE              Offs=00575D  Size=00000C  Align=00001  Fill=0000
     DATA              Offs=000782  Size=000025  Align=00001  Fill=0000
     ONCE              Offs=000010  Size=00000C  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(crt0.o):
@@ -125,126 +125,126 @@ c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(ctype.o):
     RODATA            Offs=0009DC  Size=00008B  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(ctypemask.o):
-    CODE              Offs=005607  Size=00001E  Align=00001  Fill=0000
+    CODE              Offs=005769  Size=00001E  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(decsp1.o):
-    CODE              Offs=005625  Size=000009  Align=00001  Fill=0000
+    CODE              Offs=005787  Size=000009  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(decsp2.o):
-    CODE              Offs=00562E  Size=00000D  Align=00001  Fill=0000
+    CODE              Offs=005790  Size=00000D  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(decsp3.o):
-    CODE              Offs=00563B  Size=00000D  Align=00001  Fill=0000
+    CODE              Offs=00579D  Size=00000D  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(decsp4.o):
-    CODE              Offs=005648  Size=00000D  Align=00001  Fill=0000
+    CODE              Offs=0057AA  Size=00000D  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(decsp5.o):
-    CODE              Offs=005655  Size=00000D  Align=00001  Fill=0000
+    CODE              Offs=0057B7  Size=00000D  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(decsp6.o):
-    CODE              Offs=005662  Size=00000D  Align=00001  Fill=0000
+    CODE              Offs=0057C4  Size=00000D  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(decsp7.o):
-    CODE              Offs=00566F  Size=00000D  Align=00001  Fill=0000
+    CODE              Offs=0057D1  Size=00000D  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(errno.o):
-    BSS               Offs=0010E2  Size=000002  Align=00001  Fill=0000
+    BSS               Offs=0010E0  Size=000002  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(exehdr.o):
     EXEHDR            Offs=000000  Size=00000C  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(free.o):
-    CODE              Offs=00567C  Size=0001D3  Align=00001  Fill=0000
+    CODE              Offs=0057DE  Size=0001D3  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(icmp.o):
-    CODE              Offs=00584F  Size=00002E  Align=00001  Fill=0000
+    CODE              Offs=0059B1  Size=00002E  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(incsp1.o):
-    CODE              Offs=00587D  Size=000007  Align=00001  Fill=0000
+    CODE              Offs=0059DF  Size=000007  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(incsp2.o):
-    CODE              Offs=005884  Size=000016  Align=00001  Fill=0000
+    CODE              Offs=0059E6  Size=000016  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(incsp3.o):
-    CODE              Offs=00589A  Size=000005  Align=00001  Fill=0000
+    CODE              Offs=0059FC  Size=000005  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(incsp4.o):
-    CODE              Offs=00589F  Size=000005  Align=00001  Fill=0000
+    CODE              Offs=005A01  Size=000005  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(incsp5.o):
-    CODE              Offs=0058A4  Size=000005  Align=00001  Fill=0000
+    CODE              Offs=005A06  Size=000005  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(incsp6.o):
-    CODE              Offs=0058A9  Size=000005  Align=00001  Fill=0000
+    CODE              Offs=005A0B  Size=000005  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(incsp7.o):
-    CODE              Offs=0058AE  Size=000005  Align=00001  Fill=0000
+    CODE              Offs=005A10  Size=000005  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(joy-kernel.o):
-    CODE              Offs=0058B3  Size=00004D  Align=00001  Fill=0000
+    CODE              Offs=005A15  Size=00004D  Align=00001  Fill=0000
     RODATA            Offs=000A67  Size=000004  Align=00001  Fill=0000
-    BSS               Offs=0010E4  Size=000002  Align=00001  Fill=0000
+    BSS               Offs=0010E2  Size=000002  Align=00001  Fill=0000
     DATA              Offs=0007A7  Size=00000C  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(joy_read.o):
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(joy_stat_stddrv.o):
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(kernal.o):
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(ldaxsp.o):
-    CODE              Offs=005900  Size=000009  Align=00001  Fill=0000
+    CODE              Offs=005A62  Size=000009  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(libref.o):
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(lneg.o):
-    CODE              Offs=005909  Size=00001E  Align=00001  Fill=0000
+    CODE              Offs=005A6B  Size=00001E  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(loadaddr.o):
     LOADADDR          Offs=000000  Size=000002  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(lpush.o):
-    CODE              Offs=005927  Size=000021  Align=00001  Fill=0000
+    CODE              Offs=005A89  Size=000021  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(ltoa.o):
-    CODE              Offs=005948  Size=000095  Align=00001  Fill=0000
+    CODE              Offs=005AAA  Size=000095  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(makebool.o):
-    CODE              Offs=0059DD  Size=00002C  Align=00001  Fill=0000
+    CODE              Offs=005B3F  Size=00002C  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(malloc.o):
-    CODE              Offs=005A09  Size=00010E  Align=00001  Fill=0000
+    CODE              Offs=005B6B  Size=00010E  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(memcpy.o):
-    CODE              Offs=005B17  Size=00003C  Align=00001  Fill=0000
+    CODE              Offs=005C79  Size=00003C  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(mod.o):
-    CODE              Offs=005B53  Size=000011  Align=00001  Fill=0000
+    CODE              Offs=005CB5  Size=000011  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(mul8.o):
-    CODE              Offs=005B64  Size=00003A  Align=00001  Fill=0000
+    CODE              Offs=005CC6  Size=00003A  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(mulax3.o):
-    CODE              Offs=005B9E  Size=000011  Align=00001  Fill=0000
+    CODE              Offs=005D00  Size=000011  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(mulax9.o):
-    CODE              Offs=005BAF  Size=000017  Align=00001  Fill=0000
+    CODE              Offs=005D11  Size=000017  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(negabs.o):
-    CODE              Offs=005BC6  Size=000012  Align=00001  Fill=0000
+    CODE              Offs=005D28  Size=000012  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(popa.o):
-    CODE              Offs=005BD8  Size=00000C  Align=00001  Fill=0000
+    CODE              Offs=005D3A  Size=00000C  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(popptr1.o):
-    CODE              Offs=005BE4  Size=00000E  Align=00001  Fill=0000
+    CODE              Offs=005D46  Size=00000E  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(push1.o):
-    CODE              Offs=005BF2  Size=000005  Align=00001  Fill=0000
+    CODE              Offs=005D54  Size=000005  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(pusha.o):
-    CODE              Offs=005BF7  Size=000016  Align=00001  Fill=0000
+    CODE              Offs=005D59  Size=000016  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(pushax.o):
-    CODE              Offs=005C0D  Size=00001A  Align=00001  Fill=0000
+    CODE              Offs=005D6F  Size=00001A  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(pushwsp.o):
-    CODE              Offs=005C27  Size=00001C  Align=00001  Fill=0000
+    CODE              Offs=005D89  Size=00001C  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(rand.o):
-    CODE              Offs=005C43  Size=000034  Align=00001  Fill=0000
+    CODE              Offs=005DA5  Size=000034  Align=00001  Fill=0000
     DATA              Offs=0007B3  Size=000004  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(shelp.o):
-    CODE              Offs=005C77  Size=000020  Align=00001  Fill=0000
+    CODE              Offs=005DD9  Size=000020  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(sprintf.o):
-    CODE              Offs=005C97  Size=00002B  Align=00001  Fill=0000
-    BSS               Offs=0010E6  Size=000001  Align=00001  Fill=0000
+    CODE              Offs=005DF9  Size=00002B  Align=00001  Fill=0000
+    BSS               Offs=0010E4  Size=000001  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(staspidx.o):
-    CODE              Offs=005CC2  Size=000016  Align=00001  Fill=0000
+    CODE              Offs=005E24  Size=000016  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(status.o):
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(staxsp.o):
-    CODE              Offs=005CD8  Size=00000B  Align=00001  Fill=0000
+    CODE              Offs=005E3A  Size=00000B  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(staxspi.o):
-    CODE              Offs=005CE3  Size=00001B  Align=00001  Fill=0000
+    CODE              Offs=005E45  Size=00001B  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(strlen.o):
-    CODE              Offs=005CFE  Size=000016  Align=00001  Fill=0000
+    CODE              Offs=005E60  Size=000016  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(strlower.o):
-    CODE              Offs=005D14  Size=000027  Align=00001  Fill=0000
+    CODE              Offs=005E76  Size=000027  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(subysp.o):
-    CODE              Offs=005D3B  Size=00000D  Align=00001  Fill=0000
+    CODE              Offs=005E9D  Size=00000D  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(udiv.o):
-    CODE              Offs=005D48  Size=00004F  Align=00001  Fill=0000
+    CODE              Offs=005EAA  Size=00004F  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(umod.o):
-    CODE              Offs=005D97  Size=000011  Align=00001  Fill=0000
+    CODE              Offs=005EF9  Size=000011  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(vsnprintf.o):
-    CODE              Offs=005DA8  Size=0000DA  Align=00001  Fill=0000
+    CODE              Offs=005F0A  Size=0000DA  Align=00001  Fill=0000
     DATA              Offs=0007B7  Size=000008  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(vsprintf.o):
-    CODE              Offs=005E82  Size=000012  Align=00001  Fill=0000
+    CODE              Offs=005FE4  Size=000012  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(zerobss.o):
-    CODE              Offs=005E94  Size=000023  Align=00001  Fill=0000
+    CODE              Offs=005FF6  Size=000023  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(zeropage.o):
     ZEROPAGE          Offs=000000  Size=00001A  Align=00001  Fill=0000
 c:\Users\sean\.vscode\extensions\entan-gl.cc65-vice-6.3.2\dist\cc65/lib/c64.lib(c64-stdjoy-joy.o):
-    CODE              Offs=005EB7  Size=000032  Align=00001  Fill=0000
+    CODE              Offs=006019  Size=000032  Align=00001  Fill=0000
     DATA              Offs=0007BF  Size=00000E  Align=00001  Fill=0000
 
 
@@ -256,12 +256,12 @@ ZEROPAGE              000002  00001B  00001A  00001
 LOADADDR              0007FF  000800  000002  00001
 EXEHDR                000801  00080C  00000C  00001
 STARTUP               00080D  00083F  000033  00001
-CODE                  000840  006728  005EE9  00001
-RODATA                006729  007193  000A6B  00001
-DATA                  007194  007960  0007CD  00001
-INIT                  007961  00797C  00001C  00001
-BSS                   00797D  008A63  0010E7  00001
-ONCE                  00797D  0079B4  000038  00001
+CODE                  000840  00688A  00604B  00001
+RODATA                00688B  0072F5  000A6B  00001
+DATA                  0072F6  007AC2  0007CD  00001
+INIT                  007AC3  007ADE  00001C  00001
+BSS                   007ADF  008BC3  0010E5  00001
+ONCE                  007ADF  007B16  000038  00001
 
 
 Exports list by name:
@@ -270,107 +270,107 @@ BSOUT                     00FFD2 RLA    CLOSE                     00FFC3 RLA
 LOAD                      00FFD5 RLA    OPEN                      00FFC0 RLA    
 SAVE                      00FFD8 RLA    SETLFS                    00FFBA RLA    
 SETNAM                    00FFBD RLA    ST                        000090 RLZ    
-_AbilityModifier          00721C RLA    _AddParty                 000B9A RLA    
-_AttributeSet             0073BD RLA    _BlankMessageWindow       00535D RLA    
-_CharRam                  0088AA RLA    _ClassDescription         0071D8 RLA    
-_ClearScreen              004530 RLA    _CopyDoubleBuffer         004629 RLA    
-_CopyDoubleBufferArea     004659 RLA    _CountParty               000D20 RLA    
-_CountRoster              000B04 RLA    _DiskLoad                 00437D RLA    
-_DrawAddCharacterScreen   001E29 RLA    _DrawBorder               004FC1 RLA    
-_DrawCharStats            005785 RLA    _DrawLineH                004F41 RLA    
-_DrawMessageWindow        00525B RLA    _DrawTileFast             004ACE RLA    
-_InitializeInput          0051C4 RLA    _InputChanged             00520C RLA    
-_InputDown                005227 RLA    _InputFire                00524E RLA    
-_InputLeft                005234 RLA    _InputRight               005241 RLA    
-_InputUp                  00521A RLA    _LoadMap                  004196 RLA    
-_MapUpdate                00419F RLA    _Messages                 0074FF RLA    
-_MoveScreenUp             0043B8 RLA    _PlaySID                  0042DA RLA    
-_PrintString              004EA7 RLA    _RaceDescription          007194 RLA    
-_ReadBit                  000942 RLA    _RemoveParty              000C5A RLA    
-_ReverseBufferArea        004784 RLA    _SIDINIT                  005949 RLA    
-_SIDPLAY                  005951 RLA    _SIDSTOP                  00593E RLA    
-_ScreenCharBuffer         0074BD RLA    _ScreenChars              0088AC RLA    
-_ScreenColorBuffer        0074BF RLA    _ScrollReset              004582 RLA    
-_SelectVICBanks           0048AF RLA    _SetChar                  00440B RLA    
-_SetCharC                 004473 RLA    _SetTileOrigin            004A99 RLA    
-_StopSID                  0042E0 RLA    _SwitchScreen             000876 RLA    
-_UpdateInput              0051CB RLA    _Update_Combat            001EDC RLA    
-_Update_Credits           00200C RLA    _Update_Title             004228 RLA    
-_WriteBit                 0008F7 RLA    _WriteLineMessageWindow   00544F RLA    
-_YColumnIndex             0074C3 RLA    __BSS_RUN__               00797D RLA    
-__BSS_SIZE__              0010E7 REA    __CONSTRUCTOR_COUNT__     000001 REA    
-__CONSTRUCTOR_TABLE__     0079B3 RLA    __DESTRUCTOR_COUNT__      000000 REA    
-__DESTRUCTOR_TABLE__      007194 RLA    __EXEHDR__                000001 REA    
-__HEADER_LAST__           00080D RLA    __HIMEM__                 00D000 REA    
-__LOADADDR__              000001 REA    __MAIN_SIZE__             00B7F3 REA    
-__MAIN_START__            00080D RLA    __ONCE_RUN__              00797D RLA    
-__STACKSIZE__             000800 REA    __STARTUP__               000001 REA    
-__ctype                   007105 RLA    __ctypeidx                007110 RLA    
-__directerrno             005981 RLA    __errno                   008A5F RLA    
-__heapend                 007909 RLA    __heapfirst               00790B RLA    
-__heaplast                00790D RLA    __heapptr                 007907 RLA    
-__hextab                  0070E9 RLA    __longminstr              0070F9 RLA    
-__oserror                 008A33 RLA    __printf                  005A7E RLA    
-__seterrno                005D30 RLA    _bgcolor                  005E33 RLA    
-_bordercolor              005DAB RLA    _c64_stdjoy_joy           007953 RLA    
-_cbm_k_close              005DB3 RLA    _cbm_k_load               005DB7 RLA    
-_cbm_k_open               005DD4 RLA    _cbm_k_save               005DDD RLA    
-_cbm_k_setlfs             005DF3 RLA    _cbm_k_setnam             005E01 RLA    
-_create                   000992 RLA    _delete_pos               000A28 RLA    
-_exit                     000825 RLA    _free                     005EBC RLA    
-_getPartyMember           000D61 RLA    _getPlayerChar            000B45 RLA    
-_joy_install              0060F3 RLA    _joy_read                 007944 REA    
-_joy_static_stddrv        007953 RLA    _ltoa                     0061A0 RLA    
-_main                     000EE7 RLA    _malloc                   006249 RLA    
-_memcpy                   006357 RLA    _rand                     00648F RLA    
-_randseed                 007244 RLA    _raster_wait              000840 RLA    
-_sprintf                  0064D7 RLA    _srand                    006483 RLA    
-_str                      007983 RLA    _strlen                   00653E RLA    
-_strlower                 006554 RLA    _ultoa                    0061E1 RLA    
-_vsprintf                 0066C2 RLA    _wait_vblank              00084F RLA    
-addeqysp                  005D57 RLA    addysp                    005D67 RLA    
-aslax2                    005D74 RLA    aslax3                    005D7F RLA    
-aslax4                    005D8D RLA    axlong                    005D9E RLA    
-axulong                   005DA4 RLA    boolult                   00623C RLA    
-callmain                  005E14 RLA    ctypemaskdirect           005E4B RLA    
-decsp1                    005E65 RLA    decsp2                    005E6E RLA    
-decsp3                    005E7B RLA    decsp4                    005E88 RLA    
-decsp5                    005E95 RLA    decsp6                    005EA2 RLA    
-decsp7                    005EAF RLA    donelib                   005E3B RLA    
-incsp1                    0060BD RLA    incsp2                    0060CC RLA    
-incsp3                    0060DA RLA    incsp4                    0060DF RLA    
-incsp5                    0060E4 RLA    incsp6                    0060E9 RLA    
-incsp7                    0060EE RLA    initheap                  00797D  LAI   
-initlib                   00798D RLA    joy_libref                000825 RLA    
-joy_read                  007944 RLA    ldaxysp                   006142 RLA    
-mulax3                    0063DE RLA    mulax9                    0063EF RLA    
-negax                     00640A RLA    negeax                    006149 RLA    
-popa                      006418 RLA    popax                     0060C4 RLA    
-popptr1                   006424 RLA    popsargsudiv16            0064B7 RLA    
+_AbilityModifier          00737E RLA    _AddParty                 000C05 RLA    
+_AttributeSet             00751F RLA    _BlankMessageWindow       0054BF RLA    
+_CharRam                  008A0C RLA    _ClassDescription         00733A RLA    
+_ClearScreen              004620 RLA    _CopyDoubleBuffer         004738 RLA    
+_CopyDoubleBufferArea     004768 RLA    _CountParty               000D8B RLA    
+_CountRoster              000B6F RLA    _DiskLoad                 0043C0 RLA    
+_DrawAddCharacterScreen   001E94 RLA    _DrawBorder               005110 RLA    
+_DrawCharStats            0058E7 RLA    _DrawLineH                005090 RLA    
+_DrawMessageWindow        0053BD RLA    _DrawTileFast             004C1D RLA    
+_InitializeInput          005326 RLA    _InputChanged             00536E RLA    
+_InputDown                005389 RLA    _InputFire                0053B0 RLA    
+_InputLeft                005396 RLA    _InputRight               0053A3 RLA    
+_InputUp                  00537C RLA    _LoadMap                  0041D9 RLA    
+_MapUpdate                0041E2 RLA    _Messages                 007661 RLA    
+_MoveScreenUp             0043FB RLA    _PlaySID                  00431D RLA    
+_PrintString              004FF6 RLA    _RaceDescription          0072F6 RLA    
+_ReadBit                  00097A RLA    _RemoveParty              000CC5 RLA    
+_ReverseBufferArea        004893 RLA    _SIDINIT                  005AAB RLA    
+_SIDPLAY                  005AB3 RLA    _SIDSTOP                  005AA0 RLA    
+_ScreenCharBuffer         00761F RLA    _ScreenChars              008A0E RLA    
+_ScreenColorBuffer        007621 RLA    _SelectVICBanks           0049BE RLA    
+_SetChar                  0044FB RLA    _SetCharC                 004563 RLA    
+_SetTileOrigin            004BE8 RLA    _StopSID                  004323 RLA    
+_SwitchScreen             000876 RLA    _UpdateInput              00532D RLA    
+_Update_Combat            001F47 RLA    _Update_Credits           002049 RLA    
+_Update_Title             00426B RLA    _WriteBit                 0008F7 RLA    
+_WriteLineMessageWindow   0055B1 RLA    _YColumnIndex             007625 RLA    
+__BSS_RUN__               007ADF RLA    __BSS_SIZE__              0010E5 REA    
+__CONSTRUCTOR_COUNT__     000001 REA    __CONSTRUCTOR_TABLE__     007B15 RLA    
+__DESTRUCTOR_COUNT__      000000 REA    __DESTRUCTOR_TABLE__      0072F6 RLA    
+__EXEHDR__                000001 REA    __HEADER_LAST__           00080D RLA    
+__HIMEM__                 00D000 REA    __LOADADDR__              000001 REA    
+__MAIN_SIZE__             00B7F3 REA    __MAIN_START__            00080D RLA    
+__ONCE_RUN__              007ADF RLA    __STACKSIZE__             000800 REA    
+__STARTUP__               000001 REA    __ctype                   007267 RLA    
+__ctypeidx                007272 RLA    __directerrno             005AE3 RLA    
+__errno                   008BBF RLA    __heapend                 007A6B RLA    
+__heapfirst               007A6D RLA    __heaplast                007A6F RLA    
+__heapptr                 007A69 RLA    __hextab                  00724B RLA    
+__longminstr              00725B RLA    __oserror                 008B93 RLA    
+__printf                  005BE0 RLA    __seterrno                005E92 RLA    
+_bgcolor                  005F95 RLA    _bordercolor              005F0D RLA    
+_c64_stdjoy_joy           007AB5 RLA    _cbm_k_close              005F15 RLA    
+_cbm_k_load               005F19 RLA    _cbm_k_open               005F36 RLA    
+_cbm_k_save               005F3F RLA    _cbm_k_setlfs             005F55 RLA    
+_cbm_k_setnam             005F63 RLA    _clearBit                 000942 RLA    
+_create                   0009FD RLA    _delete_pos               000A93 RLA    
+_exit                     000825 RLA    _free                     00601E RLA    
+_getPartyMember           000DCC RLA    _getPlayerChar            000BB0 RLA    
+_joy_install              006255 RLA    _joy_read                 007AA6 REA    
+_joy_static_stddrv        007AB5 RLA    _ltoa                     006302 RLA    
+_main                     000F52 RLA    _malloc                   0063AB RLA    
+_memcpy                   0064B9 RLA    _rand                     0065F1 RLA    
+_randseed                 0073A6 RLA    _raster_wait              000840 RLA    
+_sprintf                  006639 RLA    _srand                    0065E5 RLA    
+_str                      007AE5 RLA    _strlen                   0066A0 RLA    
+_strlower                 0066B6 RLA    _ultoa                    006343 RLA    
+_vsprintf                 006824 RLA    _wait_vblank              00084F RLA    
+addeqysp                  005EB9 RLA    addysp                    005EC9 RLA    
+aslax2                    005ED6 RLA    aslax3                    005EE1 RLA    
+aslax4                    005EEF RLA    axlong                    005F00 RLA    
+axulong                   005F06 RLA    boolult                   00639E RLA    
+callmain                  005F76 RLA    ctypemaskdirect           005FAD RLA    
+decsp1                    005FC7 RLA    decsp2                    005FD0 RLA    
+decsp3                    005FDD RLA    decsp4                    005FEA RLA    
+decsp5                    005FF7 RLA    decsp6                    006004 RLA    
+decsp7                    006011 RLA    donelib                   005F9D RLA    
+incsp1                    00621F RLA    incsp2                    00622E RLA    
+incsp3                    00623C RLA    incsp4                    006241 RLA    
+incsp5                    006246 RLA    incsp6                    00624B RLA    
+incsp7                    006250 RLA    initheap                  007ADF  LAI   
+initlib                   007AEF RLA    joy_libref                000825 RLA    
+joy_read                  007AA6 RLA    ldaxysp                   0062A4 RLA    
+mulax3                    006540 RLA    mulax9                    006551 RLA    
+negax                     00656C RLA    negeax                    0062AB RLA    
+popa                      00657A RLA    popax                     006226 RLA    
+popptr1                   006586 RLA    popsargsudiv16            006619 RLA    
 ptr1                      00000A RLZ    ptr2                      00000C RLZ    
 ptr3                      00000E RLZ    ptr4                      000010 RLZ    
-push0                     00644D RLA    push1                     006432 RLA    
-pusha                     00643B RLA    pusha0                    00644F RLA    
-pushax                    006451 RLA    pusheax                   006170 RLA    
-pushw0sp                  006467 RLA    pushwysp                  006469 RLA    
+push0                     0065AF RLA    push1                     006594 RLA    
+pusha                     00659D RLA    pusha0                    0065B1 RLA    
+pushax                    0065B3 RLA    pusheax                   0062D2 RLA    
+pushw0sp                  0065C9 RLA    pushwysp                  0065CB RLA    
 regbank                   000016 RLZ    regsave                   000006 RLZ    
-shlax3                    005D7F RLA    shlax4                    005D8D RLA    
+shlax3                    005EE1 RLA    shlax4                    005EEF RLA    
 sp                        000002 RLZ    sreg                      000004 RLZ    
-staspidx                  006502 RLA    stax0sp                   006518 RLA    
-staxspidx                 006523 RLA    staxysp                   00651A RLA    
-subysp                    00657B RLA    tmp1                      000012 RLZ    
-tmp2                      000013 RLZ    tosaddax                  005D3B RLA    
-tosicmp                   006091 RLA    tosicmp0                  00608F RLA    
-tosmoda0                  006393 RLA    tosmula0                  0063A4 RLA    
-tosumoda0                 0065D7 RLA    tosumula0                 0063A4 RLA    
-udiv16                    006599 RLA    vsnprintf                 0065EB RLA    
-zerobss                   0066D4 RLA    
+staspidx                  006664 RLA    stax0sp                   00667A RLA    
+staxspidx                 006685 RLA    staxysp                   00667C RLA    
+subysp                    0066DD RLA    tmp1                      000012 RLZ    
+tmp2                      000013 RLZ    tosaddax                  005E9D RLA    
+tosicmp                   0061F3 RLA    tosicmp0                  0061F1 RLA    
+tosmoda0                  0064F5 RLA    tosmula0                  006506 RLA    
+tosumoda0                 006739 RLA    tosumula0                 006506 RLA    
+udiv16                    0066FB RLA    vsnprintf                 00674D RLA    
+zerobss                   006836 RLA    
 
 
 Exports list by value:
 ----------------------
-__DESTRUCTOR_COUNT__      000000 REA    __CONSTRUCTOR_COUNT__     000001 REA    
-__STARTUP__               000001 REA    __EXEHDR__                000001 REA    
+__DESTRUCTOR_COUNT__      000000 REA    __EXEHDR__                000001 REA    
+__STARTUP__               000001 REA    __CONSTRUCTOR_COUNT__     000001 REA    
 __LOADADDR__              000001 REA    sp                        000002 RLZ    
 sreg                      000004 RLZ    regsave                   000006 RLZ    
 ptr1                      00000A RLZ    ptr2                      00000C RLZ    
@@ -378,91 +378,91 @@ ptr3                      00000E RLZ    ptr4                      000010 RLZ
 tmp1                      000012 RLZ    tmp2                      000013 RLZ    
 regbank                   000016 RLZ    ST                        000090 RLZ    
 __STACKSIZE__             000800 REA    __HEADER_LAST__           00080D RLA    
-__MAIN_START__            00080D RLA    joy_libref                000825 RLA    
-_exit                     000825 RLA    _raster_wait              000840 RLA    
+__MAIN_START__            00080D RLA    _exit                     000825 RLA    
+joy_libref                000825 RLA    _raster_wait              000840 RLA    
 _wait_vblank              00084F RLA    _SwitchScreen             000876 RLA    
-_WriteBit                 0008F7 RLA    _ReadBit                  000942 RLA    
-_create                   000992 RLA    _delete_pos               000A28 RLA    
-_CountRoster              000B04 RLA    _getPlayerChar            000B45 RLA    
-_AddParty                 000B9A RLA    _RemoveParty              000C5A RLA    
-_CountParty               000D20 RLA    _getPartyMember           000D61 RLA    
-_main                     000EE7 RLA    __BSS_SIZE__              0010E7 REA    
-_DrawAddCharacterScreen   001E29 RLA    _Update_Combat            001EDC RLA    
-_Update_Credits           00200C RLA    _LoadMap                  004196 RLA    
-_MapUpdate                00419F RLA    _Update_Title             004228 RLA    
-_PlaySID                  0042DA RLA    _StopSID                  0042E0 RLA    
-_DiskLoad                 00437D RLA    _MoveScreenUp             0043B8 RLA    
-_SetChar                  00440B RLA    _SetCharC                 004473 RLA    
-_ClearScreen              004530 RLA    _ScrollReset              004582 RLA    
-_CopyDoubleBuffer         004629 RLA    _CopyDoubleBufferArea     004659 RLA    
-_ReverseBufferArea        004784 RLA    _SelectVICBanks           0048AF RLA    
-_SetTileOrigin            004A99 RLA    _DrawTileFast             004ACE RLA    
-_PrintString              004EA7 RLA    _DrawLineH                004F41 RLA    
-_DrawBorder               004FC1 RLA    _InitializeInput          0051C4 RLA    
-_UpdateInput              0051CB RLA    _InputChanged             00520C RLA    
-_InputUp                  00521A RLA    _InputDown                005227 RLA    
-_InputLeft                005234 RLA    _InputRight               005241 RLA    
-_InputFire                00524E RLA    _DrawMessageWindow        00525B RLA    
-_BlankMessageWindow       00535D RLA    _WriteLineMessageWindow   00544F RLA    
-_DrawCharStats            005785 RLA    _SIDSTOP                  00593E RLA    
-_SIDINIT                  005949 RLA    _SIDPLAY                  005951 RLA    
-__directerrno             005981 RLA    __printf                  005A7E RLA    
-__seterrno                005D30 RLA    tosaddax                  005D3B RLA    
-addeqysp                  005D57 RLA    addysp                    005D67 RLA    
-aslax2                    005D74 RLA    shlax3                    005D7F RLA    
-aslax3                    005D7F RLA    shlax4                    005D8D RLA    
-aslax4                    005D8D RLA    axlong                    005D9E RLA    
-axulong                   005DA4 RLA    _bordercolor              005DAB RLA    
-_cbm_k_close              005DB3 RLA    _cbm_k_load               005DB7 RLA    
-_cbm_k_open               005DD4 RLA    _cbm_k_save               005DDD RLA    
-_cbm_k_setlfs             005DF3 RLA    _cbm_k_setnam             005E01 RLA    
-callmain                  005E14 RLA    _bgcolor                  005E33 RLA    
-donelib                   005E3B RLA    ctypemaskdirect           005E4B RLA    
-decsp1                    005E65 RLA    decsp2                    005E6E RLA    
-decsp3                    005E7B RLA    decsp4                    005E88 RLA    
-decsp5                    005E95 RLA    decsp6                    005EA2 RLA    
-decsp7                    005EAF RLA    _free                     005EBC RLA    
-tosicmp0                  00608F RLA    tosicmp                   006091 RLA    
-incsp1                    0060BD RLA    popax                     0060C4 RLA    
-incsp2                    0060CC RLA    incsp3                    0060DA RLA    
-incsp4                    0060DF RLA    incsp5                    0060E4 RLA    
-incsp6                    0060E9 RLA    incsp7                    0060EE RLA    
-_joy_install              0060F3 RLA    ldaxysp                   006142 RLA    
-negeax                    006149 RLA    pusheax                   006170 RLA    
-_ltoa                     0061A0 RLA    _ultoa                    0061E1 RLA    
-boolult                   00623C RLA    _malloc                   006249 RLA    
-_memcpy                   006357 RLA    tosmoda0                  006393 RLA    
-tosmula0                  0063A4 RLA    tosumula0                 0063A4 RLA    
-mulax3                    0063DE RLA    mulax9                    0063EF RLA    
-negax                     00640A RLA    popa                      006418 RLA    
-popptr1                   006424 RLA    push1                     006432 RLA    
-pusha                     00643B RLA    push0                     00644D RLA    
-pusha0                    00644F RLA    pushax                    006451 RLA    
-pushw0sp                  006467 RLA    pushwysp                  006469 RLA    
-_srand                    006483 RLA    _rand                     00648F RLA    
-popsargsudiv16            0064B7 RLA    _sprintf                  0064D7 RLA    
-staspidx                  006502 RLA    stax0sp                   006518 RLA    
-staxysp                   00651A RLA    staxspidx                 006523 RLA    
-_strlen                   00653E RLA    _strlower                 006554 RLA    
-subysp                    00657B RLA    udiv16                    006599 RLA    
-tosumoda0                 0065D7 RLA    vsnprintf                 0065EB RLA    
-_vsprintf                 0066C2 RLA    zerobss                   0066D4 RLA    
-__hextab                  0070E9 RLA    __longminstr              0070F9 RLA    
-__ctype                   007105 RLA    __ctypeidx                007110 RLA    
-__DESTRUCTOR_TABLE__      007194 RLA    _RaceDescription          007194 RLA    
-_ClassDescription         0071D8 RLA    _AbilityModifier          00721C RLA    
-_randseed                 007244 RLA    _AttributeSet             0073BD RLA    
-_ScreenCharBuffer         0074BD RLA    _ScreenColorBuffer        0074BF RLA    
-_YColumnIndex             0074C3 RLA    _Messages                 0074FF RLA    
-__heapptr                 007907 RLA    __heapend                 007909 RLA    
-__heapfirst               00790B RLA    __heaplast                00790D RLA    
-_joy_read                 007944 REA    joy_read                  007944 RLA    
-_joy_static_stddrv        007953 RLA    _c64_stdjoy_joy           007953 RLA    
-__ONCE_RUN__              00797D RLA    initheap                  00797D  LAI   
-__BSS_RUN__               00797D RLA    _str                      007983 RLA    
-initlib                   00798D RLA    __CONSTRUCTOR_TABLE__     0079B3 RLA    
-_CharRam                  0088AA RLA    _ScreenChars              0088AC RLA    
-__oserror                 008A33 RLA    __errno                   008A5F RLA    
+_WriteBit                 0008F7 RLA    _clearBit                 000942 RLA    
+_ReadBit                  00097A RLA    _create                   0009FD RLA    
+_delete_pos               000A93 RLA    _CountRoster              000B6F RLA    
+_getPlayerChar            000BB0 RLA    _AddParty                 000C05 RLA    
+_RemoveParty              000CC5 RLA    _CountParty               000D8B RLA    
+_getPartyMember           000DCC RLA    _main                     000F52 RLA    
+__BSS_SIZE__              0010E5 REA    _DrawAddCharacterScreen   001E94 RLA    
+_Update_Combat            001F47 RLA    _Update_Credits           002049 RLA    
+_LoadMap                  0041D9 RLA    _MapUpdate                0041E2 RLA    
+_Update_Title             00426B RLA    _PlaySID                  00431D RLA    
+_StopSID                  004323 RLA    _DiskLoad                 0043C0 RLA    
+_MoveScreenUp             0043FB RLA    _SetChar                  0044FB RLA    
+_SetCharC                 004563 RLA    _ClearScreen              004620 RLA    
+_CopyDoubleBuffer         004738 RLA    _CopyDoubleBufferArea     004768 RLA    
+_ReverseBufferArea        004893 RLA    _SelectVICBanks           0049BE RLA    
+_SetTileOrigin            004BE8 RLA    _DrawTileFast             004C1D RLA    
+_PrintString              004FF6 RLA    _DrawLineH                005090 RLA    
+_DrawBorder               005110 RLA    _InitializeInput          005326 RLA    
+_UpdateInput              00532D RLA    _InputChanged             00536E RLA    
+_InputUp                  00537C RLA    _InputDown                005389 RLA    
+_InputLeft                005396 RLA    _InputRight               0053A3 RLA    
+_InputFire                0053B0 RLA    _DrawMessageWindow        0053BD RLA    
+_BlankMessageWindow       0054BF RLA    _WriteLineMessageWindow   0055B1 RLA    
+_DrawCharStats            0058E7 RLA    _SIDSTOP                  005AA0 RLA    
+_SIDINIT                  005AAB RLA    _SIDPLAY                  005AB3 RLA    
+__directerrno             005AE3 RLA    __printf                  005BE0 RLA    
+__seterrno                005E92 RLA    tosaddax                  005E9D RLA    
+addeqysp                  005EB9 RLA    addysp                    005EC9 RLA    
+aslax2                    005ED6 RLA    shlax3                    005EE1 RLA    
+aslax3                    005EE1 RLA    aslax4                    005EEF RLA    
+shlax4                    005EEF RLA    axlong                    005F00 RLA    
+axulong                   005F06 RLA    _bordercolor              005F0D RLA    
+_cbm_k_close              005F15 RLA    _cbm_k_load               005F19 RLA    
+_cbm_k_open               005F36 RLA    _cbm_k_save               005F3F RLA    
+_cbm_k_setlfs             005F55 RLA    _cbm_k_setnam             005F63 RLA    
+callmain                  005F76 RLA    _bgcolor                  005F95 RLA    
+donelib                   005F9D RLA    ctypemaskdirect           005FAD RLA    
+decsp1                    005FC7 RLA    decsp2                    005FD0 RLA    
+decsp3                    005FDD RLA    decsp4                    005FEA RLA    
+decsp5                    005FF7 RLA    decsp6                    006004 RLA    
+decsp7                    006011 RLA    _free                     00601E RLA    
+tosicmp0                  0061F1 RLA    tosicmp                   0061F3 RLA    
+incsp1                    00621F RLA    popax                     006226 RLA    
+incsp2                    00622E RLA    incsp3                    00623C RLA    
+incsp4                    006241 RLA    incsp5                    006246 RLA    
+incsp6                    00624B RLA    incsp7                    006250 RLA    
+_joy_install              006255 RLA    ldaxysp                   0062A4 RLA    
+negeax                    0062AB RLA    pusheax                   0062D2 RLA    
+_ltoa                     006302 RLA    _ultoa                    006343 RLA    
+boolult                   00639E RLA    _malloc                   0063AB RLA    
+_memcpy                   0064B9 RLA    tosmoda0                  0064F5 RLA    
+tosumula0                 006506 RLA    tosmula0                  006506 RLA    
+mulax3                    006540 RLA    mulax9                    006551 RLA    
+negax                     00656C RLA    popa                      00657A RLA    
+popptr1                   006586 RLA    push1                     006594 RLA    
+pusha                     00659D RLA    push0                     0065AF RLA    
+pusha0                    0065B1 RLA    pushax                    0065B3 RLA    
+pushw0sp                  0065C9 RLA    pushwysp                  0065CB RLA    
+_srand                    0065E5 RLA    _rand                     0065F1 RLA    
+popsargsudiv16            006619 RLA    _sprintf                  006639 RLA    
+staspidx                  006664 RLA    stax0sp                   00667A RLA    
+staxysp                   00667C RLA    staxspidx                 006685 RLA    
+_strlen                   0066A0 RLA    _strlower                 0066B6 RLA    
+subysp                    0066DD RLA    udiv16                    0066FB RLA    
+tosumoda0                 006739 RLA    vsnprintf                 00674D RLA    
+_vsprintf                 006824 RLA    zerobss                   006836 RLA    
+__hextab                  00724B RLA    __longminstr              00725B RLA    
+__ctype                   007267 RLA    __ctypeidx                007272 RLA    
+_RaceDescription          0072F6 RLA    __DESTRUCTOR_TABLE__      0072F6 RLA    
+_ClassDescription         00733A RLA    _AbilityModifier          00737E RLA    
+_randseed                 0073A6 RLA    _AttributeSet             00751F RLA    
+_ScreenCharBuffer         00761F RLA    _ScreenColorBuffer        007621 RLA    
+_YColumnIndex             007625 RLA    _Messages                 007661 RLA    
+__heapptr                 007A69 RLA    __heapend                 007A6B RLA    
+__heapfirst               007A6D RLA    __heaplast                007A6F RLA    
+_joy_read                 007AA6 REA    joy_read                  007AA6 RLA    
+_c64_stdjoy_joy           007AB5 RLA    _joy_static_stddrv        007AB5 RLA    
+initheap                  007ADF  LAI   __ONCE_RUN__              007ADF RLA    
+__BSS_RUN__               007ADF RLA    _str                      007AE5 RLA    
+initlib                   007AEF RLA    __CONSTRUCTOR_TABLE__     007B15 RLA    
+_CharRam                  008A0C RLA    _ScreenChars              008A0E RLA    
+__oserror                 008B93 RLA    __errno                   008BBF RLA    
 __MAIN_SIZE__             00B7F3 REA    __HIMEM__                 00D000 REA    
 SETLFS                    00FFBA RLA    SETNAM                    00FFBD RLA    
 OPEN                      00FFC0 RLA    CLOSE                     00FFC3 RLA    
@@ -494,7 +494,7 @@ _AddParty (Lists.o):
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:71
 _AttributeSet (System_CharacterSets.o):
     System_MessageWindow.o    src/System_MessageWindow.s:49
-    System_Graphics.o         src/System_Graphics.s:47
+    System_Graphics.o         src/System_Graphics.s:49
     Screen_Map.o              src/Screen_Map.s:60
 _BlankMessageWindow (System_MessageWindow.o):
     Screen_Map.o              src/Screen_Map.s:56
@@ -506,11 +506,11 @@ _ClassDescription (BFRPG.o):
     System_MessageWindow.o    src/System_MessageWindow.s:52
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:65
 _ClearScreen (System_Graphics.o):
-    Screen_Credits.o          src/Screen_Credits.s:40
+    Screen_Credits.o          src/Screen_Credits.s:37
     Screen_Combat.o           src/Screen_Combat.s:37
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:76
     MapDemo.o                 src/MapDemo.s:50
-    Common.o                  src/Common.s:51
+    Common.o                  src/Common.s:52
 _CopyDoubleBuffer (System_Graphics.o):
     System_MessageWindow.o    src/System_MessageWindow.s:57
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:77
@@ -526,7 +526,7 @@ _CountRoster (Lists.o):
 _DiskLoad (System_FileIO.o):
     MapDemo.o                 src/MapDemo.s:52
 _DrawAddCharacterScreen (Screen_AddCharacter.o):
-    Common.o                  src/Common.s:49
+    Common.o                  src/Common.s:50
 _DrawBorder (System_Graphics.o):
     System_MessageWindow.o    src/System_MessageWindow.s:61
     Screen_Title.o            src/Screen_Title.s:30
@@ -545,7 +545,7 @@ _InitializeInput (System_Input.o):
     MapDemo.o                 src/MapDemo.s:53
 _InputChanged (System_Input.o):
     Screen_Title.o            src/Screen_Title.s:32
-    Screen_Credits.o          src/Screen_Credits.s:46
+    Screen_Credits.o          src/Screen_Credits.s:42
     Screen_Combat.o           src/Screen_Combat.s:43
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:82
 _InputDown (System_Input.o):
@@ -554,7 +554,7 @@ _InputDown (System_Input.o):
 _InputFire (System_Input.o):
     Screen_Title.o            src/Screen_Title.s:33
     Screen_Map.o              src/Screen_Map.s:73
-    Screen_Credits.o          src/Screen_Credits.s:47
+    Screen_Credits.o          src/Screen_Credits.s:43
     Screen_Combat.o           src/Screen_Combat.s:44
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:87
 _InputLeft (System_Input.o):
@@ -569,24 +569,24 @@ _InputUp (System_Input.o):
 _LoadMap (Screen_Map.o):
     MapDemo.o                 src/MapDemo.s:56
 _MapUpdate (Screen_Map.o):
-    Common.o                  src/Common.s:48
+    Common.o                  src/Common.s:49
 _Messages (System_MessageWindow.o):
     Screen_Map.o              src/Screen_Map.s:58
 _MoveScreenUp (System_Graphics.o):
-    Screen_Credits.o          src/Screen_Credits.s:39
+    Screen_Credits.o          src/Screen_Credits.s:36
 _PlaySID (System_Audio.o):
-    Screen_Credits.o          src/Screen_Credits.s:43
+    Screen_Credits.o          src/Screen_Credits.s:39
 _PrintString (System_Graphics.o):
     System_MessageWindow.o    src/System_MessageWindow.s:60
     Screen_Title.o            src/Screen_Title.s:29
-    Screen_Credits.o          src/Screen_Credits.s:42
+    Screen_Credits.o          src/Screen_Credits.s:38
     Screen_Combat.o           src/Screen_Combat.s:40
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:78
 _RaceDescription (BFRPG.o):
     System_MessageWindow.o    src/System_MessageWindow.s:51
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:64
 _ReadBit (Common.o):
-    System_Graphics.o         src/System_Graphics.s:44
+    System_Graphics.o         src/System_Graphics.s:46
     Screen_Map.o              src/Screen_Map.s:54
 _RemoveParty (Lists.o):
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:72
@@ -604,8 +604,6 @@ _ScreenChars (System_Graphics.o):
     System_MessageWindow.o    src/System_MessageWindow.s:55
 _ScreenColorBuffer (System_Graphics.o):
     Screen_Map.o              src/Screen_Map.s:67
-_ScrollReset (System_Graphics.o):
-    Screen_Credits.o          src/Screen_Credits.s:41
 _SelectVICBanks (System_Graphics.o):
     MapDemo.o                 src/MapDemo.s:51
 _SetChar (System_Graphics.o):
@@ -616,25 +614,25 @@ _SetCharC (System_Graphics.o):
 _SetTileOrigin (System_Graphics.o):
     Screen_Combat.o           src/Screen_Combat.s:38
 _StopSID (System_Audio.o):
-    Screen_Credits.o          src/Screen_Credits.s:44
+    Screen_Credits.o          src/Screen_Credits.s:40
 _SwitchScreen (Common.o):
     Screen_Map.o              src/Screen_Map.s:53
     MapDemo.o                 src/MapDemo.s:48
 _UpdateInput (System_Input.o):
     Screen_Title.o            src/Screen_Title.s:31
     Screen_Map.o              src/Screen_Map.s:68
-    Screen_Credits.o          src/Screen_Credits.s:45
+    Screen_Credits.o          src/Screen_Credits.s:41
     Screen_Combat.o           src/Screen_Combat.s:42
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:81
-    Common.o                  src/Common.s:52
+    Common.o                  src/Common.s:53
 _Update_Combat (Screen_Combat.o):
-    Common.o                  src/Common.s:50
+    Common.o                  src/Common.s:51
 _Update_Credits (Screen_Credits.o):
-    Common.o                  src/Common.s:47
+    Common.o                  src/Common.s:48
 _Update_Title (Screen_Title.o):
-    Common.o                  src/Common.s:46
+    Common.o                  src/Common.s:47
 _WriteBit (Common.o):
-    System_Graphics.o         src/System_Graphics.s:43
+    System_Graphics.o         src/System_Graphics.s:44
 _WriteLineMessageWindow (System_MessageWindow.o):
     Screen_Map.o              src/Screen_Map.s:57
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:63
@@ -708,10 +706,10 @@ __printf (_printf.o):
 __seterrno (_seterrno.o):
     _directerrno.o            /__w/vscode-cc65-debugger/vscode-cc65-debugger/3rdparty/cc65/asminc/errno.inc:9
 _bgcolor (color.o):
-    System_Graphics.o         src/System_Graphics.s:45
+    System_Graphics.o         src/System_Graphics.s:47
     MapDemo.o                 src/MapDemo.s:54
 _bordercolor (bordercolor.o):
-    System_Graphics.o         src/System_Graphics.s:46
+    System_Graphics.o         src/System_Graphics.s:48
     MapDemo.o                 src/MapDemo.s:55
 _c64_stdjoy_joy (c64-stdjoy-joy.o):
     joy_stat_stddrv.o         c64/joy_stat_stddrv.s:10
@@ -727,6 +725,8 @@ _cbm_k_setlfs (c_setlfs.o):
     System_FileIO.o           src/System_FileIO.s:35
 _cbm_k_setnam (c_setnam.o):
     System_FileIO.o           src/System_FileIO.s:36
+_clearBit (Common.o):
+    System_Graphics.o         src/System_Graphics.s:45
 _create (Lists.o):
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:67
 _delete_pos (Lists.o):
@@ -756,7 +756,7 @@ _malloc (malloc.o):
 _memcpy (memcpy.o):
     vsnprintf.o               common/vsnprintf.s:10
     System_MessageWindow.o    src/System_MessageWindow.s:46
-    System_Graphics.o         src/System_Graphics.s:40
+    System_Graphics.o         src/System_Graphics.s:41
     System_CharacterSets.o    src/System_CharacterSets.s:26
     Screen_Map.o              src/Screen_Map.s:52
     Lists.o                   src/Lists.s:42
@@ -766,7 +766,7 @@ _randseed (Common.o):
     System_Input.o            src/System_Input.s:31
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:62
 _raster_wait (Common.o):
-    System_Graphics.o         src/System_Graphics.s:41
+    System_Graphics.o         src/System_Graphics.s:42
 _sprintf (sprintf.o):
     System_MessageWindow.o    src/System_MessageWindow.s:50
     System_FileIO.o           src/System_FileIO.s:37
@@ -787,8 +787,7 @@ _vsprintf (vsprintf.o):
 _wait_vblank (Common.o):
     System_MusicPlayer.o      src/System_MusicPlayer.s:24
     System_MessageWindow.o    src/System_MessageWindow.s:48
-    System_Graphics.o         src/System_Graphics.s:42
-    Screen_Credits.o          src/Screen_Credits.s:38
+    System_Graphics.o         src/System_Graphics.s:43
     Screen_Combat.o           src/Screen_Combat.s:35
 addeqysp (addeqsp.o):
     Lists.o                   src/Lists.s:987
@@ -802,15 +801,15 @@ addysp (addysp.o):
     incsp3.o                  runtime/incsp3.s:8
     System_FileIO.o           src/System_FileIO.s:186
 aslax2 (aslax2.o):
-    System_Graphics.o         src/System_Graphics.s:2543
+    System_Graphics.o         src/System_Graphics.s:2674
 aslax3 (aslax3.o):
-    System_Graphics.o         src/System_Graphics.s:2543
+    System_Graphics.o         src/System_Graphics.s:2674
     Screen_Map.o              src/Screen_Map.s:5472
     Screen_Map.o              src/Screen_Map.s:5472
     Screen_Map.o              src/Screen_Map.s:5472
 aslax4 (aslax4.o):
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
     Screen_Map.o              src/Screen_Map.s:5472
     Screen_Map.o              src/Screen_Map.s:5472
     Screen_Map.o              src/Screen_Map.s:5472
@@ -825,13 +824,15 @@ axlong (axlong.o):
 axulong (axlong.o):
     _printf.o                 common/_printf.s:11
 boolult (makebool.o):
-    System_Graphics.o         src/System_Graphics.s:2543
+    System_Graphics.o         src/System_Graphics.s:2674
 callmain (callmain.o):
     crt0.o                    c64/crt0.s:9
 ctypemaskdirect (ctypemask.o):
     strlower.o                common/strlower.s:14
 decsp1 (decsp1.o):
     System_MessageWindow.o    src/System_MessageWindow.s:949
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
     Screen_Map.o              src/Screen_Map.s:5472
     Screen_Combat.o           src/Screen_Combat.s:273
     Screen_Combat.o           src/Screen_Combat.s:273
@@ -841,9 +842,9 @@ decsp1 (decsp1.o):
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:2687
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:2687
 decsp2 (decsp2.o):
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
     System_FileIO.o           src/System_FileIO.s:186
     System_FileIO.o           src/System_FileIO.s:186
     Screen_Map.o              src/Screen_Map.s:5472
@@ -862,11 +863,11 @@ decsp3 (decsp3.o):
     System_MessageWindow.o    src/System_MessageWindow.s:949
     System_MessageWindow.o    src/System_MessageWindow.s:949
     System_MessageWindow.o    src/System_MessageWindow.s:949
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
     Screen_Map.o              src/Screen_Map.s:5472
     Screen_Map.o              src/Screen_Map.s:5472
     Screen_Combat.o           src/Screen_Combat.s:273
@@ -875,7 +876,7 @@ decsp4 (decsp4.o):
     lpush.o                   runtime/lpush.s:12
     sprintf.o                 common/sprintf.s:8
     System_MessageWindow.o    src/System_MessageWindow.s:949
-    System_Graphics.o         src/System_Graphics.s:2543
+    System_Graphics.o         src/System_Graphics.s:2674
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:2687
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:2687
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:2687
@@ -888,10 +889,10 @@ decsp5 (decsp5.o):
     System_MessageWindow.o    src/System_MessageWindow.s:949
     System_MessageWindow.o    src/System_MessageWindow.s:949
     System_MessageWindow.o    src/System_MessageWindow.s:949
-    System_Graphics.o         src/System_Graphics.s:2543
+    System_Graphics.o         src/System_Graphics.s:2674
     Screen_Title.o            src/Screen_Title.s:167
     Screen_Map.o              src/Screen_Map.s:5472
-    Screen_Credits.o          src/Screen_Credits.s:306
+    Screen_Credits.o          src/Screen_Credits.s:283
     Screen_Combat.o           src/Screen_Combat.s:273
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:2687
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:2687
@@ -903,25 +904,26 @@ decsp6 (decsp6.o):
     Lists.o                   src/Lists.s:987
     Lists.o                   src/Lists.s:987
 decsp7 (decsp7.o):
-    System_Graphics.o         src/System_Graphics.s:2543
+    System_Graphics.o         src/System_Graphics.s:2674
 donelib (condes.o):
     crt0.o                    c64/crt0.s:8
 incsp1 (incsp1.o):
     System_MusicPlayer.o      src/System_MusicPlayer.s:2216
     System_MessageWindow.o    src/System_MessageWindow.s:949
     System_MessageWindow.o    src/System_MessageWindow.s:949
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
     Screen_Map.o              src/Screen_Map.s:5472
     Screen_Map.o              src/Screen_Map.s:5472
     Screen_Map.o              src/Screen_Map.s:5472
     Screen_Map.o              src/Screen_Map.s:5472
-    Screen_Credits.o          src/Screen_Credits.s:306
     Screen_Combat.o           src/Screen_Combat.s:273
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:2687
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:2687
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:2687
-    Common.o                  src/Common.s:419
-    Common.o                  src/Common.s:419
-    Common.o                  src/Common.s:419
+    Common.o                  src/Common.s:523
+    Common.o                  src/Common.s:523
+    Common.o                  src/Common.s:523
 incsp2 (incsp2.o):
     vsnprintf.o               common/vsnprintf.s:9
     staxspi.o                 runtime/staxspi.s:9
@@ -929,10 +931,10 @@ incsp2 (incsp2.o):
     popptr1.o                 runtime/popptr1.s:8
     System_MusicPlayer.o      src/System_MusicPlayer.s:2216
     System_MusicPlayer.o      src/System_MusicPlayer.s:2216
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
     Screen_Title.o            src/Screen_Title.s:167
     Screen_Map.o              src/Screen_Map.s:5472
     Screen_Map.o              src/Screen_Map.s:5472
@@ -943,31 +945,31 @@ incsp2 (incsp2.o):
     Screen_Map.o              src/Screen_Map.s:5472
     Screen_Map.o              src/Screen_Map.s:5472
     Screen_Map.o              src/Screen_Map.s:5472
-    Screen_Credits.o          src/Screen_Credits.s:306
     Screen_Combat.o           src/Screen_Combat.s:273
     Screen_Combat.o           src/Screen_Combat.s:273
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:2687
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:2687
-    Common.o                  src/Common.s:419
-    Common.o                  src/Common.s:419
-    Common.o                  src/Common.s:419
+    Common.o                  src/Common.s:523
+    Common.o                  src/Common.s:523
+    Common.o                  src/Common.s:523
 incsp3 (incsp3.o):
     System_MessageWindow.o    src/System_MessageWindow.s:949
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
     Screen_Map.o              src/Screen_Map.s:5472
     Screen_Map.o              src/Screen_Map.s:5472
     Screen_Map.o              src/Screen_Map.s:5472
+    Screen_Credits.o          src/Screen_Credits.s:283
     Lists.o                   src/Lists.s:987
     Lists.o                   src/Lists.s:987
+    Common.o                  src/Common.s:523
 incsp4 (incsp4.o):
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
     System_FileIO.o           src/System_FileIO.s:186
     Screen_Map.o              src/Screen_Map.s:5472
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:2687
@@ -975,17 +977,19 @@ incsp4 (incsp4.o):
     Lists.o                   src/Lists.s:987
     Lists.o                   src/Lists.s:987
     Lists.o                   src/Lists.s:987
-    Common.o                  src/Common.s:419
+    Common.o                  src/Common.s:523
+    Common.o                  src/Common.s:523
 incsp5 (incsp5.o):
     System_MessageWindow.o    src/System_MessageWindow.s:949
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
 incsp6 (incsp6.o):
     vsnprintf.o               common/vsnprintf.s:9
-    System_Graphics.o         src/System_Graphics.s:2543
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:2687
 incsp7 (incsp7.o):
-    System_Graphics.o         src/System_Graphics.s:2543
+    System_Graphics.o         src/System_Graphics.s:2674
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:2687
     Lists.o                   src/Lists.s:987
     Lists.o                   src/Lists.s:987
@@ -1085,23 +1089,23 @@ pusha (pusha.o):
     System_MessageWindow.o    src/System_MessageWindow.s:949
     System_MessageWindow.o    src/System_MessageWindow.s:949
     System_MessageWindow.o    src/System_MessageWindow.s:949
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
     System_FileIO.o           src/System_FileIO.s:186
     Screen_Title.o            src/Screen_Title.s:167
     Screen_Map.o              src/Screen_Map.s:5472
@@ -1116,8 +1120,7 @@ pusha (pusha.o):
     Screen_Map.o              src/Screen_Map.s:5472
     Screen_Map.o              src/Screen_Map.s:5472
     Screen_Map.o              src/Screen_Map.s:5472
-    Screen_Credits.o          src/Screen_Credits.s:306
-    Screen_Credits.o          src/Screen_Credits.s:306
+    Screen_Credits.o          src/Screen_Credits.s:283
     Screen_Combat.o           src/Screen_Combat.s:273
     Screen_Combat.o           src/Screen_Combat.s:273
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:2687
@@ -1135,21 +1138,23 @@ pusha (pusha.o):
     Lists.o                   src/Lists.s:987
     Lists.o                   src/Lists.s:987
     Lists.o                   src/Lists.s:987
-    Common.o                  src/Common.s:419
-    Common.o                  src/Common.s:419
-    Common.o                  src/Common.s:419
-    Common.o                  src/Common.s:419
-    Common.o                  src/Common.s:419
-    Common.o                  src/Common.s:419
-    Common.o                  src/Common.s:419
+    Common.o                  src/Common.s:523
+    Common.o                  src/Common.s:523
+    Common.o                  src/Common.s:523
+    Common.o                  src/Common.s:523
+    Common.o                  src/Common.s:523
+    Common.o                  src/Common.s:523
+    Common.o                  src/Common.s:523
+    Common.o                  src/Common.s:523
 pusha0 (pushax.o):
     push1.o                   runtime/push1.s:8
     System_MessageWindow.o    src/System_MessageWindow.s:949
     System_MessageWindow.o    src/System_MessageWindow.s:949
     System_MessageWindow.o    src/System_MessageWindow.s:949
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
     Screen_Map.o              src/Screen_Map.s:5472
     Screen_Map.o              src/Screen_Map.s:5472
     Screen_Map.o              src/Screen_Map.s:5472
@@ -1162,7 +1167,7 @@ pusha0 (pushax.o):
     Screen_Map.o              src/Screen_Map.s:5472
     Screen_Map.o              src/Screen_Map.s:5472
     Screen_Map.o              src/Screen_Map.s:5472
-    Screen_Credits.o          src/Screen_Credits.s:306
+    Screen_Credits.o          src/Screen_Credits.s:283
     Screen_Combat.o           src/Screen_Combat.s:273
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:2687
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:2687
@@ -1176,11 +1181,13 @@ pushax (pushax.o):
     System_MusicPlayer.o      src/System_MusicPlayer.s:2216
     System_MessageWindow.o    src/System_MessageWindow.s:949
     System_MessageWindow.o    src/System_MessageWindow.s:949
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
     System_FileIO.o           src/System_FileIO.s:186
     System_FileIO.o           src/System_FileIO.s:186
     System_CharacterSets.o    src/System_CharacterSets.s:315
@@ -1213,6 +1220,7 @@ pushax (pushax.o):
     Lists.o                   src/Lists.s:987
     Lists.o                   src/Lists.s:987
     Lists.o                   src/Lists.s:987
+    Common.o                  src/Common.s:523
 pusheax (lpush.o):
     _printf.o                 common/_printf.s:11
 pushw0sp (pushwsp.o):
@@ -1227,7 +1235,7 @@ regbank (zeropage.o):
 regsave (zeropage.o):
     System_Graphics.o         src/System_Graphics.s:10
 shlax3 (aslax3.o):
-    System_Graphics.o         src/System_Graphics.s:2543
+    System_Graphics.o         src/System_Graphics.s:2674
 shlax4 (aslax4.o):
     Screen_Map.o              src/Screen_Map.s:5472
 sp (zeropage.o):
@@ -1340,7 +1348,7 @@ tosaddax (add.o):
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:2687
 tosicmp (icmp.o):
     System_MessageWindow.o    src/System_MessageWindow.s:949
-    System_Graphics.o         src/System_Graphics.s:2543
+    System_Graphics.o         src/System_Graphics.s:2674
     Screen_Combat.o           src/Screen_Combat.s:273
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:2687
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:2687
@@ -1366,13 +1374,13 @@ tosmula0 (mul8.o):
     Screen_Map.o              src/Screen_Map.s:5472
     Screen_Map.o              src/Screen_Map.s:5472
     Screen_Map.o              src/Screen_Map.s:5472
-    Screen_Credits.o          src/Screen_Credits.s:306
+    Screen_Credits.o          src/Screen_Credits.s:283
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:2687
     Screen_AddCharacter.o     src/Screen_AddCharacter.s:2687
 tosumoda0 (umod.o):
-    System_Graphics.o         src/System_Graphics.s:2543
-    System_Graphics.o         src/System_Graphics.s:2543
-    Screen_Credits.o          src/Screen_Credits.s:306
+    System_Graphics.o         src/System_Graphics.s:2674
+    System_Graphics.o         src/System_Graphics.s:2674
+    Screen_Credits.o          src/Screen_Credits.s:283
 tosumula0 (mul8.o):
     System_MessageWindow.o    src/System_MessageWindow.s:949
     Screen_Map.o              src/Screen_Map.s:5472

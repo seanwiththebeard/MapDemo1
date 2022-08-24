@@ -103,6 +103,15 @@ void WriteBit(byte *byteToSet, char bit, bool value)
   *byteToSet = *byteToSet | bit;
 }
 
+void setBit(byte *byteToSet , byte k)
+{
+    byteToSet = *byteToSet | (1 << (k - 1));
+}
+byte clearBit(byte byteToSet , byte k)
+{
+    byteToSet = byteToSet & (~(1 << (k)));
+}
+
 bool CheckBit(byte source, byte position)
 {
   return (source & (1<<position));
