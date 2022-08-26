@@ -31,6 +31,7 @@ void UpdateScreen(void);
 
 void WriteBit(byte *byteToSet, char bit, bool value);
 byte clearBit(byte byteToSet , byte k);
+byte setBit(byte byteToSet , byte k);
 byte ReadBit(byte byteToRead, char bit);
 bool CheckBit(byte source, byte position);
 bool raster_check(byte line);

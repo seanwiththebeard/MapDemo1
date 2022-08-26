@@ -32,6 +32,17 @@ int FlashFrames = 0;
 bool bufferselect = 0;
 //byte charpos = 2;
 
+void ScrollingMaskOn()
+{
+  clearBit(VIC.ctrl1, 3);
+  clearBit(VIC.ctrl2, 3);
+}
+void ScrollingMaskOff()
+{
+  setBit(VIC.ctrl1, 3);
+  setBit(VIC.ctrl2, 3);
+}
+
 void FlipBuffer()
 {
   {
@@ -58,11 +69,13 @@ void MoveScreenUp()
   for (ys = 7; ys != 0; --ys)
   {
     // set scroll registers
-    VIC.ctrl1 = (VIC.ctrl1 & 0xf8);
-    VIC.ctrl1 |= (ys & 7);
-    VIC.ctrl1 = clearBit(VIC.ctrl1, 3);
+    //VIC.ctrl1 = (VIC.ctrl1 & 0xf8);
+    //VIC.ctrl1 |= (ys & 7);
+    //VIC.ctrl1 = clearBit(VIC.ctrl1, 3);
+
+    VIC.ctrl1 = 144 | ys;
     // wait for vsync
-    wait_vblank(4);
+    wait_vblank(6);
   }
 
   for (ColCount = 0; ColCount < COLS; ++ColCount)

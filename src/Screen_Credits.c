@@ -40,27 +40,21 @@ char CreditsLines[][20] =
 void ScrollUp()
 {
   if (xcredit == linecount)
-  {
-    //char str[3];
-    ++delay;
-    //sprintf(str,"%d@", delay);
-    //PrintString(str, xcredit % 2, 24, true, false);
-  }
-  {
-    MoveScreenDown();
-    if (xcredit < linecount)
-    {
-      if (xoff %4 != 0)
-      {
-        PrintString(CreditsLines[xcredit], xcredit % 3, 0, true, true);
-        ++xcredit;   
-      }
-      else
-        PrintString("@", xcredit % 3, 0, true, true);
-    }
-    ++xoff;
-  }
+  ++delay;
   
+  MoveScreenUp();
+  if (xcredit < linecount)
+  {
+    if (xoff %4 != 0)
+    {
+      PrintString(CreditsLines[xcredit], xcredit % 3, 24, true, true); //Writes to the buffer before we flip the buffer
+      ++xcredit;   
+    }
+    else
+    MoveScreenUp();
+    //PrintString("@", xcredit % 3, 24, true, true);
+  }
+  ++xoff;
 }
 
 screenName Update_Credits()
@@ -75,6 +69,7 @@ screenName Update_Credits()
   skipline = false;
   
   ClearScreen();
+  ScrollingMaskOn();
   PlaySID();
   
   while (!exit)
@@ -90,5 +85,6 @@ screenName Update_Credits()
   }
   StopSID();
   VIC.ctrl1 = temp;
+  ScrollingMaskOff();
   return nextScreen;
 }

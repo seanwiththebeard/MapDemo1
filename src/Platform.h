@@ -6,6 +6,8 @@ extern byte *CharRam;
 extern byte *ScreenChars;
 //#define ScreenRam 0xC800
 #define ColorRam 0xD800
+void ScrollingMaskOn(void);
+void ScrollingMaskOff(void);
 void MoveScreenUp(void);
 void MoveScreenDown(void);
 void SetChar(byte x, byte y, byte index);

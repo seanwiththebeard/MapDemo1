@@ -38,7 +38,7 @@ void Initialize()
   SelectVICBanks(3, 2, 7);
   ClearScreen();
   bgcolor(0);
-  bordercolor(3);
+  bordercolor(0);
   InitializeInput();
   LoadMap();
   DiskLoad("song.dat", (int)SIDLOAD);

@@ -103,9 +103,9 @@ void WriteBit(byte *byteToSet, char bit, bool value)
   *byteToSet = *byteToSet | bit;
 }
 
-void setBit(byte *byteToSet , byte k)
+byte setBit(byte byteToSet , byte k)
 {
-    byteToSet = *byteToSet | (1 << (k - 1));
+    byteToSet = byteToSet | (1 << (k - 1));
 }
 byte clearBit(byte byteToSet , byte k)
 {
