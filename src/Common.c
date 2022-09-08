@@ -1,7 +1,8 @@
 #include <peekpoke.h>
 #include "Common.h"
+#if __C64__
 #include <c64.h>
-
+#endif
 #include "Screen_Title.h"
 #include "Screen_Credits.h"
 #include "Screen_Map.h"
@@ -16,8 +17,10 @@ screenName currentScreen = Title;
 
 void raster_wait(byte line)
 {
+  #if __C64__
   while ((VIC.rasterline < line))
   {}
+  #endif
 }
 
 void wait_vblank(byte frames) 
@@ -119,8 +122,10 @@ bool CheckBit(byte source, byte position)
 
 bool raster_check(byte line)
 {
+  #if __C64__
   if(VIC.rasterline == line)
      return true;
      else
      return false;
+  #endif
 }

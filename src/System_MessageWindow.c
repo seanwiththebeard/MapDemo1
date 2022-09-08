@@ -102,7 +102,7 @@ void WriteLineMessageWindow(char message[16], byte delay)
       MessageWindowColors[(Width*Height - Width) + x] = AttributeSet[message[x]];
     }
     //SetScreenCharColor(message[x], AttributeSet[message[x]], PosX + x, PosY + Height - 1);
-    SetCharC(PosX + x, PosY + Height - 1, message[x], AttributeSet[message[x]]);
+    SetChar(PosX + x, PosY + Height - 1, message[x]);
     if (delay > 0)
     {
       wait_vblank(delay);

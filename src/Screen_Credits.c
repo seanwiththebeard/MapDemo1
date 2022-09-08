@@ -47,7 +47,7 @@ void ScrollUp()
   {
     if (xoff %4 != 0)
     {
-      PrintString(CreditsLines[xcredit], xcredit % 3, 24, true, true); //Writes to the buffer before we flip the buffer
+      PrintString(CreditsLines[xcredit], xcredit % 3, ROWS - 1, true, true); //Writes to the buffer before we flip the buffer
       ++xcredit;   
     }
     else
@@ -59,7 +59,6 @@ void ScrollUp()
 
 screenName Update_Credits()
 {
-  byte temp = VIC.ctrl1;
   screenName nextScreen = Title;
   bool exit = false;
   yscroll = 0;
@@ -69,8 +68,10 @@ screenName Update_Credits()
   skipline = false;
   
   ClearScreen();
+  #if __C64__
   ScrollingMaskOn();
   PlaySID();
+  #endif
   
   while (!exit)
   {
@@ -83,8 +84,10 @@ screenName Update_Credits()
     if (delay == 35)
       exit = true;
   }
+  #if __C64__
   StopSID();
-  VIC.ctrl1 = temp;
   ScrollingMaskOff();
+  ScrollReset();
+  #endif
   return nextScreen;
 }

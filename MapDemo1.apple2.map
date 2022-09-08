@@ -1,0 +1,216 @@
+Modules list:
+-------------
+BFRPG.o:
+    BSS               Offs=000000  Size=000006  Align=00001  Fill=0000
+    DATA              Offs=000000  Size=0000B0  Align=00001  Fill=0000
+Common.o:
+    CODE              Offs=000000  Size=00018F  Align=00001  Fill=0000
+    BSS               Offs=000006  Size=000010  Align=00001  Fill=0000
+    DATA              Offs=0000B0  Size=000004  Align=00001  Fill=0000
+Lists.o:
+    CODE              Offs=00018F  Size=0004F6  Align=00001  Fill=0000
+    RODATA            Offs=000000  Size=000015  Align=00001  Fill=0000
+    DATA              Offs=0000B4  Size=000004  Align=00001  Fill=0000
+MapDemo.o:
+    CODE              Offs=000685  Size=000067  Align=00001  Fill=0000
+Screen_AddCharacter.o:
+    CODE              Offs=0006EC  Size=001078  Align=00001  Fill=0000
+    RODATA            Offs=000015  Size=0001D6  Align=00001  Fill=0000
+    BSS               Offs=000016  Size=00008F  Align=00001  Fill=0000
+    DATA              Offs=0000B8  Size=00000D  Align=00001  Fill=0000
+Screen_Combat.o:
+    CODE              Offs=001764  Size=000129  Align=00001  Fill=0000
+    RODATA            Offs=0001EB  Size=000009  Align=00001  Fill=0000
+    DATA              Offs=0000C5  Size=000001  Align=00001  Fill=0000
+Screen_Credits.o:
+    CODE              Offs=00188D  Size=0000D0  Align=00001  Fill=0000
+    BSS               Offs=0000A5  Size=000006  Align=00001  Fill=0000
+    DATA              Offs=0000C6  Size=000118  Align=00001  Fill=0000
+Screen_Map.o:
+    CODE              Offs=00195D  Size=0021A5  Align=00001  Fill=0000
+    RODATA            Offs=0001F4  Size=00000C  Align=00001  Fill=0000
+    BSS               Offs=0000AB  Size=000EA8  Align=00001  Fill=0000
+    DATA              Offs=0001DE  Size=000050  Align=00001  Fill=0000
+Screen_Title.o:
+    CODE              Offs=003B02  Size=0000DD  Align=00001  Fill=0000
+    RODATA            Offs=000200  Size=00001B  Align=00001  Fill=0000
+System_Audio.o:
+System_CharacterSets.o:
+    CODE              Offs=003BDF  Size=000015  Align=00001  Fill=0000
+    DATA              Offs=00022E  Size=000100  Align=00001  Fill=0000
+System_FileIO.o:
+System_Graphics.o:
+    CODE              Offs=003BF4  Size=000774  Align=00001  Fill=0000
+    BSS               Offs=000F53  Size=00002A  Align=00001  Fill=0000
+    DATA              Offs=00032E  Size=000040  Align=00001  Fill=0000
+System_Input.o:
+    CODE              Offs=004368  Size=00004D  Align=00001  Fill=0000
+    BSS               Offs=000F7D  Size=000001  Align=00001  Fill=0000
+    DATA              Offs=00036E  Size=000004  Align=00001  Fill=0000
+System_MessageWindow.o:
+    CODE              Offs=0043B5  Size=00058C  Align=00001  Fill=0000
+    RODATA            Offs=00021B  Size=00000E  Align=00001  Fill=0000
+    BSS               Offs=000F7E  Size=00015A  Align=00001  Fill=0000
+    DATA              Offs=000372  Size=000402  Align=00001  Fill=0000
+CharacterSetASM.o:
+SIDPlayerASM.o:
+    CODE              Offs=004941  Size=000043  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(_directerrno.o):
+    CODE              Offs=004984  Size=00000A  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(_heap.o):
+    DATA              Offs=000774  Size=00000A  Align=00001  Fill=0000
+    ONCE              Offs=000000  Size=000010  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(_hextab.o):
+    RODATA            Offs=000229  Size=000010  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(_longminstr.o):
+    RODATA            Offs=000239  Size=00000C  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(_oserror.o):
+    BSS               Offs=0010D8  Size=000001  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(_printf.o):
+    CODE              Offs=00498E  Size=0003A5  Align=00001  Fill=0000
+    BSS               Offs=0010D9  Size=00002B  Align=00001  Fill=0000
+    DATA              Offs=00077E  Size=000003  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(_seterrno.o):
+    CODE              Offs=004D33  Size=000009  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(add.o):
+    CODE              Offs=004D3C  Size=00001C  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(addysp.o):
+    CODE              Offs=004D58  Size=00000E  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(aslax3.o):
+    CODE              Offs=004D66  Size=00000E  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(aslax4.o):
+    CODE              Offs=004D74  Size=000011  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(axlong.o):
+    CODE              Offs=004D85  Size=00000D  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(callmain.o):
+    CODE              Offs=004D92  Size=000017  Align=00001  Fill=0000
+    DATA              Offs=000781  Size=000004  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(condes.o):
+    CODE              Offs=004DA9  Size=00000C  Align=00001  Fill=0000
+    DATA              Offs=000785  Size=000025  Align=00001  Fill=0000
+    ONCE              Offs=000010  Size=00000C  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(crt0.o):
+    CODE              Offs=004DB5  Size=000012  Align=00001  Fill=0000
+    RODATA            Offs=000245  Size=000007  Align=00001  Fill=0000
+    DATA              Offs=0007AA  Size=000003  Align=00001  Fill=0000
+    STARTUP           Offs=000000  Size=000034  Align=00001  Fill=0000
+    ONCE              Offs=00001C  Size=00006A  Align=00001  Fill=0000
+    INIT              Offs=000000  Size=00001D  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(ctype.o):
+    RODATA            Offs=00024C  Size=00008B  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(ctypemask.o):
+    CODE              Offs=004DC7  Size=00001E  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(decsp1.o):
+    CODE              Offs=004DE5  Size=000009  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(decsp2.o):
+    CODE              Offs=004DEE  Size=00000D  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(decsp3.o):
+    CODE              Offs=004DFB  Size=00000D  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(decsp4.o):
+    CODE              Offs=004E08  Size=00000D  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(decsp5.o):
+    CODE              Offs=004E15  Size=00000D  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(decsp6.o):
+    CODE              Offs=004E22  Size=00000D  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(errno.o):
+    BSS               Offs=001104  Size=000002  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(exehdr.o):
+    EXEHDR            Offs=000000  Size=00003A  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(free.o):
+    CODE              Offs=004E2F  Size=0001D3  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(icmp.o):
+    CODE              Offs=005002  Size=00002E  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(incsp1.o):
+    CODE              Offs=005030  Size=000007  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(incsp2.o):
+    CODE              Offs=005037  Size=000016  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(incsp3.o):
+    CODE              Offs=00504D  Size=000005  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(incsp4.o):
+    CODE              Offs=005052  Size=000005  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(incsp5.o):
+    CODE              Offs=005057  Size=000005  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(incsp6.o):
+    CODE              Offs=00505C  Size=000005  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(incsp7.o):
+    CODE              Offs=005061  Size=000005  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(incsp8.o):
+    CODE              Offs=005066  Size=000005  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(ldaxsp.o):
+    CODE              Offs=00506B  Size=000009  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(lneg.o):
+    CODE              Offs=005074  Size=00001E  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(lpush.o):
+    CODE              Offs=005092  Size=000021  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(ltoa.o):
+    CODE              Offs=0050B3  Size=000095  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(malloc.o):
+    CODE              Offs=005148  Size=00010E  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(memcpy.o):
+    CODE              Offs=005256  Size=00003C  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(mod.o):
+    CODE              Offs=005292  Size=000011  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(mul8.o):
+    CODE              Offs=0052A3  Size=00003A  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(mulax3.o):
+    CODE              Offs=0052DD  Size=000011  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(mulax9.o):
+    CODE              Offs=0052EE  Size=000017  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(negabs.o):
+    CODE              Offs=005305  Size=000012  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(popptr1.o):
+    CODE              Offs=005317  Size=00000E  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(push1.o):
+    CODE              Offs=005325  Size=000005  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(pusha.o):
+    CODE              Offs=00532A  Size=000016  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(pushax.o):
+    CODE              Offs=005340  Size=00001A  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(pushwsp.o):
+    CODE              Offs=00535A  Size=00001C  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(rand.o):
+    CODE              Offs=005376  Size=000031  Align=00001  Fill=0000
+    DATA              Offs=0007AD  Size=000004  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(shelp.o):
+    CODE              Offs=0053A7  Size=000020  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(sprintf.o):
+    CODE              Offs=0053C7  Size=00002B  Align=00001  Fill=0000
+    BSS               Offs=001106  Size=000001  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(staspidx.o):
+    CODE              Offs=0053F2  Size=000016  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(staxsp.o):
+    CODE              Offs=005408  Size=00000B  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(staxspi.o):
+    CODE              Offs=005413  Size=00001B  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(strlen.o):
+    CODE              Offs=00542E  Size=000016  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(strlower.o):
+    CODE              Offs=005444  Size=000027  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(udiv.o):
+    CODE              Offs=00546B  Size=00004F  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(umod.o):
+    CODE              Offs=0054BA  Size=000011  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(vsnprintf.o):
+    CODE              Offs=0054CB  Size=0000DA  Align=00001  Fill=0000
+    DATA              Offs=0007B1  Size=000008  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(vsprintf.o):
+    CODE              Offs=0055A5  Size=000012  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(zerobss.o):
+    CODE              Offs=0055B7  Size=000023  Align=00001  Fill=0000
+C:\ProgramData\chocolatey\lib\cc65-compiler\tools\lib/apple2.lib(zeropage.o):
+    ZEROPAGE          Offs=000000  Size=00001A  Align=00001  Fill=0000
+
+
+Segment list:
+-------------
+Name                   Start     End    Size  Align
+----------------------------------------------------
+ZEROPAGE              000080  000099  00001A  00001
+EXEHDR                0007C9  000802  00003A  00001
+STARTUP               000803  000836  000034  00001
+CODE                  004000  0095D9  0055DA  00001
+RODATA                0095DA  0098B0  0002D7  00001
+DATA                  0098B1  00A069  0007B9  00001
+INIT                  00A06A  00A086  00001D  00001
+BSS                   00A087  00B18D  001107  00001
+ONCE                  00A087  00A10E  000088  00001

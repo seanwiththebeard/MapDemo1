@@ -1,3 +1,4 @@
+#if __C64__
 #include <cbm.h>
 #include <stdio.h>
 
@@ -24,3 +25,5 @@ void DiskLoad(char filename[], int dest)
   cbm_k_close(0);
   //cbm_k_clall;
 }
+
+#endif

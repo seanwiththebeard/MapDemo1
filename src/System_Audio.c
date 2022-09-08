@@ -4,6 +4,7 @@
 #include "Platform.h"
 //#link "SIDPlayerASM.s"
 //#resource "song.sid"
+#if __C64__
 #include <c64.h>
 
 void SIDINIT(void); 
@@ -25,3 +26,4 @@ void StopSID(void)
   SIDSTOP();
 }
 
+#endif

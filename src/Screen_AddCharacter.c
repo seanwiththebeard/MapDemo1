@@ -142,7 +142,7 @@ void DrawCharWindow(byte xPos, byte yPos, byte width, byte height, char title[16
   selection = 0;
   for (x = 0; x < height; ++x)
   {
-    DrawLineH(' ', 0, xPos, yPos + x, width);
+    DrawLineH(' ', xPos, yPos + x, width);
   }
 
   DrawBorder(xPos, yPos, width, height, false, true);

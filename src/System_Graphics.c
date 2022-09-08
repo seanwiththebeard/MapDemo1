@@ -1,22 +1,34 @@
+#if __C64__
 #include <c64.h>
+#endif
+#if __apple2__
+#include <apple2.h>
+#endif
 #include <peekpoke.h>
 #include "Common.h"
 #include <conio.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "System_CharacterSets.h"
 #include "Platform.h"
 
 byte charScrollBuffer[8], column, OffsetY, temp, count, ColCount;
 int offset, charOffset, colorOffset, origin, retValue, bufferColorAddress, bufferScreenAddress, i;
 
-byte *ScreenCharBuffer = 0;
-byte *ScreenColorBuffer = 0;
-
-byte *ScreenChars;
+byte *ScreenCharBuffer = (byte *)0x0400;
+byte *ScreenColorBuffer = (byte *)0xF400;
+byte *ScreenChars = (byte *)0x0400;
 byte *ScreenColors = (byte *)0xD800;
+
 byte *CharRam;
 byte lastBank, lastScreenPos, lastCharPos;
 unsigned short offset1;
+
+#if __apple2__
+byte* HGR = (byte*)0x2000;
+byte* HGRBuffer = (byte*)0x4000;
+int RowsHGR[192];
+#endif
 
 int screenposition;
 
@@ -30,17 +42,29 @@ int YColumnIndex[25] = {
 int FlashFrames = 0;
 
 bool bufferselect = 0;
-//byte charpos = 2;
 
 void ScrollingMaskOn()
 {
+  #if __C64__
   clearBit(VIC.ctrl1, 3);
   clearBit(VIC.ctrl2, 3);
+  #endif
 }
+
 void ScrollingMaskOff()
 {
+  #if __C64__
   setBit(VIC.ctrl1, 3);
   setBit(VIC.ctrl2, 3);
+  #endif
+}
+
+void ScrollReset()
+{
+  #if __C64__
+    VIC.ctrl1 = 0x1b;
+    VIC.ctrl2 = 0xc8;
+  #endif
 }
 
 void FlipBuffer()
@@ -61,25 +85,28 @@ void FlipBuffer()
 
 void MoveScreenUp()
 {
+  #if __C64__
   byte ys;
-
-  CopyMemory(&ScreenCharBuffer[0], &ScreenChars[COLS], YColumnIndex[24]);
+  wait_vblank(1);
+  CopyMemory(&ScreenCharBuffer[0], &ScreenChars[COLS], YColumnIndex[ROWS - 1]);
   FlipBuffer();
-
+  for (ColCount = 0; ColCount < COLS; ++ColCount)
+    ScreenCharBuffer[YColumnIndex[ROWS - 1]+ColCount] = ' ';
   for (ys = 7; ys != 0; --ys)
   {
     // set scroll registers
-    //VIC.ctrl1 = (VIC.ctrl1 & 0xf8);
-    //VIC.ctrl1 |= (ys & 7);
-    //VIC.ctrl1 = clearBit(VIC.ctrl1, 3);
-
-    VIC.ctrl1 = 144 | ys;
-    // wait for vsync
-    wait_vblank(6);
+    #if __C64__
+    VIC.ctrl1 = 144 | (ys & 7);
+    #endif
+    wait_vblank(4);
   }
+  #endif
 
-  for (ColCount = 0; ColCount < COLS; ++ColCount)
-    ScreenCharBuffer[960+ColCount] = ' ';
+  #if __apple2__
+  gotoxy(0, 23);
+  cprintf("Hello\n");
+  #endif
+  
 }
 
 void MoveScreenDown()
@@ -87,7 +114,8 @@ void MoveScreenDown()
   byte ys;
   CopyMemory(&ScreenCharBuffer[COLS], &ScreenChars[0], YColumnIndex[24]);
   FlipBuffer();
-  
+
+  #if __C64__
   for (ys = 0; ys < 7; ++ys)
   {
     // set scroll registers
@@ -97,6 +125,8 @@ void MoveScreenDown()
     // wait for vsync
     wait_vblank(2);
   }
+  #endif
+
   for (ColCount = 0; ColCount < COLS; ++ColCount)
     ScreenCharBuffer[ColCount] = ' ';
 }
@@ -109,31 +139,62 @@ void UpdateColors()
   }
 }
 
-
 void SetChar(byte x, byte y, byte index)
 {
+  #if __C64__
   offset1 = YColumnIndex[y] + x;
   ScreenChars[offset1] = index;;
   ScreenColors[offset1] = AttributeSet[index];
+  #endif
+
+
+  #if __apple2__
+  index = (int)index <<3;
+  ypos = ypos << 3;
+  offset= RowsHGR[ypos] + xpos;
+  for (y = 0; y < 8; ++y)
+  {
+    HGR[offset] = charset[index];
+    offset += 0x400;
+    ++index;
+  }
+  #endif
 }
 
-void SetCharC(byte x, byte y, byte index, byte color)
+void SetCharBuffer(byte x, byte y, byte index)
 {
+  #if __C64__
   offset1 = YColumnIndex[y] + x;
-  ScreenChars[offset1] = index;;
-  ScreenColors[offset1] = color;
+  ScreenCharBuffer[offset1] = index;;
+  ScreenColorBuffer[offset1] = AttributeSet[index];
+  #endif
+
+
+  #if __apple2__
+  index = (int)index <<3;
+  ypos = ypos << 3;
+  offset= RowsHGR[ypos] + xpos;
+  for (y = 0; y < 8; ++y)
+  {
+    HGR[offset] = charset[index];
+    offset += 0x400;
+    ++index;
+  }
+  #endif
 }
 
 void DrawCharacterSet(byte destX, byte destY)
 {
+  #if __C64__
   byte posX, posY;
   DrawBorder(destX - 1, destY - 1, 18, 18, false, false);
    for (posY = 0; posY < 16; ++posY)
         for (posX = 0; posX < 16; ++posX)
-                SetScreenChar(posY*16 + posX, posX + destX, posY + destY);
+                SetChar(posY*16 + posX, posX + destX, posY + destY);
   CopyDoubleBufferArea(destX, destY, 16, 16);
-
+  #endif
 }
+
 
 int originOffset = 0;
 
@@ -144,7 +205,7 @@ void SetTileOrigin(byte x, byte y)
 
 byte indexes[4];
 
-void DrawTileFast(byte index, byte x, byte y, bool buffer)
+void DrawTileFast(byte index, byte x, byte y)
 { 
   index = (index << 1) + ((index >> 3) << 4);
   indexes[0] = index;
@@ -156,7 +217,7 @@ void DrawTileFast(byte index, byte x, byte y, bool buffer)
   y = y << 1;
 
   offset1 = YColumnIndex[y] + x + originOffset;
-  if (buffer)
+  //if (buffer)
   {
     memcpy(&ScreenCharBuffer[offset1], &indexes[0], 2);
     memcpy(&ScreenColorBuffer[offset1], &AttributeSet[indexes[0]], 2);
@@ -164,25 +225,25 @@ void DrawTileFast(byte index, byte x, byte y, bool buffer)
     memcpy(&ScreenCharBuffer[offset1], &indexes[2], 2);
     memcpy(&ScreenColorBuffer[offset1], &AttributeSet[indexes[2]], 2);
   }
-  else
+  /*else
   {
     memcpy(&ScreenChars[offset1], &indexes[0], 2);
     memcpy(&ScreenColors[offset1], &AttributeSet[indexes[0]], 2);
     offset1 += COLS;
     memcpy(&ScreenChars[offset1], &indexes[2], 2);
     memcpy(&ScreenColors[offset1], &AttributeSet[indexes[2]], 2);
-  }
+  }*/
 }
 
 void CopyDoubleBuffer()
 {
   memcpy((int*)ColorRam, &ScreenColorBuffer[0], 1000);
   memcpy(&ScreenChars[0], &ScreenCharBuffer[0], 1000);
-  
 }
 
 void CopyDoubleBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
 {
+  #if __C64__
   offset = posX + YColumnIndex[posY];
   OffsetY = posX + YColumnIndex[0];
   charOffset = (int)&ScreenChars[0] + offset;
@@ -203,10 +264,12 @@ void CopyDoubleBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
     	bufferScreenAddress += COLS;
     	bufferColorAddress += COLS;
     } 
+    #endif
 }
 
 void ClearScreen()
 {
+  #if __C64__
   for (i = 0; i < 1000; ++i)
   {
     ScreenColors[i] = 1;
@@ -216,12 +279,18 @@ void ClearScreen()
   }
   
   FlipBuffer();
-  
+  #endif
+
+  #if __apple2__
+  clrscr();
+  #endif
   
 }
 
 void ReverseBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
 {
+  #if __C64__
+
   offset = posX + YColumnIndex[posY];
   OffsetY = posX + YColumnIndex[0];
   bufferScreenAddress = (int)&ScreenChars[0] + offset;
@@ -242,11 +311,12 @@ void ReverseBufferArea(byte posX, byte posY, byte sizeX, byte sizeY)
     	bufferScreenAddress += COLS;
     	bufferColorAddress += COLS;
     }
-  
+  #endif
 }
 
 void SelectVICBanks(byte bank, byte screenpos, byte charpos)
 {
+  #if __C64__
   int* regd018 = (int*)0xd018;
   byte vicreg = 0x00;
   
@@ -299,83 +369,44 @@ void SelectVICBanks(byte bank, byte screenpos, byte charpos)
   screenpos = screenpos << 4;
   charpos = charpos << 1;
   vicreg = screenpos + charpos;
-  raster_wait(255);
+  raster_wait(252);
   regd018[0] = vicreg;
   //POKE (0xD018, screenpos + charpos);
  
   
   //Cursor Position
   POKE (0x0288, screenposition / 256);
+  #endif
+
+  #if __apple2__
+  byte y;
+  #define STROBE(addr)       __asm__ ("sta %w", addr)
+  STROBE(0xc052); // turn off mixed-mode
+  STROBE(0xc054); // page 1
+  STROBE(0xc057); // hi-res
+  STROBE(0xc050); // set graphics mode
+  //memset((byte*)0x2000, 0, 0x2000); // clear page 1
+  for (y = 0; y < 192; ++y)
+    RowsHGR[y] = (y/64)*0x28 + (y%8)*0x400 + ((y/8)&7)*0x80;
+  #endif
 }
 
-/*void setcolortextmode()
-{
-  //POKE(0xDC0E, PEEK(0xDC0E)&254); // Pause Keyscan
-  //POKE(0x0001, (PEEK(0x0001)&251)); // Character ROM select
-  
-  //POKE(0x0001, (PEEK(0x0001)|4)); // Character ROM de-select, back to IO
-  //POKE(0xDC0E, PEEK(0xDC0E)|1); // Resume Keyscan
-  
-  //Redirect the character set address, select uppercase set
-  //Select Bank 3 (last bank)
-  POKE (0xDD00, (PEEK(0XDD00)&252));
-  
-  //Set character RAM + screen memory (?) position
-  //Numbers here are RELATIVE TO THE BANK ADDRESS
-  //The four most significant bits form a 4-bit number
-  //in the range 0 thru 15: Multiplied with 1024 this gives the start address 
-  //for the screen character RAM.
-  //Bits 1 thru 3 (weights 2 thru 8) form a 3-bit number
-  //in the range 0 thru 7: Multiplied with 2048 this gives the start address 
-  //for the character set.
-  //
-  //We want to use the start of the bank (0) for CHRSET and add 2KB for the screen RAM
-  // 0010 000X
-  POKE (0xD018, 32);
-  
-  // Set Kernel-Function Screen Position pointer (used for ClrScr, Printf)
-  // Value * 256 = Screen Position Address
-  // 1100 1000
-  POKE (0x0288, 200);
-  
-  for (offset = 0; offset < 1000; ++offset)
-  {
-    ScreenDoubleBuffer[offset] = ' ';
-    ScreenDoubleBuffer[offset + 1000] = 0;
-  }
-  CopyDoubleBuffer();
-}*/
-
-void SetScreenChar(byte index, byte xpos, byte ypos)
-{
-  offset = YColumnIndex[ypos] + xpos;
-  POKE(&ScreenCharBuffer[offset], index);
-  POKE(&ScreenColorBuffer[offset], AttributeSet[index]);
-}
-
-void SetScreenCharColor(byte index, byte color, byte xpos, byte ypos)
-{  
-  offset = YColumnIndex[ypos] + xpos;
-  POKE(&ScreenCharBuffer[offset], index);
-  POKE(&ScreenColorBuffer[offset], color);
-}
-
-void DrawLineH(char index, byte color, byte x, byte y, byte length)
+void DrawLineH(char index, byte x, byte y, byte length)
 {
   for (count = 0; count < length; ++count)
-    SetCharC(x + count, y, index, color);
-    //SetScreenCharColor(index, color, x + count, y);
+    SetChar(x + count, y, index);
 }
 
-void DrawLineV(char index, byte color, byte x, byte y, byte length)
+void DrawLineV(char index, byte x, byte y, byte length)
 {
   for (count = 0; count < length; ++count)
-    SetCharC(x, y + count, index, color);
+    SetChar(x, y + count, index);
     //SetScreenCharColor(index, color, x, y + count);
 }
 
 void PrintString(char text[20], byte posx, byte posy, bool fast, bool buffer)
 {
+  #if __C64__
   for(count = 0; count < 20; ++count)
   {
     if (text[count] == '@')
@@ -383,10 +414,16 @@ void PrintString(char text[20], byte posx, byte posy, bool fast, bool buffer)
     if (!fast)
       raster_wait(255);
     if (buffer)
-      SetScreenChar(text[count], posx + count, posy);
+      SetCharBuffer(posx + count, posy, text[count]);
     else
       SetChar(posx + count, posy, text[count]);      
   }
+  #endif
+
+  #if __apple2__
+  gotoxy(posx, posy);
+  cprintf(text)
+  #endif
 }
 
 void ScrollChar(byte index, byte direction)
@@ -432,53 +469,22 @@ void ScrollChar(byte index, byte direction)
 void DrawBorder(byte xPos, byte yPos, byte width, byte height, bool buffer, bool fill)
 {
   byte x;
-  #define lineColor 15
-  #define cornerColor 8
   
-  DrawLineH(239, lineColor, xPos + 1, yPos, width - 2);
-  DrawLineH(239, lineColor, xPos + 1, yPos + height - 1, width - 1);
-  DrawLineV(255, lineColor, xPos, yPos + 1, height - 1);
-  DrawLineV(255, lineColor, xPos + width - 1, yPos + 1, height - 1);
-  SetCharC(xPos, yPos, 238, cornerColor);
-  SetCharC(xPos + width - 1, yPos, 238, cornerColor);
-  SetCharC(xPos, yPos + height - 1, 238, cornerColor);
-  SetCharC(xPos + width - 1, yPos + height - 1, 238, cornerColor);
+  DrawLineH(239, xPos + 1, yPos, width - 2);
+  DrawLineH(239, xPos + 1, yPos + height - 1, width - 1);
+  DrawLineV(255, xPos, yPos + 1, height - 1);
+  DrawLineV(255, xPos + width - 1, yPos + 1, height - 1);
+  SetChar(xPos, yPos, 238);
+  SetChar(xPos + width - 1, yPos, 238);
+  SetChar(xPos, yPos + height - 1, 238);
+  SetChar(xPos + width - 1, yPos + height - 1, 238);
   if (fill)
     for (x = 0; x < height - 2; ++x)
     {
-      DrawLineH(' ', 0, xPos + 1, yPos + x + 1, width - 2);
+      DrawLineH(' ', xPos + 1, yPos + x + 1, width - 2);
     }
   if (buffer)
   {
     ReverseBufferArea(xPos, yPos, width, height);
-  }
-}
-
-void FlashColorWait(byte index, byte length)
-{
-  retValue = PEEK(0xD021);
-  bgcolor(index);
-  bordercolor(index);
-  wait_vblank(length);
-  bgcolor(retValue);
-  bordercolor(retValue);
-}
-
-void FlashColor(byte index, byte length)
-{
-  bgcolor(index);
-  bordercolor(index);
-  FlashFrames = length;
-}
-
-void Graphics_Update()
-{
-  if (FlashFrames > 0)
-  {
-    FlashFrames--;
-    if (FlashFrames == 0)
-    bgcolor(0);
-    bordercolor(0);
-
   }
 }

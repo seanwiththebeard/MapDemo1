@@ -34,29 +34,47 @@
 
 void Initialize()
 {
+  #if __C64__
   ScreenDisable();
   SelectVICBanks(3, 2, 7);
   ClearScreen();
   bgcolor(0);
   bordercolor(0);
   InitializeInput();
-  LoadMap();
   DiskLoad("song.dat", (int)SIDLOAD);
   DiskLoad("CharacterSet.bin", (int)CharRam);
+  LoadMap();
   ScreenEnable();
+  #endif
+}
+
+void apple (void)
+{
+  byte x, y;
+  byte i = 0;
+
+  ClearScreen();
+  
+  while (1)
+  {
+    for (y= 0; y < 16; ++y)
+      for (x = 0; x < 16; ++x)
+      {
+        //DrawChar(i, x, y);
+        ++i;
+        //DrawChar(x + y*16, x + (i % 24), y + (i % 8)); 
+      }
+    //FlipBuffer();
+    i += 16;
+  }
 }
 
 void main(void)
-{   
+{
   Initialize();
-  SwitchScreen(Credits);  
-  
-  /*while(true)
-  {
-    UpdateInput();
-    Graphics_Update();
-    
-    if(InputChanged())
-      UpdateScreen();
-  }*/
+  //apple();
+  SwitchScreen(Map);  
+  ClearScreen();
+  while(1)
+  {}
 }

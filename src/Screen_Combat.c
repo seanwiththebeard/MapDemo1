@@ -12,7 +12,7 @@ void DrawMap()
   for (y = 0; y < 8; ++y)
     for (x = 0; x < 8; ++x)
     {
-      DrawTileFast(index, x, y, false);
+      DrawTileFast(index, x, y);
     }
 }
 
@@ -20,7 +20,7 @@ void DrawCharacters()
 {
   byte i;
   for (i = 0; i < CountParty(); ++i)
-    DrawTileFast(i, 2+i, 6, false);
+    DrawTileFast(i, 2+i, 6);
 }
 
 screenName Update_Combat()
@@ -30,9 +30,10 @@ screenName Update_Combat()
   
   ClearScreen();
   PrintString("Combat!@", 0, 0, true, false);
-  DrawBorder(0, 0, 18, 18, false, true);
+  DrawBorder(0, 0, 18, 18, true, true);
   DrawMap();
   DrawCharacters();
+  CopyDoubleBuffer();
   
   
   while (!exit)

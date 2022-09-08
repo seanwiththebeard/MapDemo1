@@ -1,7 +1,10 @@
 #ifndef _COMMON_H
 #define _COMMON_H
 
+#if __C64__
 #include <c64.h>
+#endif
+
 #include <stdint.h>
 #include <string.h>
 #include <peekpoke.h>
@@ -14,10 +17,15 @@ typedef enum { Title, Credits, EditParty, Map, Combat, Menu, SaveLoad } screenNa
 
 extern char str[16];
 extern int randseed;
-extern 
 
 #define COLS 40
 #define ROWS 25
+
+#if __apple2__
+#define COLS 40
+#define ROWS 24
+#endif
+
 
 #define CopyMemory(dest, src, length)(memcpy((int*)dest, (int*)src, length))
 void raster_wait(byte line);
