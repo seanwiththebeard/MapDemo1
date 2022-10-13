@@ -187,7 +187,7 @@ void DrawCharacterSet(byte destX, byte destY)
 {
   #if __C64__
   byte posX, posY;
-  DrawBorder(destX - 1, destY - 1, 18, 18, false, false);
+  DrawBorder(destX - 1, destY - 1, 18, 18, false);
    for (posY = 0; posY < 16; ++posY)
         for (posX = 0; posX < 16; ++posX)
                 SetChar(posY*16 + posX, posX + destX, posY + destY);
@@ -394,14 +394,13 @@ void SelectVICBanks(byte bank, byte screenpos, byte charpos)
 void DrawLineH(char index, byte x, byte y, byte length)
 {
   for (count = 0; count < length; ++count)
-    SetChar(x + count, y, index);
+    SetCharBuffer(x + count, y, index);
 }
 
 void DrawLineV(char index, byte x, byte y, byte length)
 {
   for (count = 0; count < length; ++count)
-    SetChar(x, y + count, index);
-    //SetScreenCharColor(index, color, x, y + count);
+    SetCharBuffer(x, y + count, index);
 }
 
 void PrintString(char text[20], byte posx, byte posy, bool fast, bool buffer)
@@ -466,7 +465,7 @@ void ScrollChar(byte index, byte direction)
   }
 }
 
-void DrawBorder(byte xPos, byte yPos, byte width, byte height, bool buffer, bool fill)
+void DrawBorder(byte xPos, byte yPos, byte width, byte height, bool fill)
 {
   byte x;
   
@@ -474,17 +473,13 @@ void DrawBorder(byte xPos, byte yPos, byte width, byte height, bool buffer, bool
   DrawLineH(239, xPos + 1, yPos + height - 1, width - 1);
   DrawLineV(255, xPos, yPos + 1, height - 1);
   DrawLineV(255, xPos + width - 1, yPos + 1, height - 1);
-  SetChar(xPos, yPos, 238);
-  SetChar(xPos + width - 1, yPos, 238);
-  SetChar(xPos, yPos + height - 1, 238);
-  SetChar(xPos + width - 1, yPos + height - 1, 238);
+  SetCharBuffer(xPos, yPos, 238);
+  SetCharBuffer(xPos + width - 1, yPos, 238);
+  SetCharBuffer(xPos, yPos + height - 1, 238);
+  SetCharBuffer(xPos + width - 1, yPos + height - 1, 238);
   if (fill)
     for (x = 0; x < height - 2; ++x)
     {
       DrawLineH(' ', xPos + 1, yPos + x + 1, width - 2);
     }
-  if (buffer)
-  {
-    ReverseBufferArea(xPos, yPos, width, height);
-  }
 }

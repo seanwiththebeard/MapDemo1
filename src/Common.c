@@ -1,13 +1,8 @@
-#include <peekpoke.h>
 #include "Common.h"
 #if __C64__
 #include <c64.h>
 #endif
-#include "Screen_Title.h"
-#include "Screen_Credits.h"
-#include "Screen_Map.h"
-#include "Screen_AddCharacter.h"
-#include "Screen_Combat.h"
+#include "GameScreens.h"
 
 #include "Platform.h"
 
@@ -68,32 +63,12 @@ void SwitchScreen(screenName screen)
   SwitchScreen(currentScreen);
 }
 
-void UpdateScreen()
-{
-  switch (currentScreen)
-  {
-    case Title:
-      break;
-    case EditParty:
-      break;
-    case Map:
-      MapUpdate();
-      break;
-    case Combat:
-      break;
-    case Menu:
-      break;
-    default:
-      break;
-  }
-}
-
-byte ReadBit(byte byteToRead, char bit)
+byte ReadBit(byte byteToRead, char bit)//These are old
 {
     bit = 1 << bit;
     return(bit & byteToRead);
 }
-void WriteBit(byte *byteToSet, char bit, bool value)
+void WriteBit(byte *byteToSet, char bit, bool value)//These are old
 {
   if (value)
   {
@@ -106,16 +81,16 @@ void WriteBit(byte *byteToSet, char bit, bool value)
   *byteToSet = *byteToSet | bit;
 }
 
-byte setBit(byte byteToSet , byte k)
+byte setBit(byte byteToSet , byte k) //These work right
 {
     byteToSet = byteToSet | (1 << (k - 1));
 }
-byte clearBit(byte byteToSet , byte k)
+byte clearBit(byte byteToSet , byte k) //These work right
 {
     byteToSet = byteToSet & (~(1 << (k)));
 }
 
-bool CheckBit(byte source, byte position)
+bool CheckBit(byte source, byte position) //These are old
 {
   return (source & (1<<position));
 }

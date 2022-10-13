@@ -24,7 +24,7 @@ char Messages[64][16] = {
 
 void DrawMessageWindow()
 {
-  DrawBorder(PosX - 1, PosY - 1, Width + 2, Height + 2, true, false);
+  DrawBorder(PosX - 1, PosY - 1, Width + 2, Height + 2, false);
   
   //Buffer
   //addressChar = (int)&ScreenDoubleBuffer[0] + PosX + COLS*(PosY);
@@ -57,7 +57,7 @@ void BlankMessageWindow()
     }
     DrawMessageWindow();
     
-  DrawBorder(PosX - 1, PosY - 1, Width + 2, Height + 2, true, true);
+  DrawBorder(PosX - 1, PosY - 1, Width + 2, Height + 2, true);
   CopyDoubleBuffer();
 }
 
@@ -118,7 +118,7 @@ void DrawCharStatus(byte characterIndex)
   byte statY = 2 + characterIndex * 3;
   struct playerChar *PlayerChar = getPartyMember(characterIndex);
   
-  DrawBorder(statX - 1, statY - 1, COLS - statX + 1, 4, false, true);
+  DrawBorder(statX - 1, statY - 1, COLS - statX + 1, 4, true);
   sprintf(str, "%s@", RaceDescription[PlayerChar->RACE].NAME);
   PrintString(str, statX, statY, true, false);
   sprintf(str, "HP:%d/%d@", PlayerChar->HP, PlayerChar->HPMAX);  

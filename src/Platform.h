@@ -3,7 +3,6 @@
 //Graphics
 extern byte *CharRam;
 extern byte *ScreenChars;
-//#define ScreenRam 0xC800
 #define CharacterRom 0xD000
 #define ColorRam 0xD800
 
@@ -25,13 +24,12 @@ void DrawTileFast(byte index, byte x, byte y);
 void PrintString(char text[16], byte posx, byte posy, bool fast, bool buffer);
 void DrawLineH(char index, byte x, byte y, byte length);
 void DrawLineV(char index, byte x, byte y, byte length);
-void DrawBorder(byte xPos, byte yPos, byte width, byte height, bool buffer, bool fill);
+void DrawBorder(byte xPos, byte yPos, byte width, byte height, bool fill);
 extern int YColumnIndex[];
 extern byte *ScreenCharBuffer;
 extern byte *ScreenColorBuffer;
 
 //Audio
-//extern char SIDFILE[];
 extern void PlaySID(void);
 extern void StopSID(void);
 #define SIDSIZE (1024)*2

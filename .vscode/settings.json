@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "system_messagewindow.h": "c",
+        "system_charactersets.h": "c",
+        "string.h": "c",
+        "stdint.h": "c"
+    }
+}

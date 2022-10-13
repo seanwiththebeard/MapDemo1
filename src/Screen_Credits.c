@@ -1,6 +1,4 @@
-#include "System_MessageWindow.h"
 #include "Common.h"
-#include <stdio.h>
 #include "Platform.h"
 
 byte yscroll;

@@ -132,7 +132,7 @@ void DrawSelections()
   byte x;
   for (x = 0; x < countSelections + 1; ++x)
   {
-    PrintString(Selections[x], windowX + 3, windowY + 1 + x, true, false);
+    PrintString(Selections[x], windowX + 3, windowY + 1 + x, true, true);
   }
 }
 
@@ -145,11 +145,12 @@ void DrawCharWindow(byte xPos, byte yPos, byte width, byte height, char title[16
     DrawLineH(' ', xPos, yPos + x, width);
   }
 
-  DrawBorder(xPos, yPos, width, height, false, true);
+  DrawBorder(xPos, yPos, width, height, true);
 
   PrintString(title, xPos + 1, yPos, true, false);
-  DrawSelection();
   DrawSelections();
+  CopyDoubleBuffer();
+  DrawSelection();
 }
 
 bool AreYouSure()
@@ -482,7 +483,7 @@ void DrawRoster()
                 return;
               }
             break;
-          case 4:
+          case 4: //Start Adventure
             if (CountParty() > 0)
             {
               repeatRoster = false;
@@ -492,17 +493,17 @@ void DrawRoster()
             else
               WriteLineMessageWindow("Party Empty!@", 0);
             break;
-          case 5:
+          case 5: //Title
             repeatRoster = false;
             exitWindow = true;
             nextScreen = Title;
             break;
-          case 6:
+          case 6: //Credits
             repeatRoster = false;
             exitWindow = true;
             nextScreen = Credits;
             break;
-          case 7:
+          case 7: //Combat
             repeatRoster = false;
             exitWindow = true;
             nextScreen = Combat;

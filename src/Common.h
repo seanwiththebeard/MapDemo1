@@ -10,8 +10,6 @@
 #include <peekpoke.h>
 
 typedef uint8_t byte;
-typedef uint16_t word;
-typedef int8_t sbyte;
 typedef enum { false, true } bool;
 typedef enum { Title, Credits, EditParty, Map, Combat, Menu, SaveLoad } screenName;
 
@@ -35,7 +33,6 @@ void wait_vblank(byte frames);
 #define ScreenEnable() (POKE(0xD011, PEEK(0xD011)|16))
 
 void SwitchScreen(screenName screen);
-void UpdateScreen(void);
 
 void WriteBit(byte *byteToSet, char bit, bool value);
 byte clearBit(byte byteToSet , byte k);

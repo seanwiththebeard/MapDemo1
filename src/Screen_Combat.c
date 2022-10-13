@@ -29,12 +29,11 @@ screenName Update_Combat()
   bool exit = false;
   
   ClearScreen();
-  PrintString("Combat!@", 0, 0, true, false);
-  DrawBorder(0, 0, 18, 18, true, true);
+  DrawBorder(0, 0, 18, 18, false);
+  PrintString("Combat!@", 0, 0, true, true);
   DrawMap();
   DrawCharacters();
   CopyDoubleBuffer();
-  
   
   while (!exit)
   {

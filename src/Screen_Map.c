@@ -1,13 +1,9 @@
-#include <stdio.h>
-#include <peekpoke.h>
 #include "Common.h"
 #include "System_MessageWindow.h"
 #include "System_CharacterSets.h"
-#include "Screen_AddCharacter.h"
 #include "Platform.h"
 
 //Globals
-//char str[16];
 int int_offset, tileAddress, colorAddress;
 byte byte_x, byte_y, byte_z, byte_a, byte_b, byte_temp, byte_i, checkCollision;
 int int_x, int_y, int_index, int_a, int_b, xPos, yPos, chardata;
@@ -60,7 +56,7 @@ const byte LastMapScanline = (8*viewportPosY + 16*viewportHeight);
 //Scrolling left and right line buffer
 const byte bufferLength = viewportCharWidth - 2;
 byte buffer[viewportCharWidth];
-const int BufferAddress = (int) &buffer[0];
+const int BufferAddress = &buffer[0];
 const int totalSize = viewportCharHeight * viewportCharWidth;
 byte viewportBuffer[viewportWidth][viewportHeight];
 byte DoubleBufferChars[viewportCharWidth*viewportCharHeight];
@@ -71,8 +67,8 @@ int CharAddress, CharAddress2, ColorAddress, ColorAddress2;
 
 byte followIndex = 0;
 
-int viewportOrigin = (int)&ScreenCharBuffer;
-int colorOrigin = (int)&ScreenColorBuffer;
+int viewportOrigin = &ScreenCharBuffer;
+int colorOrigin = &ScreenColorBuffer;
 
 //QuadScroll
 byte originX, originY;
@@ -246,8 +242,8 @@ void UpdateViewport() //Copies the viewport buffer to the screen buffer
     CopyMemory((int)(colorOrigin + int_offset), (int) &DoubleBufferColors[int_index], doubleCharWidth);    
   }
   BufferCharacters();
-  //CopyDoubleBuffer();
-  CopyDoubleBufferArea(viewportPosX, viewportPosY, doubleCharWidth, doubleCharHeight);
+  CopyDoubleBuffer();
+  //CopyDoubleBufferArea(viewportPosX, viewportPosY, doubleCharWidth, doubleCharHeight);
   //UpdateColors();
 }
 
@@ -870,7 +866,7 @@ bool CheckCollision(byte charIndex, byte Direction)
 
 void DrawEntireMap()
 {
-  DrawBorder(viewportPosX - 1, viewportPosY - 1, viewportCharWidth + 2, viewportCharHeight + 2, true, false);
+  DrawBorder(viewportPosX - 1, viewportPosY - 1, viewportCharWidth + 2, viewportCharHeight + 2, false);
   //ReverseBufferArea(viewportPosX - 1, viewportPosY - 1, viewportCharWidth + 2, viewportCharHeight + 2);
   CameraFollow();
   int_a = offsetX;
